@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Photon.Pun;
 using Photon.Realtime;
 
@@ -64,7 +65,10 @@ public class PlayerContoller : MonoBehaviourPun
         {
             return;
         }
-        Move();
+        if (!UIManager.Instance.isOpenWindow)
+        {
+            Move();
+        }
     }
 
     private void Update()
@@ -73,9 +77,12 @@ public class PlayerContoller : MonoBehaviourPun
         {
             return;
         }
-        Jump();
-        walkToRun();
-        DetectInteractiveObject();
+        if (!UIManager.Instance.isOpenWindow)
+        {
+            Jump();
+            walkToRun();
+            DetectInteractiveObject();
+        }
     }
 
     void walkToRun()
@@ -147,12 +154,14 @@ public class PlayerContoller : MonoBehaviourPun
             currentTouch = hit.transform.gameObject.GetComponent<Outline>();
             currentTouch.enabled = true;
             interactionUI.SetActive(true);
-            
+
             interactionUITransform.position = Input.mousePosition + InteractionUIOffset;
-            
+
             if (Input.GetMouseButtonDown(0))
             {
                 hit.transform.gameObject.GetComponent<InteractiveObject>().Interaction();
+                currentTouch.enabled = false;
+                interactionUI.SetActive(false);
             }
         }
         else

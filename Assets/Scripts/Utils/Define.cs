@@ -10,6 +10,7 @@ public class Define
         HUD,
         MENU,
         CLASS,
+        CLASSMAKING,
         BOARD
     }
 }

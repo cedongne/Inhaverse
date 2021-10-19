@@ -44,9 +44,13 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
     public Toggle studentToggle, instructorToggle;
 
     public PlayFab.AuthenticationModels.EntityKey playerEntity;
+    public string tmpEntityId;
+    public string tmpEntityType;
 
     string myId;
-    public static string job;
+    public string playerJob;
+    public string playerName;
+    public string playerSchoolId;
     bool isAuthenticate;
 
     void Awake()
@@ -66,19 +70,32 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
     public void LoginBtn()
     {
         var request = new LoginWithEmailAddressRequest { Email = emailInput.text, Password = passwordInput.text };
-        PlayFabClientAPI.LoginWithEmailAddress(request, (result) => { GetData(); myId = result.PlayFabId; Debug.Log("myId : " +myId);  OnLoginSuccess(result);  }, (error) => OnLoginFailure(error));
+        PlayFabClientAPI.LoginWithEmailAddress(request, (result) => { GetUserData(); myId = result.PlayFabId; GetPlayerInfo();  OnLoginSuccess(result);  }, (error) => OnLoginFailure(error));
     }
 
     public void RegisterBtn()
     {
         var request = new RegisterPlayFabUserRequest { Email = emailInput.text, Password = passwordInput.text, Username = emailInput.text.Substring(0, 8), DisplayName = usernameInput.text };
         SelectJob();
-        PlayFabClientAPI.RegisterPlayFabUser(request, (result) => { OnRegisterSuccess(result); SetData("Job", job); }, (error) => OnRegisterFailure(error));
+        PlayFabClientAPI.RegisterPlayFabUser(request, (result) => { OnRegisterSuccess(result); SetUserData("Job", playerJob); }, (error) => OnRegisterFailure(error));
     }
 
     public void LoginMaster()
     {
         SelectJob();
+
+        if (playerJob.Equals("학생"))
+        {
+            emailInput.text = "11111111@inha.edu";
+            passwordInput.text = "master1234";
+        }
+        else
+        {
+            emailInput.text = "22222222@inha.edu";
+            passwordInput.text = "master4321";
+        }
+        LoginBtn();
+        /*
         if (job.Equals("학생"))
         {
             var request = new LoginWithEmailAddressRequest { Email = "11111111@inha.edu", Password = "master1234" };
@@ -89,7 +106,9 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             var request = new LoginWithEmailAddressRequest { Email = "22222222@inha.edu", Password = "master4321" };
             PlayFabClientAPI.LoginWithEmailAddress(request, (result) => { GetData(); OnLoginSuccess(result); }, (error) => OnLoginFailure(error));
         }
+        */
     }
+
     private void OnLoginSuccess(LoginResult result)
     {
         Debug.Log("로그인 성공");
@@ -119,7 +138,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
     }
 
     #endregion
-    void SetData(string key, string value)
+    void SetUserData(string key, string value)
     {
         var request = new UpdateUserDataRequest
         {
@@ -129,7 +148,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         PlayFabClientAPI.UpdateUserData(request, (result) => { Debug.Log("값 저장 성공"); }, (error) => Debug.Log("값 저장 실패"));
     }
 
-    void GetData()
+    void GetUserData()
     {
         var request = new GetUserDataRequest { PlayFabId = myId };
         PlayFabClientAPI.GetUserData(request, (result) =>
@@ -140,17 +159,31 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                 {
                     if (eachData.Value.Value == "학생")
                     {
-                        job = "학생";
+                        playerJob = "학생";
                     }
                     else if (eachData.Value.Value == "교수")
                     {
-                        job = "교수";
+                        playerJob = "교수";
                     }
                     break;
                 }
             }
-            Debug.Log("데이터 로드 성공. Job : " + job);
+
+            
+            Debug.Log("데이터 로드 성공. Job : " + playerJob);
         }, (error) => Debug.Log("데이터 로드 실패" + error));
+    }
+
+    void GetPlayerInfo()
+    {
+        var request = new GetAccountInfoRequest { PlayFabId = myId };
+        PlayFabClientAPI.GetAccountInfo(request,
+            (result) =>
+            {
+                name = result.AccountInfo.TitleInfo.DisplayName;
+                playerSchoolId = result.AccountInfo.Username;
+                Debug.Log("플레이어 정보 로드 성공, 이름 : " + name + ", 학번 : " + playerSchoolId);
+            }, (error) => Debug.Log("플레이어 정보 로드 실패"));
     }
 
     void GetLeaderboard(string myID)
@@ -162,38 +195,56 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
     {
         if (studentToggle.isOn)
         {
-            job = "학생";
+            playerJob = "학생";
         }
         else if (instructorToggle.isOn)
         {
-            job = "교수";
+            playerJob = "교수";
         }
     }
 
-    void CreateGroup(string groupName, PlayFab.GroupsModels.EntityKey playerEntity, ClassData data)
+    public void CreateGroup(string groupName, string dataKey, object dataValue)
     {
-        
-        PlayFab.GroupsModels.EntityKey entity = new PlayFab.GroupsModels.EntityKey { Id = myId, Type = "title_player_account" };
-        Debug.Log("Create Group : " + entity.Id + " " + entity.Type);
+        PlayFab.GroupsModels.EntityKey entity = new PlayFab.GroupsModels.EntityKey { Id = playerEntity.Id, Type = playerEntity.Type };
 
-        var request = new CreateGroupRequest { GroupName = "CSE" + Random.Range(0, 1000), Entity = entity };
+        var request = new CreateGroupRequest { GroupName = groupName, Entity = entity };
         PlayFabGroupsAPI.CreateGroup(request, 
             (result) => 
             { 
                 Debug.Log("그룹 생성 성공, id : " + result.Group.Id + " name : " + result.GroupName);
-                entity.Id = result.Group.Id;
+                if (!dataKey.Equals("null"))
+                {
+                    UpdateData(dataKey, result.Group.Id, result.Group.Type, dataValue);
+                }
             }, 
             (error) => Debug.Log("그룹 생성 실패" + error)) ;
-      //  PlayFab.GroupsModels.EntityKey groupEntity = new PlayFab.GroupsModels.EntityKey { Id = myId, Type = "title_player_account" };
 
 
     }
 
-    void UpdateData(string entityId, string entityType, string jsonData)
+    public void UpdateData(string key, string entityId, string entityType, object value)
     {
-        SetObject setObject;
-        var request = new SetObjectsRequest { Entity = { Id = entityId, Type = entityType } };
-        PlayFabDataAPI.SetObjects(request, (result) => Debug.Log("그룹 업데이트 성공"), (error) => Debug.Log("그룹 업데이트 실패" + error));
+        List<SetObject> setObjectsList = new List<SetObject>()
+        {
+            new SetObject()
+            {
+                ObjectName = key,
+                DataObject = value
+            }
+        };
 
+        var request = new SetObjectsRequest { Entity = new PlayFab.DataModels.EntityKey { Id = entityId, Type = entityType }, Objects = setObjectsList };
+        PlayFabDataAPI.SetObjects(request, (result) => Debug.Log("그룹 업데이트 성공"), (error) => Debug.Log("그룹 업데이트 실패" + error));
+    }
+
+    public void GetObjectData()
+    {
+        var request = new GetObjectsRequest { Entity = { Id = playerEntity.Id, Type = playerEntity.Type } };
+        PlayFabDataAPI.GetObjects(request,
+            (result) =>
+            {
+//                string jsonData = (result.Objects);
+            },
+    (error) => { Debug.LogError(error.GenerateErrorReport()); });
     }
 }

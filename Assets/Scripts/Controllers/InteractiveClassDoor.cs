@@ -11,21 +11,27 @@ using PN = Photon.Pun.PhotonNetwork;
 [System.Serializable]
 public class ClassData
 {
+    public string className;
+
     public string firstDayOfWeek;
-    public int firstStartTime;
-    public int firstEndTime;
+    public string firstStartTime;
+    public string firstEndTime;
+
     public string secondDayOfWeek;
-    public int secondStartTime;
-    public int secondEndTime;
+    public string secondStartTime;
+    public string secondEndTime;
 }
 
 public class InteractiveClassDoor : InteractiveObject
 {
+    public InputField classInstructor;
     public InputField classNameInput;
     public InputField classId;
+
     public InputField firstDayOfWeekInput;
     public InputField firstStartTimeInput;
     public InputField firstEndTimeInput;
+
     public InputField secondDayOfWeekInput;
     public InputField secondStartTimeInput;
     public InputField secondEndTimeInput;
@@ -33,40 +39,58 @@ public class InteractiveClassDoor : InteractiveObject
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
- //       Debug.Log(DateTime.Now.Hour + " " + DateTime.Now.Minute);
-    //    Debug.Log(DateTime.Now.DayOfWeek.);
+        //       Debug.Log(DateTime.Now.Hour + " " + DateTime.Now.Minute);
+        //    Debug.Log(DateTime.Now.DayOfWeek.);
     }
 
     public override void Interaction()
     {
-        if(PlayfabManager.job == "학생")
+        if (PlayfabManager.Instance.playerJob == "학생")
         {
 
         }
-        else if(PlayfabManager.job == "교수")
+        else if (PlayfabManager.Instance.playerJob == "교수")
         {
             UIManager.Instance.OpenWindow(Define.UI.CLASS);
         }
     }
 
-    void EnterClass()
+    public void EnterClass()
     {
 
     }
 
-    void MakeClass()
+    public void OpenClassMakingWindow()
+    {
+        UIManager.Instance.CloseWindow();
+        UIManager.Instance.OpenWindow(Define.UI.CLASSMAKING);
+        classInstructor.text = PlayfabManager.Instance.name;
+    }
+
+    public void MakeClass()
     {
         ClassData classData = new ClassData();
-        
+
+        classData.className = classNameInput.text;
+
+        classData.firstDayOfWeek = firstDayOfWeekInput.text;
+        classData.firstStartTime = firstStartTimeInput.text;
+        classData.firstEndTime = firstEndTimeInput.text;
+
+        classData.secondDayOfWeek = secondDayOfWeekInput.text;
+        classData.secondStartTime = secondStartTimeInput.text;
+        classData.secondEndTime = secondEndTimeInput.text;
+
+        PlayfabManager.Instance.CreateGroup(classId.text, "ClassData", classData);
     }
 
-    void ModifyClass()
+    public void ModifyClass()
     {
 
     }

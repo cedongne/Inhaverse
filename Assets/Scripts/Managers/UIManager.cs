@@ -27,7 +27,10 @@ public class UIManager : MonoBehaviour
 
     public GameObject loginUI;
     public GameObject hudUI;
-    public GameObject classUI;
+    public GameObject classWindow;
+    public GameObject classMakingWindow;
+
+    public bool isOpenWindow;
 
     // Start is called before the first frame update
     void Awake()
@@ -49,7 +52,6 @@ public class UIManager : MonoBehaviour
     {
         loginUI.SetActive(false);
         hudUI.SetActive(false);
-        classUI.SetActive(false);
         if (showingUi.Equals(Define.UI.LOGIN))
         {
             loginUI.SetActive(true);
@@ -57,36 +59,31 @@ public class UIManager : MonoBehaviour
         else if (showingUi.Equals(Define.UI.HUD))
         {
             hudUI.SetActive(true);
-        }
-        else if (showingUi.Equals(Define.UI.CLASS))
-        {
-            classUI.SetActive(true);
         }
     }
 
-    public void OpenWindow(Define.UI showingUi)
+    public void OpenWindow(Define.UI showingWindow)
     {
-        classUI.SetActive(false);
+        classWindow.SetActive(false);
+        classMakingWindow.SetActive(false);
 
-        if (showingUi.Equals(Define.UI.LOGIN))
+        if (showingWindow.Equals(Define.UI.CLASS))
         {
-            loginUI.SetActive(true);
+            classWindow.SetActive(true);
         }
-        else if (showingUi.Equals(Define.UI.HUD))
+        else if (showingWindow.Equals(Define.UI.CLASSMAKING))
         {
-            hudUI.SetActive(true);
+            classMakingWindow.SetActive(true);
         }
-        else if (showingUi.Equals(Define.UI.CLASS))
-        {
-            classUI.SetActive(true);
-        }
+        isOpenWindow = true;
     }
 
     public void CloseWindow()
     {
-        loginUI.SetActive(false);
-        classUI.SetActive(false);
+        classWindow.SetActive(false);
+        classMakingWindow.SetActive(false);
 
         hudUI.SetActive(true);
+        isOpenWindow = false;
     }
 }
