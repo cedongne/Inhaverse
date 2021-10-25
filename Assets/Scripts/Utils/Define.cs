@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class Define
 {
     public enum UI
@@ -11,6 +7,8 @@ public class Define
         MENU,
         CLASS,
         CLASSMAKING,
+        CLASSMODIFYINGLIST,
         BOARD
     }
+
 }

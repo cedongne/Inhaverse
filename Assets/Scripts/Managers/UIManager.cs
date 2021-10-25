@@ -1,9 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+
+    public InputField classInstructor;
+    public InputField classNameInput;
+    public InputField classIdInput;
+
+    public InputField firstDayOfWeekInput;
+    public InputField firstStartTimeInput;
+    public InputField firstEndTimeInput;
+
+    public InputField secondDayOfWeekInput;
+    public InputField secondStartTimeInput;
+    public InputField secondEndTimeInput;
+
+    public GameObject classButton;
+
+    List<ClassList> buttons = new List<ClassList>();
+
     private UIManager() { }
 
     private static UIManager instance;
@@ -29,6 +47,7 @@ public class UIManager : MonoBehaviour
     public GameObject hudUI;
     public GameObject classWindow;
     public GameObject classMakingWindow;
+    public GameObject classModifyingListWindow;
 
     public bool isOpenWindow;
 
@@ -75,6 +94,10 @@ public class UIManager : MonoBehaviour
         {
             classMakingWindow.SetActive(true);
         }
+        else if (showingWindow.Equals(Define.UI.CLASSMODIFYINGLIST))
+        {
+            classModifyingListWindow.SetActive(true);
+        }
         isOpenWindow = true;
     }
 
@@ -82,8 +105,104 @@ public class UIManager : MonoBehaviour
     {
         classWindow.SetActive(false);
         classMakingWindow.SetActive(false);
+        classModifyingListWindow.SetActive(false);
 
-        hudUI.SetActive(true);
         isOpenWindow = false;
     }
+
+#region classInteraction
+    public void EnterClassBtn()
+    {
+
+    }
+
+    public void OpenClassMakingWindow()
+    {
+        CloseWindow();
+        OpenWindow(Define.UI.CLASSMAKING);
+        classInstructor.text = PlayfabManager.Instance.name;
+    }
+
+    public void MakeClassBtn()
+    {
+        ClassData classData = new ClassData();
+
+        classData.className = classNameInput.text;
+        classData.classId = classIdInput.text;
+
+        classData.firstDayOfWeek = firstDayOfWeekInput.text;
+        classData.firstStartTime = firstStartTimeInput.text;
+        classData.firstEndTime = firstEndTimeInput.text;
+
+        classData.secondDayOfWeek = secondDayOfWeekInput.text;
+        classData.secondStartTime = secondStartTimeInput.text;
+        classData.secondEndTime = secondEndTimeInput.text;
+
+        PlayfabManager.Instance.CreateGroup(classIdInput.text, "ClassData", classData);
+
+        classNameInput.text = "";
+        classIdInput.text = "";
+        firstDayOfWeekInput.text = "";
+        firstStartTimeInput.text = "";
+        firstEndTimeInput.text = "";
+        secondDayOfWeekInput.text = "";
+        secondStartTimeInput.text = "";
+        secondEndTimeInput.text = "";
+
+        CloseWindow();
+    }
+
+    public void ModifyClassBtn()
+    {
+
+    }
+
+    public void OpenClassModifyingWindow()
+    {
+        OpenWindow(Define.UI.CLASSMODIFYINGLIST);
+        PlayfabManager.Instance.GetGroupList();
+    }
+
+    public void LoadMyClasses(List<PlayFab.GroupsModels.GroupWithRoles> groups)
+    {
+        buttons.Clear();
+        Vector2 initButtonPosition = new Vector2(0, 200);
+        Vector2 buttonOffset = new Vector2(0, -60);
+        for (int count = 0; count < groups.Count; count++)
+        {
+            buttons.Add(new ClassList(count, Instantiate(classButton, new Vector2(0, 0), Quaternion.identity, GameObject.Find("Class Modifying List Window").transform), 
+                groups[count].Group.Id, groups[count].Group.Type));
+            buttons[count].button.transform.localPosition = initButtonPosition + (buttonOffset * count);
+            buttons[count].button.name = groups[count].GroupName;
+            buttons[count].button.GetComponentInChildren<Text>().text = groups[count].GroupName;
+            int tmpCount = count;
+            buttons[count].button.GetComponent<Button>().onClick.AddListener(delegate () { classButtonOnClick(tmpCount); });
+        }
+    }
+
+    public void classButtonOnClick(int btnNum)
+    {
+        PlayfabManager.Instance.GetObjectData("ClassData", buttons[btnNum].entityId, buttons[btnNum].entityType, "ClassData");
+    }
+
+    public void LoadModifyingClass(object classObject)
+    {
+        ClassData classData = JsonUtility.FromJson<ClassData>(classObject.ToString());
+        Debug.Log(classData.className);
+        classNameInput.text = classData.className;
+        classIdInput.text = classData.classId;
+
+        firstDayOfWeekInput.text = classData.firstDayOfWeek;
+        firstStartTimeInput.text = classData.firstStartTime;
+        firstEndTimeInput.text = classData.firstEndTime;
+
+        secondDayOfWeekInput.text = classData.secondDayOfWeek;
+        secondStartTimeInput.text = classData.secondStartTime;
+        secondEndTimeInput.text = classData.secondEndTime;
+
+        CloseWindow();
+        OpenWindow(Define.UI.CLASSMAKING);
+    }
+    #endregion
+
 }
