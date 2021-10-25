@@ -55,6 +55,11 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
     public string playerSchoolId;
     bool isAuthenticate;
 
+    #region Events
+    public delegate void GetPlayerInfoEvent(string studentId, string studentName);
+
+    public event GetPlayerInfoEvent getPlayerInfoEvent;
+    #endregion
     void Awake()
     {
         if(instance == null)
@@ -72,15 +77,16 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
     public void LoginBtn()
     {
         var request = new LoginWithEmailAddressRequest { Email = emailInput.text, Password = passwordInput.text };
-        PlayFabClientAPI.LoginWithEmailAddress(request, (result) => { GetUserJob(); myId = result.PlayFabId; GetPlayerInfo();  OnLoginSuccess(result);  }, (error) => OnLoginFailure(error));
+        PlayFabClientAPI.LoginWithEmailAddress(request, (result) => { GetUserJob(); myId = result.PlayFabId; GetMyInfo();  OnLoginSuccess(result);  }, (error) => OnLoginFailure(error));
     }
 
     public void RegisterBtn()
     {
         var request = new RegisterPlayFabUserRequest { Email = emailInput.text, Password = passwordInput.text, Username = emailInput.text.Substring(0, 8), DisplayName = usernameInput.text };
         SelectJob();
-        PlayFabClientAPI.RegisterPlayFabUser(request, (result) => { OnRegisterSuccess(result); SetUserData("Job", playerJob); }, (error) => OnRegisterFailure(error));
+        PlayFabClientAPI.RegisterPlayFabUser(request, (result) => { OnRegisterSuccess(result); SetUserData("Job", playerJob); SetUserIdInfo(); }, (error) => OnRegisterFailure(error));
     }
+
 
     public void LoginMaster()
     {
@@ -142,6 +148,13 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         };
         PlayFabClientAPI.UpdateUserData(request, (result) => { Debug.Log("값 저장 성공"); }, (error) => Debug.Log("값 저장 실패"));
     }
+    
+    void SetUserIdInfo()
+    {
+        var request = new UpdatePlayerStatisticsRequest { Statistics = new List<StatisticUpdate> { new StatisticUpdate { StatisticName = "IDInfo", Value = int.Parse(emailInput.text.Substring(0, 8)) } } };
+        PlayFabClientAPI.UpdatePlayerStatistics(request, (result) => Debug.Log("리더보드 업데이트 성공"), (error) => Debug.Log("리더보드 업데이트 실패")); ;
+    }
+
 
     void GetUserJob()
     {
@@ -169,7 +182,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         }, (error) => Debug.Log("데이터 로드 실패" + error));
     }
 
-    void GetPlayerInfo()
+    public void GetMyInfo()
     {
         var request = new GetAccountInfoRequest { PlayFabId = myId };
         PlayFabClientAPI.GetAccountInfo(request,
@@ -179,6 +192,58 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                 playerSchoolId = result.AccountInfo.Username;
                 Debug.Log("플레이어 정보 로드 성공, 이름 : " + name + ", 학번 : " + playerSchoolId);
             }, (error) => Debug.Log("플레이어 정보 로드 실패"));
+    }
+
+    public void GetPlayerInfoUsingPlayFabId(string playerId)
+    {
+        var request = new GetAccountInfoRequest { PlayFabId = playerId };
+        PlayFabClientAPI.GetAccountInfo(request,
+            (result) =>
+            {
+                if (getPlayerInfoEvent != null)
+                {
+                    getPlayerInfoEvent(result.AccountInfo.Username, result.AccountInfo.TitleInfo.DisplayName);
+                }
+                Debug.Log("플레이어 정보 로드 성공");
+            }, (error) => Debug.Log("플레이어 정보 로드 실패"));
+    }
+
+    public void GetPlayerInfoUsingStudentId(string studentIdString)
+    {
+        int studentId = int.Parse(studentIdString);
+        var request = new GetLeaderboardRequest
+        {
+            StartPosition = 0,
+            StatisticName = "IDInfo",
+            MaxResultsCount = 100,
+            ProfileConstraints = new PlayerProfileViewConstraints() { ShowDisplayName = true }
+        };
+        PlayFabClientAPI.GetLeaderboard(request, (result) =>
+        {
+            string playerId = "";
+            for (int count = 0; count < result.Leaderboard.Count; count++)
+            {
+                Debug.Log(result.Leaderboard[count].StatValue);
+                if (result.Leaderboard[count].StatValue.Equals(studentId))
+                {
+                    playerId = result.Leaderboard[count].PlayFabId;
+                    break;
+                }
+            }
+            Debug.Log("플레이어 : " + studentId + ", " + playerId);
+            var request = new GetAccountInfoRequest { PlayFabId = playerId };
+            PlayFabClientAPI.GetAccountInfo(request,
+                (result) =>
+                {
+                    if (getPlayerInfoEvent != null)
+                    {
+                        getPlayerInfoEvent(result.AccountInfo.Username, result.AccountInfo.TitleInfo.DisplayName);
+                    }
+                    Debug.Log("플레이어 정보 로드 성공");
+                }, (error) => Debug.Log("플레이어 정보 로드 실패"));
+        }, (error) => Debug.Log(error.ErrorMessage));
+
+
     }
 
     void SelectJob()
@@ -289,5 +354,5 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             },
             (error) => { Debug.LogError(error.GenerateErrorReport()); });
     }
-    
+  
 }
