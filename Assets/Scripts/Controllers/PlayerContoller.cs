@@ -17,6 +17,8 @@ public class PlayerContoller : MonoBehaviourPun
     private Rigidbody playerRigid;
     [SerializeField]
     private GameObject interactionUI;
+
+    private Vector3 screenCenter;
     private RectTransform interactionUITransform;
 
     Animator animator;
@@ -38,6 +40,7 @@ public class PlayerContoller : MonoBehaviourPun
 
     private void Awake()
     {
+        screenCenter = new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2);
         animator = GetComponent<Animator>();
         cameraArm = GameObject.Find("Camera Arm");
     }
@@ -45,6 +48,7 @@ public class PlayerContoller : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = false;
         if (photonView.IsMine)
         {
             cameraArm.GetComponent<CameraController>().playerTransform = transform;
@@ -126,8 +130,8 @@ public class PlayerContoller : MonoBehaviourPun
         if (isDown)
         {
             RaycastHit hit;
-            Debug.DrawRay(transform.position, Vector3.down * 0.1f, Color.red);
-            if (Physics.Raycast(transform.position, Vector3.down, out hit, 0.1f))
+            Debug.DrawRay(playerTransform.position, Vector3.down * 0.1f, Color.red);
+            if (Physics.Raycast(playerTransform.position, Vector3.down, out hit, 0.1f))
             {
                 isJump = false;
                 isDown = false;
@@ -151,13 +155,37 @@ public class PlayerContoller : MonoBehaviourPun
             animator.SetBool("isJump", isJump);
         }
     }
-
     void DetectInteractiveObject()
     {
         RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Physics.Raycast(ray, out hit);
-        if (hit.collider != null && (playerTransform.localPosition - hit.transform.localPosition).magnitude < 3 && hit.transform.gameObject.CompareTag("Interactive Object"))
+        Physics.Raycast(Camera.main.ScreenPointToRay(screenCenter), out hit, 5);
+        if (hit.collider != null && hit.transform.gameObject.CompareTag("Interactive Object"))
+        {
+            currentTouch = hit.transform.gameObject.GetComponent<Outline>();
+            currentTouch.enabled = true;
+            interactionUI.SetActive(true);
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                hit.transform.gameObject.GetComponent<InteractiveObject>().Interaction();
+                currentTouch.enabled = false;
+                interactionUI.SetActive(false);
+            }
+        }
+        else
+        {
+            currentTouch.enabled = false;
+            interactionUI.SetActive(false);
+        }
+    }
+    /*
+    void DetectInteractiveObject()
+    {
+        RaycastHit hit;
+        Physics.Raycast(playerTransform.position, playerTransform.forward, out hit, 2);
+//        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+//        Physics.Raycast(ray, out hit, 5);
+        if (hit.collider != null && hit.transform.gameObject.CompareTag("Interactive Object"))
         {
             currentTouch = hit.transform.gameObject.GetComponent<Outline>();
             currentTouch.enabled = true;
@@ -178,5 +206,5 @@ public class PlayerContoller : MonoBehaviourPun
             interactionUI.SetActive(false);
         }
     }
-
+    */
 }
