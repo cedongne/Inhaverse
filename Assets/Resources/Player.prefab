@@ -1200,7 +1200,6 @@ MonoBehaviour:
   runMoveSpeed: 4
   prevYPosition: 0
   jumpPower: 5
-  jumpSpeed: 0
   currentTouch: {fileID: 5030059289416126775}
 --- !u!114 &3002047870756200745
 MonoBehaviour:
@@ -1283,12 +1282,12 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 1
     Name: isRun
-  - Type: 1
-    SynchronizeType: 1
-    Name: jumpSpeed
   - Type: 9
     SynchronizeType: 0
     Name: DoJump
+  - Type: 4
+    SynchronizeType: 0
+    Name: isDown
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0

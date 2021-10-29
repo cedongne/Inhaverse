@@ -27,7 +27,6 @@ public class PlayerContoller : MonoBehaviourPun
 
     public float prevYPosition;
     public float jumpPower;
-    public float jumpSpeed;
 
     bool isRun;
     bool isJump;
@@ -70,7 +69,6 @@ public class PlayerContoller : MonoBehaviourPun
         if (!UIManager.Instance.isOpenWindow)
         {
             Move();
-            Jump();
         }
     }
 
@@ -82,6 +80,7 @@ public class PlayerContoller : MonoBehaviourPun
         }
         if (!UIManager.Instance.isOpenWindow)
         {
+            Jump();
             walkToRun();
             DetectInteractiveObject();
         }
@@ -130,17 +129,19 @@ public class PlayerContoller : MonoBehaviourPun
             Debug.DrawRay(transform.position, Vector3.down * 0.1f, Color.red);
             if (Physics.Raycast(transform.position, Vector3.down, out hit, 0.1f))
             {
-                Debug.Log("Collision");
                 isJump = false;
                 isDown = false;
                 animator.SetBool("isJump", isJump);
+                animator.SetBool("isDown", isDown);
             }
         }
         else if (isJump)
         {
             if (playerRigid.velocity.y < 0)
+            {
                 isDown = true;
-            animator.SetFloat("jumpSpeed", playerRigid.velocity.y);
+            }
+            animator.SetBool("isDown", isDown);
         }
         if (Input.GetButtonDown("Jump") && !isJump)
         {
