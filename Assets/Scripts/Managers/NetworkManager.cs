@@ -59,6 +59,16 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         GameStart();
     }
 
+    public void OnLeaveLobby()
+    {
+        PN.LeaveLobby();
+    }
+
+    public override void OnLeftLobby()
+    {
+        Debug.Log("플레이어가 퇴장했습니다.");
+    }
+
     void GameStart()
     {
         SpawnPlayer();

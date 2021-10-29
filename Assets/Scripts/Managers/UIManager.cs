@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 using System.Linq;
 
@@ -63,13 +64,6 @@ public class UIManager : MonoBehaviour
             instance = gameObject.GetComponent<UIManager>();
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
 
     public void ShowUI(Define.UI showingUi)
     {
@@ -145,10 +139,20 @@ public class UIManager : MonoBehaviour
         classData.secondEndTime = secondEndTimeInput.text;
 
         classData.students = studentsList.ToList();
+        for (int count = 0; count < studentsList.Count; count++)
+        {
+            Debug.Log(studentsList[count].studentName + "가 수업에 참여했습니다.");
+            PlayfabManager.Instance.InviteToGroup(classIdInput.text, studentsList[count].studentId);
+        }
 
         PlayfabManager.Instance.CreateGroup(classIdInput.text, "ClassData", classData);
-
         CloseWindow();
+    }
+
+    public void SetClassDataForStudent(string playfabId)
+    {
+        Debug.Log(playfabId);
+        PlayfabManager.Instance.SetUserData(classIdInput.text, classNameInput.text);
     }
 
     void ClearClassMakingWindow()
@@ -167,6 +171,7 @@ public class UIManager : MonoBehaviour
         studentIdInput.text = "";
 
         studentsList.Clear();
+        studentListText.text = "";
     }
 
     public void OpenClassModifyingWindow()
@@ -177,6 +182,10 @@ public class UIManager : MonoBehaviour
 
     public void LoadMyClasses(List<PlayFab.GroupsModels.GroupWithRoles> groups)
     {
+        for(int count = 0; count < buttons.Count; count++)
+        {
+            Destroy(buttons[count].button);
+        }
         buttons.Clear();
         Vector2 initButtonPosition = new Vector2(0, 200);
         Vector2 buttonOffset = new Vector2(0, -60);
@@ -187,6 +196,7 @@ public class UIManager : MonoBehaviour
             buttons[count].button.transform.localPosition = initButtonPosition + (buttonOffset * count);
             buttons[count].button.name = groups[count].GroupName;
             buttons[count].button.GetComponentInChildren<Text>().text = groups[count].GroupName;
+
             int tmpCount = count;
             buttons[count].button.GetComponent<Button>().onClick.AddListener(delegate () { OnClickClassButton(tmpCount); });
         }
@@ -200,7 +210,6 @@ public class UIManager : MonoBehaviour
     public void LoadModifyingClass(object classObject)
     {
         ClassData classData = JsonUtility.FromJson<ClassData>(classObject.ToString());
-        Debug.Log(classData.className);
         classNameInput.text = classData.className;
         classIdInput.text = classData.classId;
 
@@ -217,7 +226,6 @@ public class UIManager : MonoBehaviour
         {
             studentListText.text += studentsList[count].studentId + " " + studentsList[count].studentName + "\n";
         }
-        Debug.Log(studentsList.Count);
 
         OpenWindow(Define.UI.CLASSMAKING);
     }
@@ -245,13 +253,11 @@ public class UIManager : MonoBehaviour
 
     public void DeleteStudentInClassButton()
     {
-        Debug.Log("Size" + studentsList.Count);
         for (int count = 0; count < studentsList.Count; count++)
         {
             if (studentsList[count].studentId.Equals(studentIdInput.text))
             {
-                Debug.Log(studentsList[count].studentId + " " + studentsList[count].studentName + " " + studentsList.Count);
-                studentListText.text.Replace(studentsList[count].studentId + " " + studentsList[count].studentName, "");
+                studentListText.text = studentListText.text.Replace(studentsList[count].studentId + " " + studentsList[count].studentName + "\n", "");
                 studentsList.RemoveAt(count);
             }
         }

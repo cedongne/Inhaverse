@@ -7,6 +7,7 @@ using PlayFab.GroupsModels;
 using PlayFab.DataModels;
 using PlayFab.AuthenticationModels;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 using Photon.Pun;
 using Photon.Realtime;
@@ -49,7 +50,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
     public string tmpEntityId;
     public string tmpEntityType;
 
-    string myId;
+    string myPlayfabId;
     public string playerJob;
     public string playerName;
     public string playerSchoolId;
@@ -57,7 +58,11 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
 
     #region Events
     public delegate void GetPlayerInfoEvent(string studentId, string studentName);
+    public delegate void GetPlayfabIdEvent(string playfabId);
 
+    public UnityEvent<string> getPlayfabIdEventArg1;
+    public UnityEvent<string, string> getPlayfabIdEventArg2;
+    public UnityEvent invitingGroupEvent;
     public event GetPlayerInfoEvent getPlayerInfoEvent;
     #endregion
     void Awake()
@@ -77,15 +82,16 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
     public void LoginBtn()
     {
         var request = new LoginWithEmailAddressRequest { Email = emailInput.text, Password = passwordInput.text };
-        PlayFabClientAPI.LoginWithEmailAddress(request, (result) => { GetUserJob(); myId = result.PlayFabId; GetMyInfo();  OnLoginSuccess(result);  }, (error) => OnLoginFailure(error));
+        PlayFabClientAPI.LoginWithEmailAddress(request, (result) => { OnLoginSuccess(result);  }, (error) => OnLoginFailure(error));
     }
 
     public void RegisterBtn()
     {
         var request = new RegisterPlayFabUserRequest { Email = emailInput.text, Password = passwordInput.text, Username = emailInput.text.Substring(0, 8), DisplayName = usernameInput.text };
         SelectJob();
-        PlayFabClientAPI.RegisterPlayFabUser(request, (result) => { OnRegisterSuccess(result); SetUserData("Job", playerJob); SetUserIdInfo(); }, (error) => OnRegisterFailure(error));
+        PlayFabClientAPI.RegisterPlayFabUser(request, (result) => { OnRegisterSuccess(result); }, (error) => OnRegisterFailure(error));
     }
+
 
 
     public void LoginMaster()
@@ -112,15 +118,23 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
 
     private void OnLoginSuccess(LoginResult result)
     {
-        Debug.Log("로그인 성공");
-        PN.ConnectUsingSettings();
+        GetUserJob(); 
+        GetMyInfo();
+        myPlayfabId = result.PlayFabId;
 
         PlayFabAuthenticationAPI.GetEntityToken(new GetEntityTokenRequest(),
             (result) =>
             {
                 playerEntity = result.Entity;
+                AcceptGroupInvitation();
             },
             (error) => Debug.Log("엔터티 로드 실패"));
+
+        invitingGroupEvent.AddListener(AcceptGroupInvitation);
+
+        Debug.Log("로그인 성공, 서버에 연결합니다.");
+
+        PN.ConnectUsingSettings();
     }
 
     private void OnLoginFailure(PlayFabError error)
@@ -130,6 +144,9 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
 
     void OnRegisterSuccess(RegisterPlayFabUserResult result)
     {
+        SetUserData("Job", playerJob); 
+        SetUserIdInfo();
+
         Debug.Log("회원가입 성공");
     }
 
@@ -139,14 +156,14 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
     }
 
     #endregion
-    void SetUserData(string key, string value)
+    public void SetUserData(string key, string value)
     {
         var request = new UpdateUserDataRequest
         {
             Data = new Dictionary<string, string>() { { key, value } },
             Permission = UserDataPermission.Public
         };
-        PlayFabClientAPI.UpdateUserData(request, (result) => { Debug.Log("값 저장 성공"); }, (error) => Debug.Log("값 저장 실패"));
+        PlayFabClientAPI.UpdateUserData(request, (result) => { Debug.Log("값 저장 성공"); }, (error) => Debug.Log("값 저장 실패" + error));
     }
     
     void SetUserIdInfo()
@@ -155,10 +172,9 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         PlayFabClientAPI.UpdatePlayerStatistics(request, (result) => Debug.Log("리더보드 업데이트 성공"), (error) => Debug.Log("리더보드 업데이트 실패")); ;
     }
 
-
     void GetUserJob()
     {
-        var request = new GetUserDataRequest { PlayFabId = myId };
+        var request = new GetUserDataRequest { PlayFabId = myPlayfabId };
         PlayFabClientAPI.GetUserData(request, (result) =>
         {
             foreach (var eachData in result.Data)
@@ -184,7 +200,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
 
     public void GetMyInfo()
     {
-        var request = new GetAccountInfoRequest { PlayFabId = myId };
+        var request = new GetAccountInfoRequest { PlayFabId = myPlayfabId };
         PlayFabClientAPI.GetAccountInfo(request,
             (result) =>
             {
@@ -223,14 +239,17 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             string playerId = "";
             for (int count = 0; count < result.Leaderboard.Count; count++)
             {
-                Debug.Log(result.Leaderboard[count].StatValue);
                 if (result.Leaderboard[count].StatValue.Equals(studentId))
                 {
                     playerId = result.Leaderboard[count].PlayFabId;
                     break;
                 }
             }
-            Debug.Log("플레이어 : " + studentId + ", " + playerId);
+            if (playerId.Equals(""))
+            {
+                Debug.Log("존재하지 않는 사용자입니다.");
+                return;
+            }
             var request = new GetAccountInfoRequest { PlayFabId = playerId };
             PlayFabClientAPI.GetAccountInfo(request,
                 (result) =>
@@ -242,10 +261,31 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                     Debug.Log("플레이어 정보 로드 성공");
                 }, (error) => Debug.Log("플레이어 정보 로드 실패"));
         }, (error) => Debug.Log(error.ErrorMessage));
-
-
     }
 
+    public void GetPlayfabIdUsingStudentId(string studentIdString)
+    {
+        int studentId = int.Parse(studentIdString);
+        var request = new GetLeaderboardRequest
+        {
+            StartPosition = 0,
+            StatisticName = "IDInfo",
+            MaxResultsCount = 100,
+            ProfileConstraints = new PlayerProfileViewConstraints() { ShowDisplayName = true }
+        };
+        PlayFabClientAPI.GetLeaderboard(request, (result) =>
+        {
+            for (int count = 0; count < result.Leaderboard.Count; count++)
+            {
+                if (result.Leaderboard[count].StatValue.Equals(studentId))
+                {
+                    getPlayfabIdEventArg1.Invoke(result.Leaderboard[count].PlayFabId);
+                    break;
+                }
+            }
+        }, (error) => Debug.Log(error.ErrorMessage));
+    }
+    
     void SelectJob()
     {
         if (studentToggle.isOn)
@@ -270,6 +310,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             },
             (error) => Debug.Log("그룹 생성 실패" + error));
     }
+
     public void CreateGroup(string groupName, string dataKey, object dataValue)
     {
         PlayFab.GroupsModels.EntityKey entity = new PlayFab.GroupsModels.EntityKey { Id = playerEntity.Id, Type = playerEntity.Type };
@@ -309,6 +350,51 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                 UIManager.Instance.LoadMyClasses(groups);
             },
             (error) => { Debug.Log("그룹 목록 불러오기 실패 " + error); groups = null; });
+    }
+
+    public void InviteToGroup(string groupName, string studentIdString)
+    {
+        PlayFab.GroupsModels.EntityKey groupEntity = new PlayFab.GroupsModels.EntityKey();
+
+        PlayFabGroupsAPI.GetGroup(new GetGroupRequest { GroupName = groupName },
+            (result) =>
+            {
+                groupEntity = result.Group;
+                PlayFabClientAPI.GetAccountInfo(new GetAccountInfoRequest { Username = studentIdString },
+                    (result) => {
+                        var request = new InviteToGroupRequest
+                        {
+                            Group = groupEntity,
+                            Entity = new PlayFab.GroupsModels.EntityKey { Id = result.AccountInfo.TitleInfo.TitlePlayerAccount.Id, Type = result.AccountInfo.TitleInfo.TitlePlayerAccount.Type },
+                            RoleId = "members"
+                        };
+                        PlayFabGroupsAPI.InviteToGroup(request,
+                            (invitationResult) =>
+                            {
+                                Debug.Log("Invited!");
+                                invitingGroupEvent.Invoke();
+                            }, (error) => { Debug.Log(error); });
+
+                    }, (error) => { });
+            }, (error) => Debug.Log(error.ErrorMessage));
+    }
+
+    public void AcceptGroupInvitation()
+    {
+        Debug.Log("Invited a group");
+        var request = new ListMembershipOpportunitiesRequest { Entity = new PlayFab.GroupsModels.EntityKey { Id = playerEntity.Id, Type = playerEntity.Type } };
+        PlayFabGroupsAPI.ListMembershipOpportunities(request, 
+            (result) => 
+            { 
+                for(int count = 0; count < result.Invitations.Count; count++)
+                {
+                    var request = new AcceptGroupInvitationRequest {
+                        Group = result.Invitations[count].Group,
+                        Entity = new PlayFab.GroupsModels.EntityKey { Id = playerEntity.Id, Type = playerEntity.Type }
+                    };
+                    PlayFabGroupsAPI.AcceptGroupInvitation(request, (result) => { Debug.Log("그룹 가입 성공"); }, (error) => { Debug.Log("그룹 가입 실패 " + error); });
+                }
+            }, (error) => { Debug.Log("리스트업 실패 " + error); });
     }
 
     public GroupWithRoles FindSpecificGroup(List<GroupWithRoles> groups, string groupName)
@@ -353,6 +439,5 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                 }
             },
             (error) => { Debug.LogError(error.GenerateErrorReport()); });
-    }
-  
+    } 
 }
