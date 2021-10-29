@@ -37,12 +37,12 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        LookAround();
+        FPSLookAround();
         MoveCamera();
         ChangeCameraMode();
     }
 
-    void LookAround()
+    void FPSLookAround()
     {
         Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X") * 2, Input.GetAxis("Mouse Y") * 2);
         Vector3 camAngle = cameraArmTransform.rotation.eulerAngles;
