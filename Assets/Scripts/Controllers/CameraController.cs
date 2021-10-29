@@ -44,7 +44,7 @@ public class CameraController : MonoBehaviour
 
     void LookAround()
     {
-        Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X") * 2, Input.GetAxis("Mouse Y") * 2);
         Vector3 camAngle = cameraArmTransform.rotation.eulerAngles;
         float x = camAngle.x - mouseDelta.y;
 

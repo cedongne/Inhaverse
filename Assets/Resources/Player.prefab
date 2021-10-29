@@ -1198,8 +1198,9 @@ MonoBehaviour:
   interactionUI: {fileID: 0}
   walkMoveSpeed: 2
   runMoveSpeed: 4
-  jumpPower: 0.6
-  jumpSpeed: 5
+  prevYPosition: 0
+  jumpPower: 5
+  jumpSpeed: 0
   currentTouch: {fileID: 5030059289416126775}
 --- !u!114 &3002047870756200745
 MonoBehaviour:

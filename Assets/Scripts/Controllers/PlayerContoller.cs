@@ -25,11 +25,13 @@ public class PlayerContoller : MonoBehaviourPun
     public float runMoveSpeed;
     float moveSpeed;
 
+    public float prevYPosition;
     public float jumpPower;
     public float jumpSpeed;
 
     bool isRun;
     bool isJump;
+    bool isDown;
 
     public Outline currentTouch;
 
@@ -68,6 +70,7 @@ public class PlayerContoller : MonoBehaviourPun
         if (!UIManager.Instance.isOpenWindow)
         {
             Move();
+            Jump();
         }
     }
 
@@ -79,7 +82,6 @@ public class PlayerContoller : MonoBehaviourPun
         }
         if (!UIManager.Instance.isOpenWindow)
         {
-            Jump();
             walkToRun();
             DetectInteractiveObject();
         }
@@ -122,23 +124,28 @@ public class PlayerContoller : MonoBehaviourPun
 
     void Jump()
     {
-        if (isJump)
+        if (isDown)
         {
-            jumpSpeed -= Time.deltaTime * 0.1f;
-            playerTransform.position += new Vector3(0, jumpSpeed, 0);
-            animator.SetFloat("jumpSpeed", jumpSpeed);
-
-            if (playerTransform.position.y <= 0)
+            RaycastHit hit;
+            Debug.DrawRay(transform.position, Vector3.down * 0.1f, Color.red);
+            if (Physics.Raycast(transform.position, Vector3.down, out hit, 0.1f))
             {
-                jumpSpeed = 0;
+                Debug.Log("Collision");
                 isJump = false;
+                isDown = false;
                 animator.SetBool("isJump", isJump);
             }
+        }
+        else if (isJump)
+        {
+            if (playerRigid.velocity.y < 0)
+                isDown = true;
+            animator.SetFloat("jumpSpeed", playerRigid.velocity.y);
         }
         if (Input.GetButtonDown("Jump") && !isJump)
         {
             animator.SetTrigger("DoJump");
-            jumpSpeed = jumpPower * 0.1f;
+            playerRigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
             isJump = true;
             animator.SetBool("isJump", isJump);
         }
@@ -170,4 +177,5 @@ public class PlayerContoller : MonoBehaviourPun
             interactionUI.SetActive(false);
         }
     }
+
 }
