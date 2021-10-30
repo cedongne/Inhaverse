@@ -81,6 +81,8 @@ public class UIManager : MonoBehaviour
 
     public void OpenWindow(Define.UI showingWindow)
     {
+        Cursor.lockState = CursorLockMode.None;
+
         classWindow.SetActive(false);
         classMakingWindow.SetActive(false);
         classModifyingListWindow.SetActive(false);
@@ -102,6 +104,8 @@ public class UIManager : MonoBehaviour
 
     public void CloseWindow()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+
         classWindow.SetActive(false);
         classMakingWindow.SetActive(false);
         classModifyingListWindow.SetActive(false);

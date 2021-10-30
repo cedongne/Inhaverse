@@ -78,7 +78,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     void SpawnPlayer()
     {
-        GameObject player = PN.Instantiate("Player", new Vector3(0, 2, 0), new Quaternion(0, 0, 0, 0));
+        GameObject player = PN.Instantiate("Player", new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
     }
 
     void Update()
