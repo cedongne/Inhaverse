@@ -12,11 +12,11 @@ public class UIManager : MonoBehaviour
     public InputField classNameInput;
     public InputField classIdInput;
 
-    public InputField firstDayOfWeekInput;
+    public Dropdown firstDayOfWeekInput;
     public InputField firstStartTimeInput;
     public InputField firstEndTimeInput;
 
-    public InputField secondDayOfWeekInput;
+    public Dropdown secondDayOfWeekInput;
     public InputField secondStartTimeInput;
     public InputField secondEndTimeInput;
 
@@ -134,11 +134,11 @@ public class UIManager : MonoBehaviour
         classData.className = classNameInput.text;
         classData.classId = classIdInput.text;
 
-        classData.firstDayOfWeek = firstDayOfWeekInput.text;
+        classData.firstDayOfWeek = ConvertToDayOfWeek(firstDayOfWeekInput.value);
         classData.firstStartTime = firstStartTimeInput.text;
         classData.firstEndTime = firstEndTimeInput.text;
 
-        classData.secondDayOfWeek = secondDayOfWeekInput.text;
+        classData.secondDayOfWeek = ConvertToDayOfWeek(secondDayOfWeekInput.value);
         classData.secondStartTime = secondStartTimeInput.text;
         classData.secondEndTime = secondEndTimeInput.text;
 
@@ -147,10 +147,48 @@ public class UIManager : MonoBehaviour
         {
             Debug.Log(studentsList[count].studentName + "가 수업에 참여했습니다.");
             PlayfabManager.Instance.InviteToGroup(classIdInput.text, studentsList[count].studentId);
+            PlayfabManager.Instance.UpdateObjectDataUsingStudentId(studentsList[count].studentId, "ClassTimeTable", classData.firstDayOfWeek + ", " + classData.firstStartTime);
+            if (!classData.secondStartTime.Equals(""))
+            {
+                PlayfabManager.Instance.UpdateObjectDataUsingStudentId(studentsList[count].studentId, "ClassTimeTable", classData.secondDayOfWeek + ", " + classData.secondStartTime);
+            }
         }
 
         PlayfabManager.Instance.CreateGroup(classIdInput.text, "ClassData", classData);
         CloseWindow();
+    }
+
+    string ConvertToDayOfWeek(int dayCode)
+    {
+        if (dayCode == 0)
+            return "Monday";
+        else if (dayCode == 1)
+            return "TuesDay";
+        else if (dayCode == 2)
+            return "Wednesday";
+        else if (dayCode == 3)
+            return "Thursday";
+        else if (dayCode == 4)
+            return "Friday";
+        else
+            return "";
+    }
+
+    int ConvertToDayCode(string dayOfWeek)
+    {
+        if (dayOfWeek == "Monday")
+            return 0;
+        else if (dayOfWeek == "Tuesday")
+            return 1;
+        else if (dayOfWeek == "Wednesday")
+            return 2;
+        else if (dayOfWeek == "Thursday")
+            return 3;
+        else if (dayOfWeek == "Friday")
+            return 4;
+        else
+            return -1;
+
     }
 
     public void SetClassDataForStudent(string playfabId)
@@ -164,11 +202,11 @@ public class UIManager : MonoBehaviour
         classNameInput.text = "";
         classIdInput.text = "";
 
-        firstDayOfWeekInput.text = "";
+        firstDayOfWeekInput.value = 1;
         firstStartTimeInput.text = "";
         firstEndTimeInput.text = "";
 
-        secondDayOfWeekInput.text = "";
+        secondDayOfWeekInput.value = 1;
         secondStartTimeInput.text = "";
         secondEndTimeInput.text = "";
 
@@ -217,11 +255,12 @@ public class UIManager : MonoBehaviour
         classNameInput.text = classData.className;
         classIdInput.text = classData.classId;
 
-        firstDayOfWeekInput.text = classData.firstDayOfWeek;
+        Debug.Log(ConvertToDayCode(classData.firstDayOfWeek));
+        firstDayOfWeekInput.value = ConvertToDayCode(classData.firstDayOfWeek);
         firstStartTimeInput.text = classData.firstStartTime;
         firstEndTimeInput.text = classData.firstEndTime;
 
-        secondDayOfWeekInput.text = classData.secondDayOfWeek;
+        secondDayOfWeekInput.value = ConvertToDayCode(classData.secondDayOfWeek);
         secondStartTimeInput.text = classData.secondStartTime;
         secondEndTimeInput.text = classData.secondEndTime;
 

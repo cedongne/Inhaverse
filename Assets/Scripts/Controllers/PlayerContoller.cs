@@ -135,7 +135,6 @@ public class PlayerContoller : MonoBehaviourPun
         if (isDown)
         {
             RaycastHit hit;
-            Debug.DrawRay(playerTransform.position, Vector3.down * 0.1f, Color.red);
             if (Physics.Raycast(playerTransform.position, Vector3.down, out hit, 0.1f))
             {
                 isJump = false;

@@ -20,6 +20,8 @@ public class CameraController : MonoBehaviour
 
     bool isTPS;
 
+    List<Transform> objectsList = new List<Transform>();
+
     private void Awake()
     {
         cameraArmTransform = GetComponent<Transform>();
@@ -89,22 +91,24 @@ public class CameraController : MonoBehaviour
     {
         Renderer ObstacleRenderer;
 
-        float Distance = Vector3.Distance(cameraTransform.position, playerTransform.position);
-        Vector3 Direction = (playerTransform.position - cameraTransform.position).normalized;
+        float Distance = Vector3.Distance(cameraTransform.position, playerTransform.position + new Vector3(0, 0.5f, 0));
+        Vector3 Direction = (playerTransform.position + new Vector3(0, 0.5f, 0) - cameraTransform.position).normalized;
 
         RaycastHit hit;
-        Debug.DrawRay(cameraTransform.position, Direction * Distance, Color.red);
+        Debug.DrawRay(cameraTransform.position, Direction, Color.red);
         if (Physics.Raycast(cameraTransform.position, Direction, out hit, Distance))
         {
             // 2.맞았으면 Renderer를 얻어온다.
             ObstacleRenderer = hit.transform.GetComponentInChildren<MeshRenderer>();
+//            objectsList.Add(hit.transform);
+ //           Debug.Log(hit.transform.name + " " + objectsList.Count);
             if (ObstacleRenderer != null)
             {
                 Debug.Log(ObstacleRenderer.material.color);
                 // 3. Metrial의 Aplha를 바꾼다.
                 Material Mat = ObstacleRenderer.material;
                 Color matColor = Mat.color;
-                matColor.a = 0.2f;
+//                matColor.a = 0.2f;
                 Mat.color = matColor;
             }
         }

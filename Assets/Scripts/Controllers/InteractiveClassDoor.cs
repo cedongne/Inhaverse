@@ -12,8 +12,9 @@ public class InteractiveClassDoor : InteractiveObject
 {
     void Update()
     {
-        //       Debug.Log(DateTime.Now.Hour + " " + DateTime.Now.Minute);
-        //    Debug.Log(DateTime.Now.DayOfWeek.);
+  //             Debug.Log(DateTime.Now.Hour + " " + DateTime.Now.Minute);
+  //          Debug.Log(DateTime.Now.DayOfWeek);
+        
     }
 
     public override void Interaction()

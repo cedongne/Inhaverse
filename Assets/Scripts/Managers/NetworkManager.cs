@@ -28,6 +28,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         }
     }
 
+    public GameObject cameraArm;
+
+    string networkState;
+
     private void Awake()
     {
         if(instance == null)
@@ -36,10 +40,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             DontDestroyOnLoad(gameObject);
         }
     }
-    public GameObject cameraArm;
     
 
-    string networkState;
 
     public override void OnConnectedToMaster()
     {
@@ -50,6 +52,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnJoinedLobby() =>
         PN.JoinOrCreateRoom("room", new RoomOptions { MaxPlayers = 4 }, null);
 
+    public void JoinToClass(string className)
+    {
+        PN.JoinOrCreateRoom(className, new RoomOptions { MaxPlayers = 10 }, null);
+    }
     public override void OnCreatedRoom()
     {
         Debug.Log("Create");

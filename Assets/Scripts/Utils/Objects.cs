@@ -6,20 +6,21 @@ using System.Collections.Generic;
 public class ClassData
 {
     public ClassData() { }
-    public ClassData(string cn, string ci, string fdw, string fst, string fet, string sdw, string sst, string set, object s)
+    public ClassData(string _className, string _classId, string _firstDayOfWeek, string _firstStartTime, string _firstEndTime, 
+        string _secondDayOfWeek, string _secondStartTime, string _secondEndTime, object _students)
     {
-        className = cn;
-        classId = ci;
+        className = _className;
+        classId = _classId;
 
-        firstDayOfWeek = fdw;
-        firstStartTime = fst;
-        firstEndTime = fet;
+        firstDayOfWeek = _firstDayOfWeek;
+        firstStartTime = _firstStartTime;
+        firstEndTime = _firstEndTime;
 
-        secondDayOfWeek = sdw;
-        secondStartTime = sst;
-        secondEndTime = set;
+        secondDayOfWeek = _secondDayOfWeek;
+        secondStartTime = _secondStartTime;
+        secondEndTime = _secondEndTime;
 
-        students = s as List<StudentInfo>;
+        students = _students as List<StudentInfo>;
     }
     public string className;
     public string classId;
@@ -39,12 +40,12 @@ public class ClassData
 public class ClassList
 {
     public ClassList() { }
-    public ClassList(int cc, GameObject b, string ei, string et)
+    public ClassList(int _classCount, GameObject _button, string _entityId, string _entityType)
     {
-        classCount = cc;
-        button = b;
-        entityId = ei;
-        entityType = et;
+        classCount = _classCount;
+        button = _button;
+        entityId = _entityId;
+        entityType = _entityType;
     }
     public int classCount;
     public GameObject button;
@@ -56,10 +57,10 @@ public class ClassList
 public class StudentInfo
 {
     public StudentInfo() { }
-    public StudentInfo(string si, string sn)
+    public StudentInfo(string _studentId, string _studentName)
     {
-        studentId = si;
-        studentName = sn;
+        studentId = _studentId;
+        studentName = _studentName;
     }
     public string studentId;
     public string studentName;
