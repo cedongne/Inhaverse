@@ -81,6 +81,8 @@ public class UIManager : MonoBehaviour
 
     public void OpenWindow(Define.UI showingWindow)
     {
+        Cursor.lockState = CursorLockMode.None;
+
         classWindow.SetActive(false);
         classMakingWindow.SetActive(false);
         classModifyingListWindow.SetActive(false);
@@ -102,6 +104,8 @@ public class UIManager : MonoBehaviour
 
     public void CloseWindow()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        
         classWindow.SetActive(false);
         classMakingWindow.SetActive(false);
         classModifyingListWindow.SetActive(false);
@@ -143,11 +147,6 @@ public class UIManager : MonoBehaviour
         {
             Debug.Log(studentsList[count].studentName + "가 수업에 참여했습니다.");
             PlayfabManager.Instance.InviteToGroup(classIdInput.text, studentsList[count].studentId);
-            PlayfabManager.Instance.UpdateObjectDataUsingStudentId(studentsList[count].studentId, "ClassTimeTable", classData.firstDayOfWeek + ", " + classData.firstStartTime);
-            if (!classData.secondStartTime.Equals(""))
-            {
-                PlayfabManager.Instance.UpdateObjectDataUsingStudentId(studentsList[count].studentId, "ClassTimeTable", classData.secondDayOfWeek + ", " + classData.secondStartTime);
-            }
         }
 
         PlayfabManager.Instance.CreateGroup(classIdInput.text, "ClassData", classData);
@@ -183,7 +182,7 @@ public class UIManager : MonoBehaviour
         else if (dayOfWeek == "Friday")
             return 4;
         else
-            return -1;
+            return 0;
 
     }
 
@@ -251,7 +250,6 @@ public class UIManager : MonoBehaviour
         classNameInput.text = classData.className;
         classIdInput.text = classData.classId;
 
-        Debug.Log(ConvertToDayCode(classData.firstDayOfWeek));
         firstDayOfWeekInput.value = ConvertToDayCode(classData.firstDayOfWeek);
         firstStartTimeInput.text = classData.firstStartTime;
         firstEndTimeInput.text = classData.firstEndTime;
