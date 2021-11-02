@@ -13,7 +13,8 @@ public class ChatController : MonoBehaviour, IChatClientListener
 
 	public InputField inputField;
 	public Text outputText;
-	public GameObject Manager;
+	public GameObject manager;
+	public Scrollbar chatScrollBar;
 
 	// Use this for initialization
 	void Start()
@@ -21,7 +22,7 @@ public class ChatController : MonoBehaviour, IChatClientListener
 
 		Application.runInBackground = true;
 
-		userName = Manager.GetComponent<PlayfabManager>().playerName;
+		userName = manager.GetComponent<PlayfabManager>().playerName;
 		currentChannelName = "전체채널";
 
 		chatClient = new ChatClient(this);
@@ -33,6 +34,8 @@ public class ChatController : MonoBehaviour, IChatClientListener
 	public void AddLine(string lineString)
 	{
 		outputText.text += lineString + "\r\n";
+		chatScrollBar.value = 0;
+		
 	}
 
 	public void OnApplicationQuit()

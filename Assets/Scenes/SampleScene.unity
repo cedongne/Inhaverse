@@ -6827,7 +6827,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputField: {fileID: 2580658444375160559}
   outputText: {fileID: 2580658444866257569}
-  Manager: {fileID: 472855808}
+  manager: {fileID: 472855808}
+  chatScrollBar: {fileID: 2580658445780065053}
 --- !u!4 &1445569918
 Transform:
   m_ObjectHideFlags: 0
@@ -13425,7 +13426,7 @@ MonoBehaviour:
     m_FontSize: 23
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 2
+    m_MinSize: 23
     m_MaxSize: 23
     m_Alignment: 0
     m_AlignByGeometry: 0
