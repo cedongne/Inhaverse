@@ -3,6 +3,9 @@ Photon Chat C# Client - Changelog
 Exit Games GmbH - www.photonengine.com - forum.photonengine.com
 
 
+Version 4.1.6.10 (21. October 2021 - rev6243)
+    Fixed: The ChatPeer.ConfigUnitySockets(), which used a surplus typeof() for Xbox configuration.
+
 Version 4.1.6.6 (21. September 2021 - rev6204)
     Changed: For Xbox, order of checked assemblies when getting Type SocketNativeSource. It's more likely to be in Assembly-CSharp.
 

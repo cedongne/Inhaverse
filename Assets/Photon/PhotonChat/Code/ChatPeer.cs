@@ -67,7 +67,7 @@ namespace Photon.Chat
                 UnityEngine.Debug.LogError("XBOX is defined but peer could not find SocketNativeSource. Check your project files to make sure the native WSS implementation is available. Won't connect.");
             }
 
-            this.SocketImplementationConfig[ConnectionProtocol.Udp] = typeof(websocketType);    // on Xbox, the native socket plugin will support UDP and WSS (set below)
+            this.SocketImplementationConfig[ConnectionProtocol.Udp] = websocketType;    // on Xbox, the native socket plugin will support UDP and WSS (set below)
             #else
             // to support WebGL export in Unity, we find and assign the SocketWebTcp class (if it's in the project).
             // alternatively class SocketWebTcp might be in the Photon3Unity3D.dll

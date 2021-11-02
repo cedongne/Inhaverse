@@ -3,6 +3,10 @@ Photon C# Client Library - Changelog
 Exit Games GmbH - www.photonengine.com - forum.photonengine.com
 
 
+Version 4.1.6.10 (21. October 2021 - rev6243)
+    Fixed: ReadCustomTypeArray to return an object[], if any item in the array is unreadable. This object[] contains any properly read custom types but also items of UnknownType. This is of course likely to cause exceptions in the dispatch callbacks.
+    Added: Exception handling to OnEvent and OnOperationResponse calls.
+
 Version 4.1.6.9 (12. October 2021 - rev6231)
 	Fixed: Reliable UDP protocol to send pings, if no reliable command was acknowledged or sent recently. This bug was preventing a client timeout in some cases.
 
