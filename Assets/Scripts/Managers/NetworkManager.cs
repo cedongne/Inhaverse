@@ -74,8 +74,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         SpawnPlayer();
         UIManager.Instance.ShowUI(Define.UI.HUD);
         cameraArm.GetComponent<CameraController>().enabled = true;
+        GameObject.Find("ChatController").GetComponent<ChatController>().enabled = true;
     }
-
     void SpawnPlayer()
     {
         GameObject player = PN.Instantiate("Player", new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));

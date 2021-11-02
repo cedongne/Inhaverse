@@ -3,6 +3,10 @@ PUN 2 - Changelog
 Exit Games GmbH - www.photonengine.com - forum.photonengine.com
 
 
+v2.39 (21. October 2021)
+Changed: PhotonTransformView interpolation of position and rotation. It's now framerate independent.
+Updated: Library to 4.1.6.10. More details in changes-library.txt.
+
 v2.38 (12. October 2021)
 Updated: Library to 4.1.6.9. More details in changes-library.txt.
 

@@ -204,7 +204,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         PlayFabClientAPI.GetAccountInfo(request,
             (result) =>
             {
-                name = result.AccountInfo.TitleInfo.DisplayName;
+                playerName = result.AccountInfo.TitleInfo.DisplayName;
                 playerSchoolId = result.AccountInfo.Username;
                 Debug.Log("플레이어 정보 로드 성공, 이름 : " + name + ", 학번 : " + playerSchoolId);
             }, (error) => Debug.Log("플레이어 정보 로드 실패"));
