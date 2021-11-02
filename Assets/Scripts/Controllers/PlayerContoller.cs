@@ -19,6 +19,7 @@ public class PlayerContoller : MonoBehaviourPun
     private GameObject interactionUI;
 
     private Vector3 screenCenter;
+    private RectTransform interactionUITransform;
 
     Animator animator;
 
@@ -35,13 +36,11 @@ public class PlayerContoller : MonoBehaviourPun
 
     public Outline currentTouch;
 
-    Vector3 interactionUIOffset;
+    Vector3 InteractionUIOffset = new Vector3(120, -50);
 
     private void Awake()
     {
         screenCenter = new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2);
-        interactionUIOffset = new Vector3(Camera.main.pixelWidth / 12, -(Camera.main.pixelHeight / 12));
-
         animator = GetComponent<Animator>();
         cameraArm = GameObject.Find("Camera Arm");
     }
@@ -49,19 +48,17 @@ public class PlayerContoller : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-
+        Cursor.visible = false;
         if (photonView.IsMine)
         {
-            cameraArm.GetComponent<CameraController>().enabled = true;
             cameraArm.GetComponent<CameraController>().playerTransform = transform;
         }
-
         cameraArmTransform = cameraArm.transform;
         moveSpeed = walkMoveSpeed;
 
         interactionUI = GameObject.Find("Canvas").transform.Find("Interaction UI").gameObject;
-        interactionUI.transform.position += interactionUIOffset;
+        interactionUITransform = interactionUI.GetComponent<RectTransform>();
+ //       interactionUITransform.SetParent(GameObject.Find("Canvas").transform);
 
         currentTouch = GameObject.Find("Initializing Object").GetComponent<Outline>();
     }
@@ -90,9 +87,7 @@ public class PlayerContoller : MonoBehaviourPun
             Jump();
             walkToRun();
             DetectInteractiveObject();
-            ReSpawn();
         }
-        Menu();
     }
 
     void walkToRun()
@@ -182,26 +177,33 @@ public class PlayerContoller : MonoBehaviourPun
             interactionUI.SetActive(false);
         }
     }
-
-    void ReSpawn()
+    /*
+    void DetectInteractiveObject()
     {
-        if(Input.GetKeyDown(KeyCode.P))
-            playerTransform.position = new Vector3(0, 0, 0);
-    }
-
-    void Menu()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        RaycastHit hit;
+        Physics.Raycast(playerTransform.position, playerTransform.forward, out hit, 2);
+//        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+//        Physics.Raycast(ray, out hit, 5);
+        if (hit.collider != null && hit.transform.gameObject.CompareTag("Interactive Object"))
         {
-            if (UIManager.Instance.isOpenWindow)
+            currentTouch = hit.transform.gameObject.GetComponent<Outline>();
+            currentTouch.enabled = true;
+            interactionUI.SetActive(true);
+
+            interactionUITransform.position = Input.mousePosition + InteractionUIOffset;
+
+            if (Input.GetMouseButtonDown(0))
             {
-                UIManager.Instance.CloseWindow();
-                return;
+                hit.transform.gameObject.GetComponent<InteractiveObject>().Interaction();
+                currentTouch.enabled = false;
+                interactionUI.SetActive(false);
             }
-            if (Cursor.lockState == CursorLockMode.None)
-                Cursor.lockState = CursorLockMode.Locked;
-            else if(Cursor.lockState == CursorLockMode.Locked)
-                Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            currentTouch.enabled = false;
+            interactionUI.SetActive(false);
         }
     }
+    */
 }

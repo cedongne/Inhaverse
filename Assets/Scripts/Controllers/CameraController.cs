@@ -42,20 +42,17 @@ public class CameraController : MonoBehaviour
         FPSLookAround();
         MoveCamera();
         ChangeCameraMode();
-        Penetrate();
     }
 
     void FPSLookAround()
     {
-        if (UIManager.Instance.isOpenWindow)
-            return;
         Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X") * 2, Input.GetAxis("Mouse Y") * 2);
         Vector3 camAngle = cameraArmTransform.rotation.eulerAngles;
         float x = camAngle.x - mouseDelta.y;
 
         if (x < 180f)
         {
-            x = Mathf.Clamp(x, -1f, 80f);
+            x = Mathf.Clamp(x, -1f, 70f);
         }
         else
         {

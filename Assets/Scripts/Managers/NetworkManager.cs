@@ -1,12 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine;
 using PN = Photon.Pun.PhotonNetwork;
-
-using UnityEngine.UI;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
@@ -80,11 +75,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         SpawnPlayer();
         UIManager.Instance.ShowUI(Define.UI.HUD);
         cameraArm.GetComponent<CameraController>().enabled = true;
+        Debug.Log("Test");
         GameObject.Find("ChatController").GetComponent<ChatController>().enabled = true;
     }
     void SpawnPlayer()
     {
-        GameObject player = PN.Instantiate("Player", new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+        GameObject player = PN.Instantiate("Player", new Vector3(0, 2, 0), new Quaternion(0, 0, 0, 0));
     }
 
     void Update()
