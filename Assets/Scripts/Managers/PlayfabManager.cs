@@ -207,7 +207,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             {
                 playerName = result.AccountInfo.TitleInfo.DisplayName;
                 playerSchoolId = result.AccountInfo.Username;
-                Debug.Log("플레이어 정보 로드 성공, 이름 : " + name + ", 학번 : " + playerSchoolId);
+                Debug.Log("플레이어 정보 로드 성공, 이름 : " + playerName + ", 학번 : " + playerSchoolId);
             }, (error) => Debug.Log("플레이어 정보 로드 실패"));
     }
 

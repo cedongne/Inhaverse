@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Photon.Pun;
 using Photon.Realtime;
@@ -20,6 +21,7 @@ public class PlayerContoller : MonoBehaviourPun
 
     private Vector3 screenCenter;
     private RectTransform interactionUITransform;
+    private InputField inputField;
 
     Animator animator;
 

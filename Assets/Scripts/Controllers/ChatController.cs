@@ -112,6 +112,15 @@ public class ChatController : MonoBehaviour, IChatClientListener
 	void Update()
 	{
 		chatClient.Service();
+		Chat();
+	}
+
+	void Chat()
+	{
+		if (Input.GetKeyDown(KeyCode.Return))
+		{
+			inputField.Select();
+		}
 	}
 
 	public void Input_OnEndEdit(string text)
@@ -119,7 +128,8 @@ public class ChatController : MonoBehaviour, IChatClientListener
 		if (chatClient.State == ChatState.ConnectedToFrontEnd)
 		{
 			//chatClient.PublishMessage(currentChannelName, text);
-			chatClient.PublishMessage(currentChannelName, inputField.text);
+			if(inputField.text != "")
+				chatClient.PublishMessage(currentChannelName, inputField.text);
 
 			inputField.text = "";
 		}
