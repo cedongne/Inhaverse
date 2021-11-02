@@ -127,11 +127,12 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             (result) =>
             {
                 playerEntity = result.Entity;
-                AcceptGroupInvitation();
+                AcceptGroupInvitationWithUpdateData();
+                Debug.Log("엔터티 로드 성공");
             },
             (error) => Debug.Log("엔터티 로드 실패"));
 
-        invitingGroupEvent.AddListener(AcceptGroupInvitation);
+        invitingGroupEvent.AddListener(AcceptGroupInvitationWithUpdateData);
 
         Debug.Log("로그인 성공, 서버에 연결합니다.");
 
@@ -207,7 +208,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             {
                 playerName = result.AccountInfo.TitleInfo.DisplayName;
                 playerSchoolId = result.AccountInfo.Username;
-                Debug.Log("플레이어 정보 로드 성공, 이름 : " + name + ", 학번 : " + playerSchoolId);
+                Debug.Log("플레이어 정보 로드 성공, 이름 : " + playerName + ", 학번 : " + playerSchoolId);
             }, (error) => Debug.Log("플레이어 정보 로드 실패"));
     }
 
@@ -403,7 +404,6 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
 
     public void AcceptGroupInvitation()
     {
-        Debug.Log("Invited a group");
         var request = new ListMembershipOpportunitiesRequest { Entity = new PlayFab.GroupsModels.EntityKey { Id = playerEntity.Id, Type = playerEntity.Type } };
         PlayFabGroupsAPI.ListMembershipOpportunities(request, 
             (result) => 
@@ -417,6 +417,54 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                     PlayFabGroupsAPI.AcceptGroupInvitation(request, (result) => { Debug.Log("그룹 가입 성공"); }, (error) => { Debug.Log("그룹 가입 실패 " + error); });
                 }
             }, (error) => { Debug.Log("리스트업 실패 " + error); });
+    }
+
+    public void AcceptGroupInvitationWithUpdateData()
+    {
+        var request = new ListMembershipOpportunitiesRequest { Entity = new PlayFab.GroupsModels.EntityKey { Id = playerEntity.Id, Type = playerEntity.Type } };
+        PlayFabGroupsAPI.ListMembershipOpportunities(request,
+            (listResult) =>
+            {
+                for (int count = 0; count < listResult.Invitations.Count; count++)
+                {
+                    var request = new AcceptGroupInvitationRequest
+                    {
+                        Group = listResult.Invitations[count].Group,
+                        Entity = new PlayFab.GroupsModels.EntityKey { Id = playerEntity.Id, Type = playerEntity.Type }
+                    };
+                    PlayFabGroupsAPI.AcceptGroupInvitation(request, 
+                        (acceptResult) =>
+                        {
+                            for (int count = 0; count < listResult.Invitations.Count; count++)
+                            {
+                                Debug.Log("그룹 가입 성공");
+                                UpdateClassTimeTable(listResult.Invitations[count].Group.Id, listResult.Invitations[count].Group.Type);
+                            }
+                        }, (error) => { Debug.Log("그룹 가입 실패 " + error); });
+                }
+            }, (error) => { Debug.Log("리스트업 실패 " + error); });
+    }
+
+    void UpdateClassTimeTable(string entityId, string entityType)
+    {
+        var request = new GetGroupRequest { Group = new PlayFab.GroupsModels.EntityKey{ Id = entityId, Type = entityType } };
+        PlayFabGroupsAPI.GetGroup(request,
+            (groupResult) =>
+            {
+                var request = new GetObjectsRequest { Entity = new PlayFab.DataModels.EntityKey { Id = entityId, Type = entityType } };
+                PlayFabDataAPI.GetObjects(request,
+                    (objectResult) =>
+                    {
+                        ClassData classData = JsonUtility.FromJson<ClassData>(objectResult.Objects["ClassData"].DataObject.ToString());
+                        SetUserData(classData.className, classData.firstDayOfWeek + "," + classData.firstStartTime + "~" + classData.firstEndTime);
+                        if (!classData.secondEndTime.Equals(""))
+                        {
+                            SetUserData(classData.classId, classData.secondDayOfWeek + "," + classData.secondStartTime + "~" + classData.secondEndTime);
+                        }
+                        Debug.Log("시간표 갱신 성공");
+                    },
+                    (error) => { Debug.Log("시간표 갱신 실패" + error); });
+            }, (error) => { });
     }
 
     public GroupWithRoles FindSpecificGroup(List<GroupWithRoles> groups, string groupName)
@@ -445,34 +493,6 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
 
         var request = new SetObjectsRequest { Entity = new PlayFab.DataModels.EntityKey { Id = entityId, Type = entityType }, Objects = setObjectsList };
         PlayFabDataAPI.SetObjects(request, (result) => Debug.Log("데이터 업데이트 성공"), (error) => Debug.Log("데이터 업데이트 실패" + error));
-    }
-
-    public void UpdateObjectDataUsingStudentId(string studentId, string key, object value)
-    {
-        List<SetObject> setObjectsList = new List<SetObject>()
-        {
-            new SetObject()
-            {
-                ObjectName = key,
-                DataObject = value
-            }
-        };
-
-        PlayFabClientAPI.GetAccountInfo(new GetAccountInfoRequest { Username = studentId },
-            (result) =>
-            {
-                var request = new SetObjectsRequest
-                {
-                    Entity = new PlayFab.DataModels.EntityKey
-                    {
-                        Id = result.AccountInfo.TitleInfo.TitlePlayerAccount.Id,
-                        Type = result.AccountInfo.TitleInfo.TitlePlayerAccount.Type
-                    },
-                    Objects = setObjectsList,
-                };
-                PlayFabDataAPI.SetObjects(request, (result) => Debug.Log("데이터 업데이트 성공"), (error) => Debug.Log("데이터 업데이트 실패" + error));
-
-            }, (error) => { });
     }
 
     public void GetObjectData(string use, string entityId, string entityType, string key)

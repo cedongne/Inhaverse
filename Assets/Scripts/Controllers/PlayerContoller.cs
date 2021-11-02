@@ -48,7 +48,8 @@ public class PlayerContoller : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         if (photonView.IsMine)
         {
             cameraArm.GetComponent<CameraController>().playerTransform = transform;
@@ -88,6 +89,7 @@ public class PlayerContoller : MonoBehaviourPun
             walkToRun();
             DetectInteractiveObject();
         }
+        Menu();
     }
 
     void walkToRun()
@@ -175,6 +177,19 @@ public class PlayerContoller : MonoBehaviourPun
         {
             currentTouch.enabled = false;
             interactionUI.SetActive(false);
+        }
+    }
+
+    void Menu()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (Cursor.lockState == CursorLockMode.None)
+                Cursor.lockState = CursorLockMode.Locked;
+            else if (Cursor.lockState == CursorLockMode.Locked)
+                Cursor.lockState = CursorLockMode.None;
+            if (UIManager.Instance.isOpenWindow)
+                UIManager.Instance.CloseWindow();
         }
     }
     /*
