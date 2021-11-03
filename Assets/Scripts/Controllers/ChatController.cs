@@ -6,7 +6,6 @@ using Photon.Chat;
 
 public class ChatController : MonoBehaviour, IChatClientListener
 {
-
 	private ChatClient chatClient;
 	private string userName;
 	private string currentChannelName;
@@ -25,7 +24,9 @@ public class ChatController : MonoBehaviour, IChatClientListener
 		Application.runInBackground = true;
 		onChat = false;
 
-		userName = manager.GetComponent<PlayfabManager>().playerName;
+		//		userName = manager.GetComponent<PlayfabManager>().playerName;
+		Debug.Log(PlayfabManager.Instance.playerName);
+		userName = PlayfabManager.Instance.playerName;
 		currentChannelName = "전체채널";
 
 		chatClient = new ChatClient(this);

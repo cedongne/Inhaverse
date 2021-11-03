@@ -39,9 +39,12 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FPSLookAround();
-        MoveCamera();
-        ChangeCameraMode();
+        if (!UIManager.Instance.isOpenWindow)
+        {
+            FPSLookAround();
+            MoveCamera();
+            ChangeCameraMode();
+        }
     }
 
     void FPSLookAround()

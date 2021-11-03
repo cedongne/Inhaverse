@@ -12,16 +12,17 @@ public class InteractiveClassDoor : InteractiveObject
 {
     void Update()
     {
-  //             Debug.Log(DateTime.Now.Hour + " " + DateTime.Now.Minute);
-  //          Debug.Log(DateTime.Now.DayOfWeek);
-        
+//        UtilityMethods.isEnterClass(0, 0, 0);
+        //              Debug.Log(DateTime.Now.Hour + " " + DateTime.Now.Minute);
+        //         Debug.Log(DateTime.Now.DayOfWeek);
+
     }
 
     public override void Interaction()
     {
         if (PlayfabManager.Instance.playerJob == "학생")
         {
-
+            UIManager.Instance.EnterClassBtn();
         }
         else if (PlayfabManager.Instance.playerJob == "교수")
         {

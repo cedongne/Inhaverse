@@ -63,9 +63,11 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
     public UnityEvent<string> getPlayfabIdEventArg1;
     public UnityEvent<string, string> getPlayfabIdEventArg2;
     public UnityEvent<string> getLeaderBoardEvent;
+    public UnityEvent<string> getUserData;
     public UnityEvent invitingGroupEvent;
     public event GetPlayerInfoEvent getPlayerInfoEvent;
     #endregion
+
     void Awake()
     {
         if(instance == null)
@@ -166,6 +168,19 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             Permission = UserDataPermission.Public
         };
         PlayFabClientAPI.UpdateUserData(request, (result) => { Debug.Log("값 저장 성공"); }, (error) => Debug.Log("값 저장 실패" + error));
+    }
+
+    public void GetUserData(string key, string use)
+    {
+        var request = new GetUserDataRequest { Keys = new List<string>() { key } };
+        PlayFabClientAPI.GetUserData(request,
+            (result) =>
+            {
+                if (use.Equals("ClassTimeTable"))
+                {
+                    UIManager.Instance.SplitTimeTableData(result.Data[key].Value);
+                }
+            }, (error) => { });
     }
 
     public void UpdateStatistics(string statisticName, int statisticValue)
@@ -309,6 +324,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             }
         }, (error) => Debug.Log(error.ErrorMessage));
     }
+
     void SelectJob()
     {
         if (studentToggle.isOn)
@@ -343,6 +359,12 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             (result) =>
             {
                 Debug.Log("그룹 생성 성공, id : " + result.Group.Id + " name : " + result.GroupName);
+                List<string> studentIds = UtilityMethods.ListUpInvitingStudents(dataValue);
+                for(int count = 0; count < studentIds.Count; count++)
+                {
+                    InviteToGroup(groupName, studentIds[count]);
+                    Debug.Log(studentIds[count] + "가 수업에 참여했습니다.");
+                }
                 UpdateObjectDataUsingEntity(result.Group.Id, result.Group.Type, dataKey, dataValue);
             },
             (error) =>
@@ -456,11 +478,11 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                     (objectResult) =>
                     {
                         ClassData classData = JsonUtility.FromJson<ClassData>(objectResult.Objects["ClassData"].DataObject.ToString());
-                        SetUserData(classData.className, classData.firstDayOfWeek + "," + classData.firstStartTime + "~" + classData.firstEndTime);
                         if (!classData.secondEndTime.Equals(""))
-                        {
-                            SetUserData(classData.classId, classData.secondDayOfWeek + "," + classData.secondStartTime + "~" + classData.secondEndTime);
-                        }
+                            SetUserData(classData.className + classData.classNumber, classData.firstDayOfWeek + "," + classData.firstStartTime + "~" + classData.firstEndTime + "," + 
+                                classData.secondDayOfWeek + "," + classData.secondStartTime + "~" + classData.secondEndTime);
+                        else
+                            SetUserData(classData.className + classData.classNumber, classData.firstDayOfWeek + "," + classData.firstStartTime + "~" + classData.firstEndTime);
                         Debug.Log("시간표 갱신 성공");
                     },
                     (error) => { Debug.Log("시간표 갱신 실패" + error); });
@@ -502,10 +524,9 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         PlayFabDataAPI.GetObjects(request,
             (result) =>
             {
-                returnObject = result.Objects[key].DataObject;
                 if (use.Equals("ClassData"))
                 {
-                    UIManager.Instance.LoadModifyingClass(returnObject);
+                    UIManager.Instance.LoadModifyingClass(result.Objects[key].DataObject);
                 }
             },
             (error) => { Debug.LogError(error.GenerateErrorReport()); });

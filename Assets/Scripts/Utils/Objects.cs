@@ -6,11 +6,12 @@ using System.Collections.Generic;
 public class ClassData
 {
     public ClassData() { }
-    public ClassData(string _className, string _classId, string _firstDayOfWeek, string _firstStartTime, string _firstEndTime, 
+    public ClassData(string _className, string _classId, string _classNumber, string _firstDayOfWeek, string _firstStartTime, string _firstEndTime, 
         string _secondDayOfWeek, string _secondStartTime, string _secondEndTime, object _students)
     {
         className = _className;
         classId = _classId;
+        classNumber = _classNumber;
 
         firstDayOfWeek = _firstDayOfWeek;
         firstStartTime = _firstStartTime;
@@ -24,6 +25,7 @@ public class ClassData
     }
     public string className;
     public string classId;
+    public string classNumber;
 
     public string firstDayOfWeek;
     public string firstStartTime;

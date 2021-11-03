@@ -35,8 +35,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             DontDestroyOnLoad(gameObject);
         }
     }
-    
-
 
     public override void OnConnectedToMaster()
     {
@@ -45,7 +43,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
 
     public override void OnJoinedLobby() =>
-        PN.JoinOrCreateRoom("room", new RoomOptions { MaxPlayers = 4 }, null);
+        PN.JoinOrCreateRoom("Lobby", new RoomOptions { MaxPlayers = 4 }, null);
 
     public void JoinToClass(string className)
     {

@@ -20,7 +20,6 @@ public class PlayerContoller : MonoBehaviourPun
     private GameObject interactionUI;
 
     private Vector3 screenCenter;
-    private RectTransform interactionUITransform;
     private InputField inputField;
 
     Animator animator;
@@ -62,9 +61,6 @@ public class PlayerContoller : MonoBehaviourPun
         moveSpeed = walkMoveSpeed;
 
         interactionUI = GameObject.Find("Canvas").transform.Find("Interaction UI").gameObject;
-        interactionUITransform = interactionUI.GetComponent<RectTransform>();
- //       interactionUITransform.SetParent(GameObject.Find("Canvas").transform);
-
         currentTouch = GameObject.Find("Initializing Object").GetComponent<Outline>();
         chatController = GameObject.Find("ChatController").GetComponent<ChatController>();
     }
@@ -102,6 +98,7 @@ public class PlayerContoller : MonoBehaviourPun
         }
         Menu();
     }
+
 
     void walkToRun()
     {
@@ -143,7 +140,7 @@ public class PlayerContoller : MonoBehaviourPun
         if (isDown)
         {
             RaycastHit hit;
-            if (Physics.Raycast(playerTransform.position, Vector3.down, out hit, 0.1f))
+            if (Physics.Raycast(playerTransform.position, Vector3.down, out hit, 0.2f))
             {
                 isJump = false;
                 isDown = false;
@@ -159,7 +156,7 @@ public class PlayerContoller : MonoBehaviourPun
             }
             animator.SetBool("isDown", isDown);
         }
-        if (Input.GetButtonDown("Jump") && !isJump)
+        if (Input.GetKeyDown(KeyCode.Space) && !isJump)
         {
             animator.SetTrigger("DoJump");
             playerRigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
