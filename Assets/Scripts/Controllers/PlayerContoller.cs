@@ -32,6 +32,8 @@ public class PlayerContoller : MonoBehaviourPun
     public float prevYPosition;
     public float jumpPower;
 
+    private ChatController chatController;
+
     bool isRun;
     bool isJump;
     bool isDown;
@@ -64,6 +66,7 @@ public class PlayerContoller : MonoBehaviourPun
  //       interactionUITransform.SetParent(GameObject.Find("Canvas").transform);
 
         currentTouch = GameObject.Find("Initializing Object").GetComponent<Outline>();
+        chatController = GameObject.Find("ChatController").GetComponent<ChatController>();
     }
 
     // Update is called once per frame
@@ -75,7 +78,10 @@ public class PlayerContoller : MonoBehaviourPun
         }
         if (!UIManager.Instance.isOpenWindow)
         {
-            Move();
+            if (!chatController.onChat)
+            {
+                Move();
+            }
         }
     }
 
@@ -87,9 +93,12 @@ public class PlayerContoller : MonoBehaviourPun
         }
         if (!UIManager.Instance.isOpenWindow)
         {
-            Jump();
-            walkToRun();
-            DetectInteractiveObject();
+            if (!chatController.onChat)
+            {
+                Jump();
+                walkToRun();
+                DetectInteractiveObject();
+            }
         }
         Menu();
     }

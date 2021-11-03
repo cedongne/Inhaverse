@@ -16,11 +16,14 @@ public class ChatController : MonoBehaviour, IChatClientListener
 	public GameObject manager;
 	public Scrollbar chatScrollBar;
 
+	public bool onChat;
+
 	// Use this for initialization
 	void Start()
 	{
 
 		Application.runInBackground = true;
+		onChat = false;
 
 		userName = manager.GetComponent<PlayfabManager>().playerName;
 		currentChannelName = "전체채널";
@@ -120,6 +123,10 @@ public class ChatController : MonoBehaviour, IChatClientListener
 		if (Input.GetKeyDown(KeyCode.Return))
 		{
 			inputField.Select();
+			if (onChat)
+				onChat = false;
+			else
+				onChat = true;
 		}
 	}
 
