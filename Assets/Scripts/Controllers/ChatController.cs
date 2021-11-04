@@ -22,7 +22,6 @@ public class ChatController : MonoBehaviour, IChatClientListener
 	// Use this for initialization
 	void Start()
 	{
-
 		Application.runInBackground = true;
 		onChat = false;
 
@@ -33,15 +32,12 @@ public class ChatController : MonoBehaviour, IChatClientListener
 
 		chatClient = new ChatClient(this);
 		chatClient.Connect(ChatSettings.Instance.AppId, "1.0", new AuthenticationValues(userName));
-
 		AddLine(string.Format("연결시도", userName));
 	}
 
 	public void AddLine(string lineString)
 	{
 		outputText.text += lineString + "\r\n";
-		chatScrollBar.value = 0;
-		
 	}
 
 	public void OnApplicationQuit()
@@ -107,7 +103,7 @@ public class ChatController : MonoBehaviour, IChatClientListener
 
 	public void OnPrivateMessage(string sender, object message, string channelName)
 	{
-		Debug.Log("OnPrivateMessage : " + message);
+		Debug.Log(sender + "의 귓속말: " + message.ToString());
 	}
 
 	public void OnStatusUpdate(string user, int status, bool gotMessage, object message)
