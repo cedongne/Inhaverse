@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8402,6 +8402,9 @@ MonoBehaviour:
   outputText: {fileID: 2580658444866257569}
   manager: {fileID: 472855808}
   chatScrollBar: {fileID: 2580658445780065053}
+  ifObject: {fileID: 2580658444375160557}
+  sbObject: {fileID: 2580658444259038500}
+  onChat: 0
 --- !u!4 &1445569918
 Transform:
   m_ObjectHideFlags: 0
@@ -14532,7 +14535,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2580658444259038502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14882,7 +14885,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2580658444375160558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14966,19 +14969,7 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1445569917}
-        m_TargetAssemblyTypeName: ChatController, Assembly-CSharp
-        m_MethodName: Input_OnEndEdit
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
