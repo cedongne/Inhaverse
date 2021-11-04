@@ -92,15 +92,15 @@ public class PlayerContoller : MonoBehaviourPun
             if (!chatController.onChat)
             {
                 Jump();
-                walkToRun();
+                WalkToRun();
                 DetectInteractiveObject();
             }
         }
-        Menu();
+        OnCursorVisible();
     }
 
 
-    void walkToRun()
+    void WalkToRun()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -188,9 +188,28 @@ public class PlayerContoller : MonoBehaviourPun
         }
     }
 
-    void Menu()
+    void OnCursorVisible()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetMouseButtonDown(0))
+        {
+            Cursor.lockState = CursorLockMode.None;
+            CancelInvoke("OnCursorUnvisible");
+            Invoke("OnCursorUnvisible", 3);
+        }
+        else if (Input.GetMouseButtonDown(1))
+        {
+            OnCursorUnvisible();
+        }
+    }
+
+    void OnCursorUnvisible()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+    /*
+    void OnCursorVisible()
+    {
+        if (Input.GetMouseButtonDown(0))
         {
             if (Cursor.lockState == CursorLockMode.None)
                 Cursor.lockState = CursorLockMode.Locked;
@@ -198,34 +217,6 @@ public class PlayerContoller : MonoBehaviourPun
                 Cursor.lockState = CursorLockMode.None;
             if (UIManager.Instance.isOpenWindow)
                 UIManager.Instance.CloseWindow();
-        }
-    }
-    /*
-    void DetectInteractiveObject()
-    {
-        RaycastHit hit;
-        Physics.Raycast(playerTransform.position, playerTransform.forward, out hit, 2);
-//        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-//        Physics.Raycast(ray, out hit, 5);
-        if (hit.collider != null && hit.transform.gameObject.CompareTag("Interactive Object"))
-        {
-            currentTouch = hit.transform.gameObject.GetComponent<Outline>();
-            currentTouch.enabled = true;
-            interactionUI.SetActive(true);
-
-            interactionUITransform.position = Input.mousePosition + InteractionUIOffset;
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                hit.transform.gameObject.GetComponent<InteractiveObject>().Interaction();
-                currentTouch.enabled = false;
-                interactionUI.SetActive(false);
-            }
-        }
-        else
-        {
-            currentTouch.enabled = false;
-            interactionUI.SetActive(false);
         }
     }
     */
