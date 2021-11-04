@@ -174,7 +174,7 @@ public class PlayerContoller : MonoBehaviourPun
             currentTouch.enabled = true;
             interactionUI.SetActive(true);
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E))
             {
                 hit.transform.gameObject.GetComponent<InteractiveObject>().Interaction();
                 currentTouch.enabled = false;
