@@ -34,7 +34,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             instance = gameObject.GetComponent<NetworkManager>();
             DontDestroyOnLoad(gameObject);
         }
-    }
+    } 
 
     public override void OnConnectedToMaster()
     {

@@ -14,6 +14,8 @@ public class ChatController : MonoBehaviour, IChatClientListener
 	public Text outputText;
 	public GameObject manager;
 	public Scrollbar chatScrollBar;
+	public GameObject ifObject;
+	public GameObject sbObject;
 
 	public bool onChat;
 
@@ -123,11 +125,24 @@ public class ChatController : MonoBehaviour, IChatClientListener
 	{
 		if (Input.GetKeyDown(KeyCode.Return))
 		{
-			inputField.Select();
-			if (onChat)
-				onChat = false;
-			else
+            if(!onChat)
+            {
 				onChat = true;
+				ifObject.SetActive(true);
+				inputField.ActivateInputField();
+				sbObject.SetActive(true);
+            }
+            else
+            {
+				if (inputField.text != "")
+				{
+					chatClient.PublishMessage(currentChannelName, inputField.text);
+					inputField.text = "";
+				}
+				onChat = false;
+				ifObject.SetActive(false);
+				sbObject.SetActive(false);
+			}
 		}
 	}
 
@@ -136,10 +151,11 @@ public class ChatController : MonoBehaviour, IChatClientListener
 		if (chatClient.State == ChatState.ConnectedToFrontEnd)
 		{
 			//chatClient.PublishMessage(currentChannelName, text);
-			if(inputField.text != "")
+			if (inputField.text != "")
+			{
 				chatClient.PublishMessage(currentChannelName, inputField.text);
-
-			inputField.text = "";
+				inputField.text = "";
+			}
 		}
 	}
 }
