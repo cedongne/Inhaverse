@@ -3,57 +3,7 @@ guid: d64c556ad6978e74999eb465978b2636
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Ocher
-    second: {fileID: 2100000, guid: 5f1d8705081e7044bbb397469ebf094e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: blue_window.004
-    second: {fileID: 2100000, guid: f6e036989f98fa64580f371f01155899, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ddddark_green
-    second: {fileID: 2100000, guid: 7b89828b3a23d86409b0410d00e917c0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: gray
-    second: {fileID: 2100000, guid: e40277ba485609d4fbf5ee357994cfb9, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: iron
-    second: {fileID: 2100000, guid: 9359326bdf241484bb5914be770b48b7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: iron.009
-    second: {fileID: 2100000, guid: 9359326bdf241484bb5914be770b48b7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ivory.007
-    second: {fileID: 2100000, guid: ab90811471ca3df4fb7926f9573a0e12, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: stick
-    second: {fileID: 2100000, guid: dc8bfdfd251e27f4fb8e61b7d7108754, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tree
-    second: {fileID: 2100000, guid: 3426f73b68194454cb621cf984f58655, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tv
-    second: {fileID: 2100000, guid: 1e1ccc2387f976f489eda8fffc3cfee8, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
