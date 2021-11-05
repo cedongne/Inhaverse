@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 3d77b0fba56156345a8c7aa2ecf0106f, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -148,15 +148,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d64c556ad6978e74999eb465978b2636, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.6
+      value: -3.259
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d64c556ad6978e74999eb465978b2636, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d64c556ad6978e74999eb465978b2636, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13.2
+      value: 5.053
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d64c556ad6978e74999eb465978b2636, type: 3}
       propertyPath: m_LocalRotation.w
@@ -398,7 +398,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &649478521
 AudioListener:
   m_ObjectHideFlags: 0
@@ -488,7 +488,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 792153964}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4.31, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 339568514}
