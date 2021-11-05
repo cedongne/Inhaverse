@@ -94,9 +94,9 @@ public class PlayerContoller : MonoBehaviourPun
                 Jump();
                 WalkToRun();
                 DetectInteractiveObject();
+                OnCursorVisible();
             }
         }
-        OnCursorVisible();
     }
 
 
@@ -194,7 +194,8 @@ public class PlayerContoller : MonoBehaviourPun
         {
             Cursor.lockState = CursorLockMode.None;
             CancelInvoke("OnCursorUnvisible");
-            Invoke("OnCursorUnvisible", 3);
+            if(!UIManager.Instance.isOpenWindow)
+                Invoke("OnCursorUnvisible", 3);
         }
         else if (Input.GetMouseButtonDown(1))
         {

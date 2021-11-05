@@ -5,7 +5,16 @@ using System.Collections.Generic;
 public class UtilityMethods
 {
     public const int TIMEOUT = -99;
-    public static bool isAllowEnterClass(string dayOfWeek, int startTime, int allowTime)
+
+    public static string[] SplitTimeTableData(string timeTableData)
+    {
+        char[] delimiters = { ',', '~' };
+        string[] splitedTimeTableString = timeTableData.Split(delimiters);
+
+        return splitedTimeTableString;
+    }
+
+    public static bool DetermineIsClassTime(string dayOfWeek, int startTime, int allowTime)
     {
         int nowClassTimeHour = (DateTime.Now.Hour - 8) * 2;
         int nowClassTimeMinute = 0;
@@ -25,6 +34,17 @@ public class UtilityMethods
             return true;
         else
             return false;
+    }
+
+    public static bool DetermineAllowClassEnter(string[] splitedTimeTableString)
+    {
+        bool isAllowEnterClass;
+
+        isAllowEnterClass = DetermineIsClassTime(splitedTimeTableString[0], int.Parse(splitedTimeTableString[1]), 10);
+        if (!isAllowEnterClass && splitedTimeTableString.Length > 3)
+            isAllowEnterClass = DetermineIsClassTime(splitedTimeTableString[3], int.Parse(splitedTimeTableString[4]), 10);
+
+        return isAllowEnterClass;
     }
 
     public static List<string> ListUpInvitingStudents(object classObject)

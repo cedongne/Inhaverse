@@ -63,7 +63,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
     public UnityEvent<string> getPlayfabIdEventArg1;
     public UnityEvent<string, string> getPlayfabIdEventArg2;
     public UnityEvent<string> getLeaderBoardEvent;
-    public UnityEvent<string> getUserData;
+    public UnityEvent<string, string> getUserDataEvent;
     public UnityEvent invitingGroupEvent;
     public event GetPlayerInfoEvent getPlayerInfoEvent;
     #endregion
@@ -178,7 +178,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             {
                 if (use.Equals("ClassTimeTable"))
                 {
-                    UIManager.Instance.SplitTimeTableData(result.Data[key].Value);
+                    getUserDataEvent.Invoke(key, result.Data[key].Value);
                 }
             }, (error) => { });
     }
