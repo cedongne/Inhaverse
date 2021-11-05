@@ -54,10 +54,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         string[] splitedTimeTableData = UtilityMethods.SplitTimeTableData(classData);
 
         PN.LeaveRoom();
- //       PN.LeaveLobby();
+//        PN.LeaveLobby();
 
         SceneManager.LoadScene("ClassroomScene");
-
         if(UtilityMethods.DetermineAllowClassEnter(splitedTimeTableData))
             PN.JoinOrCreateRoom(className, new RoomOptions { MaxPlayers = 10 }, null);
         else

@@ -63,6 +63,11 @@ public class PlayerContoller : MonoBehaviourPun
         interactionUI = GameObject.Find("Canvas").transform.Find("Interaction UI").gameObject;
         currentTouch = GameObject.Find("Initializing Object").GetComponent<Outline>();
         chatController = GameObject.Find("ChatController").GetComponent<ChatController>();
+
+        DontDestroyOnLoad(cameraArm);
+        DontDestroyOnLoad(GameObject.Find("Canvas"));
+        DontDestroyOnLoad(GameObject.Find("ChatController"));
+        DontDestroyOnLoad(GameObject.Find("Initializing Object"));
     }
 
     // Update is called once per frame
