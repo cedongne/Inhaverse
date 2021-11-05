@@ -74,6 +74,9 @@ public class UIManager : MonoBehaviour
     {
         loginUI.SetActive(false);
         hudUI.SetActive(false);
+
+        CloseWindow();
+
         if (showingUi.Equals(Define.UI.LOGIN))
         {
             loginUI.SetActive(true);
@@ -124,9 +127,12 @@ public class UIManager : MonoBehaviour
     public void EnterClassBtn()
     {
         OpenWindow(Define.UI.CLASSMODIFYINGLIST);
-        PlayfabManager.Instance.GetGroupList();
 
         eventFunction += OnClickGetUserData;
+        PlayfabManager.Instance.getUserDataEvent.AddListener(NetworkManager.Instance.JoinToClass);
+        PlayfabManager.Instance.GetGroupList();
+
+        
     }
 
     public void OpenClassMakingWindow()
@@ -252,23 +258,12 @@ public class UIManager : MonoBehaviour
 
     public void OnClickGetUserData(int btnNum)
     {
+        eventFunction -= OnClickGetUserData;
         PlayfabManager.Instance.GetUserData(buttons[btnNum].button.name, "ClassTimeTable");
     }
 
-    public void SplitTimeTableData(string timeTableData)
-    {
-        char[] delimiters = { ',', '~' };
-        string[] splitedTimeTableString = timeTableData.Split(delimiters);
 
-        bool isAllowEnterClass;
-        isAllowEnterClass = UtilityMethods.isAllowEnterClass(splitedTimeTableString[0], int.Parse(splitedTimeTableString[1]), 10);
-        if(!isAllowEnterClass && splitedTimeTableString.Length > 3)
-            isAllowEnterClass = UtilityMethods.isAllowEnterClass(splitedTimeTableString[3], int.Parse(splitedTimeTableString[4]), 10);
 
-        Debug.Log(splitedTimeTableString);
-        Debug.Log(isAllowEnterClass);
-
-    }
     public void LoadModifyingClass(object classObject)
     {
         ClassData classData = JsonUtility.FromJson<ClassData>(classObject.ToString());
