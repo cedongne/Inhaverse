@@ -2257,7 +2257,7 @@ MonoBehaviour:
   voiceDetectionThreshold: 0.01
   voiceDetectionDelayMs: 500
   unityMicrophoneDevice: 
-  photonMicrophoneDeviceId: -1
+  photonMicrophoneDeviceId: 0
   interestGroup: 0
   debugEchoMode: 0
   reliableMode: 0
@@ -10845,6 +10845,14 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3650513701068548758, guid: 0b7c8b1f128071747a4fa085d17e5b90, type: 3}
   m_PrefabInstance: {fileID: 2107974840}
   m_PrefabAsset: {fileID: 0}
+--- !u!81 &1809461984
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809461981}
+  m_Enabled: 1
 --- !u!1 &1828028745
 GameObject:
   m_ObjectHideFlags: 0
