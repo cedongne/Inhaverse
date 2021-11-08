@@ -9,18 +9,20 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private Transform cameraArmTransform;
     [SerializeField]
-    private Transform cameraTransform;
+    private Transform cameraPositionTransform;
+    [SerializeField]
+    private Transform mainCameraTransform;
     [SerializeField]
     private Transform defaultObjectTransform;
 
     Vector3 cameraArmPositionOffset = new Vector3(0, 1, 0);
+    Vector3 cameraPositionOffset = new Vector3(0, 0.5f, -3f);
+    float camera_dist;
 
     public Vector3 TPSCameraOffset;
     public Vector3 FPSCameraOffset;
 
     bool isTPS;
-
-    List<Transform> objectsList = new List<Transform>();
 
     private void Awake()
     {
@@ -30,8 +32,10 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        cameraTransform.localPosition = TPSCameraOffset;
+        cameraPositionTransform.localPosition = TPSCameraOffset;
+        mainCameraTransform.localPosition = Vector3.zero;
 
+        camera_dist = Mathf.Sqrt(cameraPositionOffset.y * cameraPositionOffset.y + cameraPositionOffset.z * cameraPositionOffset.z);
 
         isTPS = true;
     }
@@ -44,7 +48,12 @@ public class CameraController : MonoBehaviour
             FPSLookAround();
             MoveCamera();
             ChangeCameraMode();
+            DontBeyondWall();
         }
+    }
+
+    private void FixedUpdate()
+    {
     }
 
     void FPSLookAround()
@@ -54,7 +63,7 @@ public class CameraController : MonoBehaviour
         float x = camAngle.x - mouseDelta.y;
 
         if (x < 180f)
-        {
+        { 
             x = Mathf.Clamp(x, -1f, 70f);
         }
         else
@@ -76,41 +85,39 @@ public class CameraController : MonoBehaviour
         {
             if (isTPS)
             {
-                cameraTransform.localPosition = FPSCameraOffset;
+                cameraPositionTransform.localPosition = FPSCameraOffset;
                 isTPS = false;
             }
             else if (!isTPS)
             {
-                cameraTransform.localPosition = TPSCameraOffset;
+                cameraPositionTransform.localPosition = TPSCameraOffset;
                 isTPS = true;
             }
         }
     }
 
-    void Penetrate()
+    void DontBeyondWall()
     {
-        Renderer ObstacleRenderer;
+        Vector3 rayTarget = (cameraArmTransform.position - cameraPositionTransform.position).normalized;
 
-        float Distance = Vector3.Distance(cameraTransform.position, playerTransform.position + new Vector3(0, 0.5f, 0));
-        Vector3 Direction = (playerTransform.position + new Vector3(0, 0.5f, 0) - cameraTransform.position).normalized;
+        RaycastHit[] rayPoint;
+        Debug.DrawRay(cameraPositionTransform.position, rayTarget, Color.red);
+        rayPoint = Physics.RaycastAll(cameraPositionTransform.position, rayTarget, camera_dist);
 
-        RaycastHit hit;
-        Debug.DrawRay(cameraTransform.position, Direction, Color.red);
-        if (Physics.Raycast(cameraTransform.position, Direction, out hit, Distance))
+        Debug.Log(rayPoint.Length);
+        if (rayPoint.Length != 0)
         {
-            // 2.맞았으면 Renderer를 얻어온다.
-            ObstacleRenderer = hit.transform.GetComponentInChildren<MeshRenderer>();
-//            objectsList.Add(hit.transform);
- //           Debug.Log(hit.transform.name + " " + objectsList.Count);
-            if (ObstacleRenderer != null)
-            {
-                Debug.Log(ObstacleRenderer.material.color);
-                // 3. Metrial의 Aplha를 바꾼다.
-                Material Mat = ObstacleRenderer.material;
-                Color matColor = Mat.color;
-//                matColor.a = 0.2f;
-                Mat.color = matColor;
-            }
+            Debug.Log("Point");
+            //           cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, cameraArmTransform.position, Time.deltaTime * 10);
+            mainCameraTransform.position = rayPoint[rayPoint.Length - 1].point;
         }
+        else
+        {
+            Debug.Log("Not");
+            //           cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, TPSCameraOffset, Time.deltaTime * 5f);
+            mainCameraTransform.localPosition = Vector3.zero;
+        }
+        
+
     }
 }

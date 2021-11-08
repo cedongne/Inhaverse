@@ -49,7 +49,7 @@ public class UtilityMethods
 
     public static List<string> ListUpInvitingStudents(object classObject)
     {
-        ClassData classData = JsonUtility.FromJson<ClassData>(classObject.ToString());
+        ClassData classData = JsonUtility.FromJson<ClassData>(JsonUtility.ToJson(classObject));
 
         List<string> studentIds = new List<string>();
 

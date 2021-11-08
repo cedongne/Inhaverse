@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Interactive Object
   - Ground
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -13,8 +14,8 @@ TagManager:
   - Interactive
   - Water
   - UI
-  - 
-  - 
+  - Camera
+  - Wall
   - 
   - 
   - 

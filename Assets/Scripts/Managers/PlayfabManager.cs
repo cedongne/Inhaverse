@@ -380,6 +380,12 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                             UpdateObjectDataUsingEntity(result.Group.Id, result.Group.Type, dataKey, dataValue);
                             Debug.Log("그룹 개체 업데이트 성공");
                         }, (error) => { });
+                    List<string> studentIds = UtilityMethods.ListUpInvitingStudents(dataValue);
+                    for (int count = 0; count < studentIds.Count; count++)
+                    {
+                        InviteToGroup(groupName, studentIds[count]);
+                        Debug.Log(studentIds[count] + "가 수업에 참여했습니다.");
+                    }
                 }
             });
     }
