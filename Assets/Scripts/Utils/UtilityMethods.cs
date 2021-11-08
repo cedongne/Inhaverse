@@ -60,4 +60,37 @@ public class UtilityMethods
 
         return studentIds;
     }
+
+    public static string ConvertToDayOfWeek(int dayCode)
+    {
+        if (dayCode == 0)
+            return "Monday";
+        else if (dayCode == 1)
+            return "TuesDay";
+        else if (dayCode == 2)
+            return "Wednesday";
+        else if (dayCode == 3)
+            return "Thursday";
+        else if (dayCode == 4)
+            return "Friday";
+        else
+            return "";
+    }
+
+    public static int ConvertToDayCode(string dayOfWeek)
+    {
+        if (dayOfWeek == "Monday")
+            return 0;
+        else if (dayOfWeek == "Tuesday")
+            return 1;
+        else if (dayOfWeek == "Wednesday")
+            return 2;
+        else if (dayOfWeek == "Thursday")
+            return 3;
+        else if (dayOfWeek == "Friday")
+            return 4;
+        else
+            return 0;
+
+    }
 }

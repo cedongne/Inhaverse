@@ -149,11 +149,11 @@ public class UIManager : MonoBehaviour
         classData.classId = classIdInput.text;
         classData.classNumber = classNumberInput.text;
 
-        classData.firstDayOfWeek = ConvertToDayOfWeek(firstDayOfWeekInput.value);
+        classData.firstDayOfWeek = UtilityMethods.ConvertToDayOfWeek(firstDayOfWeekInput.value);
         classData.firstStartTime = firstStartTimeInput.text;
         classData.firstEndTime = firstEndTimeInput.text;
 
-        classData.secondDayOfWeek = ConvertToDayOfWeek(secondDayOfWeekInput.value);
+        classData.secondDayOfWeek = UtilityMethods.ConvertToDayOfWeek(secondDayOfWeekInput.value);
         classData.secondStartTime = secondStartTimeInput.text;
         classData.secondEndTime = secondEndTimeInput.text;
 
@@ -163,38 +163,6 @@ public class UIManager : MonoBehaviour
         CloseWindow();
     }
 
-    string ConvertToDayOfWeek(int dayCode)
-    {
-        if (dayCode == 0)
-            return "Monday";
-        else if (dayCode == 1)
-            return "TuesDay";
-        else if (dayCode == 2)
-            return "Wednesday";
-        else if (dayCode == 3)
-            return "Thursday";
-        else if (dayCode == 4)
-            return "Friday";
-        else
-            return "";
-    }
-
-    int ConvertToDayCode(string dayOfWeek)
-    {
-        if (dayOfWeek == "Monday")
-            return 0;
-        else if (dayOfWeek == "Tuesday")
-            return 1;
-        else if (dayOfWeek == "Wednesday")
-            return 2;
-        else if (dayOfWeek == "Thursday")
-            return 3;
-        else if (dayOfWeek == "Friday")
-            return 4;
-        else
-            return 0;
-
-    }
 
     public void SetClassDataForStudent(string playfabId)
     {
@@ -271,11 +239,11 @@ public class UIManager : MonoBehaviour
         classIdInput.text = classData.classId;
         classNumberInput.text = classData.classNumber;
 
-        firstDayOfWeekInput.value = ConvertToDayCode(classData.firstDayOfWeek);
+        firstDayOfWeekInput.value = UtilityMethods.ConvertToDayCode(classData.firstDayOfWeek);
         firstStartTimeInput.text = classData.firstStartTime;
         firstEndTimeInput.text = classData.firstEndTime;
 
-        secondDayOfWeekInput.value = ConvertToDayCode(classData.secondDayOfWeek);
+        secondDayOfWeekInput.value = UtilityMethods.ConvertToDayCode(classData.secondDayOfWeek);
         secondStartTimeInput.text = classData.secondStartTime;
         secondEndTimeInput.text = classData.secondEndTime;
 

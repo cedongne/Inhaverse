@@ -212,18 +212,4 @@ public class PlayerContoller : MonoBehaviourPun
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
-    /*
-    void OnCursorVisible()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (Cursor.lockState == CursorLockMode.None)
-                Cursor.lockState = CursorLockMode.Locked;
-            else if (Cursor.lockState == CursorLockMode.Locked)
-                Cursor.lockState = CursorLockMode.None;
-            if (UIManager.Instance.isOpenWindow)
-                UIManager.Instance.CloseWindow();
-        }
-    }
-    */
 }

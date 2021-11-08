@@ -104,16 +104,13 @@ public class CameraController : MonoBehaviour
         Debug.DrawRay(cameraPositionTransform.position, rayTarget, Color.red);
         rayPoint = Physics.RaycastAll(cameraPositionTransform.position, rayTarget, camera_dist);
 
-        Debug.Log(rayPoint.Length);
         if (rayPoint.Length != 0)
         {
-            Debug.Log("Point");
             //           cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, cameraArmTransform.position, Time.deltaTime * 10);
             mainCameraTransform.position = rayPoint[rayPoint.Length - 1].point;
         }
         else
         {
-            Debug.Log("Not");
             //           cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, TPSCameraOffset, Time.deltaTime * 5f);
             mainCameraTransform.localPosition = Vector3.zero;
         }
