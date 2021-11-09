@@ -29,13 +29,14 @@ public class ChatController : MonoBehaviour, IChatClientListener
 		//		userName = manager.GetComponent<PlayfabManager>().playerName;
 		Debug.Log(PlayfabManager.Instance.playerName);
 		userName = PlayfabManager.Instance.playerName;
+
+		ChatStart();
 	}
 
 	public void ChatStart()
     {
 		chatClient = new ChatClient(this);
 		chatClient.Connect(ChatSettings.Instance.AppId, "1.0", new AuthenticationValues(userName));
-		AddLine(string.Format("연결시도", userName));
 	}
 
 	public void AddLine(string lineString)
@@ -93,7 +94,7 @@ public class ChatController : MonoBehaviour, IChatClientListener
 	public void LeaveChat()
     {
 		chatClient.Unsubscribe(new string[] { currentChannelName });
-    }
+	}
 	public void OnUnsubscribed(string[] channels)
 	{
 		AddLine(string.Format("{0}에서 퇴장하셨습니다.", string.Join(",", channels)));

@@ -12,8 +12,8 @@ public class VoiceController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        voiceRecorder.TransmitEnabled = false;
-        onVoice = false;
+        voiceRecorder.TransmitEnabled = true;
+        onVoice = true;
     }
 
     // Update is called once per frame
