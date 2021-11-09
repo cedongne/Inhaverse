@@ -29,7 +29,6 @@ public class ChatController : MonoBehaviour, IChatClientListener
 		//		userName = manager.GetComponent<PlayfabManager>().playerName;
 		Debug.Log(PlayfabManager.Instance.playerName);
 		userName = PlayfabManager.Instance.playerName;
-		currentChannelName = PN.CurrentRoom.Name;
 
 		chatClient = new ChatClient(this);
 		chatClient.Connect(ChatSettings.Instance.AppId, "1.0", new AuthenticationValues(userName));
@@ -69,6 +68,7 @@ public class ChatController : MonoBehaviour, IChatClientListener
 	{
 		AddLine("서버에 연결되었습니다.");
 
+		currentChannelName = PN.CurrentRoom.Name;
 		chatClient.Subscribe(new string[] { currentChannelName }, 10);
 	}
 

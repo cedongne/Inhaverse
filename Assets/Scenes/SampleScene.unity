@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2177,6 +2177,7 @@ GameObject:
   - component: {fileID: 295047768}
   - component: {fileID: 295047767}
   - component: {fileID: 295047766}
+  - component: {fileID: 295047769}
   m_Layer: 0
   m_Name: VoiceController
   m_TagString: Untagged
@@ -2262,7 +2263,7 @@ MonoBehaviour:
   debugEchoMode: 0
   reliableMode: 0
   encrypt: 0
-  transmitEnabled: 1
+  transmitEnabled: 0
   samplingRate: 24000
   frameDuration: 20000
   bitrate: 30000
@@ -2282,13 +2283,13 @@ MonoBehaviour:
     AcousticEchoCancellation: 0
     AutomaticGainControl: 0
     NoiseSuppression: 0
-  recordOnlyWhenEnabled: 0
+  recordOnlyWhenEnabled: 1
   skipDeviceChangeChecks: 0
   stopRecordingWhenPaused: 0
   useOnAudioFilterRead: 0
   trySamplingRateMatch: 0
   useMicrophoneTypeFallback: 1
-  recordOnlyWhenJoined: 1
+  recordOnlyWhenJoined: 0
 --- !u!4 &295047768
 Transform:
   m_ObjectHideFlags: 0
@@ -2303,6 +2304,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &295047769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295047765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80af3ce3d32a76043b5276a0af6c4348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voiceRecorder: {fileID: 295047767}
+  onVoice: 0
 --- !u!1 &295763988
 GameObject:
   m_ObjectHideFlags: 0
