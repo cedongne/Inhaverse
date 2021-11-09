@@ -33,7 +33,7 @@ public class ChatController : MonoBehaviour, IChatClientListener
 
 	public void ChatStart()
     {
-		chatClient = new ChatClient(this);
+		chatClient = GetComponent<ChatClient>();
 		chatClient.Connect(ChatSettings.Instance.AppId, "1.0", new AuthenticationValues(userName));
 		AddLine(string.Format("연결시도", userName));
 	}
