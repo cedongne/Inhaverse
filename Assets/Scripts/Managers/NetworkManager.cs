@@ -27,7 +27,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public GameObject cameraArm;
     GameObject player;
 
-    string networkState;
+    string network_state;
+    string room_name;
+
 
     private void Awake()
     {
@@ -36,6 +38,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             instance = gameObject.GetComponent<NetworkManager>();
             DontDestroyOnLoad(gameObject);
         }
+        room_name = "Lobby";
     } 
 
     public override void OnConnectedToMaster()
@@ -44,8 +47,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PN.JoinLobby();
     }
 
-    public override void OnJoinedLobby() =>
-        PN.JoinOrCreateRoom("Lobby", new RoomOptions { MaxPlayers = 4 }, null);
+    public override void OnJoinedLobby()
+    {
+        PN.JoinOrCreateRoom(room_name, new RoomOptions { MaxPlayers = 10 }, null);
+    }
 
     public void JoinToClass(string className, string classData)
     {
@@ -54,14 +59,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         string[] splitedTimeTableData = UtilityMethods.SplitTimeTableData(classData);
 
         PN.LeaveRoom();
-//        PN.LeaveLobby();
 
         SceneManager.LoadScene("ClassroomScene");
         if(UtilityMethods.DetermineAllowClassEnter(splitedTimeTableData))
-            PN.JoinOrCreateRoom(className, new RoomOptions { MaxPlayers = 10 }, null);
+            room_name = className;
         else
         {
-            PN.JoinOrCreateRoom("OpenClass", new RoomOptions { MaxPlayers = 10 }, null);
+            room_name = "OpenClass";
             Debug.Log(className + " 수업 시간이 아닙니다. 공개 수업방으로 입장합니다.");
         }
     }
@@ -73,6 +77,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
+        Debug.Log(PN.CurrentRoom);
         GameStart();
     }
 
@@ -109,11 +114,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        string curNetworkState = PN.NetworkClientState.ToString();
-        if (networkState != curNetworkState)
+        string curnetwork_state = PN.NetworkClientState.ToString();
+        if (network_state != curnetwork_state)
         {
-            networkState = curNetworkState;
-            print(networkState);
+            network_state = curnetwork_state;
+            print(network_state);
         }
     }
 }
