@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Chat;
+using PN = Photon.Pun.PhotonNetwork;
 
 public class ChatController : MonoBehaviour, IChatClientListener
 {
@@ -28,7 +29,7 @@ public class ChatController : MonoBehaviour, IChatClientListener
 		//		userName = manager.GetComponent<PlayfabManager>().playerName;
 		Debug.Log(PlayfabManager.Instance.playerName);
 		userName = PlayfabManager.Instance.playerName;
-		currentChannelName = "전체채널";
+		currentChannelName = PN.CurrentRoom.Name;
 
 		chatClient = new ChatClient(this);
 		chatClient.Connect(ChatSettings.Instance.AppId, "1.0", new AuthenticationValues(userName));
@@ -83,12 +84,12 @@ public class ChatController : MonoBehaviour, IChatClientListener
 
 	public void OnSubscribed(string[] channels, bool[] results)
 	{
-		AddLine(string.Format("채널 입장 ({0})", string.Join(",", channels)));
+		AddLine(string.Format("{0}에 입장하셨습니다.", string.Join(",", channels)));
 	}
 
 	public void OnUnsubscribed(string[] channels)
 	{
-		AddLine(string.Format("채널 퇴장 ({0})", string.Join(",", channels)));
+		AddLine(string.Format("{0}에서 퇴장하셨습니다.", string.Join(",", channels)));
 	}
 	public void OnUserSubscribed(string channel, string name) { }
 	public void OnUserUnsubscribed(string channel, string name) { }
