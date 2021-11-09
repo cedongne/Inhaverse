@@ -37,6 +37,9 @@ public class PlayerContoller : MonoBehaviourPun
     bool isJump;
     bool isDown;
 
+    public bool isJumpDown;
+    public bool isRunDown;
+
     public Outline currentTouch;
 
     Vector3 InteractionUIOffset = new Vector3(120, -50);
@@ -56,6 +59,8 @@ public class PlayerContoller : MonoBehaviourPun
         if (photonView.IsMine)
         {
             cameraArm.GetComponent<CameraController>().playerTransform = transform;
+            cameraArm.GetComponent<CameraController>().playerAvatar = GameObject.Find("Avatar");
+            UIManager.Instance.playerController = GetComponent<PlayerContoller>();
         }
         cameraArmTransform = cameraArm.transform;
         moveSpeed = walkMoveSpeed;
@@ -96,6 +101,7 @@ public class PlayerContoller : MonoBehaviourPun
         {
             if (!chatController.onChat)
             {
+                GetInput();
                 Jump();
                 WalkToRun();
                 DetectInteractiveObject();
@@ -104,10 +110,15 @@ public class PlayerContoller : MonoBehaviourPun
         }
     }
 
-
-    void WalkToRun()
+    void GetInput()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        isRunDown = Input.GetKeyDown(KeyCode.R);
+        isJumpDown = Input.GetKeyDown(KeyCode.Space);
+    }
+
+    public void WalkToRun()
+    {
+        if (isRunDown)
         {
             if (isRun)
             {
@@ -161,7 +172,7 @@ public class PlayerContoller : MonoBehaviourPun
             }
             animator.SetBool("isDown", isDown);
         }
-        if (Input.GetKeyDown(KeyCode.Space) && !isJump)
+        if (isJumpDown && !isJump)
         {
             animator.SetTrigger("DoJump");
             playerRigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);

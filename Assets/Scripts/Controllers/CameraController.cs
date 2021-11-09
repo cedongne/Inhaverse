@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public Transform playerTransform;
+    public GameObject playerAvatar;
 
     [SerializeField]
     private Transform cameraArmTransform;
@@ -24,10 +25,13 @@ public class CameraController : MonoBehaviour
 
     bool isTPS;
 
+    public bool isChangeCameraModeDown;
+
     private void Awake()
     {
         cameraArmTransform = GetComponent<Transform>();
         playerTransform = defaultObjectTransform;
+        UIManager.Instance.cameraController = GetComponent<CameraController>();
     }
 
     private void Start()
@@ -45,6 +49,7 @@ public class CameraController : MonoBehaviour
     {
         if (!UIManager.Instance.isOpenWindow)
         {
+            GetInput();
             FPSLookAround();
             MoveCamera();
             ChangeCameraMode();
@@ -54,6 +59,11 @@ public class CameraController : MonoBehaviour
 
     private void FixedUpdate()
     {
+    }
+
+    void GetInput()
+    {
+        isChangeCameraModeDown = Input.GetKeyDown(KeyCode.Tab);
     }
 
     void FPSLookAround()
@@ -79,18 +89,20 @@ public class CameraController : MonoBehaviour
         cameraArmTransform.position = playerTransform.position + cameraArmPositionOffset;
     }
 
-    void ChangeCameraMode()
+    public void ChangeCameraMode()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (isChangeCameraModeDown)
         {
             if (isTPS)
             {
                 cameraPositionTransform.localPosition = FPSCameraOffset;
+                playerAvatar.layer = 8;   // Player
                 isTPS = false;
             }
             else if (!isTPS)
             {
                 cameraPositionTransform.localPosition = TPSCameraOffset;
+                playerAvatar.layer = 2;   // Ignore Raycast
                 isTPS = true;
             }
         }
@@ -98,23 +110,24 @@ public class CameraController : MonoBehaviour
 
     void DontBeyondWall()
     {
-        Vector3 rayTarget = (cameraArmTransform.position - cameraPositionTransform.position).normalized;
-
-        RaycastHit[] rayPoint;
-        Debug.DrawRay(cameraPositionTransform.position, rayTarget, Color.red);
-        rayPoint = Physics.RaycastAll(cameraPositionTransform.position, rayTarget, camera_dist);
-
-        if (rayPoint.Length != 0)
+        if (isTPS)
         {
-            //           cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, cameraArmTransform.position, Time.deltaTime * 10);
-            mainCameraTransform.position = rayPoint[rayPoint.Length - 1].point;
-        }
-        else
-        {
-            //           cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, TPSCameraOffset, Time.deltaTime * 5f);
-            mainCameraTransform.localPosition = Vector3.zero;
-        }
-        
+            Vector3 rayTarget = (cameraArmTransform.position - cameraPositionTransform.position).normalized;
 
+            RaycastHit[] rayPoint;
+            Debug.DrawRay(cameraPositionTransform.position, rayTarget, Color.red);
+            rayPoint = Physics.RaycastAll(cameraPositionTransform.position, rayTarget, camera_dist);
+
+            if (rayPoint.Length != 0)
+            {
+                mainCameraTransform.localPosition = Vector3.Lerp(mainCameraTransform.localPosition, cameraArmTransform.position, Time.deltaTime * 10);
+                mainCameraTransform.position = rayPoint[rayPoint.Length - 1].point;
+            }
+            else
+            {
+                mainCameraTransform.localPosition = Vector3.Lerp(mainCameraTransform.localPosition, TPSCameraOffset, Time.deltaTime * 5f);
+                mainCameraTransform.localPosition = Vector3.zero;
+            }
+        }
     }
 }

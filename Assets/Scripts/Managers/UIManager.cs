@@ -28,6 +28,9 @@ public class UIManager : MonoBehaviour
     List<ClassList> buttons = new List<ClassList>();
     List<StudentInfo> studentsList = new List<StudentInfo>();
 
+    public PlayerContoller playerController;
+    public CameraController cameraController;
+
     private UIManager() { }
 
     private static UIManager instance;
@@ -69,6 +72,20 @@ public class UIManager : MonoBehaviour
             instance = gameObject.GetComponent<UIManager>();
         }
     }
+
+#region
+    public void ChangeViewBtn()
+    {
+        cameraController.isChangeCameraModeDown = true;
+        cameraController.ChangeCameraMode();
+    }
+
+    public void ChangeRunBtn()
+    {
+        playerController.isRunDown = true;
+        playerController.WalkToRun();
+    }
+#endregion
 
     public void ShowUI(Define.UI showingUi)
     {

@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 4255286070471239578}
   - component: {fileID: 4248304942785134908}
   m_Layer: 2
-  m_Name: C_man_1_FBX2013
+  m_Name: Avatar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

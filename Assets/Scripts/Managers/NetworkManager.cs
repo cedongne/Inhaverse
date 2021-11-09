@@ -118,7 +118,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         if (network_state != curnetwork_state)
         {
             network_state = curnetwork_state;
-            print(network_state);
+//            print(network_state);
         }
     }
 }
