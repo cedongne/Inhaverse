@@ -4,10 +4,12 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Voice.Unity;
 using Photon.Voice.PUN;
+using System.Text;
 
 public class VoiceController : MonoBehaviour
 {
     public Recorder voiceRecorder;
+    public PhotonVoiceNetwork voiceNetwork;
     public bool onVoice;
     // Start is called before the first frame update
     void Start()
@@ -34,7 +36,8 @@ public class VoiceController : MonoBehaviour
         }
     }
 
-    public void SetVoiceChannel()
+    public void SetVoiceChannel(string channelName)
     {
+
     }
 }
