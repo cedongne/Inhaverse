@@ -366,6 +366,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                     InviteToGroup(groupName, studentIds[count]);
                     Debug.Log(studentIds[count] + "가 수업에 참여했습니다.");
                 }
+                UpdateClassTimeTable(result.Group.Id, result.Group.Type);
                 UpdateObjectDataUsingEntity(result.Group.Id, result.Group.Type, dataKey, dataValue);
             },
             (error) =>
@@ -378,6 +379,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                         (result) =>
                         {
                             UpdateObjectDataUsingEntity(result.Group.Id, result.Group.Type, dataKey, dataValue);
+                            UpdateClassTimeTable(result.Group.Id, result.Group.Type);
                             Debug.Log("그룹 개체 업데이트 성공");
                         }, (error) => { });
                     List<string> studentIds = UtilityMethods.ListUpInvitingStudents(dataValue);
