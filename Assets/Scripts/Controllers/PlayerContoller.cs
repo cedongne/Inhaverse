@@ -156,7 +156,7 @@ public class PlayerContoller : MonoBehaviourPun
         if (isDown)
         {
             RaycastHit hit;
-            if (Physics.Raycast(playerTransform.position, Vector3.down, out hit, 0.2f))
+            if (Physics.Raycast(playerTransform.position, Vector3.down, out hit, 0.1f))
             {
                 isJump = false;
                 isDown = false;
@@ -166,7 +166,7 @@ public class PlayerContoller : MonoBehaviourPun
         }
         else if (isJump)
         {
-            if (playerRigid.velocity.y < 0)
+            if (playerRigid.velocity.y <= 0)
             {
                 isDown = true;
             }

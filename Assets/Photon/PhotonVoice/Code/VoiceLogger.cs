@@ -92,7 +92,7 @@ namespace Photon.Voice.Unity
             }
             else
             {
-                Debug.LogFormat(this.context, fmt, args);
+                Debug.LogFormat(this.context, fmt, args); 
             }
         }
 
