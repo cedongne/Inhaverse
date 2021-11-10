@@ -121,7 +121,13 @@ public class CameraController : MonoBehaviour
             if (rayPoint.Length != 0)
             {
                 mainCameraTransform.localPosition = Vector3.Lerp(mainCameraTransform.localPosition, cameraArmTransform.position, Time.deltaTime * 10);
-                mainCameraTransform.position = rayPoint[rayPoint.Length - 1].point;
+
+                Vector3 vec = (rayPoint[rayPoint.Length - 1].point - playerTransform.position) * 0.2f;
+                mainCameraTransform.position = rayPoint[rayPoint.Length - 1].point - vec;
+                //Debug.Log("hit : " + rayPoint[rayPoint.Length - 1].point);
+                //Debug.Log("vec : " + vec);
+                //Debug.Log("camera : " + mainCameraTransform.position);
+                //Debug.Log("player : " + playerTransform.position);
             }
             else
             {
