@@ -91,10 +91,29 @@ public class ChatController : MonoBehaviour, IChatClientListener
 		AddLine(string.Format("{0}에 입장하셨습니다.", string.Join(",", channels)));
 	}
 
+	public void EnterConferenceChat(string channelName)
+    {
+		chatClient.Subscribe(new string[] { channelName }, 10);
+		currentChannelName = channelName;
+    }
+	public void LeaveConferenceChat(string channelName)
+    {
+		chatClient.Unsubscribe(new string[] { channelName });
+	}
+	public void EnterLobbyChat()
+	{
+		chatClient.Subscribe(new string[] { "Lobby" }, 10);
+	}
 	public void LeaveChat()
     {
 		chatClient.Unsubscribe(new string[] { currentChannelName });
+		EraseText();
 	}
+
+	public void EraseText()
+    {
+		outputText.text = "";
+    }
 	public void OnUnsubscribed(string[] channels)
 	{
 		AddLine(string.Format("{0}에서 퇴장하셨습니다.", string.Join(",", channels)));

@@ -33,4 +33,8 @@ public class VoiceController : MonoBehaviour
             }
         }
     }
+
+    public void SetVoiceChannel()
+    {
+    }
 }
