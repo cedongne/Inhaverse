@@ -10,13 +10,6 @@ using PN = Photon.Pun.PhotonNetwork;
 
 public class InteractiveClassDoor : InteractiveObject
 {
-    void Update()
-    {
-//        UtilityMethods.isEnterClass(0, 0, 0);
-        //              Debug.Log(DateTime.Now.Hour + " " + DateTime.Now.Minute);
-        //         Debug.Log(DateTime.Now.DayOfWeek);
-
-    }
 
     public override void Interaction()
     {
