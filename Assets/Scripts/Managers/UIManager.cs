@@ -73,7 +73,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-#region
+#region HUD Icons
     public void ChangeViewBtn()
     {
         cameraController.isChangeCameraModeDown = true;
@@ -180,7 +180,6 @@ public class UIManager : MonoBehaviour
         CloseWindow();
     }
 
-
     public void SetClassDataForStudent(string playfabId)
     {
         Debug.Log(playfabId);
@@ -247,8 +246,6 @@ public class UIManager : MonoBehaviour
         PlayfabManager.Instance.GetUserData(buttons[btnNum].button.name, "ClassTimeTable");
     }
 
-
-
     public void LoadModifyingClass(object classObject)
     {
         ClassData classData = JsonUtility.FromJson<ClassData>(classObject.ToString());
@@ -305,6 +302,6 @@ public class UIManager : MonoBehaviour
             }
         }
     }
-    #endregion
+#endregion
 
 }

@@ -81,7 +81,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         networkManager = NetworkManager.Instance;
     }
 
-    #region PlayFab Login, Register {
+#region PlayFab Login, Register
     public void LoginBtn()
     {
         var request = new LoginWithEmailAddressRequest { Email = emailInput.text, Password = passwordInput.text };
@@ -94,8 +94,6 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         SelectJob();
         PlayFabClientAPI.RegisterPlayFabUser(request, (result) => { OnRegisterSuccess(result); }, (error) => OnRegisterFailure(error));
     }
-
-
 
     public void LoginMaster()
     {
@@ -158,8 +156,8 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("회원가입 실패" + error);
     }
+#endregion
 
-    #endregion
     public void SetUserData(string key, string value)
     {
         var request = new UpdateUserDataRequest

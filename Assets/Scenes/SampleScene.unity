@@ -21217,7 +21217,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3650513701645454894}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6813e5d3cc2d718489e373d850ef5225, type: 3}
   m_Name: 
@@ -21259,6 +21259,7 @@ GameObject:
   - component: {fileID: 3650513701645454889}
   - component: {fileID: 3650513701645454888}
   - component: {fileID: 1809461982}
+  - component: {fileID: 3650513701645454895}
   m_Layer: 0
   m_Name: Camera Arm
   m_TagString: Untagged
@@ -21266,3 +21267,16 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &3650513701645454895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3650513701645454894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfcaff4f0176a024794d053a9a14db27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: {x: 0, y: 0.1, z: 0}

@@ -59,12 +59,17 @@ public class PlayerContoller : MonoBehaviourPun
 
         if (photonView.IsMine)
         {
+            cameraArmTransform = cameraArm.transform;
+
+            cameraArm.GetComponent<CameraController>().enabled = true;
+            cameraArm.GetComponent<LobbyCameraRatate>().enabled = false;
+
+            cameraArmTransform.rotation = new Quaternion(0, 0, 0, 0);
             cameraArm.GetComponent<CameraController>().playerTransform = transform;
             cameraArm.GetComponent<CameraController>().playerAvatar = GameObject.Find("Avatar");
             cameraArm.GetComponent<CameraController>().playerContoller = GetComponent<PlayerContoller>();
             UIManager.Instance.playerController = GetComponent<PlayerContoller>();
         }
-        cameraArmTransform = cameraArm.transform;
         moveSpeed = walkMoveSpeed;
 
         interactionUI = GameObject.Find("Canvas").transform.Find("Interaction UI").gameObject;
@@ -192,7 +197,6 @@ public class PlayerContoller : MonoBehaviourPun
         {
             Physics.Raycast(Camera.main.ScreenPointToRay(screenCenter), out hit, 5);
             interactionUI.transform.localPosition = InteractionUIOffsetForLook;
-            Debug.Log(interactionUI.transform.position);
         }
         else
         {
