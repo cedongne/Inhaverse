@@ -42,7 +42,8 @@ public class PlayerContoller : MonoBehaviourPun
 
     public Outline currentTouch;
 
-    Vector3 InteractionUIOffset = new Vector3(120, -50);
+    Vector3 InteractionUIOffsetForMouse = new Vector3(120, -50);
+    Vector3 InteractionUIOffsetForLook = new Vector3(170, -75.5f);
 
     private void Awake()
     {
@@ -60,6 +61,7 @@ public class PlayerContoller : MonoBehaviourPun
         {
             cameraArm.GetComponent<CameraController>().playerTransform = transform;
             cameraArm.GetComponent<CameraController>().playerAvatar = GameObject.Find("Avatar");
+            cameraArm.GetComponent<CameraController>().playerContoller = GetComponent<PlayerContoller>();
             UIManager.Instance.playerController = GetComponent<PlayerContoller>();
         }
         cameraArmTransform = cameraArm.transform;
@@ -181,10 +183,23 @@ public class PlayerContoller : MonoBehaviourPun
             animator.SetBool("isJump", isJump);
         }
     }
+
     void DetectInteractiveObject()
     {
         RaycastHit hit;
-        Physics.Raycast(Camera.main.ScreenPointToRay(screenCenter), out hit, 5);
+
+        if (Cursor.lockState == CursorLockMode.Locked)
+        {
+            Physics.Raycast(Camera.main.ScreenPointToRay(screenCenter), out hit, 5);
+            interactionUI.transform.localPosition = InteractionUIOffsetForLook;
+            Debug.Log(interactionUI.transform.position);
+        }
+        else
+        {
+            Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 5);
+            interactionUI.transform.position = Input.mousePosition + InteractionUIOffsetForMouse;
+        }
+
         if (hit.collider != null && hit.transform.gameObject.CompareTag("Interactive Object"))
         {
             currentTouch = hit.transform.gameObject.GetComponent<Outline>();

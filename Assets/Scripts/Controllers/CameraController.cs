@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour
 {
     public Transform playerTransform;
     public GameObject playerAvatar;
+    public PlayerContoller playerContoller;
 
     [SerializeField]
     private Transform cameraArmTransform;
@@ -16,14 +17,14 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private Transform defaultObjectTransform;
 
-    Vector3 cameraArmPositionOffset = new Vector3(0, 1, 0);
+    Vector3 cameraArmPositionOffset = new Vector3(0, 0.5f, 0);
     Vector3 cameraPositionOffset = new Vector3(0, 0.5f, -3f);
     float camera_dist;
 
     public Vector3 TPSCameraOffset;
     public Vector3 FPSCameraOffset;
 
-    bool isTPS;
+    public bool isTPS;
 
     public bool isChangeCameraModeDown;
 
@@ -107,31 +108,19 @@ public class CameraController : MonoBehaviour
             }
         }
     }
-
     void DontBeyondWall()
     {
         if (isTPS)
         {
-            Vector3 rayTarget = (cameraArmTransform.position - cameraPositionTransform.position).normalized;
+            Vector3 rayTarget = cameraPositionTransform.position - cameraArmTransform.position;
 
-            RaycastHit[] rayPoint;
-            Debug.DrawRay(cameraPositionTransform.position, rayTarget, Color.red);
-            rayPoint = Physics.RaycastAll(cameraPositionTransform.position, rayTarget, camera_dist);
-
-            if (rayPoint.Length != 0)
+            RaycastHit rayPoint;
+            if (Physics.Raycast(cameraArmTransform.position, rayTarget, out rayPoint, camera_dist))
             {
-                mainCameraTransform.localPosition = Vector3.Lerp(mainCameraTransform.localPosition, cameraArmTransform.position, Time.deltaTime * 10);
-
-                Vector3 vec = (rayPoint[rayPoint.Length - 1].point - playerTransform.position) * 0.2f;
-                mainCameraTransform.position = rayPoint[rayPoint.Length - 1].point - vec;
-                //Debug.Log("hit : " + rayPoint[rayPoint.Length - 1].point);
-                //Debug.Log("vec : " + vec);
-                //Debug.Log("camera : " + mainCameraTransform.position);
-                //Debug.Log("player : " + playerTransform.position);
+                mainCameraTransform.position = rayPoint.point - (rayTarget * 0.2f);
             }
             else
             {
-                mainCameraTransform.localPosition = Vector3.Lerp(mainCameraTransform.localPosition, TPSCameraOffset, Time.deltaTime * 5f);
                 mainCameraTransform.localPosition = Vector3.zero;
             }
         }
