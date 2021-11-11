@@ -166,7 +166,8 @@ public class PlayerContoller : MonoBehaviourPun
         }
         else if (isJump)
         {
-            if (playerRigid.velocity.y <= 0)
+            Debug.Log(playerRigid.velocity.y);
+            if (playerRigid.velocity.y <= 0.1f)
             {
                 isDown = true;
             }
