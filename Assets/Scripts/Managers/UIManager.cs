@@ -31,6 +31,8 @@ public class UIManager : MonoBehaviour
     public PlayerContoller playerController;
     public CameraController cameraController;
 
+    public GameObject webcamImage;
+
     private UIManager() { }
 
     private static UIManager instance;
@@ -84,6 +86,14 @@ public class UIManager : MonoBehaviour
     {
         playerController.isRunDown = true;
         playerController.WalkToRun();
+    }
+
+    public void VideoOnOffBtn()
+    {
+        if (webcamImage.activeSelf)
+            webcamImage.SetActive(false);
+        else
+            webcamImage.SetActive(true);
     }
 #endregion
 

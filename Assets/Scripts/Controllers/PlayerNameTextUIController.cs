@@ -12,15 +12,22 @@ public class PlayerNameTextUIController : MonoBehaviourPunCallbacks
     public Text playerNameTextUI;
     public Transform playerNameTextTransform;
     public RectTransform playerNameTextBackgroundImage;
+    public GameObject webCamImage;
 
     [SerializeField]
     private Vector3 playerNameTextOffset = new Vector3(0, 1, 0);
 
     private void Awake()
     {
-        transform.parent = GameObject.Find("Canvas").transform;
+        playerNameTextTransform.parent = GameObject.Find("Canvas").transform;
         Invoke("SetPlayerName", 1f);
-    } 
+    }
+
+    private void Start()
+    {
+
+        UIManager.Instance.webcamImage = webCamImage;
+    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -31,7 +38,10 @@ public class PlayerNameTextUIController : MonoBehaviourPunCallbacks
     void SetPlayerName()
     {
         if (photonView.IsMine)
-            playerNameTextUI.text = PlayfabManager.Instance.playerName;
+            photonView.Owner.NickName = PlayfabManager.Instance.playerName;
+        playerNameTextUI.text = photonView.Owner.NickName;
+
+//        playerNameTextUI.text = PlayfabManager.Instance.playerName;// PlayfabManager.Instance.playerName;
         playerNameTextBackgroundImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, playerNameTextUI.text.Length * 32);
         playerNameTextBackgroundImage.gameObject.SetActive(true);
 
