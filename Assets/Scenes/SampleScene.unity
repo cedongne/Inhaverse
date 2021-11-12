@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2206,6 +2206,10 @@ PrefabInstance:
       propertyPath: chatController
       value: 
       objectReference: {fileID: 1445569917}
+    - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
+      propertyPath: voiceController
+      value: 
+      objectReference: {fileID: 295047769}
     - target: {fileID: 3193075428056927859, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
@@ -2714,7 +2718,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &295047769
 MonoBehaviour:
@@ -2729,7 +2733,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   voiceRecorder: {fileID: 295047767}
-  voiceNetwork: {fileID: 0}
   onVoice: 0
 --- !u!1 &295763988
 GameObject:
@@ -3189,6 +3192,10 @@ PrefabInstance:
       propertyPath: chatController
       value: 
       objectReference: {fileID: 1445569917}
+    - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
+      propertyPath: voiceController
+      value: 
+      objectReference: {fileID: 295047769}
     - target: {fileID: 3193075428056927859, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
@@ -3724,6 +3731,10 @@ PrefabInstance:
       propertyPath: chatController
       value: 
       objectReference: {fileID: 1445569917}
+    - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
+      propertyPath: voiceController
+      value: 
+      objectReference: {fileID: 295047769}
     - target: {fileID: 3193075428056927859, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
@@ -4592,6 +4603,10 @@ PrefabInstance:
       propertyPath: chatController
       value: 
       objectReference: {fileID: 1445569917}
+    - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
+      propertyPath: voiceController
+      value: 
+      objectReference: {fileID: 295047769}
     - target: {fileID: 3193075428056927859, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
@@ -6037,7 +6052,7 @@ Transform:
   m_LocalScale: {x: 0.3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &851307255
 GameObject:
@@ -6745,6 +6760,10 @@ PrefabInstance:
       propertyPath: chatController
       value: 
       objectReference: {fileID: 1445569917}
+    - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
+      propertyPath: voiceController
+      value: 
+      objectReference: {fileID: 295047769}
     - target: {fileID: 3193075428056927859, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
@@ -7693,6 +7712,10 @@ PrefabInstance:
       propertyPath: chatController
       value: 
       objectReference: {fileID: 1445569917}
+    - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
+      propertyPath: voiceController
+      value: 
+      objectReference: {fileID: 295047769}
     - target: {fileID: 3193075428056927859, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
@@ -8363,6 +8386,10 @@ PrefabInstance:
       propertyPath: chatController
       value: 
       objectReference: {fileID: 1445569917}
+    - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
+      propertyPath: voiceController
+      value: 
+      objectReference: {fileID: 295047769}
     - target: {fileID: 3193075428056927859, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
@@ -10759,6 +10786,10 @@ PrefabInstance:
       propertyPath: chatController
       value: 
       objectReference: {fileID: 1445569917}
+    - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
+      propertyPath: voiceController
+      value: 
+      objectReference: {fileID: 295047769}
     - target: {fileID: 3193075428056927859, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
@@ -13115,6 +13146,10 @@ PrefabInstance:
       propertyPath: chatController
       value: 
       objectReference: {fileID: 1445569917}
+    - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
+      propertyPath: voiceController
+      value: 
+      objectReference: {fileID: 295047769}
     - target: {fileID: 3117484853301137008, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -14757,6 +14792,10 @@ PrefabInstance:
       propertyPath: chatController
       value: 
       objectReference: {fileID: 1445569917}
+    - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
+      propertyPath: voiceController
+      value: 
+      objectReference: {fileID: 295047769}
     - target: {fileID: 3193075428056927859, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
@@ -16775,7 +16814,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2081854422
 GameObject:
