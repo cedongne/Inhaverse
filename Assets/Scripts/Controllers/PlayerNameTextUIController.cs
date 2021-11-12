@@ -19,8 +19,7 @@ public class PlayerNameTextUIController : MonoBehaviourPunCallbacks
     private void Awake()
     {
         transform.parent = GameObject.Find("Canvas").transform;
-        if(photonView.IsMine)
-            Invoke("SetPlayerName", 1f);
+        Invoke("SetPlayerName", 1f);
     } 
 
     // Update is called once per frame
@@ -31,7 +30,8 @@ public class PlayerNameTextUIController : MonoBehaviourPunCallbacks
 
     void SetPlayerName()
     {
-        playerNameTextUI.text = PlayfabManager.Instance.playerName;
+        if (photonView.IsMine)
+            playerNameTextUI.text = PlayfabManager.Instance.playerName;
         playerNameTextBackgroundImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, playerNameTextUI.text.Length * 32);
         playerNameTextBackgroundImage.gameObject.SetActive(true);
 
