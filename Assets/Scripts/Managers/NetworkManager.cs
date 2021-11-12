@@ -1,6 +1,7 @@
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using PN = Photon.Pun.PhotonNetwork;
 
@@ -27,6 +28,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public GameObject cameraArm;
     public GameObject chatController;
     GameObject player;
+    GameObject playerNameTextUI;
 
     string network_state;
     string room_name;
@@ -106,6 +108,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         if (player == null)
         {
             player = PN.Instantiate("Player", new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+            playerNameTextUI = Instantiate(Resources.Load<GameObject>("PlayerNameTextUI"));
+            playerNameTextUI.GetComponent<PlayerNameTextUIController>().playerTransform = player.transform;
+//            player.GetComponentInChildren<Text>().transform.parent = GameObject.Find("Canvas").transform;
+
             DontDestroyOnLoad(player);
         }
         else
