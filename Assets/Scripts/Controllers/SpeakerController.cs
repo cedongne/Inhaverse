@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Voice.Unity;
-using Photon.Voice.PUN;
 
 public class SpeakerController : MonoBehaviour
 {
@@ -16,6 +15,10 @@ public class SpeakerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+    }
+
+    public void ChangeSpeakerChannel()
     {
     }
 }

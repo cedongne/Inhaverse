@@ -5,10 +5,10 @@ using Photon.Pun;
 using Photon.Voice.Unity;
 using Photon.Voice.PUN;
 using Photon.Voice;
-
 public class VoiceController : MonoBehaviour
 {
     public Recorder voiceRecorder;
+    public PhotonVoiceNetwork voiceNetwork;
     public bool onVoice;
     // Start is called before the first frame update
     void Start()
@@ -38,6 +38,9 @@ public class VoiceController : MonoBehaviour
     public void ChangeVoiceChannel(byte channelNum)
     {
         voiceRecorder.InterestGroup = channelNum;
+        var LBT = new LoadBalancingTransport();
+        LBT.GlobalInterestGroup = channelNum;
     }
+
 
 }

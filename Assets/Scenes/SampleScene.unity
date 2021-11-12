@@ -2733,6 +2733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   voiceRecorder: {fileID: 295047767}
+  voiceNetwork: {fileID: 295047766}
   onVoice: 0
 --- !u!1 &295763988
 GameObject:
