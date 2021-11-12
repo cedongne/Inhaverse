@@ -19,7 +19,8 @@ public class PlayerNameTextUIController : MonoBehaviourPunCallbacks
     private void Awake()
     {
         transform.parent = GameObject.Find("Canvas").transform;
-        Invoke("SetPlayerName", 1f);
+        if(photonView.IsMine)
+            Invoke("SetPlayerName", 1f);
     } 
 
     // Update is called once per frame
