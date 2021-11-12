@@ -34,12 +34,12 @@ public class VoiceController : MonoBehaviour
             }
         }
     }
-    
+
+    [System.Obsolete]
     public void ChangeVoiceChannel(byte channelNum)
     {
-        voiceRecorder.InterestGroup = channelNum;
-        var LBT = new LoadBalancingTransport();
-        LBT.GlobalInterestGroup = channelNum;
+        //voiceRecorder.InterestGroup = channelNum;
+        voiceNetwork.Client.GlobalAudioGroup = channelNum;
     }
 
 
