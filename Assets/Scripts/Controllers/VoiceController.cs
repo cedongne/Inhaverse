@@ -24,6 +24,7 @@ public class VoiceController : MonoBehaviour
     void Update()
     {
         GetInput();
+        VoiceOnOff();
     }
 
     void GetInput()
