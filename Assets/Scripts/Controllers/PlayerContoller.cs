@@ -114,7 +114,6 @@ public class PlayerContoller : MonoBehaviourPun
                 GetInput();
                 Jump();
                 WalkToRun();
-                CamOnOff();
 
                 DetectInteractiveObject();
                 OnCursorVisible();
@@ -192,14 +191,6 @@ public class PlayerContoller : MonoBehaviourPun
             playerRigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
             isJump = true;
             animator.SetBool("isJump", isJump);
-        }
-    }
-
-    public void CamOnOff()
-    {
-        if (isCamDown)
-        {
-            UIManager.Instance.CamOnOffBtn();
         }
     }
 

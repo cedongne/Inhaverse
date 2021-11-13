@@ -34,10 +34,9 @@ public class UIManager : MonoBehaviour
     [Header("[°´Ã¼ ÂüÁ¶]")]
     public PlayerContoller playerController;
     public CameraController cameraController;
-
-    public GameObject webcamImage;
-
     public VoiceController voiceController;
+    public PlayerWebCamUIController webCamUIController;
+
 
     [Space]
 
@@ -99,10 +98,8 @@ public class UIManager : MonoBehaviour
 
     public void CamOnOffBtn()
     {
-        if (webcamImage.activeSelf)
-            webcamImage.SetActive(false);
-        else
-            webcamImage.SetActive(true);
+        webCamUIController.isWebCamDown = true;
+        webCamUIController.TurnWebCam();
     }
 
     public void VoiceOnOffBtn()
