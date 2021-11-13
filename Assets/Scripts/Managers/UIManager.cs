@@ -8,6 +8,7 @@ using System.Linq;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("[강의 데이터]")]
     public InputField classInstructor;
     public InputField classNameInput;
     public InputField classIdInput;
@@ -25,13 +26,32 @@ public class UIManager : MonoBehaviour
     public Text studentListText;
     public GameObject classButton;
 
+    [Space]
+
     List<ClassList> buttons = new List<ClassList>();
     List<StudentInfo> studentsList = new List<StudentInfo>();
 
+    [Header("[객체 참조]")]
     public PlayerContoller playerController;
     public CameraController cameraController;
 
     public GameObject webcamImage;
+
+    public VoiceController voiceController;
+
+    [Space]
+
+    [Header("[UI 오브젝트 참조]")]
+    public GameObject loginUI;
+    public GameObject hudUI;
+    public GameObject classWindow;
+    public GameObject classMakingWindow;
+    public GameObject classModifyingListWindow;
+    public bool isOpenWindow;
+
+    public delegate void EventFunction(int num);
+
+    EventFunction eventFunction;
 
     private UIManager() { }
 
@@ -54,17 +74,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public GameObject loginUI;
-    public GameObject hudUI;
-    public GameObject classWindow;
-    public GameObject classMakingWindow;
-    public GameObject classModifyingListWindow;
-
-    public bool isOpenWindow;
-
-    public delegate void EventFunction(int num);
-
-    EventFunction eventFunction;
 
     // Start is called before the first frame update
     void Awake()
@@ -75,7 +84,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-#region HUD Icons
+    #region HUD Icons
     public void ChangeViewBtn()
     {
         cameraController.isChangeCameraModeDown = true;
@@ -88,12 +97,18 @@ public class UIManager : MonoBehaviour
         playerController.WalkToRun();
     }
 
-    public void VideoOnOffBtn()
+    public void CamOnOffBtn()
     {
         if (webcamImage.activeSelf)
             webcamImage.SetActive(false);
         else
             webcamImage.SetActive(true);
+    }
+
+    public void VoiceOnOffBtn()
+    {
+        voiceController.isVoiceDown = true;
+        voiceController.VoiceOnOff();
     }
 #endregion
 

@@ -10,6 +10,9 @@ public class VoiceController : MonoBehaviour
     public Recorder voiceRecorder;
     public PhotonVoiceNetwork voiceNetwork;
     public bool onVoice;
+
+    public bool isVoiceDown;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +23,17 @@ public class VoiceController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V))
+        GetInput();
+    }
+
+    void GetInput()
+    {
+        isVoiceDown = Input.GetKeyDown(KeyCode.V);
+    }
+
+    public void VoiceOnOff()
+    {
+        if (isVoiceDown)
         {
             if (onVoice)
             {

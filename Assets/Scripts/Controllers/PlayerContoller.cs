@@ -32,6 +32,7 @@ public class PlayerContoller : MonoBehaviourPun
     public float jumpPower;
 
     private ChatController chatController;
+    private VoiceController voiceController;
 
     bool isRun;
     bool isJump;
@@ -39,6 +40,7 @@ public class PlayerContoller : MonoBehaviourPun
 
     public bool isJumpDown;
     public bool isRunDown;
+    public bool isCamDown;
 
     public Outline currentTouch;
 
@@ -75,6 +77,7 @@ public class PlayerContoller : MonoBehaviourPun
         interactionUI = GameObject.Find("Canvas").transform.Find("Interaction UI").gameObject;
         currentTouch = GameObject.Find("Initializing Object").GetComponent<Outline>();
         chatController = GameObject.Find("ChatController").GetComponent<ChatController>();
+        voiceController = GameObject.Find("VoiceController").GetComponent<VoiceController>();
 
         DontDestroyOnLoad(cameraArm);
         DontDestroyOnLoad(GameObject.Find("Canvas"));
@@ -111,6 +114,8 @@ public class PlayerContoller : MonoBehaviourPun
                 GetInput();
                 Jump();
                 WalkToRun();
+                CamOnOff();
+
                 DetectInteractiveObject();
                 OnCursorVisible();
             }
@@ -121,6 +126,7 @@ public class PlayerContoller : MonoBehaviourPun
     {
         isRunDown = Input.GetKeyDown(KeyCode.R);
         isJumpDown = Input.GetKeyDown(KeyCode.Space);
+        isCamDown = Input.GetKeyDown(KeyCode.C);
     }
 
     public void WalkToRun()
@@ -186,6 +192,14 @@ public class PlayerContoller : MonoBehaviourPun
             playerRigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
             isJump = true;
             animator.SetBool("isJump", isJump);
+        }
+    }
+
+    public void CamOnOff()
+    {
+        if (isCamDown)
+        {
+            UIManager.Instance.CamOnOffBtn();
         }
     }
 

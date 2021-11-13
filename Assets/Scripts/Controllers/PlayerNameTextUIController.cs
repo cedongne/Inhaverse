@@ -25,7 +25,6 @@ public class PlayerNameTextUIController : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-
         UIManager.Instance.webcamImage = webCamImage;
     }
 
@@ -41,7 +40,6 @@ public class PlayerNameTextUIController : MonoBehaviourPunCallbacks
             photonView.Owner.NickName = PlayfabManager.Instance.playerName;
         playerNameTextUI.text = photonView.Owner.NickName;
 
-//        playerNameTextUI.text = PlayfabManager.Instance.playerName;// PlayfabManager.Instance.playerName;
         playerNameTextBackgroundImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, playerNameTextUI.text.Length * 32);
         playerNameTextBackgroundImage.gameObject.SetActive(true);
 

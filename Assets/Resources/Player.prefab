@@ -1206,6 +1206,7 @@ MonoBehaviour:
   jumpPower: 5
   isJumpDown: 0
   isRunDown: 0
+  isVideoDown: 0
   currentTouch: {fileID: 5030059289416126775}
 --- !u!114 &3002047870756200745
 MonoBehaviour:
