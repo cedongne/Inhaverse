@@ -19,6 +19,7 @@ public class PlayerNameTextUIController : MonoBehaviourPunCallbacks
     private void Awake()
     {
         playerNameTextTransform.parent = GameObject.Find("Canvas").transform;
+        transform.SetAsFirstSibling();
         Invoke("SetPlayerName", 1f);
     }
 
