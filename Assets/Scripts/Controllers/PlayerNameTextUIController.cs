@@ -12,7 +12,6 @@ public class PlayerNameTextUIController : MonoBehaviourPunCallbacks
     public Text playerNameTextUI;
     public Transform playerNameTextTransform;
     public RectTransform playerNameTextBackgroundImage;
-    public GameObject webCamImage;
 
     [SerializeField]
     private Vector3 playerNameTextOffset = new Vector3(0, 1, 0);
@@ -23,13 +22,6 @@ public class PlayerNameTextUIController : MonoBehaviourPunCallbacks
         Invoke("SetPlayerName", 1f);
     }
 
-    private void Start()
-    {
-        if (photonView.IsMine)
-        {
-            UIManager.Instance.webcamImage = webCamImage;
-        }
-    }
 
     // Update is called once per frame
     void FixedUpdate()
