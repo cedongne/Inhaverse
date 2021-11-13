@@ -25,7 +25,10 @@ public class PlayerNameTextUIController : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        UIManager.Instance.webcamImage = webCamImage;
+        if (photonView.IsMine)
+        {
+            UIManager.Instance.webcamImage = webCamImage;
+        }
     }
 
     // Update is called once per frame
