@@ -34,12 +34,16 @@ public class PlayerWebCamUIController : MonoBehaviourPunCallbacks
 
     public void TurnWebCam()
     {
-        if (isWebCamDown)
-        {
-            if (webCamImage.activeSelf)
-                webCamImage.SetActive(false);
-            else
-                webCamImage.SetActive(true);
-        }
+        if(isWebCamDown)
+            photonView.RPC("TurnWebCamRPC", RpcTarget.AllBuffered);
+    }
+
+    [PunRPC]
+    public void TurnWebCamRPC()
+    {
+        if (webCamImage.activeSelf)
+            webCamImage.SetActive(false);
+        else
+            webCamImage.SetActive(true);
     }
 }
