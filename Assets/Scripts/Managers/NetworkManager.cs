@@ -107,7 +107,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         if (player == null)
         {
-            player = PN.Instantiate("Player", new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+            player = PN.Instantiate("Player", Vector3.zero, Quaternion.identity);
 //            playerNameTextUI = player.GetComponentInChildren<PlayerNameTextUIController>().gameObject;
             //            playerNameTextUI = Instantiate(Resources.Load<GameObject>("PlayerNameTextUI"));
 //            playerNameTextUI.GetComponent<PlayerNameTextUIController>().playerTransform = player.transform;
@@ -116,8 +116,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         }
         else
         {
-            player.transform.position = new Vector3(0, 0, 0);
-            player.transform.rotation = new Quaternion(0, 0, 0, 0);
+            player.transform.position = Vector3.zero;
+            player.transform.rotation = Quaternion.identity;
         }
     }
 

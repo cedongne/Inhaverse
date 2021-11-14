@@ -1369,10 +1369,10 @@ MonoBehaviour:
     SynchronizeType: 1
     Name: isRun
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: DoJump
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: isDown
   m_SynchronizeLayers:
   - SynchronizeType: 2
@@ -2002,6 +2002,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 0
   ObservedComponents:
+  - {fileID: 0}
   - {fileID: 0}
   sceneViewId: 0
   InstantiationId: 0

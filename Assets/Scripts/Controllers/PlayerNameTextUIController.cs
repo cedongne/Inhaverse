@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class PlayerNameTextUIController : MonoBehaviourPunCallbacks
+public class PlayerNameTextUIController : MonoBehaviourPunCallbacks, IPunObservable
 {
     public Transform playerTransform;
     public Text playerNameTextUI;
@@ -16,6 +16,11 @@ public class PlayerNameTextUIController : MonoBehaviourPunCallbacks
     [SerializeField]
     private Vector3 playerNameTextOffset = new Vector3(0, 1, 0);
 
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        playerNameTextBackgroundImage.gameObject.SetActive(true);
+    }
+
     private void Awake()
     {
         playerNameTextTransform.parent = GameObject.Find("Canvas").transform;
@@ -23,8 +28,6 @@ public class PlayerNameTextUIController : MonoBehaviourPunCallbacks
         Invoke("SetPlayerName", 1f);
     }
 
-
-    // Update is called once per frame
     void FixedUpdate()
     {
         playerNameTextTransform.position = Camera.main.WorldToScreenPoint(playerTransform.position + playerNameTextOffset);

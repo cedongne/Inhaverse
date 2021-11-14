@@ -20,8 +20,11 @@ public class PlayerWebCamUIController : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        GetInput();
-        TurnWebCam();
+        if (photonView.IsMine)
+        {
+            GetInput();
+            TurnWebCam();
+        }
     }
 
     void GetInput()
