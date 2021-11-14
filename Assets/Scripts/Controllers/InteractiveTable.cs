@@ -5,22 +5,28 @@ using System.Text.RegularExpressions;
 
 public class InteractiveTable : InteractiveObject
 {
-    // Start is called before the first frame update
     public ChatController chatController;
     public VoiceController voiceController;
 
     private byte conferenceNum;
 
-    // Update is called once per frame
-    void start()
-    {
-    }
 
     public override void Interaction()
     {
+        ChatControl();
+        VoiceControl();
+        UIManager.Instance.OpenWindow(Define.UI.CONFERENCE);
+    }
+
+    void ChatControl()
+    {
         chatController.LeaveChat();
-        chatController.EnterConferenceChat(this.transform.parent.name);
-        SetConferenceNum(this.transform.parent.name);
+        chatController.EnterConferenceChat(transform.parent.name);
+    }
+
+    void VoiceControl()
+    {
+        SetConferenceNum(transform.parent.name);
         Debug.Log("channelNum: " + conferenceNum);
         voiceController.ChangeVoiceChannel(conferenceNum);
     }

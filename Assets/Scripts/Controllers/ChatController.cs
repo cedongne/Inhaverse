@@ -96,14 +96,17 @@ public class ChatController : MonoBehaviour, IChatClientListener
 		chatClient.Subscribe(new string[] { channelName }, 10);
 		currentChannelName = channelName;
     }
+
 	public void LeaveConferenceChat(string channelName)
     {
 		chatClient.Unsubscribe(new string[] { channelName });
 	}
+
 	public void EnterLobbyChat()
 	{
 		chatClient.Subscribe(new string[] { "Lobby" }, 10);
 	}
+
 	public void LeaveChat()
     {
 		chatClient.Unsubscribe(new string[] { currentChannelName });
@@ -114,6 +117,7 @@ public class ChatController : MonoBehaviour, IChatClientListener
     {
 		outputText.text = "";
     }
+
 	public void OnUnsubscribed(string[] channels)
 	{
 		AddLine(string.Format("{0}ø°º≠ ≈¿Â«œºÃΩ¿¥œ¥Ÿ.", string.Join(",", channels)));
@@ -181,5 +185,10 @@ public class ChatController : MonoBehaviour, IChatClientListener
 				inputField.text = "";
 			}
 		}
+	}
+
+	void RenewalChannel()
+	{
+		UIManager.Instance.ConferenceMemberText.text = "[" + currentChannelName + "] " + PN.CurrentRoom.PlayerCount + " / " + PN.CurrentRoom.MaxPlayers;
 	}
 }
