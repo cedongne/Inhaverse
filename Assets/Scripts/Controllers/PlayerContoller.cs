@@ -97,6 +97,7 @@ public class PlayerContoller : MonoBehaviourPun
             if (!chatController.onChat)
             {
                 Move();
+                JumpDown();
             }
         }
     }
@@ -114,7 +115,6 @@ public class PlayerContoller : MonoBehaviourPun
                 GetInput();
                 Jump();
                 WalkToRun();
-                CamOnOff();
 
                 DetectInteractiveObject();
                 OnCursorVisible();
@@ -166,6 +166,23 @@ public class PlayerContoller : MonoBehaviourPun
 
     void Jump()
     {
+        if (isJumpDown && !isJump)
+        {
+            animator.SetTrigger("DoJump");
+            playerRigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+            isJump = true;
+            animator.SetBool("isJump", isJump);
+            Invoke("StartJumpDown", 0.1f);
+        }
+    }
+
+    void StartJumpDown()
+    {
+        isDown = true;
+    }
+
+    void JumpDown()
+    {
         if (isDown)
         {
             RaycastHit hit;
@@ -176,30 +193,6 @@ public class PlayerContoller : MonoBehaviourPun
                 animator.SetBool("isJump", isJump);
                 animator.SetBool("isDown", isDown);
             }
-        }
-        else if (isJump)
-        {
-            Debug.Log(playerRigid.velocity.y);
-            if (playerRigid.velocity.y <= 0.1f)
-            {
-                isDown = true;
-            }
-            animator.SetBool("isDown", isDown);
-        }
-        if (isJumpDown && !isJump)
-        {
-            animator.SetTrigger("DoJump");
-            playerRigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
-            isJump = true;
-            animator.SetBool("isJump", isJump);
-        }
-    }
-
-    public void CamOnOff()
-    {
-        if (isCamDown)
-        {
-            UIManager.Instance.CamOnOffBtn();
         }
     }
 

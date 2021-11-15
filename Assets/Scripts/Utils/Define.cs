@@ -8,6 +8,8 @@ public class Define
         CLASS,
         CLASSMAKING,
         CLASSMODIFYINGLIST,
+        CONFERENCE,
+        PLAYERINFO,
         BOARD
     }
 

@@ -8,7 +8,25 @@ using System.Linq;
 
 public class UIManager : MonoBehaviour
 {
-    [Header("[강의 데이터]")]
+    [Header("===== UI 오브젝트 참조 =====")]
+    [Space]
+    public GameObject loginUI;
+    public GameObject hudUI;
+    public GameObject classWindow;
+    public GameObject classMakingWindow;
+    public GameObject classModifyingListWindow;
+    public GameObject conferenceWindow;
+    public GameObject playerInfoWindow;
+
+    [Header("===== 객체 참조 =====")]
+    [Space]
+    public PlayerContoller playerController;
+    public CameraController cameraController;
+    public VoiceController voiceController;
+    public PlayerWebCamUIController webCamUIController;
+
+    [Header("===== 강의 데이터 UI =====")]
+    [Space]
     public InputField classInstructor;
     public InputField classNameInput;
     public InputField classIdInput;
@@ -27,27 +45,18 @@ public class UIManager : MonoBehaviour
     public GameObject classButton;
 
     [Space]
-
     List<ClassList> buttons = new List<ClassList>();
     List<StudentInfo> studentsList = new List<StudentInfo>();
 
-    [Header("[객체 참조]")]
-    public PlayerContoller playerController;
-    public CameraController cameraController;
-
-    public GameObject webcamImage;
-
-    public VoiceController voiceController;
-
+    [Header("===== 회의 UI =====")]
     [Space]
-
-    [Header("[UI 오브젝트 참조]")]
-    public GameObject loginUI;
-    public GameObject hudUI;
-    public GameObject classWindow;
-    public GameObject classMakingWindow;
-    public GameObject classModifyingListWindow;
+    public Text ConferenceMemberText;
     public bool isOpenWindow;
+
+    [Header("===== 플레이어 정보 UI =====")]
+    [Space]
+    public InputField playerName;
+    public InputField playerSchoolId;
 
     public delegate void EventFunction(int num);
 
@@ -84,7 +93,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    #region HUD Icons
+#region HUD Icons
     public void ChangeViewBtn()
     {
         cameraController.isChangeCameraModeDown = true;
@@ -99,16 +108,22 @@ public class UIManager : MonoBehaviour
 
     public void CamOnOffBtn()
     {
-        if (webcamImage.activeSelf)
-            webcamImage.SetActive(false);
-        else
-            webcamImage.SetActive(true);
+        webCamUIController.isWebCamDown = true;
+        webCamUIController.TurnWebCam();
     }
 
     public void VoiceOnOffBtn()
     {
         voiceController.isVoiceDown = true;
         voiceController.VoiceOnOff();
+    }
+
+    public void InfoBtn()
+    {
+        playerName.text = PlayfabManager.Instance.playerName;
+        playerSchoolId.text = PlayfabManager.Instance.playerSchoolId;
+
+        OpenWindow(Define.UI.PLAYERINFO);
     }
 #endregion
 
@@ -136,6 +151,8 @@ public class UIManager : MonoBehaviour
         classWindow.SetActive(false);
         classMakingWindow.SetActive(false);
         classModifyingListWindow.SetActive(false);
+        conferenceWindow.SetActive(false);
+        playerInfoWindow.SetActive(false);
 
         if (showingWindow.Equals(Define.UI.CLASS))
         {
@@ -149,6 +166,14 @@ public class UIManager : MonoBehaviour
         {
             classModifyingListWindow.SetActive(true);
         }
+        else if (showingWindow.Equals(Define.UI.CONFERENCE))
+        {
+            conferenceWindow.SetActive(true);
+        }
+        else if (showingWindow.Equals(Define.UI.PLAYERINFO))
+        {
+            playerInfoWindow.SetActive(true);
+        }
         isOpenWindow = true;
     }
 
@@ -159,13 +184,15 @@ public class UIManager : MonoBehaviour
         classWindow.SetActive(false);
         classMakingWindow.SetActive(false);
         classModifyingListWindow.SetActive(false);
+        conferenceWindow.SetActive(false);
+        playerInfoWindow.SetActive(false);
 
         ClearClassMakingWindow();
         eventFunction = null;
         isOpenWindow = false;
     }
 
-#region class Interaction
+#region Class Interaction
     public void EnterClassBtn()
     {
         OpenWindow(Define.UI.CLASSMODIFYINGLIST);
@@ -327,6 +354,9 @@ public class UIManager : MonoBehaviour
             }
         }
     }
-#endregion
+    #endregion
 
+#region Conference Interaction
+
+#endregion
 }
