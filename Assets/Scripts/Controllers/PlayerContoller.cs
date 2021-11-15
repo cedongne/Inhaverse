@@ -41,6 +41,7 @@ public class PlayerContoller : MonoBehaviourPun
     public bool isJumpDown;
     public bool isRunDown;
     public bool isCamDown;
+    public bool isInfoWindowDown;
 
     public Outline currentTouch;
 
@@ -120,6 +121,7 @@ public class PlayerContoller : MonoBehaviourPun
                 OnCursorVisible();
             }
         }
+        OpenInfoWindow();
     }
 
     void GetInput()
@@ -127,12 +129,15 @@ public class PlayerContoller : MonoBehaviourPun
         isRunDown = Input.GetKeyDown(KeyCode.R);
         isJumpDown = Input.GetKeyDown(KeyCode.Space);
         isCamDown = Input.GetKeyDown(KeyCode.C);
+        // isVoiceDown is in "VoiceController.cs"
+        isInfoWindowDown = Input.GetKeyDown(KeyCode.I);
     }
 
     public void WalkToRun()
     {
         if (isRunDown)
         {
+            Debug.Log("R is Down");
             if (isRun)
             {
                 isRun = false;
@@ -228,6 +233,18 @@ public class PlayerContoller : MonoBehaviourPun
         {
             currentTouch.enabled = false;
             interactionUI.SetActive(false);
+        }
+    }
+
+    void OpenInfoWindow()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            Debug.Log("I is Down");
+            if (!UIManager.Instance.playerInfoWindow.activeSelf)
+                UIManager.Instance.InfoBtn();
+            else
+                UIManager.Instance.CloseWindow();
         }
     }
 

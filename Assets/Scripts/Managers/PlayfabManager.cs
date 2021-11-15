@@ -168,17 +168,30 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         PlayFabClientAPI.UpdateUserData(request, (result) => { Debug.Log("값 저장 성공"); }, (error) => Debug.Log("값 저장 실패" + error));
     }
 
-    public void GetUserData(string key, string use)
+    public void GetUserData(string key, Define.USERDATAUSING use)
     {
         var request = new GetUserDataRequest { Keys = new List<string>() { key } };
         PlayFabClientAPI.GetUserData(request,
             (result) =>
             {
-                if (use.Equals("ClassTimeTable"))
+                if (use.Equals(Define.USERDATAUSING.JOINTOCLASS))
                 {
                     getUserDataEvent.Invoke(key, result.Data[key].Value);
                 }
+                if (use.Equals(Define.USERDATAUSING.LOADCLASSINFO))
+                {
+                    UIManager.Instance.InstantiateClassInfo(key, result.Data[key].Value);
+                }
             }, (error) => { });
+    }
+
+    public void DeleteUserData(string key)
+    {
+        var request = new UpdateUserDataRequest
+        {
+            KeysToRemove = new List<string>() { key }
+        };
+        PlayFabClientAPI.UpdateUserData(request, (result) => { Debug.Log("값 삭제 성공"); }, (error) => Debug.Log("값 삭제 실패" + error));
     }
 
     public void UpdateStatistics(string statisticName, int statisticValue)
@@ -222,6 +235,8 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                 playerName = result.AccountInfo.TitleInfo.DisplayName;
                 playerSchoolId = result.AccountInfo.Username;
 
+                UIManager.Instance.playerName.text = playerName;
+                UIManager.Instance.playerSchoolId.text = playerSchoolId;
 //                photonView.Owner.NickName = playerName;
 //                Debug.Log("Owner : " + photonView.Owner.NickName);
 
@@ -394,7 +409,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             });
     }
 
-    public void GetGroupList()
+    public void GetGroupList(Define.GROUPLISTUSING use)
     {
         var groups = new List<GroupWithRoles>();
         var request = new ListMembershipRequest { Entity = new PlayFab.GroupsModels.EntityKey { Id = playerEntity.Id, Type = playerEntity.Type } };
@@ -403,7 +418,10 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             {
                 groups = result.Groups.ToList();
                 Debug.Log("그룹 목록 불러오기 성공. Count = " + groups.Count);
-                UIManager.Instance.LoadMyClasses(groups);
+                if (use.Equals(Define.GROUPLISTUSING.MAKEBUTTONS))
+                    UIManager.Instance.OpenClassListWindowCallBack(groups);
+                else if (use.Equals(Define.GROUPLISTUSING.GETGROUPNAMES))
+                    UIManager.Instance.InfoBtnCallBack(groups);
             },
             (error) => { Debug.Log("그룹 목록 불러오기 실패 " + error); groups = null; });
     }
@@ -478,6 +496,15 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             }, (error) => { Debug.Log("리스트업 실패 " + error); });
     }
 
+    public void QuitFromGroup(string groupId, string groupType, string entityId, string entityType)
+    {
+        var request = new RemoveGroupApplicationRequest
+        {
+            Group = new PlayFab.GroupsModels.EntityKey { Id = groupId, Type = groupType },
+            Entity = new PlayFab.GroupsModels.EntityKey { Id = entityId, Type = entityType }
+        };
+        PlayFabGroupsAPI.RemoveGroupApplication(request, (result) => { Debug.Log("그룹 탈퇴 성공"); }, (error) => { Debug.Log("그룹 탈퇴 성공"); });
+    }
     void UpdateClassTimeTable(string entityId, string entityType)
     {
         var request = new GetGroupRequest { Group = new PlayFab.GroupsModels.EntityKey{ Id = entityId, Type = entityType } };
@@ -490,7 +517,9 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                     {
                         ClassData classData = JsonUtility.FromJson<ClassData>(objectResult.Objects["ClassData"].DataObject.ToString());
                         if (!classData.secondEndTime.Equals(""))
-                            SetUserData(classData.className + classData.classNumber, classData.firstDayOfWeek + "," + classData.firstStartTime + "~" + classData.firstEndTime + "," + 
+                            SetUserData(classData.className + classData.classNumber,
+                                classData.classId + "," + classData.classInstructor + "," +
+                                classData.firstDayOfWeek + "," + classData.firstStartTime + "~" + classData.firstEndTime + "," + 
                                 classData.secondDayOfWeek + "," + classData.secondStartTime + "~" + classData.secondEndTime);
                         else
                             SetUserData(classData.className + classData.classNumber, classData.firstDayOfWeek + "," + classData.firstStartTime + "~" + classData.firstEndTime);

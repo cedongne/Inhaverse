@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour
     public GameObject hudUI;
     public GameObject classWindow;
     public GameObject classMakingWindow;
-    public GameObject classModifyingListWindow;
+    public GameObject classListWindow;
     public GameObject conferenceWindow;
     public GameObject playerInfoWindow;
 
@@ -28,9 +28,11 @@ public class UIManager : MonoBehaviour
     [Header("===== 강의 데이터 UI =====")]
     [Space]
     public InputField classInstructor;
+
     public InputField classNameInput;
     public InputField classIdInput;
     public InputField classNumberInput;
+    public InputField classLateAllowInput;
 
     public Dropdown firstDayOfWeekInput;
     public InputField firstStartTimeInput;
@@ -57,6 +59,11 @@ public class UIManager : MonoBehaviour
     [Space]
     public InputField playerName;
     public InputField playerSchoolId;
+    public GameObject classListContent;
+
+    List<GameObject> playerClassList = new List<GameObject>();
+    Vector3 classListInitPosition = new Vector2(20, -20);
+    Vector3 classListOffset = new Vector2(0, -130);
 
     public delegate void EventFunction(int num);
 
@@ -120,10 +127,62 @@ public class UIManager : MonoBehaviour
 
     public void InfoBtn()
     {
+        playerClassList.Clear();
+
         playerName.text = PlayfabManager.Instance.playerName;
         playerSchoolId.text = PlayfabManager.Instance.playerSchoolId;
 
+        PlayfabManager.Instance.GetGroupList(Define.GROUPLISTUSING.GETGROUPNAMES);
+
         OpenWindow(Define.UI.PLAYERINFO);
+    }
+
+    public void InfoBtnCallBack(List<PlayFab.GroupsModels.GroupWithRoles> groups)
+    {
+        for (int count = 0; count < groups.Count; count++)
+        {
+            PlayfabManager.Instance.GetUserData(groups[count].GroupName, Define.USERDATAUSING.LOADCLASSINFO);
+        }
+    }
+
+    public void InstantiateClassInfo(string groupName, string classInfo)
+    {
+        string[] splitedClassInfo = UtilityMethods.SplitTimeTableUserData(classInfo);
+        GameObject newClassInfo = Instantiate(Resources.Load<GameObject>("ClassInfo Box"),
+            classListContent.transform.position + classListInitPosition + classListOffset * playerClassList.Count, Quaternion.identity, classListContent.transform);
+        newClassInfo.name = groupName;
+
+        Transform newInfoTransform = newClassInfo.transform;
+
+        // 0 : Class ID
+        // 1 : Class instructor
+        // 2 : First class day of week
+        // 3 : First class start time
+        // 4 : First class end time
+        // 5 : Second class Day of week
+        // 6 : Second class start time
+        // 7 : Second class end time
+        // 8 : Late allow time
+        splitedClassInfo[2] = UtilityMethods.ConvertDayOfWeekToKorean(splitedClassInfo[2]);
+        splitedClassInfo[5] = UtilityMethods.ConvertDayOfWeekToKorean(splitedClassInfo[5]);
+
+        newInfoTransform.GetChild(0).GetComponent<Text>().text = groupName;
+        for (int count = 0; count < splitedClassInfo.Length; count++)
+        {
+            newInfoTransform.GetChild(count + 1).GetComponent<Text>().text = splitedClassInfo[count].ToString();  // 0 : Class ID
+        }
+
+        Button deleteButton = newClassInfo.GetComponentInChildren<Button>();
+
+        GameObject tmpClassInfo = newClassInfo;
+        deleteButton.onClick.AddListener(delegate { DeleteClassBtn(tmpClassInfo); });
+
+        playerClassList.Add(newClassInfo);
+    }
+
+    public void DeleteClassBtn(GameObject classInfo)
+    {
+        PlayfabManager.Instance.DeleteUserData(classInfo.name);
     }
 #endregion
 
@@ -150,7 +209,7 @@ public class UIManager : MonoBehaviour
 
         classWindow.SetActive(false);
         classMakingWindow.SetActive(false);
-        classModifyingListWindow.SetActive(false);
+        classListWindow.SetActive(false);
         conferenceWindow.SetActive(false);
         playerInfoWindow.SetActive(false);
 
@@ -162,9 +221,9 @@ public class UIManager : MonoBehaviour
         {
             classMakingWindow.SetActive(true);
         }
-        else if (showingWindow.Equals(Define.UI.CLASSMODIFYINGLIST))
+        else if (showingWindow.Equals(Define.UI.CLASSLIST))
         {
-            classModifyingListWindow.SetActive(true);
+            classListWindow.SetActive(true);
         }
         else if (showingWindow.Equals(Define.UI.CONFERENCE))
         {
@@ -183,7 +242,7 @@ public class UIManager : MonoBehaviour
         
         classWindow.SetActive(false);
         classMakingWindow.SetActive(false);
-        classModifyingListWindow.SetActive(false);
+        classListWindow.SetActive(false);
         conferenceWindow.SetActive(false);
         playerInfoWindow.SetActive(false);
 
@@ -195,13 +254,12 @@ public class UIManager : MonoBehaviour
 #region Class Interaction
     public void EnterClassBtn()
     {
-        OpenWindow(Define.UI.CLASSMODIFYINGLIST);
+        OpenWindow(Define.UI.CLASSLIST);
 
         eventFunction += OnClickGetUserData;
         PlayfabManager.Instance.getUserDataEvent.AddListener(NetworkManager.Instance.JoinToClass);
-        PlayfabManager.Instance.GetGroupList();
-
-        
+        PlayfabManager.Instance.GetGroupList(Define.GROUPLISTUSING.MAKEBUTTONS);
+        // Go to "OpenClassListWindowCallBack"
     }
 
     public void OpenClassMakingWindow()
@@ -217,6 +275,9 @@ public class UIManager : MonoBehaviour
         classData.className = classNameInput.text;
         classData.classId = classIdInput.text;
         classData.classNumber = classNumberInput.text;
+        classData.classLateAllowTime = classLateAllowInput.text;
+
+        classData.classInstructor = classInstructor.text;
 
         classData.firstDayOfWeek = UtilityMethods.ConvertToDayOfWeek(firstDayOfWeekInput.value);
         classData.firstStartTime = firstStartTimeInput.text;
@@ -243,12 +304,13 @@ public class UIManager : MonoBehaviour
         classNameInput.text = "";
         classIdInput.text = "";
         classNumberInput.text = "";
+        classLateAllowInput.text = "";
 
-        firstDayOfWeekInput.value = 1;
+        firstDayOfWeekInput.value = 0;
         firstStartTimeInput.text = "";
         firstEndTimeInput.text = "";
 
-        secondDayOfWeekInput.value = 1;
+        secondDayOfWeekInput.value = 0;
         secondStartTimeInput.text = "";
         secondEndTimeInput.text = "";
 
@@ -258,14 +320,15 @@ public class UIManager : MonoBehaviour
         studentListText.text = "";
     }
 
-    public void OpenClassModifyingWindow()
+    public void OpenClassListWindow()
     {
-        OpenWindow(Define.UI.CLASSMODIFYINGLIST);
-        PlayfabManager.Instance.GetGroupList();
+        classInstructor.text = PlayfabManager.Instance.playerName;
+        OpenWindow(Define.UI.CLASSLIST);
+        PlayfabManager.Instance.GetGroupList(Define.GROUPLISTUSING.MAKEBUTTONS);
         eventFunction += OnClickModifyingClass;
     }
 
-    public void LoadMyClasses(List<PlayFab.GroupsModels.GroupWithRoles> groups)
+    public void OpenClassListWindowCallBack(List<PlayFab.GroupsModels.GroupWithRoles> groups)
     {
         for(int count = 0; count < buttons.Count; count++)
         {
@@ -295,7 +358,7 @@ public class UIManager : MonoBehaviour
     public void OnClickGetUserData(int btnNum)
     {
         eventFunction -= OnClickGetUserData;
-        PlayfabManager.Instance.GetUserData(buttons[btnNum].button.name, "ClassTimeTable");
+        PlayfabManager.Instance.GetUserData(buttons[btnNum].button.name, Define.USERDATAUSING.JOINTOCLASS);
     }
 
     public void LoadModifyingClass(object classObject)
@@ -304,7 +367,8 @@ public class UIManager : MonoBehaviour
         classNameInput.text = classData.className;
         classIdInput.text = classData.classId;
         classNumberInput.text = classData.classNumber;
-
+        classLateAllowInput.text = classData.classLateAllowTime;
+        
         firstDayOfWeekInput.value = UtilityMethods.ConvertToDayCode(classData.firstDayOfWeek);
         firstStartTimeInput.text = classData.firstStartTime;
         firstEndTimeInput.text = classData.firstEndTime;

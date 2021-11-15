@@ -7,10 +7,23 @@ public class Define
         MENU,
         CLASS,
         CLASSMAKING,
-        CLASSMODIFYINGLIST,
+        CLASSLIST,
         CONFERENCE,
         PLAYERINFO,
         BOARD
+    }
+
+    public enum GROUPLISTUSING
+    {
+        MAKEBUTTONS,
+        GETGROUPNAMES,
+        FINDSPECIFICGROUP
+    }
+
+    public enum USERDATAUSING
+    {
+        JOINTOCLASS,
+        LOADCLASSINFO
     }
 
 }

@@ -59,7 +59,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         PlayfabManager.Instance.getUserDataEvent.RemoveListener(JoinToClass);
 
-        string[] splitedTimeTableData = UtilityMethods.SplitTimeTableData(classData);
+        string[] splitedTimeTableData = UtilityMethods.SplitTimeTableUserData(classData);
 
         PN.LeaveRoom();
         chatController.GetComponent<ChatController>().LeaveChat();

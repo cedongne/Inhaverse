@@ -1286,6 +1286,7 @@ MonoBehaviour:
   isJumpDown: 0
   isRunDown: 0
   isCamDown: 0
+  isInfoWindowDown: 0
   currentTouch: {fileID: 5030059289416126775}
 --- !u!114 &3002047870756200745
 MonoBehaviour:

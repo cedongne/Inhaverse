@@ -6,8 +6,17 @@ public class UtilityMethods
 {
     public const int TIMEOUT = -99;
 
-    public static string[] SplitTimeTableData(string timeTableData)
+    public static string[] SplitTimeTableUserData(string timeTableData)
     {
+        // 0 : Class ID
+        // 1 : Class instructor
+        // 2 : First class day of week
+        // 3 : First class start time
+        // 4 : First class end time
+        // 5 : Second class Day of week
+        // 6 : Second class start time
+        // 7 : Second class end time
+        // 8 : Late allow time
         char[] delimiters = { ',', '~' };
         string[] splitedTimeTableString = timeTableData.Split(delimiters);
 
@@ -40,9 +49,9 @@ public class UtilityMethods
     {
         bool isAllowEnterClass;
 
-        isAllowEnterClass = DetermineIsClassTime(splitedTimeTableString[0], int.Parse(splitedTimeTableString[1]), 10);
+        isAllowEnterClass = DetermineIsClassTime(splitedTimeTableString[2], int.Parse(splitedTimeTableString[3]), 10);
         if (!isAllowEnterClass && splitedTimeTableString.Length > 3)
-            isAllowEnterClass = DetermineIsClassTime(splitedTimeTableString[3], int.Parse(splitedTimeTableString[4]), 10);
+            isAllowEnterClass = DetermineIsClassTime(splitedTimeTableString[5], int.Parse(splitedTimeTableString[6]), 10);
 
         return isAllowEnterClass;
     }
@@ -92,5 +101,21 @@ public class UtilityMethods
         else
             return 0;
 
+    }
+
+    public static string ConvertDayOfWeekToKorean(string dayOfWeek)
+    {
+        if (dayOfWeek == "Monday")
+            return "월";
+        else if (dayOfWeek == "Tuesday")
+            return "화";
+        else if (dayOfWeek == "Wednesday")
+            return "수";
+        else if (dayOfWeek == "Thursday")
+            return "목";
+        else if (dayOfWeek == "Friday")
+            return "금";
+        else
+            return "";
     }
 }
