@@ -62,7 +62,9 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
 
     public UnityEvent<string> getPlayfabIdEventArg1;
     public UnityEvent<string, string> getPlayfabIdEventArg2;
-    public UnityEvent<string> getLeaderBoardEvent;
+    public UnityEvent<string> getLeaderBoardUserIDEvent;
+    public UnityEvent<int> getLeaderBoardValueEvent;
+
     public UnityEvent<string, string> getUserDataEvent;
     public UnityEvent invitingGroupEvent;
     public event GetPlayerInfoEvent getPlayerInfoEvent;
@@ -146,8 +148,8 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
 
     void OnRegisterSuccess(RegisterPlayFabUserResult result)
     {
-        SetUserData("Job", playerJob); 
-        UpdateStatistics("IDInfo", int.Parse(emailInput.text.Substring(0, 8)));
+        SetUserData("Job", playerJob);
+        UpdateLeaderBoard("IDInfo", int.Parse(emailInput.text.Substring(0, 8)));
 
         Debug.Log("회원가입 성공");
     }
@@ -194,7 +196,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         PlayFabClientAPI.UpdateUserData(request, (result) => { Debug.Log("값 삭제 성공"); }, (error) => Debug.Log("값 삭제 실패" + error));
     }
 
-    public void UpdateStatistics(string statisticName, int statisticValue)
+    public void UpdateLeaderBoard(string statisticName, int statisticValue)
     {
         var request = new UpdatePlayerStatisticsRequest { Statistics = new List<StatisticUpdate> { new StatisticUpdate { StatisticName = statisticName, Value = statisticValue } } };
         PlayFabClientAPI.UpdatePlayerStatistics(request, (result) => Debug.Log("리더보드 업데이트 성공"), (error) => Debug.Log("리더보드 업데이트 실패")); ;
@@ -321,7 +323,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         }, (error) => Debug.Log(error.ErrorMessage));
     }
     
-    public void GetLeaderBoard(string statisticName, string statisticValue)
+    public void GetLeaderBoardUserId(string statisticName, string statisticValue)
     {
         var request = new GetLeaderboardRequest
         {
@@ -336,8 +338,29 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             {
                 if (result.Leaderboard[count].StatValue.Equals(statisticValue))
                 {
-                    getLeaderBoardEvent.Invoke(result.Leaderboard[count].PlayFabId);
+                    getLeaderBoardUserIDEvent.Invoke(result.Leaderboard[count].PlayFabId);
                     break;
+                }
+            }
+        }, (error) => Debug.Log(error.ErrorMessage));
+    }
+
+    public void GetLeaderBoardUserValue(string statisticName, string userName)
+    {
+        var request = new GetLeaderboardRequest
+        {
+            StartPosition = 0,
+            StatisticName = statisticName,
+            MaxResultsCount = 100,
+            ProfileConstraints = new PlayerProfileViewConstraints() { ShowDisplayName = true }
+        };
+        PlayFabClientAPI.GetLeaderboard(request, (result) =>
+        {
+            for (int count = 0; count < result.Leaderboard.Count; count++)
+            {
+                if (result.Leaderboard[count].DisplayName.Equals(userName))
+                {
+                    getLeaderBoardValueEvent.Invoke(result.Leaderboard[count].StatValue);
                 }
             }
         }, (error) => Debug.Log(error.ErrorMessage));

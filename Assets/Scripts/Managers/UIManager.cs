@@ -165,15 +165,14 @@ public class UIManager : MonoBehaviour
         // 8 : Late allow time
         splitedClassInfo[2] = UtilityMethods.ConvertDayOfWeekToKorean(splitedClassInfo[2]);
         splitedClassInfo[5] = UtilityMethods.ConvertDayOfWeekToKorean(splitedClassInfo[5]);
-
         newInfoTransform.GetChild(0).GetComponent<Text>().text = groupName;
         for (int count = 0; count < splitedClassInfo.Length; count++)
         {
             newInfoTransform.GetChild(count + 1).GetComponent<Text>().text = splitedClassInfo[count].ToString();  // 0 : Class ID
         }
+        newInfoTransform.GetChild(splitedClassInfo.Length + 1).GetComponent<Text>().text += "Ка";
 
         Button deleteButton = newClassInfo.GetComponentInChildren<Button>();
-
         GameObject tmpClassInfo = newClassInfo;
         deleteButton.onClick.AddListener(delegate { DeleteClassBtn(tmpClassInfo); });
 
@@ -183,6 +182,7 @@ public class UIManager : MonoBehaviour
     public void DeleteClassBtn(GameObject classInfo)
     {
         PlayfabManager.Instance.DeleteUserData(classInfo.name);
+        PlayfabManager.Instance.GetGroupList(Define.GROUPLISTUSING.FINDSPECIFICGROUP);
     }
 #endregion
 
