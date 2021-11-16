@@ -4,6 +4,11 @@ using System.Collections.Generic;
 
 public class UtilityMethods
 {
+    // Open Semester
+    public const int year = 2021;
+    public const int month = 8;
+    public const int day = 30;
+
     public const int TIMEOUT = -99;
 
     public static string[] SplitTimeTableUserData(string timeTableData)
@@ -117,5 +122,14 @@ public class UtilityMethods
             return "금";
         else
             return "";
+    }
+
+    public static int GetWeekOfSemester()
+    {
+        int elapsedDays = Convert.ToInt32((DateTime.Now - new DateTime(year, month, day)).TotalDays) - 1;
+
+        int calWeek = (elapsedDays / 7) + 1;
+
+        return calWeek;
     }
 }

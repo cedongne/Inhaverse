@@ -36,6 +36,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
+        Debug.Log(UtilityMethods.GetWeekOfSemester());
         if(instance == null)
         {
             instance = gameObject.GetComponent<NetworkManager>();
