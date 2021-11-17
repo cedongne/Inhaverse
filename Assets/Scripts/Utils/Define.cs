@@ -26,4 +26,12 @@ public class Define
         LOADCLASSINFO
     }
 
+    public enum ATTENDANCE
+    {
+        ATTENDANCE,
+        LATE,
+        ABSENT,
+        YET
+    }
+
 }

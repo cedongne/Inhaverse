@@ -30,9 +30,11 @@ public class UIManager : MonoBehaviour
     public InputField classInstructor;
 
     public InputField classNameInput;
+    public InputField classLateCheckTimeInput;
+
     public InputField classIdInput;
     public InputField classNumberInput;
-    public InputField classLateAllowInput;
+    public InputField classEnterAllowTimeInput;
 
     public Dropdown firstDayOfWeekInput;
     public InputField firstStartTimeInput;
@@ -48,7 +50,7 @@ public class UIManager : MonoBehaviour
 
     [Space]
     List<ClassList> buttons = new List<ClassList>();
-    List<StudentInfo> studentsList = new List<StudentInfo>();
+    List<UserInfo> studentsList = new List<UserInfo>();
 
     [Header("===== 회의 UI =====")]
     [Space]
@@ -273,9 +275,11 @@ public class UIManager : MonoBehaviour
         ClassData classData = new ClassData();
 
         classData.className = classNameInput.text;
+        classData.classLateCheckTime = classLateCheckTimeInput.text;
+
         classData.classId = classIdInput.text;
         classData.classNumber = classNumberInput.text;
-        classData.classLateAllowTime = classLateAllowInput.text;
+        classData.classEnterAllowTime = classEnterAllowTimeInput.text;
 
         classData.classInstructor = classInstructor.text;
 
@@ -302,9 +306,11 @@ public class UIManager : MonoBehaviour
     void ClearClassMakingWindow()
     {
         classNameInput.text = "";
+        classLateCheckTimeInput.text = "";
+
         classIdInput.text = "";
         classNumberInput.text = "";
-        classLateAllowInput.text = "";
+        classEnterAllowTimeInput.text = "";
 
         firstDayOfWeekInput.value = 0;
         firstStartTimeInput.text = "";
@@ -365,9 +371,11 @@ public class UIManager : MonoBehaviour
     {
         ClassData classData = JsonUtility.FromJson<ClassData>(classObject.ToString());
         classNameInput.text = classData.className;
+        classLateCheckTimeInput.text = classData.classLateCheckTime;
+
         classIdInput.text = classData.classId;
         classNumberInput.text = classData.classNumber;
-        classLateAllowInput.text = classData.classLateAllowTime;
+        classEnterAllowTimeInput.text = classData.classEnterAllowTime;
         
         firstDayOfWeekInput.value = UtilityMethods.ConvertToDayCode(classData.firstDayOfWeek);
         firstStartTimeInput.text = classData.firstStartTime;
@@ -380,7 +388,7 @@ public class UIManager : MonoBehaviour
         studentsList = classData.students.ToList();
         for(int count = 0; count < studentsList.Count; count++)
         {
-            studentListText.text += studentsList[count].studentId + " " + studentsList[count].studentName + "\n";
+            studentListText.text += studentsList[count].schoolId + " " + studentsList[count].name + "\n";
         }
 
         OpenWindow(Define.UI.CLASSMAKING);
@@ -396,13 +404,13 @@ public class UIManager : MonoBehaviour
     {
         for (int count = 0; count < studentsList.Count; count++)
         {
-            if (studentsList[count].studentName.Equals(studentName))
+            if (studentsList[count].name.Equals(studentName))
             {
                 Debug.Log("이미 수강 중인 학생입니다.");
                 return;
             }
         }
-        studentsList.Add(new StudentInfo(studentId, studentName));
+        studentsList.Add(new UserInfo(studentId, studentName));
         studentListText.text += studentId + " " + studentName + "\n";
         PlayfabManager.Instance.getPlayerInfoEvent -= AddStudentInClass;
     }
@@ -411,9 +419,9 @@ public class UIManager : MonoBehaviour
     {
         for (int count = 0; count < studentsList.Count; count++)
         {
-            if (studentsList[count].studentId.Equals(studentIdInput.text))
+            if (studentsList[count].schoolId.Equals(studentIdInput.text))
             {
-                studentListText.text = studentListText.text.Replace(studentsList[count].studentId + " " + studentsList[count].studentName + "\n", "");
+                studentListText.text = studentListText.text.Replace(studentsList[count].schoolId + " " + studentsList[count].name + "\n", "");
                 studentsList.RemoveAt(count);
             }
         }

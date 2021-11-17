@@ -6,15 +6,17 @@ using System.Collections.Generic;
 public class ClassData
 {
     public ClassData() { }
-    public ClassData(string _classInstructor, string _className, string _classId, string _classNumber, string _classLateAllowTime, 
+    public ClassData(string _classInstructor, string _className, string _classLateCheckTime, string _classId, string _classNumber, string _classEnterAllowTime, 
         string _firstDayOfWeek, string _firstStartTime, string _firstEndTime, string _secondDayOfWeek, string _secondStartTime, string _secondEndTime, object _students)
     {
         classInstructor = _classInstructor;
 
         className = _className;
+        classLateCheckTime = _classLateCheckTime;
+
         classId = _classId;
         classNumber = _classNumber;
-        classLateAllowTime = _classLateAllowTime;
+        classEnterAllowTime = _classEnterAllowTime;
 
         firstDayOfWeek = _firstDayOfWeek;
         firstStartTime = _firstStartTime;
@@ -24,14 +26,16 @@ public class ClassData
         secondStartTime = _secondStartTime;
         secondEndTime = _secondEndTime;
 
-        students = _students as List<StudentInfo>;
+        students = _students as List<UserInfo>;
     }
     public string classInstructor;
 
     public string className;
+    public string classLateCheckTime;
+
     public string classId;
     public string classNumber;
-    public string classLateAllowTime;
+    public string classEnterAllowTime;
 
     public string firstDayOfWeek;
     public string firstStartTime;
@@ -41,7 +45,7 @@ public class ClassData
     public string secondStartTime;
     public string secondEndTime;
 
-    public List<StudentInfo> students;
+    public List<UserInfo> students;
 }
 
 [System.Serializable]
@@ -62,14 +66,57 @@ public class ClassList
 }
 
 [System.Serializable]
-public class StudentInfo
+public class UserInfo
 {
-    public StudentInfo() { }
-    public StudentInfo(string _studentId, string _studentName)
+    public UserInfo() { }
+    public UserInfo(string _schoolId, string _name)
     {
-        studentId = _studentId;
-        studentName = _studentName;
+        schoolId = _schoolId;
+        name = _name;
     }
-    public string studentId;
-    public string studentName;
+    public string schoolId;
+    public string name;
+}
+
+[System.Serializable]
+public class AttendanceTable{
+    public AttendanceTable() {
+        attendanceInfo = new Dictionary<string, Define.ATTENDANCE[]>();
+    }
+
+    public AttendanceTable(string className, Define.ATTENDANCE attendance)
+    {
+        if(attendanceInfo == null)
+            attendanceInfo = new Dictionary<string, Define.ATTENDANCE[]>();
+        if (!attendanceInfo.ContainsKey(className))
+        {
+            Add(className, attendance);
+        }
+        else
+        {
+        }
+
+//        else
+  //          attendanceInfo[className][] = attendance;
+    }
+
+    public UserInfo studentInfo;
+    public Dictionary<string, Define.ATTENDANCE[]> attendanceInfo;
+    
+    public void Add(string className, Define.ATTENDANCE attendance)
+    {
+        attendanceInfo.Add(className, new Define.ATTENDANCE[32]);
+        Attend(className, attendance);
+    }
+
+    public void Attend(string className, Define.ATTENDANCE attendance)
+    {
+        int classDay = (UtilityMethods.GetWeekOfSemester() - 1) * 2;
+        if (!attendanceInfo[className][classDay].Equals(Define.ATTENDANCE.YET))
+        {
+
+        }
+        attendanceInfo[className][UtilityMethods.GetWeekOfSemester() * 2] = attendance;
+    }
+    
 }

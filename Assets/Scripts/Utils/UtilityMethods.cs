@@ -30,21 +30,21 @@ public class UtilityMethods
 
     public static bool DetermineIsClassTime(string dayOfWeek, int startTime, int allowTime)
     {
-        int nowClassTimeHour = (DateTime.Now.Hour - 8) * 2;
+        int nowClassTimeHour = ((DateTime.Now.Hour - 9) * 2);
         int nowClassTimeMinute = 0;
 
-        if ((DateTime.Now.Minute >= 45 && DateTime.Now.Minute <= 59) || DateTime.Now.Minute >= 0 && DateTime.Now.Minute <= allowTime)
+        if (DateTime.Now.Minute >= 45)
             nowClassTimeMinute = 3;
+        else if (DateTime.Now.Minute <= allowTime)
+            nowClassTimeMinute = 1;
         else if (DateTime.Now.Minute >= 15 && DateTime.Now.Minute <= 30 + allowTime)
             nowClassTimeMinute = 2;
-        else
-            nowClassTimeMinute = TIMEOUT;
 
-        int nowClassTime = nowClassTimeHour + nowClassTimeMinute;
+        Debug.Log(nowClassTimeHour);
+        Debug.Log("NowDayOfWeek : " + DateTime.Now.DayOfWeek + ", ClassDayOfWeek : " + dayOfWeek);
+        Debug.Log("NowClassTime : " + (nowClassTimeHour + nowClassTimeMinute) + ", ClassTime : " + startTime);
 
-        Debug.Log(DateTime.Now.DayOfWeek.ToString() + " " + dayOfWeek);
-        Debug.Log(startTime + " " + nowClassTime);
-        if (startTime == nowClassTime && dayOfWeek == DateTime.Now.DayOfWeek.ToString())
+        if (dayOfWeek.Equals(DateTime.Now.DayOfWeek) && startTime.Equals(nowClassTimeHour + nowClassTimeMinute))
             return true;
         else
             return false;
@@ -54,9 +54,9 @@ public class UtilityMethods
     {
         bool isAllowEnterClass;
 
-        isAllowEnterClass = DetermineIsClassTime(splitedTimeTableString[2], int.Parse(splitedTimeTableString[3]), 10);
+        isAllowEnterClass = DetermineIsClassTime(splitedTimeTableString[2], int.Parse(splitedTimeTableString[3]), 15);
         if (!isAllowEnterClass && splitedTimeTableString.Length > 3)
-            isAllowEnterClass = DetermineIsClassTime(splitedTimeTableString[5], int.Parse(splitedTimeTableString[6]), 10);
+            isAllowEnterClass = DetermineIsClassTime(splitedTimeTableString[5], int.Parse(splitedTimeTableString[6]), 15);
 
         return isAllowEnterClass;
     }
@@ -69,7 +69,7 @@ public class UtilityMethods
 
         for (int count = 0; count < classData.students.Count; count++)
         {
-            studentIds.Add(classData.students[count].studentId);
+            studentIds.Add(classData.students[count].schoolId);
         }
 
         return studentIds;

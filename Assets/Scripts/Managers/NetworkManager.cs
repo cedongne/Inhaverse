@@ -36,7 +36,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-        Debug.Log(UtilityMethods.GetWeekOfSemester());
+        AttendanceTable table = new AttendanceTable("Table", Define.ATTENDANCE.ATTENDANCE);
         if(instance == null)
         {
             instance = gameObject.GetComponent<NetworkManager>();
