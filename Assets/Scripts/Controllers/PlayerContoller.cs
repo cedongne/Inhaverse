@@ -49,8 +49,6 @@ public class PlayerContoller : MonoBehaviourPun
 
     private void Awake()
     {
-        if (photonView.IsMine)
-            GetComponent<DistanceController>().enabled = true;
         screenCenter = new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2);
         animator = GetComponent<Animator>();
         cameraArm = GameObject.Find("Camera Arm");
@@ -126,17 +124,7 @@ public class PlayerContoller : MonoBehaviourPun
             }
         }
         OpenInfoWindow();
-
-        for (int count = 0; count < NetworkManager.Instance.playerList.Count; count++)
-        {
-            if (Vector3.Distance(playerTransform.position, NetworkManager.Instance.playerList[count].transform.position) < 10)
-            {
-                Debug.Log(PlayfabManager.Instance.playerName + " " + Vector3.Distance(playerTransform.position, NetworkManager.Instance.playerList[count].transform.position));
-                NetworkManager.Instance.playerUILIst[count].SetActive(true);
-            }
-            else
-                NetworkManager.Instance.playerUILIst[count].SetActive(false);
-        }
+        ShowPlayerUIAsDistance();
     }
 
     void GetInput()
@@ -152,7 +140,6 @@ public class PlayerContoller : MonoBehaviourPun
     {
         if (isRunDown)
         {
-            Debug.Log("R is Down");
             if (isRun)
             {
                 isRun = false;
@@ -281,6 +268,19 @@ public class PlayerContoller : MonoBehaviourPun
     void OnCursorUnvisible()
     {
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    void ShowPlayerUIAsDistance()
+    {
+        for (int count = 0; count < NetworkManager.Instance.playerList.Count; count++)
+        {
+            if (Vector3.Distance(playerTransform.position, NetworkManager.Instance.playerList[count].transform.position) < 10)
+            {
+                NetworkManager.Instance.playerUILIst[count].SetActive(true);
+            }
+            else
+                NetworkManager.Instance.playerUILIst[count].SetActive(false);
+        }
     }
 
     private void OnDestroy()
