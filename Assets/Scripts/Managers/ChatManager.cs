@@ -119,6 +119,10 @@ public class ChatManager : MonoBehaviour, IChatClientListener
     {
 		chatClient.Subscribe(new string[] { channelName }, 10);
 		currentChannelName = channelName;
+		foreach(var name in chatClient.PublicChannels.Keys)
+        {
+			Debug.Log(name);
+        }
     }
 
 	public void LeaveConferenceChat(string channelName)

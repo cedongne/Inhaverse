@@ -26,7 +26,6 @@ public class InteractiveTable : InteractiveObject
     void VoiceControl()
     {
         SetConferenceNum(transform.parent.name);
-        Debug.Log("channelNum: " + conferenceNum);
         VoiceManager.Instance.ChangeVoiceChannel(conferenceNum);
     }
 
