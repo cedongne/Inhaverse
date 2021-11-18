@@ -31,14 +31,12 @@ public class ConferenceManager : MonoBehaviourPun
 
     public void UpdateConferenceState()
     {
-        Debug.Log("AAA");
         photonView.RPC("UpdateConferenceStateRPC", RpcTarget.AllBuffered);
     }
 
     [PunRPC]
     public void UpdateConferenceStateRPC()
     {
-        Debug.Log("bbbb");
         ChatClient client = ChatManager.Instance.chatClient;
         if (client.PublicChannels.ContainsKey(ChatManager.Instance.currentChannelName))
         {
