@@ -129,7 +129,10 @@ public class UIManager : MonoBehaviour
 
     public void InfoBtn()
     {
-        playerClassList.Clear();
+        foreach(var box in playerClassList)
+        {
+            Destroy(box);
+        }
 
         playerName.text = PlayfabManager.Instance.playerName;
         playerSchoolId.text = PlayfabManager.Instance.playerSchoolId;
