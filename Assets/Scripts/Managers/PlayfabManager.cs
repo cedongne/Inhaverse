@@ -367,6 +367,27 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         }, (error) => Debug.Log(error.ErrorMessage));
     }
 
+    public void IncreaseLeaderBoardValue(string statisticName, string userName)
+    {
+        var request = new GetLeaderboardRequest
+        {
+            StartPosition = 0,
+            StatisticName = statisticName,
+            MaxResultsCount = 100,
+            ProfileConstraints = new PlayerProfileViewConstraints() { ShowDisplayName = true }
+        };
+        PlayFabClientAPI.GetLeaderboard(request, (result) =>
+        {
+            for (int count = 0; count < result.Leaderboard.Count; count++)
+            {
+                if (result.Leaderboard[count].DisplayName.Equals(userName))
+                {
+                    UpdateLeaderBoard(statisticName, result.Leaderboard[count].StatValue + 1);
+                }
+            }
+        }, (error) => Debug.Log(error.ErrorMessage));
+    }
+
     void SelectJob()
     {
         if (studentToggle.isOn)
