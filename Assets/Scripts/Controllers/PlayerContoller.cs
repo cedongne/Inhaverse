@@ -18,6 +18,8 @@ public class PlayerContoller : MonoBehaviourPun
     private Rigidbody playerRigid;
     [SerializeField]
     private GameObject interactionUI;
+    [SerializeField]
+    private GameObject playerUIObjects;
 
     private Vector3 screenCenter;
     private InputField inputField;
@@ -47,6 +49,8 @@ public class PlayerContoller : MonoBehaviourPun
 
     private void Awake()
     {
+        if (photonView.IsMine)
+            GetComponent<DistanceController>().enabled = true;
         screenCenter = new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2);
         animator = GetComponent<Animator>();
         cameraArm = GameObject.Find("Camera Arm");
@@ -55,6 +59,12 @@ public class PlayerContoller : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
+        if (!photonView.IsMine)
+        {
+            NetworkManager.Instance.playerList.Add(gameObject.transform);
+            NetworkManager.Instance.playerUILIst.Add(playerUIObjects);
+        }
+
         Cursor.lockState = CursorLockMode.Locked;
 
         if (photonView.IsMine)
@@ -64,7 +74,7 @@ public class PlayerContoller : MonoBehaviourPun
             cameraArm.GetComponent<CameraController>().enabled = true;
             cameraArm.GetComponent<LobbyCameraRatate>().enabled = false;
 
-            cameraArmTransform.rotation = new Quaternion(0, 0, 0, 0);
+            cameraArmTransform.rotation = Quaternion.identity;
             cameraArm.GetComponent<CameraController>().playerTransform = transform;
             cameraArm.GetComponent<CameraController>().playerAvatar = GameObject.Find("Avatar");
             cameraArm.GetComponent<CameraController>().playerContoller = GetComponent<PlayerContoller>();
@@ -77,7 +87,6 @@ public class PlayerContoller : MonoBehaviourPun
 
         DontDestroyOnLoad(cameraArm);
         DontDestroyOnLoad(GameObject.Find("Canvas"));
-        DontDestroyOnLoad(GameObject.Find("ChatController"));
         DontDestroyOnLoad(GameObject.Find("Initializing Object"));
     }
 
@@ -117,6 +126,17 @@ public class PlayerContoller : MonoBehaviourPun
             }
         }
         OpenInfoWindow();
+
+        for (int count = 0; count < NetworkManager.Instance.playerList.Count; count++)
+        {
+            if (Vector3.Distance(playerTransform.position, NetworkManager.Instance.playerList[count].transform.position) < 10)
+            {
+                Debug.Log(PlayfabManager.Instance.playerName + " " + Vector3.Distance(playerTransform.position, NetworkManager.Instance.playerList[count].transform.position));
+                NetworkManager.Instance.playerUILIst[count].SetActive(true);
+            }
+            else
+                NetworkManager.Instance.playerUILIst[count].SetActive(false);
+        }
     }
 
     void GetInput()
@@ -261,5 +281,11 @@ public class PlayerContoller : MonoBehaviourPun
     void OnCursorUnvisible()
     {
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void OnDestroy()
+    {
+        NetworkManager.Instance.playerList.Remove(gameObject.transform);
+        NetworkManager.Instance.playerUILIst.Remove(playerUIObjects);
     }
 }

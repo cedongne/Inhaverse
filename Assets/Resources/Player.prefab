@@ -1188,6 +1188,7 @@ GameObject:
   - component: {fileID: -7487588148025149294}
   - component: {fileID: 7570030817478802208}
   - component: {fileID: 5282641313804920007}
+  - component: {fileID: 2747655832826648342}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -1279,6 +1280,7 @@ MonoBehaviour:
   cameraArmTransform: {fileID: 0}
   playerRigid: {fileID: 4259580593255142575}
   interactionUI: {fileID: 0}
+  playerUIObjects: {fileID: 8165507261125030204}
   walkMoveSpeed: 2
   runMoveSpeed: 4
   prevYPosition: 0
@@ -1513,6 +1515,19 @@ MonoBehaviour:
     MinDelaySoft: 200
     MaxDelaySoft: 400
     MaxDelayHard: 1000
+--- !u!114 &2747655832826648342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4259261389110940774}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e375495e77749a45bc64de4453d5a5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 4254862202448794908}
 --- !u!1 &4259998210754421578
 GameObject:
   m_ObjectHideFlags: 0

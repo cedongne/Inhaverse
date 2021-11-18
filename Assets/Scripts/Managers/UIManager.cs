@@ -70,6 +70,7 @@ public class UIManager : MonoBehaviour
 
     EventFunction eventFunction;
 
+    public int playerCount;
     private UIManager() { }
 
     private static UIManager instance;
