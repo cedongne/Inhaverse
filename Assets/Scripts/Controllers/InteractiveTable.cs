@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Text.RegularExpressions;
+using Photon.Chat;
 
 public class InteractiveTable : InteractiveObject
 {

@@ -81,5 +81,10 @@ public class VoiceManager : MonoBehaviour
         voiceNetwork.Client.GlobalAudioGroup = channelNum;
     }
 
+    public void EnterLobbyChannel()
+    {
+        voiceNetwork.Client.GlobalAudioGroup = 0;
+    }
+
 
 }
