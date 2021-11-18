@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using Photon.Chat;
 
 public class ConferenceManager : MonoBehaviourPun
 {
@@ -28,11 +29,16 @@ public class ConferenceManager : MonoBehaviourPun
 
     public void UpdateConferenceState(string channelName)
     {
-        if (ChatManager.Instance.chatClient.PublicChannels.ContainsKey(channelName))
+        ChatClient client = ChatManager.Instance.chatClient;
+        if (client.PublicChannels.ContainsKey(channelName))
         {
+            foreach (var channel in client.PublicChannels.Values)
+            {
+                Debug.Log(channel.Subscribers + ", " + channel.MaxSubscribers);
+            }
             UIManager.Instance.ConferenceMemberText.text = "[" + "»∏¿«¿Â" + "] " +
-           ChatManager.Instance.chatClient.PublicChannels[channelName].Subscribers.Count + " / "
-           + ChatManager.Instance.chatClient.PublicChannels[channelName].MaxSubscribers;
+           client.PublicChannels[channelName].Subscribers.Count + " / " + 
+           client.PublicChannels[channelName].MaxSubscribers;
         }
     }
 }

@@ -10,6 +10,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 	public ChatClient chatClient;
 	private string userName;
 	private string currentChannelName;
+	private ChannelCreationOptions conferenceOption;
 
 	public InputField inputField;
 	public Text outputText;
@@ -49,6 +50,9 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 	{
 		Application.runInBackground = true;
 		onChat = false;
+		conferenceOption = new ChannelCreationOptions();
+		conferenceOption.MaxSubscribers = 4;
+		conferenceOption.PublishSubscribers = true;
 
 		//		userName = manager.GetComponent<PlayfabManager>().playerName;
 		Debug.Log(PlayfabManager.Instance.playerName);
@@ -99,15 +103,11 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 	{
 		AddLine(string.Format("{0}에 입장하셨습니다.", string.Join(",", channels)));
 		ConferenceManager.Instance.UpdateConferenceState(currentChannelName);
-		foreach (var userName in chatClient.PublicChannels.Keys)
-		{
-			Debug.Log(userName);
-		}
 	}
 
 	public void EnterConferenceChat(string channelName)
     {
-		chatClient.Subscribe(new string[] { channelName }, 10);
+		chatClient.Subscribe(channelName, 0, 10, conferenceOption);
 		currentChannelName = channelName;
     }
 
@@ -194,11 +194,6 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 		UIManager.Instance.CloseWindow();
     }
 
-	void RenewalChannel()
-	{
-		UIManager.Instance.ConferenceMemberText.text = "[" + currentChannelName + "] " + PN.CurrentRoom.PlayerCount + " / " + PN.CurrentRoom.MaxPlayers;
-	}
-
 #region Useless
     public void OnUserSubscribed(string channel, string name) { }
 
@@ -218,12 +213,5 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 			}
 		}
 	}
-
-	public void ExitConference()
-    {
-		LeaveChat();
-		EnterLobbyChat();
-		UIManager.Instance.CloseWindow();
-    }
 	#endregion
 }
