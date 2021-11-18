@@ -82,7 +82,7 @@ public class UIManager : MonoBehaviour
             if (instance == null)
             {
                 var obj = FindObjectOfType<UIManager>();
-                if (obj == null)
+                if (obj != null)
                 {
                     instance = obj;
                 }

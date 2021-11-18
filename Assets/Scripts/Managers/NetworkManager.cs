@@ -17,7 +17,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             if(instance == null)
             {
                 var obj = FindObjectOfType<NetworkManager>();
-                if (obj == null)
+                if (obj != null)
                     instance = obj;
             }
 

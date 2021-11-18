@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Events;
+
 using PlayFab;
 using PlayFab.ClientModels;
 using PlayFab.GroupsModels;
 using PlayFab.DataModels;
 using PlayFab.AuthenticationModels;
-using UnityEngine.UI;
-using UnityEngine.Events;
 
 using Photon.Pun;
 using Photon.Realtime;
@@ -28,7 +29,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             if(instance == null)
             {
                 var obj = FindObjectOfType<PlayfabManager>();
-                if(obj == null)
+                if(obj != null)
                 {
                     instance = obj;
                 }
