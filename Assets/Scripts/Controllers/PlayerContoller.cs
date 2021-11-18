@@ -121,6 +121,7 @@ public class PlayerContoller : MonoBehaviourPun
 
                 DetectInteractiveObject();
                 OnCursorVisible();
+                TeleportWayPoint();
             }
         }
         OpenInfoWindow();
@@ -283,6 +284,18 @@ public class PlayerContoller : MonoBehaviourPun
             }
             else
                 NetworkManager.Instance.playerUILIst[count].SetActive(false);
+        }
+    }
+
+    void TeleportWayPoint()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            playerTransform.position = Vector3.zero;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            playerTransform.position = new Vector3(-23, 0.2f, 37);
         }
     }
 

@@ -16,7 +16,7 @@ namespace OpenCvSharp.Demo
     public class WebCamController : MonoBehaviour
     {
         float timer = 0f;
-        public float delayTime = 10f;
+        public float delayTime = 5f;
         public bool isDelay = false;
         int circle_x = 0, circle_y = 0;
         public RawImage display;
@@ -81,7 +81,7 @@ namespace OpenCvSharp.Demo
          //   Debug.Log(circle_x + " " + circle_y);
             if(circle_x != 0 && circle_y != 0)
             {
-                Cv2.Circle(image, new Point(circle_x, circle_y), 200, Scalar.Green, 3, LineTypes.AntiAlias);
+                Cv2.Circle(image, new Point(circle_x, circle_y), 250, Scalar.Green, 3, LineTypes.AntiAlias);
             }
             destTexture = Unity.MatToTexture(image);
 
