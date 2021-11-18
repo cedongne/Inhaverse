@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 46009337}
   - component: {fileID: 46009341}
   m_Layer: 0
-  m_Name: Cube (3)
+  m_Name: Lamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -367,7 +367,7 @@ GameObject:
   - component: {fileID: 198879716}
   - component: {fileID: 198879715}
   m_Layer: 7
-  m_Name: Plane (1)
+  m_Name: Ceiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -464,7 +464,7 @@ GameObject:
   - component: {fileID: 295144471}
   - component: {fileID: 295144475}
   m_Layer: 0
-  m_Name: Cube (6)
+  m_Name: Lamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -811,7 +811,7 @@ GameObject:
   - component: {fileID: 612422274}
   - component: {fileID: 612422278}
   m_Layer: 0
-  m_Name: Cube (2)
+  m_Name: Lamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1052,7 +1052,7 @@ GameObject:
   - component: {fileID: 704721563}
   - component: {fileID: 704721567}
   m_Layer: 0
-  m_Name: Cube (5)
+  m_Name: Lamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1334,7 +1334,7 @@ GameObject:
   - component: {fileID: 1089037444}
   - component: {fileID: 1089037448}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Lamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1587,7 +1587,7 @@ GameObject:
   - component: {fileID: 1448143544}
   - component: {fileID: 1448143543}
   m_Layer: 7
-  m_Name: Plane (2)
+  m_Name: Ceiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1684,7 +1684,7 @@ GameObject:
   - component: {fileID: 1518961272}
   - component: {fileID: 1518961276}
   m_Layer: 0
-  m_Name: Cube (4)
+  m_Name: Lamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1842,7 +1842,7 @@ GameObject:
   - component: {fileID: 1711448579}
   - component: {fileID: 1711448578}
   m_Layer: 0
-  m_Name: Cube (7)
+  m_Name: Lamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
