@@ -129,6 +129,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 	public void EnterLobbyChat()
 	{
 		chatClient.Subscribe(new string[] { "Lobby" }, 10);
+		currentChannelName = "Lobby";
 	}
 
 	public void LeaveChat()
@@ -210,6 +211,13 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 			}
 		}
 	}
+
+	public void ExitConference()
+    {
+		LeaveChat();
+		EnterLobbyChat();
+		UIManager.Instance.CloseWindow();
+    }
 
 	void RenewalChannel()
 	{
