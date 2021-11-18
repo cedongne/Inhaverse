@@ -5,13 +5,38 @@ using Photon.Pun;
 using Photon.Voice.Unity;
 using Photon.Voice.PUN;
 using Photon.Voice;
-public class VoiceController : MonoBehaviour
+public class VoiceManager : MonoBehaviour
 {
     public Recorder voiceRecorder;
     public PhotonVoiceNetwork voiceNetwork;
     public bool onVoice;
 
     public bool isVoiceDown;
+
+    private static VoiceManager instance;
+
+    public static VoiceManager Instance
+    {
+        get
+        {
+            if(instance == null)
+            {
+                var obj = FindObjectOfType<VoiceManager>();
+                if(obj != null)
+                {
+                    instance = obj;
+                }
+            }
+
+            return instance;
+        }
+    }
+
+    private void Awake()
+    {
+        if(instance == null)
+            instance = GetComponent<VoiceManager>();
+    }
 
     // Start is called before the first frame update
     void Start()

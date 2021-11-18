@@ -22,7 +22,6 @@ public class UIManager : MonoBehaviour
     [Space]
     public PlayerContoller playerController;
     public CameraController cameraController;
-    public VoiceController voiceController;
     public PlayerWebCamUIController webCamUIController;
 
     [Header("===== 강의 데이터 UI =====")]
@@ -123,8 +122,8 @@ public class UIManager : MonoBehaviour
 
     public void VoiceOnOffBtn()
     {
-        voiceController.isVoiceDown = true;
-        voiceController.VoiceOnOff();
+        VoiceManager.Instance.isVoiceDown = true;
+        VoiceManager.Instance.VoiceOnOff();
     }
 
     public void InfoBtn()

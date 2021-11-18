@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Photon.Chat;
 using PN = Photon.Pun.PhotonNetwork;
 
-public class ChatController : MonoBehaviour, IChatClientListener
+public class ChatManager : MonoBehaviour, IChatClientListener
 {
 	private ChatClient chatClient;
 	private string userName;
@@ -20,6 +20,30 @@ public class ChatController : MonoBehaviour, IChatClientListener
 
 	public bool onChat;
 
+	private static ChatManager instance;
+
+	public static ChatManager Instance
+    {
+        get
+        {
+			if(instance == null)
+            {
+				var obj = FindObjectOfType<ChatManager>();
+				if(obj != null)
+                {
+					instance = obj;
+                }
+            }
+
+			return instance;
+        }
+    }
+
+	void Awake()
+    {
+		if(instance == null)
+			instance = GetComponent<ChatManager>();
+    }
 	// Use this for initialization
 	void Start()
 	{

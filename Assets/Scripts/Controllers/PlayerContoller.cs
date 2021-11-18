@@ -31,9 +31,6 @@ public class PlayerContoller : MonoBehaviourPun
     public float prevYPosition;
     public float jumpPower;
 
-    private ChatController chatController;
-    private VoiceController voiceController;
-
     bool isRun;
     bool isJump;
     bool isDown;
@@ -77,8 +74,6 @@ public class PlayerContoller : MonoBehaviourPun
 
         interactionUI = GameObject.Find("Canvas").transform.Find("Interaction UI").gameObject;
         currentTouch = GameObject.Find("Initializing Object").GetComponent<Outline>();
-        chatController = GameObject.Find("ChatController").GetComponent<ChatController>();
-        voiceController = GameObject.Find("VoiceController").GetComponent<VoiceController>();
 
         DontDestroyOnLoad(cameraArm);
         DontDestroyOnLoad(GameObject.Find("Canvas"));
@@ -95,7 +90,7 @@ public class PlayerContoller : MonoBehaviourPun
         }
         if (!UIManager.Instance.isOpenWindow)
         {
-            if (!chatController.onChat)
+            if (!ChatManager.Instance.onChat)
             {
                 Move();
                 JumpDown();
@@ -111,7 +106,7 @@ public class PlayerContoller : MonoBehaviourPun
         }
         if (!UIManager.Instance.isOpenWindow)
         {
-            if (!chatController.onChat)
+            if (!ChatManager.Instance.onChat)
             {
                 GetInput();
                 Jump();

@@ -10,7 +10,7 @@ using OpenCvSharp.Demo;
 using UnityEngine.UI;
 using UnityEngine.Diagnostics;
 
-public class NewBehaviourScript : MonoBehaviour
+public class WebCamController : MonoBehaviour
 {
     public RawImage display;
     WebCamTexture camTexture;

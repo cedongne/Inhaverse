@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2464,7 +2464,7 @@ PrefabInstance:
     - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
-      objectReference: {fileID: 1445569917}
+      objectReference: {fileID: 0}
     - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: voiceController
       value: 
@@ -2472,7 +2472,7 @@ PrefabInstance:
     - target: {fileID: 3193075428056927859, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
-      objectReference: {fileID: 1445569917}
+      objectReference: {fileID: 0}
     - target: {fileID: 6874959947600407547, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: m_Name
       value: table
@@ -2996,8 +2996,9 @@ GameObject:
   - component: {fileID: 295047767}
   - component: {fileID: 295047766}
   - component: {fileID: 295047769}
+  - component: {fileID: 295047770}
   m_Layer: 0
-  m_Name: VoiceController
+  m_Name: CommunicationManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3120,7 +3121,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &295047769
 MonoBehaviour:
@@ -3138,6 +3139,25 @@ MonoBehaviour:
   voiceNetwork: {fileID: 295047766}
   onVoice: 0
   isVoiceDown: 0
+--- !u!114 &295047770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295047765}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9a63786823a961428570af63db3f1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputField: {fileID: 2580658444375160559}
+  outputText: {fileID: 2580658444866257569}
+  manager: {fileID: 472855808}
+  chatScrollBar: {fileID: 2580658445780065053}
+  ifObject: {fileID: 2580658444375160557}
+  sbObject: {fileID: 2580658444259038500}
+  onChat: 0
 --- !u!1 &295763988
 GameObject:
   m_ObjectHideFlags: 0
@@ -3674,7 +3694,7 @@ PrefabInstance:
     - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
-      objectReference: {fileID: 1445569917}
+      objectReference: {fileID: 0}
     - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: voiceController
       value: 
@@ -3682,7 +3702,7 @@ PrefabInstance:
     - target: {fileID: 3193075428056927859, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
-      objectReference: {fileID: 1445569917}
+      objectReference: {fileID: 0}
     - target: {fileID: 6874959947600407547, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: m_Name
       value: table
@@ -4292,7 +4312,7 @@ PrefabInstance:
     - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
-      objectReference: {fileID: 1445569917}
+      objectReference: {fileID: 0}
     - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: voiceController
       value: 
@@ -4300,7 +4320,7 @@ PrefabInstance:
     - target: {fileID: 3193075428056927859, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
-      objectReference: {fileID: 1445569917}
+      objectReference: {fileID: 0}
     - target: {fileID: 6874959947600407547, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: m_Name
       value: table
@@ -4397,7 +4417,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraArm: {fileID: 3650513701645454894}
-  chatController: {fileID: 1445569916}
 --- !u!4 &472855810
 Transform:
   m_ObjectHideFlags: 0
@@ -4499,7 +4518,6 @@ MonoBehaviour:
   playerInfoWindow: {fileID: 442784972}
   playerController: {fileID: 0}
   cameraController: {fileID: 0}
-  voiceController: {fileID: 295047769}
   webCamUIController: {fileID: 0}
   classInstructor: {fileID: 1718740507}
   classNameInput: {fileID: 1440192764}
@@ -5517,7 +5535,7 @@ PrefabInstance:
     - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
-      objectReference: {fileID: 1445569917}
+      objectReference: {fileID: 0}
     - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: voiceController
       value: 
@@ -5525,7 +5543,7 @@ PrefabInstance:
     - target: {fileID: 3193075428056927859, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
-      objectReference: {fileID: 1445569917}
+      objectReference: {fileID: 0}
     - target: {fileID: 6874959947600407547, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: m_Name
       value: table
@@ -7382,7 +7400,7 @@ Transform:
   m_LocalScale: {x: 0.3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &851307255
 GameObject:
@@ -8296,7 +8314,7 @@ PrefabInstance:
     - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
-      objectReference: {fileID: 1445569917}
+      objectReference: {fileID: 0}
     - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: voiceController
       value: 
@@ -8304,7 +8322,7 @@ PrefabInstance:
     - target: {fileID: 3193075428056927859, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
-      objectReference: {fileID: 1445569917}
+      objectReference: {fileID: 0}
     - target: {fileID: 6874959947600407547, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: m_Name
       value: table
@@ -9764,7 +9782,7 @@ PrefabInstance:
     - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
-      objectReference: {fileID: 1445569917}
+      objectReference: {fileID: 0}
     - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: voiceController
       value: 
@@ -9772,7 +9790,7 @@ PrefabInstance:
     - target: {fileID: 3193075428056927859, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
-      objectReference: {fileID: 1445569917}
+      objectReference: {fileID: 0}
     - target: {fileID: 6874959947600407547, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: m_Name
       value: table
@@ -10438,7 +10456,7 @@ PrefabInstance:
     - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
-      objectReference: {fileID: 1445569917}
+      objectReference: {fileID: 0}
     - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: voiceController
       value: 
@@ -10446,7 +10464,7 @@ PrefabInstance:
     - target: {fileID: 3193075428056927859, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
-      objectReference: {fileID: 1445569917}
+      objectReference: {fileID: 0}
     - target: {fileID: 6874959947600407547, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: m_Name
       value: table
@@ -13171,7 +13189,7 @@ PrefabInstance:
     - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
-      objectReference: {fileID: 1445569917}
+      objectReference: {fileID: 0}
     - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: voiceController
       value: 
@@ -13179,7 +13197,7 @@ PrefabInstance:
     - target: {fileID: 3193075428056927859, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
-      objectReference: {fileID: 1445569917}
+      objectReference: {fileID: 0}
     - target: {fileID: 6874959947600407547, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: m_Name
       value: table
@@ -13386,56 +13404,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1440192762}
   m_CullTransparentMesh: 1
---- !u!1 &1445569916
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1445569918}
-  - component: {fileID: 1445569917}
-  m_Layer: 0
-  m_Name: ChatController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1445569917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1445569916}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9a63786823a961428570af63db3f1e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputField: {fileID: 2580658444375160559}
-  outputText: {fileID: 2580658444866257569}
-  manager: {fileID: 472855808}
-  chatScrollBar: {fileID: 2580658445780065053}
-  ifObject: {fileID: 2580658444375160557}
-  sbObject: {fileID: 2580658444259038500}
-  onChat: 0
---- !u!4 &1445569918
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1445569916}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.611002, y: 1.4612026, z: -1.7099743}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1458365932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15639,7 +15607,7 @@ PrefabInstance:
     - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
-      objectReference: {fileID: 1445569917}
+      objectReference: {fileID: 0}
     - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: voiceController
       value: 
@@ -15651,7 +15619,7 @@ PrefabInstance:
     - target: {fileID: 3193075428056927859, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
-      objectReference: {fileID: 1445569917}
+      objectReference: {fileID: 0}
     - target: {fileID: 6874959947600407547, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: m_Name
       value: table
@@ -17481,7 +17449,7 @@ PrefabInstance:
     - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
-      objectReference: {fileID: 1445569917}
+      objectReference: {fileID: 0}
     - target: {fileID: -8558073507064155426, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: voiceController
       value: 
@@ -17489,7 +17457,7 @@ PrefabInstance:
     - target: {fileID: 3193075428056927859, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: chatController
       value: 
-      objectReference: {fileID: 1445569917}
+      objectReference: {fileID: 0}
     - target: {fileID: 6874959947600407547, guid: 2878002c7a0eae749a7aa27ae2457665, type: 3}
       propertyPath: m_Name
       value: table
@@ -19660,7 +19628,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2081854422
 GameObject:
@@ -24129,7 +24097,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1445569917}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChatController, Assembly-CSharp
         m_MethodName: ScrollBar_OnValueChange
         m_Mode: 1

@@ -26,7 +26,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
 
     public GameObject cameraArm;
-    public GameObject chatController;
     GameObject player;
     GameObject playerNameTextUI;
 
@@ -63,7 +62,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         string[] splitedTimeTableData = UtilityMethods.SplitTimeTableUserData(classData);
 
         PN.LeaveRoom();
-        chatController.GetComponent<ChatController>().LeaveChat();
+        ChatManager.Instance.LeaveChat();
 
         SceneManager.LoadScene("ClassroomScene");
         if(UtilityMethods.DetermineAllowClassEnter(splitedTimeTableData))
@@ -101,7 +100,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         SpawnPlayer();
         UIManager.Instance.ShowUI(Define.UI.HUD);
         cameraArm.GetComponent<CameraController>().enabled = true;
-        chatController.GetComponent<ChatController>().ChatStart();
+        ChatManager.Instance.ChatStart();
     }
 
     void SpawnPlayer()

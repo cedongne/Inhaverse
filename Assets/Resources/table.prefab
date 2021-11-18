@@ -129,4 +129,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1966708710936e24799680aebd6326d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chatController: {fileID: 0}
+  chairs: 

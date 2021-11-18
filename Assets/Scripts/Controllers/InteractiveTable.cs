@@ -5,11 +5,9 @@ using System.Text.RegularExpressions;
 
 public class InteractiveTable : InteractiveObject
 {
-    public ChatController chatController;
-    public VoiceController voiceController;
+    public bool[] chairs;
 
     private byte conferenceNum;
-
 
     public override void Interaction()
     {
@@ -20,15 +18,20 @@ public class InteractiveTable : InteractiveObject
 
     void ChatControl()
     {
-        chatController.LeaveChat();
-        chatController.EnterConferenceChat(transform.parent.name);
+        ChatManager.Instance.LeaveChat();
+        ChatManager.Instance.EnterConferenceChat(transform.parent.name);
     }
 
     void VoiceControl()
     {
         SetConferenceNum(transform.parent.name);
         Debug.Log("channelNum: " + conferenceNum);
-        voiceController.ChangeVoiceChannel(conferenceNum);
+        VoiceManager.Instance.ChangeVoiceChannel(conferenceNum);
+    }
+
+    void SittingChair()
+    {
+        
     }
 
     public void SetConferenceNum(string str)
