@@ -7,7 +7,7 @@ public class LobbyCameraRatate : MonoBehaviour
     Transform cameraArmTransform;
 
     [SerializeField]
-    private Vector3 rotateSpeed = new Vector3(0, 0.2f, 0);
+    private Vector3 rotateSpeed = new Vector3(0, 1f, 0);
 
     private void Awake()
     {
@@ -16,6 +16,6 @@ public class LobbyCameraRatate : MonoBehaviour
 
     private void Update()
     {
-        cameraArmTransform.Rotate(rotateSpeed);
+        cameraArmTransform.Rotate(rotateSpeed * Time.deltaTime * 50);
     }
 }

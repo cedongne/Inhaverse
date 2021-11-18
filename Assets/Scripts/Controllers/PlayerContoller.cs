@@ -242,11 +242,14 @@ public class PlayerContoller : MonoBehaviourPun
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            Debug.Log("I is Down");
             if (!UIManager.Instance.playerInfoWindow.activeSelf)
                 UIManager.Instance.InfoBtn();
             else
                 UIManager.Instance.CloseWindow();
+            foreach (var name in ChatManager.Instance.chatClient.PublicChannels.Keys)
+            {
+                Debug.Log(name);
+            }
         }
     }
 

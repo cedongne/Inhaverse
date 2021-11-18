@@ -7,7 +7,7 @@ using PN = Photon.Pun.PhotonNetwork;
 
 public class ChatManager : MonoBehaviour, IChatClientListener
 {
-	private ChatClient chatClient;
+	public ChatClient chatClient;
 	private string userName;
 	private string currentChannelName;
 
@@ -76,21 +76,6 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 		}
 	}
 
-	public void DebugReturn(ExitGames.Client.Photon.DebugLevel level, string message)
-	{
-		if (level == ExitGames.Client.Photon.DebugLevel.ERROR)
-		{
-			Debug.LogError(message);
-		}
-		else if (level == ExitGames.Client.Photon.DebugLevel.WARNING)
-		{
-			Debug.LogWarning(message);
-		}
-		else
-		{
-			Debug.Log(message);
-		}
-	}
 
 	public void OnConnected()
 	{
@@ -113,16 +98,16 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 	public void OnSubscribed(string[] channels, bool[] results)
 	{
 		AddLine(string.Format("{0}에 입장하셨습니다.", string.Join(",", channels)));
+		foreach (var userName in chatClient.PublicChannels.Keys)
+		{
+			Debug.Log(userName);
+		}
 	}
 
 	public void EnterConferenceChat(string channelName)
     {
 		chatClient.Subscribe(new string[] { channelName }, 10);
 		currentChannelName = channelName;
-		foreach(var name in chatClient.PublicChannels.Keys)
-        {
-			Debug.Log(name);
-        }
     }
 
 	public void LeaveConferenceChat(string channelName)
@@ -151,8 +136,6 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 	{
 		AddLine(string.Format("{0}에서 퇴장하셨습니다.", string.Join(",", channels)));
 	}
-	public void OnUserSubscribed(string channel, string name) { }
-	public void OnUserUnsubscribed(string channel, string name) { }
 
 	public void OnGetMessages(string channelName, string[] senders, object[] messages)
 	{
@@ -203,6 +186,25 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 		}
 	}
 
+	public void ExitConference()
+    {
+		LeaveChat();
+		EnterLobbyChat();
+		UIManager.Instance.CloseWindow();
+    }
+
+	void RenewalChannel()
+	{
+		UIManager.Instance.ConferenceMemberText.text = "[" + currentChannelName + "] " + PN.CurrentRoom.PlayerCount + " / " + PN.CurrentRoom.MaxPlayers;
+	}
+
+#region Useless
+    public void OnUserSubscribed(string channel, string name) { }
+
+	public void OnUserUnsubscribed(string channel, string name) { }
+
+	public void DebugReturn(ExitGames.Client.Photon.DebugLevel level, string message) { }
+
 	public void Input_OnEndEdit(string text)
 	{
 		if (chatClient.State == ChatState.ConnectedToFrontEnd)
@@ -215,16 +217,5 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 			}
 		}
 	}
-
-	public void ExitConference()
-    {
-		LeaveChat();
-		EnterLobbyChat();
-		UIManager.Instance.CloseWindow();
-    }
-
-	void RenewalChannel()
-	{
-		UIManager.Instance.ConferenceMemberText.text = "[" + currentChannelName + "] " + PN.CurrentRoom.PlayerCount + " / " + PN.CurrentRoom.MaxPlayers;
-	}
+	#endregion
 }
