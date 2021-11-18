@@ -40,11 +40,7 @@ public class ConferenceManager : MonoBehaviourPun
         ChatClient client = ChatManager.Instance.chatClient;
         if (client.PublicChannels.ContainsKey(ChatManager.Instance.currentChannelName))
         {
-            foreach (var channel in client.PublicChannels.Values)
-            {
-                Debug.Log(channel.Subscribers + ", " + channel.MaxSubscribers);
-            }
-            UIManager.Instance.ConferenceMemberText.text = "[" + "회의장" + "] " +
+           UIManager.Instance.ConferenceMemberText.text = "[" + "회의장" + "] " +
            client.PublicChannels[ChatManager.Instance.currentChannelName].Subscribers.Count + " / " + 
            client.PublicChannels[ChatManager.Instance.currentChannelName].MaxSubscribers;
         }
