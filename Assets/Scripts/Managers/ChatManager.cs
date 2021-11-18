@@ -9,7 +9,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 {
 	public ChatClient chatClient;
 	private string userName;
-	private string currentChannelName;
+	public  string currentChannelName;
 	private ChannelCreationOptions conferenceOption;
 
 	public InputField inputField;
@@ -102,7 +102,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 	public void OnSubscribed(string[] channels, bool[] results)
 	{
 		AddLine(string.Format("{0}에 입장하셨습니다.", string.Join(",", channels)));
-		ConferenceManager.Instance.UpdateConferenceState(currentChannelName);
+		ConferenceManager.Instance.UpdateConferenceState();
 	}
 
 	public void EnterConferenceChat(string channelName)
@@ -136,7 +136,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 	public void OnUnsubscribed(string[] channels)
 	{
 		AddLine(string.Format("{0}에서 퇴장하셨습니다.", string.Join(",", channels)));
-		ConferenceManager.Instance.UpdateConferenceState(string.Join(",", channels));
+		ConferenceManager.Instance.UpdateConferenceState();
 	}
 
 	public void OnGetMessages(string channelName, string[] senders, object[] messages)

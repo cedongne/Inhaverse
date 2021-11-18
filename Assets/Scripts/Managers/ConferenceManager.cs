@@ -27,18 +27,28 @@ public class ConferenceManager : MonoBehaviourPun
         }
     }
 
-    public void UpdateConferenceState(string channelName)
+    public string channelName;
+
+    public void UpdateConferenceState()
     {
+        Debug.Log("AAA");
+        photonView.RPC("UpdateConferenceStateRPC", RpcTarget.AllBuffered);
+    }
+
+    [PunRPC]
+    public void UpdateConferenceStateRPC()
+    {
+        Debug.Log("bbbb");
         ChatClient client = ChatManager.Instance.chatClient;
-        if (client.PublicChannels.ContainsKey(channelName))
+        if (client.PublicChannels.ContainsKey(ChatManager.Instance.currentChannelName))
         {
             foreach (var channel in client.PublicChannels.Values)
             {
                 Debug.Log(channel.Subscribers + ", " + channel.MaxSubscribers);
             }
             UIManager.Instance.ConferenceMemberText.text = "[" + "»∏¿«¿Â" + "] " +
-           client.PublicChannels[channelName].Subscribers.Count + " / " + 
-           client.PublicChannels[channelName].MaxSubscribers;
+           client.PublicChannels[ChatManager.Instance.currentChannelName].Subscribers.Count + " / " + 
+           client.PublicChannels[ChatManager.Instance.currentChannelName].MaxSubscribers;
         }
     }
 }

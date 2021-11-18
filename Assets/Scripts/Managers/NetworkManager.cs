@@ -112,7 +112,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         if (player == null)
         {
-            player = PN.Instantiate("Player", Vector3.zero, Quaternion.identity);
+            player = PN.Instantiate("Player", new Vector3(-23, 0.2f, 37), Quaternion.identity);
 //            playerNameTextUI = player.GetComponentInChildren<PlayerNameTextUIController>().gameObject;
             //            playerNameTextUI = Instantiate(Resources.Load<GameObject>("PlayerNameTextUI"));
 //            playerNameTextUI.GetComponent<PlayerNameTextUIController>().playerTransform = player.transform;
