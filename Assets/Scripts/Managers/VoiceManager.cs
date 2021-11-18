@@ -41,6 +41,7 @@ public class VoiceManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        voiceNetwork.Client.GlobalAudioGroup = 255;
         voiceRecorder.TransmitEnabled = true;
         onVoice = true;
     }
@@ -83,7 +84,7 @@ public class VoiceManager : MonoBehaviour
 
     public void EnterLobbyChannel()
     {
-        voiceNetwork.Client.GlobalAudioGroup = 0;
+        voiceNetwork.Client.GlobalAudioGroup = 255;
     }
 
 
