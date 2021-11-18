@@ -1,85 +1,107 @@
-using System;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using OpenCvSharp;
-using OpenCvSharp.Demo;
-using UnityEngine.UI;
-using UnityEngine.Diagnostics;
 
-public class WebCamController : MonoBehaviour
+namespace OpenCvSharp.Demo
 {
-    public RawImage display;
-    WebCamTexture camTexture;
-    private int currentIndex = 0;
-    String filenameFaceCascade =
-        "Assets/OpenCV+Unity/Resources/haarcascade_frontalface_default.xml";
-    CascadeClassifier faceCascade = new CascadeClassifier();
+    using System;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    using OpenCvSharp;
+    using OpenCvSharp.Demo;
+    using UnityEngine.UI;
+    using UnityEngine.Diagnostics;
 
-    //if(!faceCascade.Load(filenameFaceCascade))
-    //{
-    //    Debug.Log("Video Load Error");
-    //}
-    // Start is called before the first frame update
-    void Start()
+    public class WebCamController : MonoBehaviour
     {
-        if (camTexture != null)
+        float timer = 0f;
+        public float delayTime = 10f;
+        public bool isDelay = false;
+        int circle_x = 0, circle_y = 0;
+        public RawImage display;
+        WebCamTexture camTexture;
+        private int currentIndex = 0;
+        String filenameFaceCascade =
+            "Assets/Resources/haarcascade_frontalface_default.xml";
+        CascadeClassifier faceCascade = new CascadeClassifier();
+
+        // Start is called before the first frame update
+        void Start()
         {
-            display.texture = null;
-            camTexture.Stop();
-            camTexture = null;
+            if (camTexture != null)
+            {
+                display.texture = null;
+                camTexture.Stop();
+                camTexture = null;
+            }
+            //VideoCapture capture = new VideoCapture(0);
+
+            WebCamDevice device = WebCamTexture.devices[currentIndex];
+            camTexture = new WebCamTexture(device.name);
+          //  display.texture = camTexture;
+            camTexture.Play();
+
+            if (!faceCascade.Load(filenameFaceCascade))
+            {
+                Debug.Log("Video Load Error");
+            }
         }
-        //VideoCapture capture = new VideoCapture(0);
 
-        WebCamDevice device = WebCamTexture.devices[currentIndex];
-        camTexture = new WebCamTexture(device.name);
-        display.texture = camTexture;
-        camTexture.Play();
-
-        Mat image = new Mat();
-        while (true)
+        // Update is called once per frame
+        void Update()
         {
-            //Texture2D destTexture = new Texture2D(camTexture.width, camTexture.height, TextureFormat.ARGB32, false);
+            Mat image = new Mat();
+            Mat dst = new Mat();
+            Texture2D destTexture = new Texture2D(camTexture.width, camTexture.height, TextureFormat.ARGB32, false);
+            //Texture2D tmpTexture = new Texture2D();
+            image = Unity.TextureToMat(camTexture);
+
             //Color[] textureData = camTexture.GetPixels();
             //destTexture.SetPixels(textureData);
 
-            //Mat mat = Unity.TextureToMat(this.texture);
             //Mat grayMat = new Mat();
-            //Cv2.CvtColor(mat, grayMat, ColorConversionCodes.BGR2GRAY);
-
-            //     image = new Mat(camTexture.height, camTexture.width, CvType.CV_8UC4); 
-            if (image.Empty())
-                break;
-
+            //Cv2.CvtColor(image, grayMat, ColorConversionCodes.BGR2GRAY);
+                      
             //detect Rect
-            //            OpenCvSharp.Rect[] faces = faceCascade.DetectMultiScale(image);
-            //            foreach (var item in faces)
-            //            {
-            //                //Cv2.Rectangle(image, item, Scalar.Red); // add rectangle to the image
-            //                int circle_x = item.Left + (item.Width / 2);
-            //                int circle_y = item.Top + (item.Height / 2);
-            //                Cv2.Circle(image, new Point(circle_x, circle_y), 140, Scalar.Green, 3, LineTypes.AntiAlias);
+            if (!isDelay)
+            {
+                OpenCvSharp.Rect[] faces = faceCascade.DetectMultiScale(image);
+                foreach (var item in faces)
+                {
+                    //Cv2.Rectangle(image, item, Scalar.Red); // add rectangle to the image
 
-            ////                Console.WriteLine("faces : " + item);
-            //            }
+                    circle_x = item.Left + (item.Width / 2);
+                    circle_y = item.Top + (item.Height / 2);
 
-            //display
-            //         window.ShowImage(image);
+                    //   dst = image.SubMat(item);
+                }
+                isDelay = true;
+            }
+         //   Debug.Log(circle_x + " " + circle_y);
+            if(circle_x != 0 && circle_y != 0)
+            {
+                Cv2.Circle(image, new Point(circle_x, circle_y), 200, Scalar.Green, 3, LineTypes.AntiAlias);
+            }
+            destTexture = Unity.MatToTexture(image);
 
-            //Cv2.WaitKey(sleepTime);
-            //if (Cv2.WaitKey(33) == 'q')
+            //camTexture = new WebCamTexture(destTexture.height, destTexture.width);
+
+            //if(!dst.Empty())
             //{
-            //    break;
+            //    destTexture = Unity.MatToTexture(dst);
             //}
-        }
-    }
+            display.texture = destTexture;
 
-    // Update is called once per frame
-    void Update()
-    {
-        //        Utils.webCamTextureToMat(camTexture, rgbaMat, colors);   
+            if (isDelay)
+            {
+                timer += Time.deltaTime;
+                if (timer >= delayTime)
+                {
+                    timer = 0f;
+                    isDelay = false;
+                }
+            }
+        }
     }
 }
