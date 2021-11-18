@@ -7,7 +7,7 @@ using PN = Photon.Pun.PhotonNetwork;
 
 public class ChatManager : MonoBehaviour, IChatClientListener
 {
-	private ChatClient chatClient;
+	public ChatClient chatClient;
 	private string userName;
 	private string currentChannelName;
 
@@ -113,16 +113,13 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 	public void OnSubscribed(string[] channels, bool[] results)
 	{
 		AddLine(string.Format("{0}에 입장하셨습니다.", string.Join(",", channels)));
+		ConferenceManager.Instance.UpdateConferenceState(currentChannelName);
 	}
 
 	public void EnterConferenceChat(string channelName)
     {
 		chatClient.Subscribe(new string[] { channelName }, 10);
 		currentChannelName = channelName;
-		foreach(var name in chatClient.PublicChannels.Keys)
-        {
-			Debug.Log(name);
-        }
     }
 
 	public void LeaveConferenceChat(string channelName)
@@ -222,9 +219,4 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 		EnterLobbyChat();
 		UIManager.Instance.CloseWindow();
     }
-
-	void RenewalChannel()
-	{
-		UIManager.Instance.ConferenceMemberText.text = "[" + currentChannelName + "] " + PN.CurrentRoom.PlayerCount + " / " + PN.CurrentRoom.MaxPlayers;
-	}
 }
