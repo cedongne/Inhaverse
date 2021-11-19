@@ -32,21 +32,18 @@ namespace OpenCvSharp
 
         void Update()
         {
-            if (nowDisplay.gameObject.activeSelf)
+            if (ChatManager.Instance.currentChannelName.Contains("Conference"))
             {
-                if (ChatManager.Instance.currentChannelName.Contains("Conference"))
-                {
-                    nowDisplay = conferenceDisplay;
-                }
-                else
-                {
-                    nowDisplay = headDisplay;
-                }
-                image = Unity.TextureToMat(camTexture);
-                destTexture = Unity.MatToTexture(image);
-
-                nowDisplay.texture = destTexture;
+                nowDisplay = conferenceDisplay;
             }
+            else
+            {
+                nowDisplay = headDisplay;
+            }
+            image = Unity.TextureToMat(camTexture);
+            destTexture = Unity.MatToTexture(image);
+
+            nowDisplay.texture = destTexture;
         }
 
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
