@@ -24,6 +24,7 @@ namespace OpenCvSharp
         void Start()
         {
             WebCamDevice device = WebCamTexture.devices[0];
+            Debug.Log(device.name);
             camTexture = new WebCamTexture(device.name);
             camTexture.Play();
             nowDisplay = headDisplay;
@@ -34,7 +35,19 @@ namespace OpenCvSharp
         {
             if (ChatManager.Instance.currentChannelName.Contains("Conference"))
             {
-                nowDisplay = conferenceDisplay;
+                if (ChatManager.Instance.currentChannelName.Contains("Conference"))
+                {
+                    nowDisplay = conferenceDisplay;
+                }
+                else
+                {
+                    nowDisplay = headDisplay;
+                }
+                image = Unity.TextureToMat(camTexture);
+                Debug.Log(image);
+                destTexture = Unity.MatToTexture(image);
+
+                nowDisplay.texture = destTexture;
             }
             else
             {
