@@ -12,7 +12,9 @@ namespace OpenCvSharp
     public class WebCamController : MonoBehaviourPunCallbacks, IPunObservable
     {
         WebCamTexture camTexture;
-        public RawImage display;
+        public RawImage headDisplay;
+        public RawImage conferenceDisplay;
+        public RawImage nowDisplay;
 
         Mat image = new Mat();
         Texture2D destTexture;
@@ -24,22 +26,32 @@ namespace OpenCvSharp
             WebCamDevice device = WebCamTexture.devices[0];
             camTexture = new WebCamTexture(device.name);
             camTexture.Play();
+            nowDisplay = headDisplay;
+            conferenceDisplay = RpcUIManager.Instance.webCamImageList[3].GetComponent<RawImage>();
         }
 
         void Update()
         {
-            if (display.gameObject.activeSelf)
+            if (nowDisplay.gameObject.activeSelf)
             {
+                if (ChatManager.Instance.currentChannelName.Contains("Conference"))
+                {
+                    nowDisplay = conferenceDisplay;
+                }
+                else
+                {
+                    nowDisplay = headDisplay;
+                }
                 image = Unity.TextureToMat(camTexture);
                 destTexture = Unity.MatToTexture(image);
 
-                display.texture = destTexture;
+                nowDisplay.texture = destTexture;
             }
         }
 
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
-
+        
         }
     }
 }
