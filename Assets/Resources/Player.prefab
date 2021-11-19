@@ -1978,8 +1978,6 @@ GameObject:
   - component: {fileID: 1113099487271530628}
   - component: {fileID: 4962502739472693860}
   - component: {fileID: 7815241381185037499}
-  - component: {fileID: 1361519466371171560}
-  - component: {fileID: 2466058584733931786}
   m_Layer: 5
   m_Name: PlayerCam
   m_TagString: Untagged
@@ -2041,33 +2039,3 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &1361519466371171560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8594035940355474103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72b4960a6a9fb94da7e467a49497c9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delayTime: 0.5
-  isDelay: 0
-  display: {fileID: 0}
---- !u!114 &2466058584733931786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8594035940355474103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72b4960a6a9fb94da7e467a49497c9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delayTime: 0.5
-  isDelay: 0
-  display: {fileID: 0}

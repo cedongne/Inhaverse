@@ -34,7 +34,6 @@ namespace OpenCvSharp
                 destTexture = Unity.MatToTexture(image);
 
                 display.texture = destTexture;
-
             }
         }
 
