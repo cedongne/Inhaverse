@@ -18,17 +18,18 @@ namespace OpenCvSharp
 
         void Start()
         {
-            WebCamDevice device = WebCamTexture.devices[currentIndex];
+            WebCamDevice device = WebCamTexture.devices[0];
             camTexture = new WebCamTexture(device.name);
             camTexture.Play();
-
         }
 
         void Update()
         {
             Mat image = new Mat();
-
             image = Unity.TextureToMat(camTexture);
+            Texture2D destTexture = Unity.MatToTexture(image);
+
+            display.texture = destTexture;
         }
 
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
