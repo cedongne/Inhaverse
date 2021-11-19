@@ -102,7 +102,14 @@ public class UIManager : MonoBehaviour
         }
     }
 
-#region HUD Icons
+    public void UIInitFromPlayfabLogin(string _playerName, string _playerSchoolId)
+    {
+        playerName.text = _playerName;
+        playerSchoolId.text = _playerSchoolId;
+        playerController.name = _playerName;
+        
+    }
+    #region HUD Icons
     public void ChangeViewBtn()
     {
         cameraController.isChangeCameraModeDown = true;
