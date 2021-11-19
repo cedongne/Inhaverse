@@ -14,6 +14,9 @@ namespace OpenCvSharp
         WebCamTexture camTexture;
         public RawImage display;
 
+        Mat image = new Mat();
+        Texture2D destTexture;
+
         private int currentIndex = 0;
 
         void Start()
@@ -25,11 +28,14 @@ namespace OpenCvSharp
 
         void Update()
         {
-            Mat image = new Mat();
-            image = Unity.TextureToMat(camTexture);
-            Texture2D destTexture = Unity.MatToTexture(image);
+            if (display.gameObject.activeSelf)
+            {
+                image = Unity.TextureToMat(camTexture);
+                destTexture = Unity.MatToTexture(image);
 
-            display.texture = destTexture;
+                display.texture = destTexture;
+
+            }
         }
 
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
