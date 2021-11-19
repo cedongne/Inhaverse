@@ -22,6 +22,7 @@ namespace OpenCvSharp
         void Start()
         {
             WebCamDevice device = WebCamTexture.devices[0];
+            Debug.Log(device.name);
             camTexture = new WebCamTexture(device.name);
             camTexture.Play();
         }
@@ -31,6 +32,7 @@ namespace OpenCvSharp
             if (display.gameObject.activeSelf)
             {
                 image = Unity.TextureToMat(camTexture);
+                Debug.Log(image);
                 destTexture = Unity.MatToTexture(image);
 
                 display.texture = destTexture;
