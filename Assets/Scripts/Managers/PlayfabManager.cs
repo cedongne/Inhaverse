@@ -83,6 +83,17 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         networkManager = NetworkManager.Instance;
     }
 
+    public void ClickStudentToggle()
+    {
+        instructorToggle.isOn = false;
+        studentToggle.isOn = true;
+    }
+    public void ClickInstructorToggle()
+    {
+        studentToggle.isOn = false;
+        instructorToggle.isOn = true;
+    }
+
 #region PlayFab Login, Register
     public void LoginBtn()
     {
