@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class PlayerContoller : MonoBehaviourPun, IPunObservable
+public class PlayerContoller : MonoBehaviourPun
 {
     [SerializeField]
     private Transform playerTransform;
@@ -316,19 +316,4 @@ public class PlayerContoller : MonoBehaviourPun, IPunObservable
         RpcUIManager.Instance.playerUILIst.Remove(playerUIObjects);
     }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            stream.SendNext(name);
-        }
-        else
-        {
-            if (playerList.Contains((string)stream.ReceiveNext()))
-            {
-                PhotonNetwork.Disconnect();
-            }
-        }
-        throw new System.NotImplementedException();
-    }
 }

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 using Photon.Pun;
 using Photon.Realtime;
 using Photon.Chat;
@@ -29,7 +31,8 @@ public class ConferenceManager : MonoBehaviourPun
 
     public string channelName;
 
-    public Dictionary<string, string> channelWebCamImageList;
+    public List<GameObject> players;
+    public List<RawImage> webCamImages;
 
     public void UpdateConferenceState()
     {
@@ -45,6 +48,11 @@ public class ConferenceManager : MonoBehaviourPun
             UIManager.Instance.ConferenceMemberText.text = "[" + "È¸ÀÇ½Ç" + "] " +
                 client.PublicChannels[ChatManager.Instance.currentChannelName].Subscribers.Count + " / " + 
                 client.PublicChannels[ChatManager.Instance.currentChannelName].MaxSubscribers;
+
+            foreach(var name in client.PublicChannels[ChatManager.Instance.currentChannelName].Subscribers)
+            {
+                players.Add(GameObject.Find(name));
+            }
         }
     }
 }
