@@ -1532,6 +1532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   headDisplay: {fileID: 7815241381185037499}
   conferenceDisplay: {fileID: 0}
+  nowDisplay: {fileID: 0}
 --- !u!1 &4259998210754421578
 GameObject:
   m_ObjectHideFlags: 0
