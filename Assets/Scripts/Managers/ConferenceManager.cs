@@ -29,6 +29,8 @@ public class ConferenceManager : MonoBehaviourPun
 
     public string channelName;
 
+    public Dictionary<string, string> channelWebCamImageList;
+
     public void UpdateConferenceState()
     {
         photonView.RPC("UpdateConferenceStateRPC", RpcTarget.AllBuffered);
@@ -40,9 +42,9 @@ public class ConferenceManager : MonoBehaviourPun
         ChatClient client = ChatManager.Instance.chatClient;
         if (client.PublicChannels.ContainsKey(ChatManager.Instance.currentChannelName))
         {
-           UIManager.Instance.ConferenceMemberText.text = "[" + "회의장" + "] " +
-           client.PublicChannels[ChatManager.Instance.currentChannelName].Subscribers.Count + " / " + 
-           client.PublicChannels[ChatManager.Instance.currentChannelName].MaxSubscribers;
+            UIManager.Instance.ConferenceMemberText.text = "[" + "회의실" + "] " +
+                client.PublicChannels[ChatManager.Instance.currentChannelName].Subscribers.Count + " / " + 
+                client.PublicChannels[ChatManager.Instance.currentChannelName].MaxSubscribers;
         }
     }
 }

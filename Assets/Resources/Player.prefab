@@ -1280,6 +1280,7 @@ MonoBehaviour:
   playerRigid: {fileID: 4259580593255142575}
   interactionUI: {fileID: 0}
   playerUIObjects: {fileID: 8165507261125030204}
+  webCamImage: {fileID: 0}
   walkMoveSpeed: 2
   runMoveSpeed: 4
   prevYPosition: 0

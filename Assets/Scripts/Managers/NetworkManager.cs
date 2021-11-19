@@ -8,7 +8,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using PN = Photon.Pun.PhotonNetwork;
 
-public class NetworkManager : MonoBehaviourPunCallbacks
+public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
 {
     private NetworkManager() { }
 
@@ -34,9 +34,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     string network_state;
     string room_name;
-
-    public List<Transform> playerList;
-    public List<GameObject> playerUILIst;
 
     private void Awake()
     {
@@ -97,6 +94,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnLeftLobby()
     {
+        PlayfabManager.Instance.UpdateLeaderBoard("Login", 0);
         Debug.Log("플레이어가 퇴장했습니다.");
     }
 
