@@ -3228,7 +3228,7 @@ MonoBehaviour:
   voiceDetectionThreshold: 0.01
   voiceDetectionDelayMs: 500
   unityMicrophoneDevice: 
-  photonMicrophoneDeviceId: -1
+  photonMicrophoneDeviceId: 0
   interestGroup: 0
   debugEchoMode: 0
   reliableMode: 0
@@ -3323,6 +3323,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   channelName: 
+  players: []
+  webCamImages: []
 --- !u!114 &295047772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3359,7 +3361,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerList: []
   playerUILIst: []
-  webCamImageList: []
+  webCamImageList:
+  - {fileID: 436794833}
+  - {fileID: 1101633629}
+  - {fileID: 525811200}
 --- !u!1 &295763988
 GameObject:
   m_ObjectHideFlags: 0
@@ -9003,6 +9008,7 @@ RectTransform:
   - {fileID: 1828494052}
   - {fileID: 1563579448}
   - {fileID: 442784973}
+  - {fileID: 1291655998}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
