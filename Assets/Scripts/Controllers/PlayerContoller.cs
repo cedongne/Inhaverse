@@ -20,6 +20,8 @@ public class PlayerContoller : MonoBehaviourPun
     private GameObject interactionUI;
     [SerializeField]
     private GameObject playerUIObjects;
+    [SerializeField]
+    private GameObject webCamImage;
 
     private Vector3 screenCenter;
     private InputField inputField;
@@ -42,13 +44,21 @@ public class PlayerContoller : MonoBehaviourPun
     public bool isCamDown;
     public bool isInfoWindowDown;
 
+    int count = 0;
+
     public Outline currentTouch;
+
+    public List<string> playerList;
 
     Vector3 InteractionUIOffsetForMouse = new Vector3(120, -50);
     Vector3 InteractionUIOffsetForLook = new Vector3(170, -75.5f);
 
     private void Awake()
     {
+        if (!photonView.IsMine)
+        {
+            name = photonView.Owner.NickName;
+        }
         screenCenter = new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2);
         animator = GetComponent<Animator>();
         cameraArm = GameObject.Find("Camera Arm");
@@ -59,8 +69,9 @@ public class PlayerContoller : MonoBehaviourPun
     {
         if (!photonView.IsMine)
         {
-            NetworkManager.Instance.playerList.Add(gameObject.transform);
-            NetworkManager.Instance.playerUILIst.Add(playerUIObjects);
+            RpcUIManager.Instance.playerList.Add(gameObject.transform);
+            RpcUIManager.Instance.playerUILIst.Add(playerUIObjects);
+            RpcUIManager.Instance.webCamImageList.Add(webCamImage);
         }
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -276,14 +287,14 @@ public class PlayerContoller : MonoBehaviourPun
 
     void ShowPlayerUIAsDistance()
     {
-        for (int count = 0; count < NetworkManager.Instance.playerList.Count; count++)
+        for (int count = 0; count < RpcUIManager.Instance.playerList.Count; count++)
         {
-            if (Vector3.Distance(playerTransform.position, NetworkManager.Instance.playerList[count].transform.position) < 10)
+            if (Vector3.Distance(playerTransform.position, RpcUIManager.Instance.playerList[count].transform.position) < 10)
             {
-                NetworkManager.Instance.playerUILIst[count].SetActive(true);
+                RpcUIManager.Instance.playerUILIst[count].SetActive(true);
             }
             else
-                NetworkManager.Instance.playerUILIst[count].SetActive(false);
+                RpcUIManager.Instance.playerUILIst[count].SetActive(false);
         }
     }
 
@@ -301,7 +312,8 @@ public class PlayerContoller : MonoBehaviourPun
 
     private void OnDestroy()
     {
-        NetworkManager.Instance.playerList.Remove(gameObject.transform);
-        NetworkManager.Instance.playerUILIst.Remove(playerUIObjects);
+        RpcUIManager.Instance.playerList.Remove(gameObject.transform);
+        RpcUIManager.Instance.playerUILIst.Remove(playerUIObjects);
     }
+
 }

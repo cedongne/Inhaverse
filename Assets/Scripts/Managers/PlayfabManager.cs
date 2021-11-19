@@ -40,7 +40,6 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
     }
 
     public PlayerLeaderboardEntry MyPlayFabInfo;
-    public List<PlayerLeaderboardEntry> PlayFabUserList = new List<PlayerLeaderboardEntry>();
 
     public NetworkManager networkManager;
 
@@ -238,10 +237,9 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                 playerName = result.AccountInfo.TitleInfo.DisplayName;
                 playerSchoolId = result.AccountInfo.Username;
 
-                UIManager.Instance.playerName.text = playerName;
-                UIManager.Instance.playerSchoolId.text = playerSchoolId;
-//                photonView.Owner.NickName = playerName;
-//                Debug.Log("Owner : " + photonView.Owner.NickName);
+                UpdateLeaderBoard("Login", 1);
+
+                UIManager.Instance.UIInitFromPlayfabLogin(playerName, playerSchoolId);
 
                 ChatManager.Instance.enabled = true;
                 Debug.Log("플레이어 정보 로드 성공, 이름 : " + playerName + ", 학번 : " + playerSchoolId);

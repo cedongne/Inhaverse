@@ -37,6 +37,7 @@ namespace OpenCvSharp.Demo
             }
             //VideoCapture capture = new VideoCapture(0);
 
+            Debug.Log(currentIndex);
             WebCamDevice device = WebCamTexture.devices[currentIndex];
             camTexture = new WebCamTexture(device.name);
           //  display.texture = camTexture;

@@ -12,5 +12,6 @@ public class InteractiveObject : MonoBehaviour
     {
         Debug.Log("This is interactive object. Overrides interaction function.");
     }
+
     
 }

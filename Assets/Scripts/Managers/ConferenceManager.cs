@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 using Photon.Pun;
 using Photon.Realtime;
 using Photon.Chat;
@@ -29,6 +31,9 @@ public class ConferenceManager : MonoBehaviourPun
 
     public string channelName;
 
+    public List<GameObject> players;
+    public List<RawImage> webCamImages;
+
     public void UpdateConferenceState()
     {
         photonView.RPC("UpdateConferenceStateRPC", RpcTarget.AllBuffered);
@@ -40,9 +45,14 @@ public class ConferenceManager : MonoBehaviourPun
         ChatClient client = ChatManager.Instance.chatClient;
         if (client.PublicChannels.ContainsKey(ChatManager.Instance.currentChannelName))
         {
-           UIManager.Instance.ConferenceMemberText.text = "[" + "회의장" + "] " +
-           client.PublicChannels[ChatManager.Instance.currentChannelName].Subscribers.Count + " / " + 
-           client.PublicChannels[ChatManager.Instance.currentChannelName].MaxSubscribers;
+            UIManager.Instance.ConferenceMemberText.text = "[" + "회의실" + "] " +
+                client.PublicChannels[ChatManager.Instance.currentChannelName].Subscribers.Count + " / " + 
+                client.PublicChannels[ChatManager.Instance.currentChannelName].MaxSubscribers;
+
+            foreach(var name in client.PublicChannels[ChatManager.Instance.currentChannelName].Subscribers)
+            {
+                players.Add(GameObject.Find(name));
+            }
         }
     }
 }

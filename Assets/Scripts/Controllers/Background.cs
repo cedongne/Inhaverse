@@ -45,7 +45,7 @@ public class Background : MonoBehaviour
             else
             {
                 RenderSettings.skybox = nightBox;
-                RenderSettings.ambientLight = new Color(0.2f, 0.2f, 0.2f);
+                RenderSettings.ambientLight = new Color(0.15f, 0.15f, 0.15f);
             }
         }
     }
