@@ -15,6 +15,7 @@ namespace OpenCvSharp.Demo
 
     public class PlayerCamController : MonoBehaviour
     {
+        bool key_flag = false;
         Mat dst = new Mat();
         float timer = 0f;
         public float delayTime = 0.5f;
@@ -30,76 +31,69 @@ namespace OpenCvSharp.Demo
         // Start is called before the first frame update
         void Start()
         {
-            if (camTexture != null)
-            {
-                display.texture = null;
-                camTexture.Stop();
-                camTexture = null;
-            }
-            //VideoCapture capture = new VideoCapture(0);
-
-            WebCamDevice device = WebCamTexture.devices[currentIndex];
-            camTexture = new WebCamTexture(device.name);
-            //  display.texture = camTexture;
-            camTexture.Play();
-
-            if (!faceCascade.Load(filenameFaceCascade))
-            {
-                Debug.Log("Video Load Error");
-            }
+            
         }
 
         // Update is called once per frame
         void Update()
         {
-            Mat image = new Mat();
-            Texture2D destTexture = new Texture2D(camTexture.width, camTexture.height, TextureFormat.ARGB32, false);
-            //Texture2D tmpTexture = new Texture2D();
-            image = Unity.TextureToMat(camTexture);
-
-            //Color[] textureData = camTexture.GetPixels();
-            //destTexture.SetPixels(textureData);
-
-            //Mat grayMat = new Mat();
-            //Cv2.CvtColor(image, grayMat, ColorConversionCodes.BGR2GRAY);
-
-            //detect Rect
-            if (!isDelay)
+            Debug.Log(Input.GetKeyDown(KeyCode.C));
+            if (Input.GetKeyDown(KeyCode.C))
             {
-                OpenCvSharp.Rect[] faces = faceCascade.DetectMultiScale(image);
-                foreach (var item in faces)
+                Debug.Log("test/////////////////////////");
+                if (key_flag == false)
                 {
-                    //Cv2.Rectangle(image, item, Scalar.Red); // add rectangle to the image
+                    key_flag = true;
 
-                    //circle_x = item.Left + (item.Width / 2);
-                    //circle_y = item.Top + (item.Height / 2);
+                    if (camTexture != null)
+                    {
+                        display.texture = null;
+                        camTexture.Stop();
+                        camTexture = null;
+                    }
 
-                    dst = image.SubMat(item);
+                    WebCamDevice device = WebCamTexture.devices[currentIndex];
+                    camTexture = new WebCamTexture(device.name);
+                    
+                    camTexture.Play();
+
+                    if (!faceCascade.Load(filenameFaceCascade))
+                    {
+                        Debug.Log("Video Load Error");
+                    }
+
+                    Mat image = new Mat();
+                    Texture2D destTexture = new Texture2D(camTexture.width, camTexture.height, TextureFormat.ARGB32, false);
+                    image = Unity.TextureToMat(camTexture);
+
+                    if (!isDelay)
+                    {
+                        OpenCvSharp.Rect[] faces = faceCascade.DetectMultiScale(image);
+                        foreach (var item in faces)
+                        {
+                            dst = image.SubMat(item);
+                        }
+                        isDelay = true;
+                    }
+                    destTexture = Unity.MatToTexture(dst);
+
+                    display.texture = destTexture;
+
+                    if (isDelay)
+                    {
+                        timer += Time.deltaTime;
+                        if (timer >= delayTime)
+                        {
+                            timer = 0f;
+                            isDelay = false;
+                        }
+                    }
                 }
-                isDelay = true;
-            }
-            //   Debug.Log(circle_x + " " + circle_y);
-            //if (circle_x != 0 && circle_y != 0)
-            //{
-            //    Cv2.Circle(image, new Point(circle_x, circle_y), 250, Scalar.Green, 3, LineTypes.AntiAlias);
-            //}
-            destTexture = Unity.MatToTexture(dst);
-
-            //camTexture = new WebCamTexture(destTexture.height, destTexture.width);
-
-            //if(!dst.Empty())
-            //{
-            //    destTexture = Unity.MatToTexture(dst);
-            //}
-            display.texture = destTexture;
-
-            if (isDelay)
-            {
-                timer += Time.deltaTime;
-                if (timer >= delayTime)
+                else
                 {
-                    timer = 0f;
-                    isDelay = false;
+                    key_flag = false;
+
+                    camTexture.Stop();
                 }
             }
         }

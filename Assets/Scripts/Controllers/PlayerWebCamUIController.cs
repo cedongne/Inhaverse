@@ -35,7 +35,9 @@ public class PlayerWebCamUIController : MonoBehaviourPunCallbacks
     public void TurnWebCam()
     {
         if(isWebCamDown)
+        {
             photonView.RPC("TurnWebCamRPC", RpcTarget.AllBuffered);
+        }
     }
 
     [PunRPC]
