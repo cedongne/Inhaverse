@@ -28,7 +28,7 @@ namespace OpenCvSharp
             camTexture = new WebCamTexture(device.name);
             camTexture.Play();
             nowDisplay = headDisplay;
-            conferenceDisplay = RpcUIManager.Instance.webCamImageList[3].GetComponent<RawImage>();
+            conferenceDisplay = RpcUIManager.Instance.webCamImageList[0].GetComponent<RawImage>();
         }
 
         void Update()
