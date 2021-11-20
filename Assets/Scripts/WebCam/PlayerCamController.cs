@@ -37,10 +37,10 @@ namespace OpenCvSharp.Demo
         // Update is called once per frame
         void Update()
         {
-            Debug.Log(Input.GetKeyDown(KeyCode.C));
+//            Debug.Log(Input.GetKeyDown(KeyCode.C));
             if (Input.GetKeyDown(KeyCode.C))
             {
-                Debug.Log("test/////////////////////////");
+  //              Debug.Log("test/////////////////////////");
                 if (key_flag == false)
                 {
                     key_flag = true;
@@ -59,7 +59,7 @@ namespace OpenCvSharp.Demo
 
                     if (!faceCascade.Load(filenameFaceCascade))
                     {
-                        Debug.Log("Video Load Error");
+ //                       Debug.Log("Video Load Error");
                     }
 
                     Mat image = new Mat();

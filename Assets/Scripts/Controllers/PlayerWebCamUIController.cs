@@ -22,8 +22,11 @@ public class PlayerWebCamUIController : MonoBehaviourPunCallbacks
     {
         if (photonView.IsMine)
         {
-            GetInput();
-            TurnWebCam();
+            if (!UIManager.Instance.isOpenWindow)
+            {
+                GetInput();
+                TurnWebCam();
+            }
         }
     }
 

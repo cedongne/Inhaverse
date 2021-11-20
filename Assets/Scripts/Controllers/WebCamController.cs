@@ -33,30 +33,33 @@ namespace OpenCvSharp
 
         void Update()
         {
+            if (photonView.IsMine)
+            {
+                SetWebCamDisplay();
+            }
+            ShowWebCam();
+        }
+
+        void SetWebCamDisplay()
+        {
             if (ChatManager.Instance.currentChannelName.Contains("Conference"))
             {
-                if (ChatManager.Instance.currentChannelName.Contains("Conference"))
-                {
-                    nowDisplay = conferenceDisplay;
-                }
-                else
-                {
-                    nowDisplay = headDisplay;
-                }
-                image = Unity.TextureToMat(camTexture);
-                Debug.Log(image);
-                destTexture = Unity.MatToTexture(image);
-
-                nowDisplay.texture = destTexture;
+                nowDisplay = conferenceDisplay;
             }
             else
             {
                 nowDisplay = headDisplay;
             }
+
+        }
+
+        void ShowWebCam()
+        {
             image = Unity.TextureToMat(camTexture);
             destTexture = Unity.MatToTexture(image);
 
             nowDisplay.texture = destTexture;
+
         }
 
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
