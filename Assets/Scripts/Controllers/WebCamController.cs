@@ -26,7 +26,6 @@ namespace OpenCvSharp
             WebCamDevice device = WebCamTexture.devices[0];
             Debug.Log(device.name);
             camTexture = new WebCamTexture(device.name);
-            camTexture.Play();
             nowDisplay = headDisplay;
             conferenceDisplay = RpcUIManager.Instance.webCamImageList[0].GetComponent<RawImage>();
         }
@@ -36,8 +35,9 @@ namespace OpenCvSharp
             if (photonView.IsMine)
             {
                 SetWebCamDisplay();
+                ShowWebCam();
             }
-            ShowWebCam();
+
         }
 
         void SetWebCamDisplay()
@@ -50,16 +50,22 @@ namespace OpenCvSharp
             {
                 nowDisplay = headDisplay;
             }
-
         }
 
         void ShowWebCam()
         {
-            image = Unity.TextureToMat(camTexture);
-            destTexture = Unity.MatToTexture(image);
+            if (nowDisplay.gameObject.activeSelf)
+            {
+                camTexture.Play();
+                image = Unity.TextureToMat(camTexture);
+                destTexture = Unity.MatToTexture(image);
 
-            nowDisplay.texture = destTexture;
-
+                nowDisplay.texture = destTexture;
+            }
+            else
+            {
+                camTexture.Pause();
+            }
         }
 
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
