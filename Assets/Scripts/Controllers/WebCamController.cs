@@ -15,6 +15,7 @@ namespace OpenCvSharp
         float timer = 0f;
         public float delayTime = 1f;
         bool isDelay = false;
+        bool detect_flag = false;
         OpenCvSharp.Rect tmp;
 
         WebCamTexture camTexture;
@@ -64,56 +65,69 @@ namespace OpenCvSharp
         {
             if (ChatManager.Instance.currentChannelName.Contains("Conference"))
             {
+                detect_flag = false;
                 nowDisplay = conferenceDisplay;
             }
             else
             {
+                detect_flag = true;
                 nowDisplay = headDisplay;
             }
         }
 
+        void FaceDetect()
+        {
+            Mat dst = new Mat();
+            if (!isDelay)
+            {
+                OpenCvSharp.Rect[] faces = faceCascade.DetectMultiScale(image);
+                foreach (var item in faces)
+                {
+                    tmp = item;
+                    dst = image.SubMat(tmp);
+                }
+                if (dst.Empty())
+                {
+                    destTexture = Unity.MatToTexture(image);
+                }
+                else
+                {
+                    destTexture = Unity.MatToTexture(dst);
+                }
+                isDelay = true;
+            }
+            else if (isDelay)
+            {
+                timer += Time.deltaTime;
+                if (timer >= delayTime)
+                {
+                    timer = 0f;
+                    isDelay = false;
+                }
+                if (tmp.Top != 0)
+                {
+                    dst = image.SubMat(tmp);
+                    destTexture = Unity.MatToTexture(dst);
+                }
+                else
+                {
+                    destTexture = Unity.MatToTexture(image);
+                }
+            }
+        }
         void ShowWebCam()
         {
             if (nowDisplay.gameObject.activeSelf)
             {
                 camTexture.Play();
                 image = Unity.TextureToMat(camTexture);
-                Mat dst = new Mat();
-                if (!isDelay)
+                if(detect_flag)
                 {
-                    OpenCvSharp.Rect[] faces = faceCascade.DetectMultiScale(image);
-                    foreach (var item in faces)
-                    {
-                        tmp = item;
-                        dst = image.SubMat(tmp);
-                    }                    
-                    if (dst.Empty())
-                    {
-                        destTexture = Unity.MatToTexture(image);
-                    }
-                    else
-                    {
-                        destTexture = Unity.MatToTexture(dst);
-                    }
-                    isDelay = true;
+                    FaceDetect();
                 }
-                else if (isDelay)
+                else
                 {
-                    timer += Time.deltaTime;
-                    if (timer >= delayTime)
-                    {
-                        timer = 0f;
-                        isDelay = false;
-                    }
-                    if(tmp.Top != 0)
-                    {
-                        dst = image.SubMat(tmp);
-                        destTexture = Unity.MatToTexture(dst);
-                    }
-                    else
-                    {
-                        destTexture = Unity.MatToTexture(image);
-                    }
+                    destTexture = Unity.MatToTexture(image);
                 }
                 nowDisplay.texture = destTexture;
             }
