@@ -15,6 +15,7 @@ namespace OpenCvSharp
         float timer = 0f;
         public float delayTime = 1f;
         bool isDelay = false;
+        OpenCvSharp.Rect tmp;
 
         WebCamTexture camTexture;
         public RawImage headDisplay;
@@ -74,39 +75,44 @@ namespace OpenCvSharp
             {
                 camTexture.Play();
                 image = Unity.TextureToMat(camTexture);
-                //if (!isDelay)
-                //{
                 Mat dst = new Mat();
-                OpenCvSharp.Rect[] faces = faceCascade.DetectMultiScale(image);
-                foreach (var item in faces)
+                if (!isDelay)
                 {
-                    Debug.Log("test");
-                    //int circle_x = item.Left + (item.Width / 2);
-                    //int circle_y = item.Top + (item.Height / 2);
-                    dst = image.SubMat(item);
-                    //Cv2.Circle(image, new Point(circle_x, circle_y), 250, Scalar.Green, 3, LineTypes.AntiAlias);
-                }
-                if (dst.Empty())
-                {
-                    destTexture = Unity.MatToTexture(image);
-                }
-                else
-                {
-                    destTexture = Unity.MatToTexture(dst);
-                }
-
-                nowDisplay.texture = destTexture;
+                    OpenCvSharp.Rect[] faces = faceCascade.DetectMultiScale(image);
+                    foreach (var item in faces)
+                    {
+                        tmp = item;
+                        dst = image.SubMat(tmp);
+                    }                    
+                    if (dst.Empty())
+                    {
+                        destTexture = Unity.MatToTexture(image);
+                    }
+                    else
+                    {
+                        destTexture = Unity.MatToTexture(dst);
+                    }
                     isDelay = true;
-                //}
-
-                //if (isDelay)
-                //{
-                //    if (timer >= delayTime)
-                //    {
-                //        timer = 0f;
-                //        isDelay = false;
-                //    }
-                //}
+                }
+                else if (isDelay)
+                {
+                    timer += Time.deltaTime;
+                    if (timer >= delayTime)
+                    {
+                        timer = 0f;
+                        isDelay = false;
+                    }
+                    if(tmp.Top != 0)
+                    {
+                        dst = image.SubMat(tmp);
+                        destTexture = Unity.MatToTexture(dst);
+                    }
+                    else
+                    {
+                        destTexture = Unity.MatToTexture(image);
+                    }
+                }
+                nowDisplay.texture = destTexture;
             }
             else
             {
