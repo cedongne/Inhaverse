@@ -132,8 +132,8 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
 
     private void OnLoginSuccess(LoginResult result)
     {
-        GetUserJob(); 
         GetMyInfo();
+        GetUserJob(); 
         myPlayfabId = result.PlayFabId;
 
         PlayFabAuthenticationAPI.GetEntityToken(new GetEntityTokenRequest(),
