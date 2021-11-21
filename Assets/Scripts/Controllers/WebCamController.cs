@@ -129,13 +129,11 @@ namespace OpenCvSharp
         {
             if (stream.IsWriting)
             {
-                Debug.Log(destTexture);
                 stream.SendNext(destTexture.ToString());
-                Debug.Log("WE");
             }
             else
             {
-                Debug.Log("RS");
+                Debug.Log((string)stream.ReceiveNext());
                 destTexture.LoadImage(Convert.FromBase64String((string)stream.ReceiveNext()));
                 Debug.Log("RE");
             }
