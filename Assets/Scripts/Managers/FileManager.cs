@@ -65,9 +65,9 @@ public class FileManager : MonoBehaviourPun
     {
         openFileDialog.Title = "파일 열기";
         openFileDialog.Filter
-            = "오디오 파일 |*.mp3; *.wav" +
+            = "이미지 파일 |*.jpg; *.png" +
+            "|오디오 파일 |*.mp3; *.wav" +
             "|비디오 파일 |*.mp4; *.avi" +
-            "|이미지 파일 |*.jpg; *.png" +
             "|모든 파일|*.*";
         openFileDialog.FilterIndex = 1;
         openFileDialog.Multiselect = true;
