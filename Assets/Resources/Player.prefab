@@ -1530,6 +1530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96258ab707de07c40babfd18fbe97573, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delayTime: 1
   headDisplay: {fileID: 7815241381185037499}
   conferenceDisplay: {fileID: 0}
   nowDisplay: {fileID: 0}
