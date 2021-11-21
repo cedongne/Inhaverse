@@ -106,7 +106,7 @@ public class UIManager : MonoBehaviour
     {
         playerName.text = _playerName;
         playerSchoolId.text = _playerSchoolId;
-        playerController.name = _playerName;
+ //       playerController.name = _playerName;
         
     }
     #region HUD Icons

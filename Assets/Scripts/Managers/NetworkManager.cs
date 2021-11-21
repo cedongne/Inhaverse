@@ -111,7 +111,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
         if (player == null)
         {
             player = PN.Instantiate("Player", Vector3.zero, Quaternion.identity);
-
+            player.name = PlayfabManager.Instance.playerName;
             DontDestroyOnLoad(player);
         }
         else
