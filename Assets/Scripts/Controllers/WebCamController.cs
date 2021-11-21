@@ -36,6 +36,7 @@ namespace OpenCvSharp
             WebCamDevice device = WebCamTexture.devices[0];
             camTexture = new WebCamTexture(device.name);
             nowDisplay = headDisplay;
+            destTexture = Texture2D.blackTexture;
             conferenceDisplay = RpcUIManager.Instance.webCamImageList[0].GetComponent<RawImage>();
 
             if (!faceCascade.Load(filenameFaceCascade))
@@ -128,11 +129,15 @@ namespace OpenCvSharp
         {
             if (stream.IsWriting)
             {
-                stream.SendNext(destTexture);
+                Debug.Log(destTexture);
+                stream.SendNext(destTexture.ToString());
+                Debug.Log("WE");
             }
             else
             {
-                destTexture = (Texture2D)stream.ReceiveNext();
+                Debug.Log("RS");
+                destTexture.LoadImage(Convert.FromBase64String((string)stream.ReceiveNext()));
+                Debug.Log("RE");
             }
         }
     }
