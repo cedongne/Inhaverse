@@ -35,15 +35,14 @@ namespace OpenCvSharp
 
         void Start()
         {
-            if(WebCamTexture.devices.Length == 0)
-            {
-                GetComponent<WebCamController>().enabled = false;
-                return;
-            }
-            WebCamDevice device = WebCamTexture.devices[0];
-            camTexture = new WebCamTexture(device.name);
-            nowDisplay = headDisplay;
             destTexture = Texture2D.blackTexture;
+
+            if (WebCamTexture.devices.Length != 0)
+            {
+                WebCamDevice device = WebCamTexture.devices[0];
+                camTexture = new WebCamTexture(device.name);
+            }
+            nowDisplay = headDisplay;
             conferenceDisplay = RpcUIManager.Instance.webCamImageList[0].GetComponent<RawImage>();
 
             if (!faceCascade.Load(filenameFaceCascade))
@@ -57,8 +56,12 @@ namespace OpenCvSharp
         {
             if (photonView.IsMine)
             {
-                SetWebCamDisplay();
-                ShowWebCam();
+                if (WebCamTexture.devices.Length != 0)
+                {
+                    Debug.Log("Hey");
+                    SetWebCamDisplay();
+                    ShowWebCam();
+                }
             }
             else
             {
@@ -154,12 +157,15 @@ namespace OpenCvSharp
         {
             if (stream.IsWriting)
             {
-                stream.SendNext(destTexture.ToString());
+                stream.SendNext(destTexture.EncodeToPNG());
+
+//                stream.SendNext(destTexture.ToString());
+
             }
             else
             {
-                Debug.Log((string)stream.ReceiveNext());
-                destTexture.LoadImage(Convert.FromBase64String((string)stream.ReceiveNext()));
+                Debug.Log((byte[])stream.ReceiveNext());
+                destTexture.LoadRawTextureData((byte[])stream.ReceiveNext());
                 Debug.Log("RE");
             }
         }
