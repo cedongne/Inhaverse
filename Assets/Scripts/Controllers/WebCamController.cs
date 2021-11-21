@@ -1,5 +1,6 @@
 namespace OpenCvSharp
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
@@ -11,6 +12,10 @@ namespace OpenCvSharp
 
     public class WebCamController : MonoBehaviourPunCallbacks, IPunObservable
     {
+        float timer = 0f;
+        public float delayTime = 1f;
+        bool isDelay = false;
+
         WebCamTexture camTexture;
         public RawImage headDisplay;
         public RawImage conferenceDisplay;
@@ -21,12 +26,23 @@ namespace OpenCvSharp
 
         private int currentIndex = 0;
 
+        String filenameFaceCascade =
+            "Assets/Resources/haarcascade_frontalface_default.xml";
+        CascadeClassifier faceCascade = new CascadeClassifier();
+
+
         void Start()
         {
             WebCamDevice device = WebCamTexture.devices[0];
             camTexture = new WebCamTexture(device.name);
             nowDisplay = headDisplay;
             conferenceDisplay = RpcUIManager.Instance.webCamImageList[0].GetComponent<RawImage>();
+
+            if (!faceCascade.Load(filenameFaceCascade))
+            {
+                Console.WriteLine("error");
+                return;
+            }
         }
 
         void Update()
@@ -60,9 +76,39 @@ namespace OpenCvSharp
             {
                 camTexture.Play();
                 image = Unity.TextureToMat(camTexture);
-                destTexture = Unity.MatToTexture(image);
+                //if (!isDelay)
+                //{
+                Mat dst = new Mat();
+                OpenCvSharp.Rect[] faces = faceCascade.DetectMultiScale(image);
+                foreach (var item in faces)
+                {
+                    Debug.Log("test");
+                    //int circle_x = item.Left + (item.Width / 2);
+                    //int circle_y = item.Top + (item.Height / 2);
+                    dst = image.SubMat(item);
+                    //Cv2.Circle(image, new Point(circle_x, circle_y), 250, Scalar.Green, 3, LineTypes.AntiAlias);
+                }
+                if (dst.Empty())
+                {
+                    destTexture = Unity.MatToTexture(image);
+                }
+                else
+                {
+                    destTexture = Unity.MatToTexture(dst);
+                }
 
                 nowDisplay.texture = destTexture;
+                    isDelay = true;
+                //}
+
+                //if (isDelay)
+                //{
+                //    if (timer >= delayTime)
+                //    {
+                //        timer = 0f;
+                //        isDelay = false;
+                //    }
+                //}
             }
             else
             {

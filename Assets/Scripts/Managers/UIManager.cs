@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     public GameObject classListWindow;
     public GameObject conferenceWindow;
     public GameObject playerInfoWindow;
+    public GameObject openFileWindow;
 
     [Header("===== °´Ã¼ ÂüÁ¶ =====")]
     [Space]
@@ -106,7 +107,7 @@ public class UIManager : MonoBehaviour
     {
         playerName.text = _playerName;
         playerSchoolId.text = _playerSchoolId;
-        playerController.name = _playerName;
+ //       playerController.name = _playerName;
         
     }
     #region HUD Icons
@@ -224,6 +225,7 @@ public class UIManager : MonoBehaviour
         classListWindow.SetActive(false);
         conferenceWindow.SetActive(false);
         playerInfoWindow.SetActive(false);
+        openFileWindow.SetActive(false);
 
         if (showingWindow.Equals(Define.UI.CLASS))
         {
@@ -245,6 +247,10 @@ public class UIManager : MonoBehaviour
         {
             playerInfoWindow.SetActive(true);
         }
+        else if (showingWindow.Equals(Define.UI.OPENFILE))
+        {
+            openFileWindow.SetActive(true);
+        }
         isOpenWindow = true;
     }
 
@@ -257,6 +263,7 @@ public class UIManager : MonoBehaviour
         classListWindow.SetActive(false);
         conferenceWindow.SetActive(false);
         playerInfoWindow.SetActive(false);
+        openFileWindow.SetActive(false);
 
         ClearClassMakingWindow();
         eventFunction = null;
