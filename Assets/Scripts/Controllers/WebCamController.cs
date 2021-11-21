@@ -35,9 +35,9 @@ namespace OpenCvSharp
         void Start()
         {
             WebCamDevice device = WebCamTexture.devices[0];
-            Debug.Log(device.name);
             camTexture = new WebCamTexture(device.name);
             nowDisplay = headDisplay;
+            destTexture = Texture2D.blackTexture;
             conferenceDisplay = RpcUIManager.Instance.webCamImageList[0].GetComponent<RawImage>();
 
             if (!faceCascade.Load(filenameFaceCascade))
@@ -54,7 +54,10 @@ namespace OpenCvSharp
                 SetWebCamDisplay();
                 ShowWebCam();
             }
-
+            else
+            {
+                ShowOtherWebCam();
+            }
         }
 
         void SetWebCamDisplay()
@@ -120,9 +123,26 @@ namespace OpenCvSharp
             }
         }
 
+        void ShowOtherWebCam()
+        {
+            if (nowDisplay.gameObject.activeSelf)
+            {
+                nowDisplay.texture = destTexture;
+            }
+        }
+
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
-        
+            if (stream.IsWriting)
+            {
+                stream.SendNext(destTexture.ToString());
+            }
+            else
+            {
+                Debug.Log((string)stream.ReceiveNext());
+                destTexture.LoadImage(Convert.FromBase64String((string)stream.ReceiveNext()));
+                Debug.Log("RE");
+            }
         }
     }
 }
