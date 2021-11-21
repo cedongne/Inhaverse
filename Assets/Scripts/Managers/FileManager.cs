@@ -49,7 +49,6 @@ public class FileManager : MonoBehaviourPun
         SetOpenFileDialog();
         filePaths = FileOpen(openFileDialog);
         UploadImage();
-        UIManager.Instance.CloseWindow();
     }
 
     string[] FileOpen(VistaOpenFileDialog openFileDialog)
@@ -82,5 +81,7 @@ public class FileManager : MonoBehaviourPun
         texture = new Texture2D(2, 2);
         texture.LoadImage(fileData);
         board.GetComponent<MeshRenderer>().material.mainTexture = texture;
+
+        UIManager.Instance.CloseWindow();
     }
 }
