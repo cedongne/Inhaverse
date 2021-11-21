@@ -14,7 +14,7 @@ public class PlayerWebCamUIController : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        if(photonView.IsMine)
+        if (photonView.IsMine)
             UIManager.Instance.webCamUIController = GetComponent<PlayerWebCamUIController>();
     }
 
@@ -22,8 +22,11 @@ public class PlayerWebCamUIController : MonoBehaviourPunCallbacks
     {
         if (photonView.IsMine)
         {
-            GetInput();
-            TurnWebCam();
+            if (!UIManager.Instance.isOpenWindow)
+            {
+                GetInput();
+                TurnWebCam();
+            }
         }
     }
 
@@ -34,16 +37,17 @@ public class PlayerWebCamUIController : MonoBehaviourPunCallbacks
 
     public void TurnWebCam()
     {
-        if(isWebCamDown)
+        if (isWebCamDown)
+        {
             photonView.RPC("TurnWebCamRPC", RpcTarget.AllBuffered);
+        }
     }
-
-    [PunRPC]
-    public void TurnWebCamRPC()
-    {
-        if (webCamImage.activeSelf)
-            webCamImage.SetActive(false);
-        else
-            webCamImage.SetActive(true);
-    }
+        [PunRPC]
+        public void TurnWebCamRPC()
+        {
+            if (webCamImage.activeSelf)
+                webCamImage.SetActive(false);
+            else
+                webCamImage.SetActive(true);
+        }
 }

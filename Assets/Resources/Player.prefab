@@ -1188,7 +1188,7 @@ GameObject:
   - component: {fileID: -7487588148025149294}
   - component: {fileID: 7570030817478802208}
   - component: {fileID: 5282641313804920007}
-  - component: {fileID: 4189359681648936742}
+  - component: {fileID: 4785481650045623811}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -1314,7 +1314,7 @@ MonoBehaviour:
   - {fileID: 3157888371852113802}
   - {fileID: 1040339781853943973}
   - {fileID: -7239860560550031947}
-  - {fileID: 4189359681648936742}
+  - {fileID: 4785481650045623811}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -1422,8 +1422,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 15
+  MinDistance: 15
+  MaxDistance: 15.000001
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -1518,7 +1518,7 @@ MonoBehaviour:
     MinDelaySoft: 200
     MaxDelaySoft: 400
     MaxDelayHard: 1000
---- !u!114 &4189359681648936742
+--- !u!114 &4785481650045623811
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2034,7 +2034,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 10912, guid: 0000000000000000f000000000000000, type: 0}
   m_UVRect:
     serializedVersion: 2
     x: 0
