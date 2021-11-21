@@ -153,19 +153,21 @@ namespace OpenCvSharp
             }
         }
 
+        byte[] receivedImage;
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
             if (stream.IsWriting)
             {
                 stream.SendNext(destTexture.EncodeToPNG());
-
+                Debug.Log(destTexture.EncodeToPNG().Length);
 //                stream.SendNext(destTexture.ToString());
 
             }
             else
             {
-                Debug.Log((byte[])stream.ReceiveNext());
-                destTexture.LoadRawTextureData((byte[])stream.ReceiveNext());
+
+                receivedImage = (byte[])stream.ReceiveNext();
+                destTexture.LoadRawTextureData(receivedImage);
                 Debug.Log("RE");
             }
         }
