@@ -10,7 +10,8 @@ public class Define
         CLASSLIST,
         CONFERENCE,
         PLAYERINFO,
-        BOARD
+        BOARD,
+        OPENFILE
     }
 
     public enum GROUPLISTUSING

@@ -22327,6 +22327,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tent001
       objectReference: {fileID: 0}
+    - target: {fileID: 8902927775208250463, guid: 017c1e233b0f21446b822ba4b14a76a4, type: 3}
+      propertyPath: m_Range
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 017c1e233b0f21446b822ba4b14a76a4, type: 3}
 --- !u!224 &2580658443769529752
