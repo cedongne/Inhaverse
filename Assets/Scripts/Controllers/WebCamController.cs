@@ -58,7 +58,6 @@ namespace OpenCvSharp
             {
                 if (WebCamTexture.devices.Length != 0)
                 {
-                    Debug.Log("Hey");
                     SetWebCamDisplay();
                     ShowWebCam();
                 }
@@ -163,12 +162,14 @@ namespace OpenCvSharp
             {
 //                stream.SendNext(destTexture.EncodeToPNG());
 //                Debug.Log(destTexture.EncodeToPNG().Length);
-                stream.SendNext(destTexture.ToString());
+                stream.SendNext(Convert.ToBase64String(destTexture.EncodeToPNG()));
+                Debug.Log(Convert.ToBase64String(destTexture.EncodeToPNG()));
 
             }
             else
             {
                 receifedImageStr = (string)stream.ReceiveNext();
+                Debug.Log(receifedImageStr);
                 destTexture.LoadImage(Convert.FromBase64String(receifedImageStr));
  //               receivedImage = (byte[])stream.ReceiveNext();
  //               destTexture.LoadRawTextureData(receivedImage);
