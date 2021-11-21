@@ -129,7 +129,9 @@ namespace OpenCvSharp
             {
                 camTexture.Play();
                 image = Unity.TextureToMat(camTexture);
-                if(detect_flag)
+                destTexture = Unity.MatToTexture(image);
+
+                if (detect_flag)
                 {
                     FaceDetect();
                 }
@@ -154,20 +156,22 @@ namespace OpenCvSharp
         }
 
         byte[] receivedImage;
+        string receifedImageStr;
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
             if (stream.IsWriting)
             {
-                stream.SendNext(destTexture.EncodeToPNG());
-                Debug.Log(destTexture.EncodeToPNG().Length);
-//                stream.SendNext(destTexture.ToString());
+//                stream.SendNext(destTexture.EncodeToPNG());
+//                Debug.Log(destTexture.EncodeToPNG().Length);
+                stream.SendNext(destTexture.ToString());
 
             }
             else
             {
-
-                receivedImage = (byte[])stream.ReceiveNext();
-                destTexture.LoadRawTextureData(receivedImage);
+                receifedImageStr = (string)stream.ReceiveNext();
+                destTexture.LoadImage(Convert.FromBase64String(receifedImageStr));
+ //               receivedImage = (byte[])stream.ReceiveNext();
+ //               destTexture.LoadRawTextureData(receivedImage);
                 Debug.Log("RE");
             }
         }
