@@ -75,13 +75,18 @@ public class FileManager : MonoBehaviourPun
 
     void UploadImage()
     {
+        photonView.RPC("UploadImageRPC", RpcTarget.All);
+        UIManager.Instance.CloseWindow();
+    }
+
+    [PunRPC]
+    public void UploadImageRPC()
+    {
         Texture2D texture = null;
         byte[] fileData;
         fileData = File.ReadAllBytes(filePaths[0]);
         texture = new Texture2D(2, 2);
         texture.LoadImage(fileData);
         board.GetComponent<MeshRenderer>().material.mainTexture = texture;
-
-        UIManager.Instance.CloseWindow();
     }
 }
