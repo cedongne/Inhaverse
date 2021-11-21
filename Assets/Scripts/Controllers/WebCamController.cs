@@ -35,6 +35,11 @@ namespace OpenCvSharp
 
         void Start()
         {
+            if(WebCamTexture.devices.Length == 0)
+            {
+                GetComponent<WebCamController>().enabled = false;
+                return;
+            }
             WebCamDevice device = WebCamTexture.devices[0];
             camTexture = new WebCamTexture(device.name);
             nowDisplay = headDisplay;
