@@ -1929,9 +1929,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   webCamImage: {fileID: 8594035940355474103}
   isWebCamDown: 0
-  delayTime: 0.5
-  isDelay: 0
-  display: {fileID: 0}
 --- !u!114 &8131352529705652812
 MonoBehaviour:
   m_ObjectHideFlags: 0
