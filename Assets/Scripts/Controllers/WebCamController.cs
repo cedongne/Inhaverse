@@ -16,7 +16,7 @@ namespace OpenCvSharp
         public float delayTime = 1f;
         bool isDelay = false;
         bool detect_flag = false;
-        OpenCvSharp.Rect tmp;
+        OpenCvSharp.Rect before_image;
 
         WebCamTexture camTexture;
         public RawImage headDisplay;
@@ -83,8 +83,8 @@ namespace OpenCvSharp
                 OpenCvSharp.Rect[] faces = faceCascade.DetectMultiScale(image);
                 foreach (var item in faces)
                 {
-                    tmp = item;
-                    dst = image.SubMat(tmp);
+                    before_image = item;
+                    dst = image.SubMat(before_image);
                 }
                 if (dst.Empty())
                 {
@@ -104,9 +104,9 @@ namespace OpenCvSharp
                     timer = 0f;
                     isDelay = false;
                 }
-                if (tmp.Top != 0)
+                if (before_image.Top != 0 && before_image.Left != 0) 
                 {
-                    dst = image.SubMat(tmp);
+                    dst = image.SubMat(before_image);
                     destTexture = Unity.MatToTexture(dst);
                 }
                 else
