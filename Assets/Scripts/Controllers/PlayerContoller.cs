@@ -92,11 +92,11 @@ public class PlayerContoller : MonoBehaviourPun
         moveSpeed = walkMoveSpeed;
 
         interactionUI = GameObject.Find("Canvas").transform.Find("Interaction UI").gameObject;
-        currentTouch = GameObject.Find("Initializing Object").GetComponent<Outline>();
+//        currentTouch = GameObject.Find("Initializing Object").GetComponent<Outline>();
 
         DontDestroyOnLoad(cameraArm);
         DontDestroyOnLoad(GameObject.Find("Canvas"));
-        DontDestroyOnLoad(GameObject.Find("Initializing Object"));
+//        DontDestroyOnLoad(GameObject.Find("Initializing Object"));
     }
 
     // Update is called once per frame

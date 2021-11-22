@@ -33,7 +33,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
     GameObject playerNameTextUI;
 
     string network_state;
-    string room_name;
+    public string room_name;
+    Vector3 lastPosition = Vector3.zero;
 
     private void Awake()
     {
@@ -42,6 +43,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
         {
             instance = gameObject.GetComponent<NetworkManager>();
             DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
         room_name = "Lobby";
     } 
@@ -65,7 +70,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
 
         PN.LeaveRoom();
         ChatManager.Instance.LeaveChat();
-
+        lastPosition = player.transform.position;
         SceneManager.LoadScene("ClassroomScene");
         if(UtilityMethods.DetermineAllowClassEnter(splitedTimeTableData))
             room_name = className;
@@ -74,6 +79,17 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
             room_name = "OpenClass";
             Debug.Log(className + " 수업 시간이 아닙니다. 공개 수업방으로 입장합니다.");
         }
+    }
+
+    public void JoinToCampus()
+    {
+        Destroy(ChatManager.Instance.gameObject);
+        PN.LeaveRoom();
+        ChatManager.Instance.LeaveChat();
+
+        SceneManager.LoadScene("SampleScene");
+        room_name = "Lobby";
+        player.transform.position = lastPosition;
     }
 
     public override void OnCreatedRoom()
@@ -110,9 +126,16 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
     {
         if (player == null)
         {
-            player = PN.Instantiate("Player", Vector3.zero, Quaternion.identity);
+            if (room_name != "Lobby")
+            {
+                player = PN.Instantiate("Player", Vector3.zero, Quaternion.identity);
+            }
+            else
+            {
+                Debug.Log("Lobby" + lastPosition);
+                player = PN.Instantiate("Player", lastPosition, Quaternion.identity);
+            }
             player.name = PlayfabManager.Instance.playerName;
-            DontDestroyOnLoad(player);
         }
         else
         {

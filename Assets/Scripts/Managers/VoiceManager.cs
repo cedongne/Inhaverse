@@ -36,6 +36,8 @@ public class VoiceManager : MonoBehaviour
     {
         if(instance == null)
             instance = GetComponent<VoiceManager>();
+        else
+            Destroy(gameObject);
     }
 
     // Start is called before the first frame update

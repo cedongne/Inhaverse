@@ -101,6 +101,10 @@ public class UIManager : MonoBehaviour
         {
             instance = gameObject.GetComponent<UIManager>();
         }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void UIInitFromPlayfabLogin(string _playerName, string _playerSchoolId)

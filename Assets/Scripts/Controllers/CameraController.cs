@@ -4,6 +4,25 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    private static CameraController instance;
+    
+    public static CameraController Instance
+    {
+        get
+        {
+            if(instance == null)
+            {
+                var obj = FindObjectOfType<CameraController>();
+                if(obj != null)
+                {
+                    instance = obj;
+                }
+            }
+
+            return instance;
+        }
+    }
+
     public Transform playerTransform;
     public GameObject playerAvatar;
     public PlayerContoller playerContoller;
@@ -30,8 +49,12 @@ public class CameraController : MonoBehaviour
 
     private void Awake()
     {
-        cameraArmTransform = GetComponent<Transform>();
+        if (instance == null)
+            instance = GetComponent<CameraController>();
+        else
+            Destroy(gameObject);
         playerTransform = defaultObjectTransform;
+        cameraArmTransform = GetComponent<Transform>();
         UIManager.Instance.cameraController = GetComponent<CameraController>();
     }
 

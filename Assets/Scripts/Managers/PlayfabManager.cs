@@ -76,6 +76,10 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         {
             instance = gameObject.GetComponent<PlayfabManager>();
         }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Start()
@@ -355,7 +359,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         }, (error) => Debug.Log(error.ErrorMessage));
     }
 
-    public void GetLeaderBoardUserValue(string statisticName, string userName)
+    public void GetLeaderBoardUserValue(string statisticName, string userName, string callbackMethodName)
     {
         var request = new GetLeaderboardRequest
         {
@@ -370,7 +374,10 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             {
                 if (result.Leaderboard[count].DisplayName.Equals(userName))
                 {
-                    getLeaderBoardValueEvent.Invoke(result.Leaderboard[count].StatValue);
+                    if (callbackMethodName.Equals("LoadAttendanceCount"))
+                    {
+                        ClassProcessManager.Instance.LoadAttendanceCount(result.Leaderboard[count].StatValue);
+                    }
                 }
             }
         }, (error) => Debug.Log(error.ErrorMessage));

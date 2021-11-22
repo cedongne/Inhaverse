@@ -13,7 +13,7 @@ public class AutoAttendanceManager : MonoBehaviourPunCallbacks
         if(/*PN.CurrentRoom.Name.Equals("OpenClass") ||*/ PN.CurrentRoom.Name.Equals("Lobby"))
         {
             PlayfabManager.Instance.getLeaderBoardValueEvent.AddListener(GetAttendanceDataEventCallback);
-            PlayfabManager.Instance.GetLeaderBoardUserValue("Attendance " + PN.CurrentRoom.Name, PlayfabManager.Instance.playerName);
+//            PlayfabManager.Instance.GetLeaderBoardUserValue("Attendance " + PN.CurrentRoom.Name, PlayfabManager.Instance.playerName);
             PlayfabManager.Instance.UpdateLeaderBoard("Attendance " + PN.CurrentRoom.Name, 1);
 
         }

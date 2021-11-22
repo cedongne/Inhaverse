@@ -44,7 +44,9 @@ public class ChatManager : MonoBehaviour, IChatClientListener
     {
 		if(instance == null)
 			instance = GetComponent<ChatManager>();
-    }
+		else
+			Destroy(gameObject);
+	}
 	// Use this for initialization
 	void Start()
 	{

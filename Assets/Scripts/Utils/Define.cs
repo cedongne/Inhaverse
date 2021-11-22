@@ -35,4 +35,10 @@ public class Define
         YET
     }
 
+    public enum CLASSSTATE
+    {
+        START,
+        END
+    }
+
 }

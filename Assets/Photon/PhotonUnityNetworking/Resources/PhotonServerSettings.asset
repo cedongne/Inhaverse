@@ -46,6 +46,7 @@ MonoBehaviour:
   - UpdateConferenceStateRPC
   - ChangeMaterialRPC
   - UploadImageRPC
+  - CheckAttendancePeriodically
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

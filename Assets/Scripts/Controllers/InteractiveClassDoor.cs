@@ -13,13 +13,20 @@ public class InteractiveClassDoor : InteractiveObject
 
     public override void Interaction()
     {
-        if (PlayfabManager.Instance.playerJob == "학생")
+        if (NetworkManager.Instance.room_name.Equals("Lobby"))
         {
-            UIManager.Instance.EnterClassBtn();
+            if (PlayfabManager.Instance.playerJob == "학생")
+            {
+                UIManager.Instance.EnterClassBtn();
+            }
+            else if (PlayfabManager.Instance.playerJob == "교수")
+            {
+                UIManager.Instance.OpenWindow(Define.UI.CLASS);
+            }
         }
-        else if (PlayfabManager.Instance.playerJob == "교수")
+        else
         {
-            UIManager.Instance.OpenWindow(Define.UI.CLASS);
+            NetworkManager.Instance.JoinToCampus();
         }
     }
 

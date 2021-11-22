@@ -161,6 +161,7 @@ namespace OpenCvSharp
         {
             if (stream.IsWriting)
             {
+                Debug.Log("Send : " + PlayfabManager.Instance.playerName);
                 if (nowDisplay.gameObject.activeSelf)
                 {
                     //                stream.SendNext(destTexture.EncodeToPNG());
@@ -171,6 +172,7 @@ namespace OpenCvSharp
             }
             else
             {
+                Debug.Log("Receive : " + PlayfabManager.Instance.playerName);
                 receifedImageStr = (string)stream.ReceiveNext();
                 Debug.Log(receifedImageStr);
                 destTexture.LoadImage(Convert.FromBase64String(receifedImageStr));
