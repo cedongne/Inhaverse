@@ -95,7 +95,6 @@ public class FileManager : MonoBehaviourPun
     public IEnumerator UrlUpload()
     {
         WWW www = new WWW(inputfield.text);
-        www.texture.Resize(1, 1);
         yield return www;
         board.GetComponent<MeshRenderer>().material.mainTexture = www.texture;
     }
