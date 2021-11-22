@@ -16,7 +16,7 @@ namespace OpenCvSharp
         public float delayTime = 1f;
         bool isDelay = false;
         bool detect_flag = false;
-        OpenCvSharp.Rect tmp;
+        OpenCvSharp.Rect before_image;
 
         WebCamTexture camTexture;
         public RawImage headDisplay;
@@ -35,10 +35,14 @@ namespace OpenCvSharp
 
         void Start()
         {
-            WebCamDevice device = WebCamTexture.devices[0];
-            camTexture = new WebCamTexture(device.name);
-            nowDisplay = headDisplay;
             destTexture = Texture2D.blackTexture;
+
+            if (WebCamTexture.devices.Length != 0)
+            {
+                WebCamDevice device = WebCamTexture.devices[0];
+                camTexture = new WebCamTexture(device.name);
+            }
+            nowDisplay = headDisplay;
             conferenceDisplay = RpcUIManager.Instance.webCamImageList[0].GetComponent<RawImage>();
 
             if (!faceCascade.Load(filenameFaceCascade))
@@ -52,8 +56,11 @@ namespace OpenCvSharp
         {
             if (photonView.IsMine)
             {
-                SetWebCamDisplay();
-                ShowWebCam();
+                if (WebCamTexture.devices.Length != 0)
+                {
+                    SetWebCamDisplay();
+                    ShowWebCam();
+                }
             }
             else
             {
@@ -83,8 +90,8 @@ namespace OpenCvSharp
                 OpenCvSharp.Rect[] faces = faceCascade.DetectMultiScale(image);
                 foreach (var item in faces)
                 {
-                    tmp = item;
-                    dst = image.SubMat(tmp);
+                    before_image = item;
+                    dst = image.SubMat(before_image);
                 }
                 if (dst.Empty())
                 {
@@ -104,9 +111,9 @@ namespace OpenCvSharp
                     timer = 0f;
                     isDelay = false;
                 }
-                if (tmp.Top != 0)
+                if (before_image.Top != 0 && before_image.Left != 0) 
                 {
-                    dst = image.SubMat(tmp);
+                    dst = image.SubMat(before_image);
                     destTexture = Unity.MatToTexture(dst);
                 }
                 else
@@ -121,14 +128,17 @@ namespace OpenCvSharp
             {
                 camTexture.Play();
                 image = Unity.TextureToMat(camTexture);
-                if(detect_flag)
+                destTexture = Unity.MatToTexture(image);
+                /*
+                if (detect_flag)
                 {
                     FaceDetect();
                 }
                 else
-                {
+                {*/
                     destTexture = Unity.MatToTexture(image);
-                }
+             //   }
+
                 nowDisplay.texture = destTexture;
             }
             else
@@ -145,16 +155,27 @@ namespace OpenCvSharp
             }
         }
 
+        byte[] receivedImage;
+        string receifedImageStr;
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
             if (stream.IsWriting)
             {
-                stream.SendNext(destTexture.ToString());
+                if (nowDisplay.gameObject.activeSelf)
+                {
+                    //                stream.SendNext(destTexture.EncodeToPNG());
+                    //                Debug.Log(destTexture.EncodeToPNG().Length);
+                    stream.SendNext(Convert.ToBase64String(destTexture.EncodeToPNG()));
+                    Debug.Log(Convert.ToBase64String(destTexture.EncodeToPNG()));
+                }
             }
             else
             {
-                Debug.Log((string)stream.ReceiveNext());
-                destTexture.LoadImage(Convert.FromBase64String((string)stream.ReceiveNext()));
+                receifedImageStr = (string)stream.ReceiveNext();
+                Debug.Log(receifedImageStr);
+                destTexture.LoadImage(Convert.FromBase64String(receifedImageStr));
+ //               receivedImage = (byte[])stream.ReceiveNext();
+ //               destTexture.LoadRawTextureData(receivedImage);
                 Debug.Log("RE");
             }
         }

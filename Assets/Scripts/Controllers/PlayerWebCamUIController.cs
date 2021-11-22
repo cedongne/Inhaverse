@@ -42,12 +42,13 @@ public class PlayerWebCamUIController : MonoBehaviourPunCallbacks
             photonView.RPC("TurnWebCamRPC", RpcTarget.AllBuffered);
         }
     }
-        [PunRPC]
-        public void TurnWebCamRPC()
-        {
-            if (webCamImage.activeSelf)
-                webCamImage.SetActive(false);
-            else
-                webCamImage.SetActive(true);
-        }
+    [PunRPC]
+    public void TurnWebCamRPC()
+    {
+        Debug.Log("Turn");
+        if (webCamImage.activeSelf)
+            webCamImage.SetActive(false);
+        else
+            webCamImage.SetActive(true);
+    }
 }
