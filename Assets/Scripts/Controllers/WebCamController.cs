@@ -156,7 +156,7 @@ namespace OpenCvSharp
         }
 
         byte[] receivedImage;
-        string receifedImageStr;
+        string receivedImageStr;
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
             if (stream.IsWriting)
@@ -172,10 +172,9 @@ namespace OpenCvSharp
             }
             else
             {
-                Debug.Log("Receive : " + PlayfabManager.Instance.playerName);
-                receifedImageStr = (string)stream.ReceiveNext();
-                Debug.Log(receifedImageStr);
-                destTexture.LoadImage(Convert.FromBase64String(receifedImageStr));
+                receivedImageStr = (string)stream.ReceiveNext();
+                Debug.Log(receivedImageStr);
+                destTexture.LoadImage(Convert.FromBase64String(receivedImageStr));
  //               receivedImage = (byte[])stream.ReceiveNext();
  //               destTexture.LoadRawTextureData(receivedImage);
                 Debug.Log("RE");
