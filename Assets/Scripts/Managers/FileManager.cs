@@ -6,11 +6,13 @@ using System.Windows.Forms;
 using Ookii.Dialogs;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.UI;
 
 public class FileManager : MonoBehaviourPun
 {
     private static FileManager instance;
     public GameObject board;
+    public InputField inputfield;
 
     public static FileManager Instance
     {
@@ -51,6 +53,11 @@ public class FileManager : MonoBehaviourPun
         UploadImage();
     }
 
+    public void InputUrl()
+    {
+        UploadImage();
+    }
+
     string[] FileOpen(VistaOpenFileDialog openFileDialog)
     {
         var result = openFileDialog.ShowDialog();
@@ -82,11 +89,14 @@ public class FileManager : MonoBehaviourPun
     [PunRPC]
     public void UploadImageRPC()
     {
-        Texture2D texture = null;
-        byte[] fileData;
-        fileData = File.ReadAllBytes(filePaths[0]);
-        texture = new Texture2D(2, 2);
-        texture.LoadImage(fileData);
-        board.GetComponent<MeshRenderer>().material.mainTexture = texture;
+        StartCoroutine("UrlUpload");
+    }
+
+    public IEnumerator UrlUpload()
+    {
+        WWW www = new WWW(inputfield.text);
+        www.texture.Resize(1, 1);
+        yield return www;
+        board.GetComponent<MeshRenderer>().material.mainTexture = www.texture;
     }
 }
