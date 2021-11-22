@@ -129,15 +129,16 @@ namespace OpenCvSharp
                 camTexture.Play();
                 image = Unity.TextureToMat(camTexture);
                 destTexture = Unity.MatToTexture(image);
-
+                /*
                 if (detect_flag)
                 {
                     FaceDetect();
                 }
                 else
-                {
+                {*/
                     destTexture = Unity.MatToTexture(image);
-                }
+             //   }
+
                 nowDisplay.texture = destTexture;
             }
             else
@@ -160,11 +161,13 @@ namespace OpenCvSharp
         {
             if (stream.IsWriting)
             {
-//                stream.SendNext(destTexture.EncodeToPNG());
-//                Debug.Log(destTexture.EncodeToPNG().Length);
-                stream.SendNext(Convert.ToBase64String(destTexture.EncodeToPNG()));
-                Debug.Log(Convert.ToBase64String(destTexture.EncodeToPNG()));
-
+                if (nowDisplay.gameObject.activeSelf)
+                {
+                    //                stream.SendNext(destTexture.EncodeToPNG());
+                    //                Debug.Log(destTexture.EncodeToPNG().Length);
+                    stream.SendNext(Convert.ToBase64String(destTexture.EncodeToPNG()));
+                    Debug.Log(Convert.ToBase64String(destTexture.EncodeToPNG()));
+                }
             }
             else
             {
