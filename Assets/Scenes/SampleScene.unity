@@ -20101,6 +20101,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: d0a555f42830f0b4ea42031195259d2a, type: 3}
   m_PrefabInstance: {fileID: 1960049437}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1970190512 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 1061815032020316423, guid: 017c1e233b0f21446b822ba4b14a76a4, type: 3}
+  m_PrefabInstance: {fileID: 1061815031435328981}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1970636840
 GameObject:
   m_ObjectHideFlags: 0
@@ -23179,10 +23184,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: tent101
       objectReference: {fileID: 0}
+    - target: {fileID: 1061815032020316423, guid: 017c1e233b0f21446b822ba4b14a76a4, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6773885768091019315, guid: 017c1e233b0f21446b822ba4b14a76a4, type: 3}
       propertyPath: sceneViewId
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8823795167493920661, guid: 017c1e233b0f21446b822ba4b14a76a4, type: 3}
+      propertyPath: collider
+      value: 
+      objectReference: {fileID: 1970190512}
     - target: {fileID: 8902927775208250463, guid: 017c1e233b0f21446b822ba4b14a76a4, type: 3}
       propertyPath: m_Range
       value: 20

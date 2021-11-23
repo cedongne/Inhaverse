@@ -10,7 +10,7 @@ public class InteractiveTent : InteractiveObject
     public GameObject board;
     public BoxCollider collider;
 
-    private void Update()
+    public void SetTriggerOnOff()
     {
         if(board.GetComponent<InteractiveTentBoard>().hostID == "")
         {

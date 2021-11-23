@@ -8,12 +8,14 @@ public class InteractiveTentBoard : InteractiveObject
     public RawImage rawImage;
     public bool imageExisted = false;
     public string hostID = "";
+    public GameObject entrance;
 
     public override void Interaction()
     {
         UIManager.Instance.OpenWindow(Define.UI.OPENFILE);
 
         SetHost();
+        entrance.GetComponent<InteractiveTent>().SetTriggerOnOff();
 
         FileManager.Instance.board = this.gameObject;
         rawImage = UIManager.Instance.openFileWindow.transform.Find("RawImage").GetComponent<RawImage>();
@@ -47,10 +49,11 @@ public class InteractiveTentBoard : InteractiveObject
 
     public void DisconnectHost()
     {
-        hostID = "";
         CancelInvoke();
         rawImage.texture = null;
         imageExisted = false;
+        hostID = "";
+        entrance.GetComponent<InteractiveTent>().SetTriggerOnOff();
     }
 
     private void InitializeHost()

@@ -14,8 +14,8 @@ public class Background : MonoBehaviour
 
     void Update()
     {
-        //ChangeDays();
-        ChageDaysWithButton();
+        ChangeDays();
+        //ChageDaysWithButton();
     }
 
     public void ChangeDays()

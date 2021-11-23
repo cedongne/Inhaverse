@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 1061815032020316423}
   - component: {fileID: 8823795167493920661}
   m_Layer: 0
-  m_Name: Enterance
+  m_Name: Entrance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -158,6 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEntered: 0
   board: {fileID: 3103287488427274273}
+  collider: {fileID: 0}
 --- !u!108 &8902927775208250463
 Light:
   m_ObjectHideFlags: 0
@@ -282,7 +283,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1151844921754575795, guid: 4608bcf969d4be54887d36bf6ba7a596, type: 3}
+  - {fileID: 2100000, guid: 1438826f53fd2684fbf5e0410b9b223f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -333,6 +334,7 @@ MonoBehaviour:
   rawImage: {fileID: 0}
   imageExisted: 0
   hostID: 
+  entrance: {fileID: 1061815032020316421}
 --- !u!114 &2996326198311364499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,7 +510,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1151844921754575795, guid: 4608bcf969d4be54887d36bf6ba7a596, type: 3}
+  - {fileID: 2100000, guid: 1438826f53fd2684fbf5e0410b9b223f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
