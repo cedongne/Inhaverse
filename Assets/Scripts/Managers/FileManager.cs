@@ -11,6 +11,7 @@ using System;
 
 public class FileManager : MonoBehaviourPun
 {
+    public InputField inputField;
     private FileManager() { }
     private static FileManager instance;
 
@@ -60,6 +61,13 @@ public class FileManager : MonoBehaviourPun
         UploadImage();
     }
 
+    public void OnButtonDisconnectHost()
+    {
+        board.GetComponent<InteractiveTentBoard>().DisconnectHost();
+        DeleteImage();
+
+    }
+
     public void InputUrl()
     {
         UploadImage();
@@ -68,6 +76,7 @@ public class FileManager : MonoBehaviourPun
 
     void CloseWindowInvoke()
     {
+        inputField.text = "";
         UIManager.Instance.CloseWindow();
     }
 
@@ -104,12 +113,21 @@ public class FileManager : MonoBehaviourPun
         photonView.RPC("UpdateImageRPC", RpcTarget.All);
     }
 
+    public void DeleteImage()
+    {
+        board.GetComponent<MeshRenderer>().material.mainTexture = null;
+    }
+
     public IEnumerator UrlUpload()
     {
         WWW www = new WWW(input.text);
         yield return www;
-        board.GetComponent<MeshRenderer>().material.mainTexture = RotateImage(www.texture, -90);
-        board.GetComponent<MeshRenderer>().material.mainTextureScale = new Vector2(3, 4);
+        if(www.texture != null)
+        {
+            board.GetComponent<MeshRenderer>().material.mainTexture = RotateImage(www.texture, -90);
+            board.GetComponent<MeshRenderer>().material.mainTextureScale = new Vector2(3, 4);
+            board.GetComponent<InteractiveTentBoard>().imageExisted = true;
+        }
     }
 
     public void UploadFileOnPlayFab()
