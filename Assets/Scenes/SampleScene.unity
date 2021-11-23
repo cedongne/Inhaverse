@@ -807,7 +807,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 931321785}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: CloseWindow
         m_Mode: 1
@@ -8382,7 +8382,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 931321785}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: CloseWindow
         m_Mode: 1
@@ -12674,7 +12674,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 931321785}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: CloseWindow
         m_Mode: 1
@@ -13252,7 +13252,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 931321785}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: CloseWindow
         m_Mode: 1
@@ -21441,7 +21441,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 931321785}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: MakeClassBtn
+        m_MethodName: OpenClassMakingWindow
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

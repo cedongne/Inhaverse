@@ -24,8 +24,11 @@ public class PlayerWebCamUIController : MonoBehaviourPunCallbacks
         {
             if (!UIManager.Instance.isOpenWindow)
             {
-                GetInput();
-                TurnWebCam();
+                if (!ChatManager.Instance.onChat)
+                {
+                    GetInput();
+                    TurnWebCam();
+                }
             }
         }
     }
