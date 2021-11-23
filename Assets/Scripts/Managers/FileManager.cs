@@ -107,13 +107,13 @@ public class FileManager : MonoBehaviourPunCallbacks
         board.GetComponent<MeshRenderer>().material.mainTexture = null;
     }
 
-    public IEnumerator UrlUpload(string url)
+    public IEnumerator UrlUpload(string url, string hostName)
     {
         WWW www = new WWW(url);
         yield return www;
         if (www.texture != null)
         {
-            board.GetComponent<InteractiveTentBoard>().SetNewHost();
+            board.GetComponent<InteractiveTentBoard>().SetNewHost(hostName);
             board.GetComponent<MeshRenderer>().material.mainTexture = RotateImage(www.texture, -90);
             board.GetComponent<MeshRenderer>().material.mainTextureScale = new Vector2(3, 4);
             board.GetComponent<InteractiveTentBoard>().imageExisted = true;
@@ -135,19 +135,19 @@ public class FileManager : MonoBehaviourPunCallbacks
         {
             if(boardList[idx].Equals(board))
             {
-                photonView.RPC("GetBoardRPC", RpcTarget.AllBuffered, idx, input.text);
+                photonView.RPC("GetBoardRPC", RpcTarget.AllBuffered, idx, input.text, PlayfabManager.Instance.playerName);
                 break;
             }
         }
     }
     [PunRPC]
-    private void GetBoardRPC(int idx, string url)
+    private void GetBoardRPC(int idx, string url, string hostName)
     {
         
         Debug.Log(boardList[idx]);
         Debug.Log(url);
         board = boardList[idx];
-        StartCoroutine("UrlUpload", url);
+        StartCoroutine(UrlUpload(url, hostName));
     }
 
     public Texture2D RotateImage(Texture2D originTexture, int angle)

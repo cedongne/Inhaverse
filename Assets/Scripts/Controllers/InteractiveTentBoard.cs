@@ -44,9 +44,9 @@ public class InteractiveTentBoard : InteractiveObject
         }
     }
 
-    public void SetNewHost()
+    public void SetNewHost(string _hostName)
     {
-        hostName = PlayfabManager.Instance.playerName;
+        hostName = _hostName;
         Invoke("InitializeHost", 3600f);
     }
 
