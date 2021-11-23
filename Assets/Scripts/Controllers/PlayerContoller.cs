@@ -55,10 +55,6 @@ public class PlayerContoller : MonoBehaviourPun
 
     private void Awake()
     {
-        if (!photonView.IsMine)
-        {
-            name = photonView.Owner.NickName;
-        }
         screenCenter = new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2);
         animator = GetComponent<Animator>();
         cameraArm = GameObject.Find("Camera Arm");
@@ -69,6 +65,7 @@ public class PlayerContoller : MonoBehaviourPun
     {
         if (!photonView.IsMine)
         {
+            name = photonView.Owner.NickName;
             RpcUIManager.Instance.playerList.Add(gameObject.transform);
             RpcUIManager.Instance.playerUILIst.Add(playerUIObjects);
             RpcUIManager.Instance.webCamImageList.Add(webCamImage);
@@ -78,6 +75,8 @@ public class PlayerContoller : MonoBehaviourPun
 
         if (photonView.IsMine)
         {
+            if (PlayfabManager.Instance.playerName != "")
+                name = PlayfabManager.Instance.playerName;
             cameraArmTransform = cameraArm.transform;
 
             cameraArm.GetComponent<CameraController>().enabled = true;

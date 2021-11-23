@@ -29,12 +29,14 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
     }
 
     public GameObject cameraArm;
-    GameObject player;
+    public GameObject player;
     GameObject playerNameTextUI;
 
     string network_state;
     public string room_name;
     Vector3 lastPosition = Vector3.zero;
+
+    public bool connection = false;
 
     private void Awake()
     {
@@ -42,6 +44,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
         if(instance == null)
         {
             instance = gameObject.GetComponent<NetworkManager>();
+            gameObject.SetActive(true);
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -67,10 +70,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
         PlayfabManager.Instance.getUserDataEvent.RemoveListener(JoinToClass);
 
         string[] splitedTimeTableData = UtilityMethods.SplitTimeTableUserData(classData);
-
         PN.LeaveRoom();
         ChatManager.Instance.LeaveChat();
         lastPosition = player.transform.position;
+        player.transform.position = Vector3.zero;
+
         SceneManager.LoadScene("ClassroomScene");
         if(UtilityMethods.DetermineAllowClassEnter(splitedTimeTableData))
             room_name = className;
@@ -83,12 +87,14 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
 
     public void JoinToCampus()
     {
-        Destroy(ChatManager.Instance.gameObject);
-        Destroy(FileManager.Instance.gameObject);
-        room_name = "Lobby";
+        Destroy(ConferenceManager.Instance.gameObject);
+//        Destroy(FileManager.Instance.gameObject);
+        room_name = "Campus";
         PN.LeaveRoom();
         ChatManager.Instance.LeaveChat();
         Debug.Log("JoinToCampus");
+        player.transform.position = lastPosition;
+
 
         SceneManager.LoadScene("SampleScene");
         player.transform.position = lastPosition;
@@ -119,6 +125,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
     void GameStart()
     {
         SpawnPlayer();
+        Debug.Log("GameStart");
         UIManager.Instance.ShowUI(Define.UI.HUD);
         cameraArm.GetComponent<CameraController>().enabled = true;
         ChatManager.Instance.ChatStart();
@@ -126,24 +133,19 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
 
     void SpawnPlayer()
     {
-        if (player == null)
+        player = PN.Instantiate("Player", Vector3.zero, Quaternion.identity);
+        /*
+        if (!connection)
         {
-            if (room_name != "Lobby")
-            {
-                player = PN.Instantiate("Player", Vector3.zero, Quaternion.identity);
-            }
-            else
-            {
-                Debug.Log("Lobby" + lastPosition);
-                player = PN.Instantiate("Player", lastPosition, Quaternion.identity);
-            }
-            player.name = PlayfabManager.Instance.playerName;
+//            DontDestroyOnLoad(player);
         }
         else
         {
             player.transform.position = Vector3.zero;
             player.transform.rotation = Quaternion.identity;
         }
+        connection = true;
+        */
     }
 
     void Update()

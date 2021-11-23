@@ -594,7 +594,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 472855812}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: CloseWindow
         m_Mode: 1
@@ -807,7 +807,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 472855812}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: CloseWindow
         m_Mode: 1
@@ -2144,7 +2144,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 472855812}
+      - m_Target: {fileID: 931321785}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: EnterClassBtn
         m_Mode: 1
@@ -2298,7 +2298,7 @@ Transform:
   - {fileID: 169749396}
   - {fileID: 854991336}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &207591282
 PrefabInstance:
@@ -3288,8 +3288,6 @@ GameObject:
   - component: {fileID: 295047766}
   - component: {fileID: 295047769}
   - component: {fileID: 295047770}
-  - component: {fileID: 295047771}
-  - component: {fileID: 295047772}
   - component: {fileID: 295047773}
   m_Layer: 0
   m_Name: CommunicationManager
@@ -3371,7 +3369,7 @@ MonoBehaviour:
   voiceDetectionThreshold: 0.01
   voiceDetectionDelayMs: 500
   unityMicrophoneDevice: 
-  photonMicrophoneDeviceId: 0
+  photonMicrophoneDeviceId: -1
   interestGroup: 0
   debugEchoMode: 0
   reliableMode: 0
@@ -3415,7 +3413,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &295047769
 MonoBehaviour:
@@ -3454,43 +3452,6 @@ MonoBehaviour:
   ifObject: {fileID: 2580658444375160557}
   sbObject: {fileID: 2580658444259038500}
   onChat: 0
---- !u!114 &295047771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 295047765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6f0db40933ddc349934706eaa4ed797, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  channelName: 
-  players: []
-  webCamImages: []
---- !u!114 &295047772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 295047765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 1
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!114 &295047773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3917,7 +3878,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 472855812}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: MakeClassBtn
         m_Mode: 1
@@ -4286,6 +4247,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 399437903}
   m_CullTransparentMesh: 1
+--- !u!1001 &404332219
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1689172731123601450, guid: dfe60a09b22246c41a3d1c1717550c33, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689172731123601450, guid: dfe60a09b22246c41a3d1c1717550c33, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689172731123601450, guid: dfe60a09b22246c41a3d1c1717550c33, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689172731123601450, guid: dfe60a09b22246c41a3d1c1717550c33, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689172731123601450, guid: dfe60a09b22246c41a3d1c1717550c33, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689172731123601450, guid: dfe60a09b22246c41a3d1c1717550c33, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689172731123601450, guid: dfe60a09b22246c41a3d1c1717550c33, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689172731123601450, guid: dfe60a09b22246c41a3d1c1717550c33, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689172731123601450, guid: dfe60a09b22246c41a3d1c1717550c33, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689172731123601450, guid: dfe60a09b22246c41a3d1c1717550c33, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689172731123601450, guid: dfe60a09b22246c41a3d1c1717550c33, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689172731123601462, guid: dfe60a09b22246c41a3d1c1717550c33, type: 3}
+      propertyPath: m_Name
+      value: RpcManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689172731123601463, guid: dfe60a09b22246c41a3d1c1717550c33, type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dfe60a09b22246c41a3d1c1717550c33, type: 3}
 --- !u!1 &406062437
 GameObject:
   m_ObjectHideFlags: 0
@@ -4834,8 +4856,6 @@ GameObject:
   - component: {fileID: 472855810}
   - component: {fileID: 472855809}
   - component: {fileID: 472855811}
-  - component: {fileID: 472855812}
-  - component: {fileID: 472855813}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -4856,7 +4876,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraArm: {fileID: 3650513701645454894}
+  player: {fileID: 0}
   room_name: 
+  connection: 0
 --- !u!4 &472855810
 Transform:
   m_ObjectHideFlags: 0
@@ -4936,62 +4958,6 @@ MonoBehaviour:
   invitingGroupEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &472855812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 472855808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3d4a8a330bb18c4099baada4040b8f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loginUI: {fileID: 2580658445182027412}
-  hudUI: {fileID: 2580658444220035258}
-  classWindow: {fileID: 217934091}
-  classMakingWindow: {fileID: 2074335320}
-  classListWindow: {fileID: 518430893}
-  conferenceWindow: {fileID: 1828494051}
-  playerInfoWindow: {fileID: 442784972}
-  openFileWindow: {fileID: 1866391726}
-  playerController: {fileID: 0}
-  cameraController: {fileID: 0}
-  webCamUIController: {fileID: 0}
-  classInstructor: {fileID: 1718740507}
-  classNameInput: {fileID: 1440192764}
-  classLateCheckTimeInput: {fileID: 667403234}
-  classIdInput: {fileID: 1916425730}
-  classNumberInput: {fileID: 1987540083}
-  classEnterAllowTimeInput: {fileID: 270702668}
-  firstDayOfWeekInput: {fileID: 1480292831}
-  firstStartTimeInput: {fileID: 107356507}
-  firstEndTimeInput: {fileID: 954262507}
-  secondDayOfWeekInput: {fileID: 229436163}
-  secondStartTimeInput: {fileID: 2081854424}
-  secondEndTimeInput: {fileID: 1615211075}
-  studentIdInput: {fileID: 2103252869}
-  studentListText: {fileID: 1329897613}
-  classButton: {fileID: 7319785340756496215, guid: b4c48f08c37d6cc459e0f95b633d1368, type: 3}
-  ConferenceMemberText: {fileID: 517899508}
-  isOpenWindow: 0
-  playerName: {fileID: 104412335}
-  playerSchoolId: {fileID: 1035060079}
-  classListContent: {fileID: 514408066}
-  playerCount: 0
---- !u!114 &472855813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 472855808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f64351c54da662e44b39351e19b39832, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &479837504 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5239691896952471829, guid: 88aaa36b33a9cd943b3c7cd91c34c610, type: 3}
@@ -8368,7 +8334,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 472855812}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: CloseWindow
         m_Mode: 1
@@ -9043,7 +9009,7 @@ GameObject:
   - component: {fileID: 929108224}
   - component: {fileID: 929108222}
   m_Layer: 0
-  m_Name: InputField
+  m_Name: OpenFile InputField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9103,7 +9069,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1472182923}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: FileManager, Assembly-CSharp
         m_MethodName: InputUrl
         m_Mode: 1
@@ -9553,7 +9519,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 472855812}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: DeleteStudentInClassButton
         m_Mode: 1
@@ -9909,7 +9875,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 472855812}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: CamOnOffBtn
         m_Mode: 1
@@ -12571,7 +12537,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 472855812}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: CloseWindow
         m_Mode: 1
@@ -13149,7 +13115,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 472855812}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: CloseWindow
         m_Mode: 1
@@ -15080,75 +15046,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5096481991497078369, guid: b1571a7af7e41194fbd8ba634787c394, type: 3}
   m_PrefabInstance: {fileID: 1458365932}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1472182922
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1472182925}
-  - component: {fileID: 1472182924}
-  - component: {fileID: 1472182923}
-  m_Layer: 0
-  m_Name: FileManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1472182923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1472182922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67d8b9d48409d4240b47b0569778ddef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  board: {fileID: 0}
-  inputfield: {fileID: 929108222}
-  filePaths: []
---- !u!114 &1472182924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1472182922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 3
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
---- !u!4 &1472182925
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1472182922}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1081.4564, y: 475.6434, z: -114.517296}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1473470446
 GameObject:
   m_ObjectHideFlags: 0
@@ -17161,7 +17058,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 472855812}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: AddStudentInClassButton
         m_Mode: 1
@@ -18062,7 +17959,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1756930145 stripped
 Transform:
@@ -19971,12 +19868,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1970636840}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 3650513701645454889}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1974019978
 GameObject:
@@ -21254,9 +21151,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 472855812}
+      - m_Target: {fileID: 931321785}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OpenClassMakingWindow
+        m_MethodName: MakeClassBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21496,7 +21393,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 472855812}
+      - m_Target: {fileID: 931321785}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: OpenClassListWindow
         m_Mode: 1
@@ -24370,7 +24267,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 472855812}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: ChangeViewBtn
         m_Mode: 1
@@ -24711,7 +24608,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 472855812}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: InfoBtn
         m_Mode: 1
@@ -24873,7 +24770,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 472855812}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: ChangeRunBtn
         m_Mode: 1
@@ -26551,6 +26448,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1638841389}
+  - {fileID: 1970636842}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
