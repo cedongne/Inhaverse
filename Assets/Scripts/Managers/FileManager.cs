@@ -72,7 +72,6 @@ public class FileManager : MonoBehaviourPun
     public void InputUrl()
     {
         UploadImage();
-        board.transform.parent.parent.GetComponentInChildren<InteractiveTent>().SetTriggerOnOff();
         Invoke("CloseWindowInvoke", 0.1f);
     }
 
@@ -131,6 +130,7 @@ public class FileManager : MonoBehaviourPun
             board.GetComponent<MeshRenderer>().material.mainTextureScale = new Vector2(3, 4);
             board.GetComponent<InteractiveTentBoard>().imageExisted = true;
         }
+        board.transform.parent.parent.GetComponentInChildren<InteractiveTent>().SetTriggerOnOff();
     }
 
     public void UploadFileOnPlayFab()
