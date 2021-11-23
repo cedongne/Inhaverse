@@ -10,6 +10,7 @@ using UnityEngine.UI;
 
 public class FileManager : MonoBehaviourPun
 {
+    private FileManager() { }
     private static FileManager instance;
     public GameObject board;
     public InputField inputfield;

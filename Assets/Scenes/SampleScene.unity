@@ -3371,7 +3371,7 @@ MonoBehaviour:
   voiceDetectionThreshold: 0.01
   voiceDetectionDelayMs: 500
   unityMicrophoneDevice: 
-  photonMicrophoneDeviceId: -1
+  photonMicrophoneDeviceId: 0
   interestGroup: 0
   debugEchoMode: 0
   reliableMode: 0
@@ -3432,6 +3432,7 @@ MonoBehaviour:
   voiceRecorder: {fileID: 295047767}
   voiceNetwork: {fileID: 295047766}
   onVoice: 0
+  voiceButton: {fileID: 2580658445663264427}
   isVoiceDown: 0
 --- !u!114 &295047770
 MonoBehaviour:
@@ -4855,6 +4856,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraArm: {fileID: 3650513701645454894}
+  room_name: 
 --- !u!4 &472855810
 Transform:
   m_ObjectHideFlags: 0

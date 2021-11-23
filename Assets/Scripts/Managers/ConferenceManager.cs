@@ -9,7 +9,8 @@ using Photon.Chat;
 
 public class ConferenceManager : MonoBehaviourPun
 {
-    
+
+    private ConferenceManager() { }
     private static ConferenceManager instance;
 
     public static ConferenceManager Instance
@@ -27,6 +28,15 @@ public class ConferenceManager : MonoBehaviourPun
 
             return instance;
         }
+    }
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = gameObject.GetComponent<ConferenceManager>();
+        }
+        else
+            Destroy(gameObject);
     }
 
     public string channelName;

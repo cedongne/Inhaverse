@@ -16,6 +16,7 @@ public class VoiceManager : MonoBehaviour
 
     public bool isVoiceDown;
 
+    private VoiceManager() { }
     private static VoiceManager instance;
 
     public static VoiceManager Instance

@@ -21,6 +21,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 
 	public bool onChat;
 
+	private ChatManager() { }
 	private static ChatManager instance;
 
 	public static ChatManager Instance

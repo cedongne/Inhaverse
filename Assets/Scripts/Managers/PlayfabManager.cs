@@ -78,7 +78,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         }
         else
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 
