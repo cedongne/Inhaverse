@@ -59,7 +59,6 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 	// Use this for initialization
 	void Start()
 	{
-		Debug.Log("ChatManager");
 		Application.runInBackground = true;
 		onChat = false;
 		conferenceOption = new ChannelCreationOptions();
