@@ -35,7 +35,7 @@ public class FileManager : MonoBehaviourPunCallbacks
     }
 
     public GameObject board;
-    GameObject tmpBoard;
+    public List<GameObject> boardList;
     public InputField input;
 
     // Start is called before the first frame update
@@ -123,17 +123,25 @@ public class FileManager : MonoBehaviourPunCallbacks
     {
         WWW www = new WWW(input.text);
         yield return www;
-        if(www.texture != null)
+        if (www.texture != null)
         {
             board.GetComponent<InteractiveTentBoard>().SetNewHost();
             board.GetComponent<MeshRenderer>().material.mainTexture = RotateImage(www.texture, -90);
             board.GetComponent<MeshRenderer>().material.mainTextureScale = new Vector2(3, 4);
             board.GetComponent<InteractiveTentBoard>().imageExisted = true;
-            UpdateImage();
+            GetBoard();
         }
         board.transform.parent.parent.GetComponentInChildren<InteractiveTent>().SetTriggerOnOff();
     }
+    public void SetBoardImage(GameObject _board, string url)
+    {
+        WWW www = new WWW(url);
 
+        _board.GetComponent<InteractiveTentBoard>().SetNewHost();
+        _board.GetComponent<MeshRenderer>().material.mainTexture = RotateImage(www.texture, -90);
+        _board.GetComponent<MeshRenderer>().material.mainTextureScale = new Vector2(3, 4);
+        _board.GetComponent<InteractiveTentBoard>().imageExisted = true;
+    }
     public void UploadFileOnPlayFab()
     {
 
@@ -143,16 +151,24 @@ public class FileManager : MonoBehaviourPunCallbacks
     private void UpdateImageRPC()
     {
     }
-    public void GetBoard(GameObject _board)
+    public void GetBoard()
     {
-        tmpBoard = _board;
-        photonView.RPC("GetBoardRPC", RpcTarget.AllBuffered);
+        for(int idx = 0; idx < boardList.Count; idx++)
+        {
+            if(boardList[idx].Equals(board))
+            {
+                photonView.RPC("GetBoardRPC", RpcTarget.AllBuffered, idx, input.text);
+                break;
+            }
+        }
     }
     [PunRPC]
-    private void GetBoardRPC()
+    private void GetBoardRPC(int idx, string url)
     {
-        board = tmpBoard;
-        Debug.Log(board);
+        
+        Debug.Log(boardList[idx]);
+        Debug.Log(url);
+        SetBoardImage(boardList[idx], url);
     }
 
     public Texture2D RotateImage(Texture2D originTexture, int angle)

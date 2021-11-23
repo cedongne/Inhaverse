@@ -9668,6 +9668,7 @@ MonoBehaviour:
   inputField: {fileID: 929108222}
   entrance: {fileID: 1061815031193958362, guid: 017c1e233b0f21446b822ba4b14a76a4, type: 3}
   board: {fileID: 0}
+  boardList: []
   input: {fileID: 929108222}
   filePaths: []
 --- !u!114 &945244072
@@ -23137,6 +23138,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 994438020115255018, guid: 017c1e233b0f21446b822ba4b14a76a4, type: 3}
+      propertyPath: tentName
+      value: tent101
+      objectReference: {fileID: 0}
     - target: {fileID: 1061815031193922554, guid: 017c1e233b0f21446b822ba4b14a76a4, type: 3}
       propertyPath: m_RootOrder
       value: 1

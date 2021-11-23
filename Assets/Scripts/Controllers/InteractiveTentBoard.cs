@@ -9,6 +9,7 @@ public class InteractiveTentBoard : InteractiveObject
     public bool imageExisted = false;
     public string hostName = "";
     public GameObject entrance;
+    public string tentName;
 
     public override void Interaction()
     {
@@ -16,8 +17,7 @@ public class InteractiveTentBoard : InteractiveObject
 
         ShowHost();
 
-        //FileManager.Instance.board = gameObject;
-        FileManager.Instance.GetBoard(gameObject);
+        FileManager.Instance.board = gameObject;
         rawImage = UIManager.Instance.openFileWindow.transform.Find("RawImage").GetComponent<RawImage>();
 
         if (imageExisted)
