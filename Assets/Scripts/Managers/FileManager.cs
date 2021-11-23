@@ -12,6 +12,7 @@ using System;
 public class FileManager : MonoBehaviourPun
 {
     public InputField inputField;
+    public GameObject entrance;
     private FileManager() { }
     private static FileManager instance;
 
@@ -71,6 +72,7 @@ public class FileManager : MonoBehaviourPun
     public void InputUrl()
     {
         UploadImage();
+        board.transform.parent.parent.GetComponentInChildren<InteractiveTent>().SetTriggerOnOff();
         Invoke("CloseWindowInvoke", 0.1f);
     }
 
@@ -124,6 +126,7 @@ public class FileManager : MonoBehaviourPun
         yield return www;
         if(www.texture != null)
         {
+            board.GetComponent<InteractiveTentBoard>().SetNewHost();
             board.GetComponent<MeshRenderer>().material.mainTexture = RotateImage(www.texture, -90);
             board.GetComponent<MeshRenderer>().material.mainTextureScale = new Vector2(3, 4);
             board.GetComponent<InteractiveTentBoard>().imageExisted = true;

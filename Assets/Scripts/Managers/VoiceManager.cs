@@ -56,12 +56,13 @@ public class VoiceManager : MonoBehaviour
     void Update()
     {
         GetInput();
-        VoiceOnOff();
+        if (!UIManager.Instance.isOpenWindow)
+            VoiceOnOff();
     }
 
     void GetInput()
     {
-        isVoiceDown = Input.GetKeyDown(KeyCode.V);
+            isVoiceDown = Input.GetKeyDown(KeyCode.V);
     }
 
     public void VoiceOnOff()

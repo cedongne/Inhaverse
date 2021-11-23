@@ -7,15 +7,14 @@ public class InteractiveTentBoard : InteractiveObject
 {
     public RawImage rawImage;
     public bool imageExisted = false;
-    public string hostID = "";
+    public string hostName = "";
     public GameObject entrance;
 
     public override void Interaction()
     {
         UIManager.Instance.OpenWindow(Define.UI.OPENFILE);
 
-        SetHost();
-        entrance.GetComponent<InteractiveTent>().SetTriggerOnOff();
+        ShowHost();
 
         FileManager.Instance.board = this.gameObject;
         rawImage = UIManager.Instance.openFileWindow.transform.Find("RawImage").GetComponent<RawImage>();
@@ -25,19 +24,16 @@ public class InteractiveTentBoard : InteractiveObject
             Texture2D texture = TextureToTexture2D(GetComponent<MeshRenderer>().material.mainTexture);
             rawImage.texture = FileManager.Instance.RotateImage(texture, 90);
         }
-
     }
 
-    public void SetHost()
+    public void ShowHost()
     {
-        Debug.Log(hostID);
-        if (hostID == "")
+        Debug.Log(hostName);
+        if (hostName == "")
         {
             UIManager.Instance.openFileWindow.transform.Find("HostUI").gameObject.SetActive(true);
-            hostID = PlayfabManager.Instance.playerName;
-            Invoke("InitializeHost", 3600f);
         }
-        else if (hostID == PlayfabManager.Instance.playerName)
+        else if (hostName == PlayfabManager.Instance.playerName)
         {
             UIManager.Instance.openFileWindow.transform.Find("HostUI").gameObject.SetActive(true);
         }
@@ -47,12 +43,18 @@ public class InteractiveTentBoard : InteractiveObject
         }
     }
 
+    public void SetNewHost()
+    {
+        hostName = PlayfabManager.Instance.playerName;
+        Invoke("InitializeHost", 3600f);
+    }
+
     public void DisconnectHost()
     {
         CancelInvoke();
         rawImage.texture = null;
         imageExisted = false;
-        hostID = "";
+        hostName = "";
         entrance.GetComponent<InteractiveTent>().SetTriggerOnOff();
     }
 
@@ -60,7 +62,7 @@ public class InteractiveTentBoard : InteractiveObject
     {
         rawImage.texture = null;
         imageExisted = false;
-        hostID = "";
+        hostName = "";
     }
 
     private Texture2D TextureToTexture2D(Texture texture)

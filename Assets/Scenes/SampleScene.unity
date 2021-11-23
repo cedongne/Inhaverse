@@ -9666,6 +9666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputField: {fileID: 929108222}
+  entrance: {fileID: 1061815031193958362, guid: 017c1e233b0f21446b822ba4b14a76a4, type: 3}
   board: {fileID: 0}
   input: {fileID: 929108222}
   filePaths: []

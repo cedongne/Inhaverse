@@ -12,7 +12,7 @@ public class InteractiveTent : InteractiveObject
 
     public void SetTriggerOnOff()
     {
-        if(board.GetComponent<InteractiveTentBoard>().hostID == "")
+        if(board.GetComponent<InteractiveTentBoard>().hostName == "")
         {
             collider.isTrigger = false;
         }
