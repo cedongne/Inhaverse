@@ -309,10 +309,10 @@ public class PlayerContoller : MonoBehaviourPun
 
     private void OnDestroy()
     {
+        RpcUIManager.Instance.playerList.Remove(gameObject.transform);
+        RpcUIManager.Instance.playerUILIst.Remove(playerUIObjects);
         if (photonView.IsMine)
         {
-            RpcUIManager.Instance.playerList.Remove(gameObject.transform);
-            RpcUIManager.Instance.playerUILIst.Remove(playerUIObjects);
             cameraArm.GetComponent<CameraController>().enabled = false;
         }
     }
