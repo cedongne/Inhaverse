@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEntered: 0
+  board: {fileID: 3103287488427274273}
 --- !u!108 &8902927775208250463
 Light:
   m_ObjectHideFlags: 0
@@ -330,6 +331,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rawImage: {fileID: 0}
+  imageExisted: 0
+  hostID: 
 --- !u!114 &2996326198311364499
 MonoBehaviour:
   m_ObjectHideFlags: 0

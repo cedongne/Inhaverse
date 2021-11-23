@@ -7,6 +7,20 @@ public class InteractiveTent : InteractiveObject
 {
     private byte conferenceNum;
     public bool isEntered;
+    public GameObject board;
+    public BoxCollider collider;
+
+    private void Update()
+    {
+        if(board.GetComponent<InteractiveTentBoard>().hostID == "")
+        {
+            collider.isTrigger = false;
+        }
+        else
+        {
+            collider.isTrigger = true;
+        }
+    }
 
     void ChatControl()
     {
