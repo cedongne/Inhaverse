@@ -56,13 +56,6 @@ public class FileManager : MonoBehaviourPunCallbacks
     [SerializeField]
     private string[] filePaths;
 
-    public void OnButtonOpenFile()
-    {
-        SetOpenFileDialog();
-        filePaths = FileOpen(openFileDialog);
-        UploadImage();
-    }
-
     public void OnButtonDisconnectHost()
     {
         board.GetComponent<InteractiveTentBoard>().DisconnectHost();
@@ -72,7 +65,7 @@ public class FileManager : MonoBehaviourPunCallbacks
 
     public void InputUrl()
     {
-        UploadImage();
+        GetBoard();
         Invoke("CloseWindowInvoke", 0.1f);
     }
 
@@ -104,11 +97,6 @@ public class FileManager : MonoBehaviourPunCallbacks
         openFileDialog.Multiselect = true;
     }
 
-    void UploadImage()
-    {
-        StartCoroutine("UrlUpload");
-    }
-
     public void UpdateImage()
     {
         photonView.RPC("UpdateImageRPC", RpcTarget.All);
@@ -119,9 +107,9 @@ public class FileManager : MonoBehaviourPunCallbacks
         board.GetComponent<MeshRenderer>().material.mainTexture = null;
     }
 
-    public IEnumerator UrlUpload()
+    public IEnumerator UrlUpload(string url)
     {
-        WWW www = new WWW(input.text);
+        WWW www = new WWW(url);
         yield return www;
         if (www.texture != null)
         {
@@ -129,18 +117,8 @@ public class FileManager : MonoBehaviourPunCallbacks
             board.GetComponent<MeshRenderer>().material.mainTexture = RotateImage(www.texture, -90);
             board.GetComponent<MeshRenderer>().material.mainTextureScale = new Vector2(3, 4);
             board.GetComponent<InteractiveTentBoard>().imageExisted = true;
-            GetBoard();
         }
         board.transform.parent.parent.GetComponentInChildren<InteractiveTent>().SetTriggerOnOff();
-    }
-    public void SetBoardImage(GameObject _board, string url)
-    {
-        WWW www = new WWW(url);
-
-        _board.GetComponent<InteractiveTentBoard>().SetNewHost();
-        _board.GetComponent<MeshRenderer>().material.mainTexture = RotateImage(www.texture, -90);
-        _board.GetComponent<MeshRenderer>().material.mainTextureScale = new Vector2(3, 4);
-        _board.GetComponent<InteractiveTentBoard>().imageExisted = true;
     }
     public void UploadFileOnPlayFab()
     {
@@ -168,7 +146,8 @@ public class FileManager : MonoBehaviourPunCallbacks
         
         Debug.Log(boardList[idx]);
         Debug.Log(url);
-        SetBoardImage(boardList[idx], url);
+        board = boardList[idx];
+        StartCoroutine("UrlUpload", url);
     }
 
     public Texture2D RotateImage(Texture2D originTexture, int angle)
