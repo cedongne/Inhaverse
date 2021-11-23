@@ -88,11 +88,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
     public void JoinToCampus()
     {
         Destroy(ConferenceManager.Instance.gameObject);
-//        Destroy(FileManager.Instance.gameObject);
         room_name = "Campus";
         PN.LeaveRoom();
         ChatManager.Instance.LeaveChat();
-        Debug.Log("JoinToCampus");
         player.transform.position = lastPosition;
 
 
@@ -125,7 +123,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
     void GameStart()
     {
         SpawnPlayer();
-        Debug.Log("GameStart");
         UIManager.Instance.ShowUI(Define.UI.HUD);
         cameraArm.GetComponent<CameraController>().enabled = true;
         ChatManager.Instance.ChatStart();
