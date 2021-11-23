@@ -5,11 +5,14 @@ using Photon.Pun;
 using Photon.Voice.Unity;
 using Photon.Voice.PUN;
 using Photon.Voice;
+using UnityEngine.UI;
+
 public class VoiceManager : MonoBehaviour
 {
     public Recorder voiceRecorder;
     public PhotonVoiceNetwork voiceNetwork;
     public bool onVoice;
+    public GameObject voiceButton;
 
     public bool isVoiceDown;
 
@@ -68,11 +71,13 @@ public class VoiceManager : MonoBehaviour
             {
                 onVoice = false;
                 voiceRecorder.TransmitEnabled = false;
+                voiceButton.GetComponent<Image>().color = Color.gray;
             }
             else
             {
                 onVoice = true;
                 voiceRecorder.TransmitEnabled = true;
+                voiceButton.GetComponent<Image>().color = Color.white;
             }
         }
     }

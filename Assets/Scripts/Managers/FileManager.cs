@@ -82,20 +82,34 @@ public class FileManager : MonoBehaviourPun
 
     void UploadImage()
     {
-        photonView.RPC("UploadImageRPC", RpcTarget.All);
+        StartCoroutine("UrlUpload");
         UIManager.Instance.CloseWindow();
+        UpdateImage();
+    }
+
+    public void UpdateImage()
+    {
+        photonView.RPC("UpdateImageRPC", RpcTarget.All);
     }
 
     [PunRPC]
-    public void UploadImageRPC()
+    public void UpdateImageRPC()
     {
-        StartCoroutine("UrlUpload");
+
     }
 
     public IEnumerator UrlUpload()
     {
         WWW www = new WWW(inputfield.text);
+        www.texture.Resize(2, 2);
         yield return www;
         board.GetComponent<MeshRenderer>().material.mainTexture = www.texture;
     }
+
+    public void UploadFileOnPlayFab()
+    {
+
+    }
+
+
 }
