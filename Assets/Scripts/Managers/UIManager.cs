@@ -166,7 +166,7 @@ public class UIManager : MonoBehaviour
     public void InstantiateClassInfo(string groupName, string classInfo)
     {
         string[] splitedClassInfo = UtilityMethods.SplitTimeTableUserData(classInfo);
-        GameObject newClassInfo = Instantiate(Resources.Load<GameObject>("ClassInfo Box"),
+        GameObject newClassInfo = Instantiate(Resources.Load<GameObject>("UIPrefabs/ClassInfo Box"),
             classListContent.transform.position + classListInitPosition + classListOffset * playerClassList.Count, Quaternion.identity, classListContent.transform);
         newClassInfo.name = groupName;
 
