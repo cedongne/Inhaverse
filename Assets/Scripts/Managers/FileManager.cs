@@ -116,7 +116,7 @@ public class FileManager : MonoBehaviourPun
 
     }
 
-    public static Texture2D RotateImage(Texture2D originTexture, int angle)
+    public Texture2D RotateImage(Texture2D originTexture, int angle)
     {
         Texture2D result;
         result = new Texture2D(originTexture.width, originTexture.height);
