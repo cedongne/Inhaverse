@@ -16,7 +16,8 @@ public class InteractiveTentBoard : InteractiveObject
 
         ShowHost();
 
-        FileManager.Instance.board = this.gameObject;
+        //FileManager.Instance.board = gameObject;
+        FileManager.Instance.GetBoard(gameObject);
         rawImage = UIManager.Instance.openFileWindow.transform.Find("RawImage").GetComponent<RawImage>();
 
         if (imageExisted)
