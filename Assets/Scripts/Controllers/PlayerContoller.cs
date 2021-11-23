@@ -44,8 +44,6 @@ public class PlayerContoller : MonoBehaviourPun
     public bool isCamDown;
     public bool isInfoWindowDown;
 
-    int count = 0;
-
     public Outline currentTouch;
 
     public List<string> playerList;

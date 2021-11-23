@@ -47,11 +47,6 @@ public class FileManager : MonoBehaviourPun
             Destroy(gameObject);
     }
 
-    private void Start()
-    {
-        input = GameObject.Find("OpenFile InputField").GetComponent<InputField>();
-
-    }
 
     VistaOpenFileDialog openFileDialog = new VistaOpenFileDialog();
 

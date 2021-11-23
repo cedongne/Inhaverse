@@ -171,7 +171,10 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 	void Update()
 	{
 		chatClient.Service();
-		Chat();
+		if (!UIManager.Instance.isOpenWindow)
+		{
+			Chat();
+		}
 	}
 
 	void Chat()
