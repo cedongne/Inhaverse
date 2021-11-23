@@ -48,7 +48,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
         {
             Destroy(gameObject);
         }
-        room_name = "Lobby";
+        room_name = "Campus";
     } 
 
     public override void OnConnectedToMaster()
