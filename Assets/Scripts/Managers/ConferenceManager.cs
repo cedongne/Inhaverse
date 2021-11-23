@@ -7,7 +7,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using Photon.Chat;
 
-public class ConferenceManager : MonoBehaviourPun
+public class ConferenceManager : MonoBehaviourPunCallbacks
 {
 
     private ConferenceManager() { }

@@ -24,6 +24,9 @@ public class Managers : MonoBehaviour
         }
     }
 
+    public GameObject gameManager;
+    public GameObject communicationManager;
+    public GameObject fileManager;
 
     // Start is called before the first frame update
     void Awake()
@@ -33,6 +36,17 @@ public class Managers : MonoBehaviour
             instance = gameObject.GetComponent<Managers>();
             DontDestroyOnLoad(gameObject);
         }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        Instantiate(gameManager);
+        Instantiate(communicationManager);
+        Instantiate(fileManager);
     }
 
     // Update is called once per frame

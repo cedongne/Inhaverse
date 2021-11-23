@@ -10,7 +10,7 @@ namespace OpenCvSharp
 
     using OpenCvSharp;
 
-    public class WebCamController : MonoBehaviourPunCallbacks, IPunObservable
+    public class WebCamController : MonoBehaviourPunCallbacks//, IPunObservable
     {
         float timer = 0f;
         public float delayTime = 1f;
@@ -157,6 +157,7 @@ namespace OpenCvSharp
 
         byte[] receivedImage;
         string receivedImageStr;
+        /*
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
             if (stream.IsWriting)
@@ -180,5 +181,6 @@ namespace OpenCvSharp
                 Debug.Log("RE");
             }
         }
+        */
     }
 }

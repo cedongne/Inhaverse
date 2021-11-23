@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+using Photon.Pun;
 using Photon.Chat;
 using PN = Photon.Pun.PhotonNetwork;
 
@@ -43,10 +45,16 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 
 	void Awake()
     {
-		if(instance == null)
+		if (instance == null)
+		{
 			instance = GetComponent<ChatManager>();
+			gameObject.SetActive(true);
+			
+		}
 		else
+		{
 			Destroy(gameObject);
+		}
 	}
 	// Use this for initialization
 	void Start()

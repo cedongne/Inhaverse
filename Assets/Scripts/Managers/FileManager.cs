@@ -13,8 +13,7 @@ public class FileManager : MonoBehaviourPun
 {
     private FileManager() { }
     private static FileManager instance;
-    public GameObject board;
-    public InputField inputfield;
+
 
     public static FileManager Instance
     {
@@ -33,6 +32,8 @@ public class FileManager : MonoBehaviourPun
         }
     }
 
+    public GameObject board;
+    public InputField input;
 
     // Start is called before the first frame update
     void Awake()
@@ -44,6 +45,12 @@ public class FileManager : MonoBehaviourPun
         }
         else
             Destroy(gameObject);
+    }
+
+    private void Start()
+    {
+        input = GameObject.Find("OpenFile InputField").GetComponent<InputField>();
+
     }
 
     VistaOpenFileDialog openFileDialog = new VistaOpenFileDialog();
@@ -99,7 +106,7 @@ public class FileManager : MonoBehaviourPun
 
     public IEnumerator UrlUpload()
     {
-        WWW www = new WWW(inputfield.text);
+        WWW www = new WWW(input.text);
         yield return www;
         board.GetComponent<MeshRenderer>().material.mainTexture = RotateImage(www.texture, -90);
         board.GetComponent<MeshRenderer>().material.mainTextureScale = new Vector2(3, 4);
