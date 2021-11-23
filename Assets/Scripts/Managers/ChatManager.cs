@@ -121,8 +121,8 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 
 	public void EnterLobbyChat()
 	{
-		chatClient.Subscribe(new string[] { "Lobby" }, 10);
-		currentChannelName = "Lobby";
+		chatClient.Subscribe(new string[] { "Campus" }, 10);
+		currentChannelName = "Campus";
 	}
 
 	public void LeaveChat()
