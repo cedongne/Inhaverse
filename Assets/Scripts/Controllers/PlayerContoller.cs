@@ -314,6 +314,7 @@ public class PlayerContoller : MonoBehaviourPun
     {
         RpcUIManager.Instance.playerList.Remove(gameObject.transform);
         RpcUIManager.Instance.playerUILIst.Remove(playerUIObjects);
+        cameraArm.GetComponent<CameraController>().enabled = false;
     }
 
 }

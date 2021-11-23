@@ -51,6 +51,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 	// Use this for initialization
 	void Start()
 	{
+		Debug.Log("ChatManager");
 		Application.runInBackground = true;
 		onChat = false;
 		conferenceOption = new ChannelCreationOptions();
@@ -58,7 +59,6 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 		conferenceOption.PublishSubscribers = true;
 
 		//		userName = manager.GetComponent<PlayfabManager>().playerName;
-		Debug.Log(PlayfabManager.Instance.playerName);
 		userName = PlayfabManager.Instance.playerName;
 
 		ChatStart();

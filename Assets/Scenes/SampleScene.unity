@@ -9234,6 +9234,7 @@ GameObject:
   - component: {fileID: 931321781}
   - component: {fileID: 931321780}
   - component: {fileID: 931321784}
+  - component: {fileID: 931321785}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -9343,6 +9344,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputList: []
+--- !u!114 &931321785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931321779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d4a8a330bb18c4099baada4040b8f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loginUI: {fileID: 2580658445182027412}
+  hudUI: {fileID: 2580658444220035258}
+  classWindow: {fileID: 217934091}
+  classMakingWindow: {fileID: 2074335320}
+  classListWindow: {fileID: 518430893}
+  conferenceWindow: {fileID: 1828494051}
+  playerInfoWindow: {fileID: 442784972}
+  openFileWindow: {fileID: 1866391726}
+  playerController: {fileID: 0}
+  cameraController: {fileID: 0}
+  webCamUIController: {fileID: 0}
+  classInstructor: {fileID: 1718740507}
+  classNameInput: {fileID: 1440192764}
+  classLateCheckTimeInput: {fileID: 667403234}
+  classIdInput: {fileID: 1916425730}
+  classNumberInput: {fileID: 1987540083}
+  classEnterAllowTimeInput: {fileID: 270702668}
+  firstDayOfWeekInput: {fileID: 1480292831}
+  firstStartTimeInput: {fileID: 107356507}
+  firstEndTimeInput: {fileID: 954262507}
+  secondDayOfWeekInput: {fileID: 229436163}
+  secondStartTimeInput: {fileID: 2081854424}
+  secondEndTimeInput: {fileID: 1615211075}
+  studentIdInput: {fileID: 2103252869}
+  studentListText: {fileID: 1329897613}
+  classButton: {fileID: 7319785340756496215, guid: b4c48f08c37d6cc459e0f95b633d1368, type: 3}
+  ConferenceMemberText: {fileID: 517899508}
+  isOpenWindow: 0
+  playerName: {fileID: 104412335}
+  playerSchoolId: {fileID: 1035060079}
+  classListContent: {fileID: 514408066}
+  playerCount: 0
 --- !u!1001 &938369914
 PrefabInstance:
   m_ObjectHideFlags: 0

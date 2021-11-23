@@ -33,8 +33,7 @@ public class CameraController : MonoBehaviour
     private Transform cameraPositionTransform;
     [SerializeField]
     private Transform mainCameraTransform;
-    [SerializeField]
-    private Transform defaultObjectTransform;
+    public Transform defaultObjectTransform;
 
     Vector3 cameraArmPositionOffset = new Vector3(0, 0.5f, 0);
     Vector3 cameraPositionOffset = new Vector3(0, 0.5f, -3f);

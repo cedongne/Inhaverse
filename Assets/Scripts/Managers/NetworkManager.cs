@@ -84,11 +84,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
     public void JoinToCampus()
     {
         Destroy(ChatManager.Instance.gameObject);
+        Destroy(FileManager.Instance.gameObject);
+        room_name = "Lobby";
         PN.LeaveRoom();
         ChatManager.Instance.LeaveChat();
+        Debug.Log("JoinToCampus");
 
         SceneManager.LoadScene("SampleScene");
-        room_name = "Lobby";
         player.transform.position = lastPosition;
     }
 
