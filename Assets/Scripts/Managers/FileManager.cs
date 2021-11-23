@@ -9,7 +9,7 @@ using Photon.Realtime;
 using UnityEngine.UI;
 using System;
 
-public class FileManager : MonoBehaviourPun
+public class FileManager : MonoBehaviourPunCallbacks
 {
     public InputField inputField;
     public GameObject entrance;
@@ -35,6 +35,7 @@ public class FileManager : MonoBehaviourPun
     }
 
     public GameObject board;
+    GameObject tmpBoard;
     public InputField input;
 
     // Start is called before the first frame update
@@ -106,7 +107,6 @@ public class FileManager : MonoBehaviourPun
     void UploadImage()
     {
         StartCoroutine("UrlUpload");
-        UpdateImage();
     }
 
     public void UpdateImage()
@@ -129,6 +129,7 @@ public class FileManager : MonoBehaviourPun
             board.GetComponent<MeshRenderer>().material.mainTexture = RotateImage(www.texture, -90);
             board.GetComponent<MeshRenderer>().material.mainTextureScale = new Vector2(3, 4);
             board.GetComponent<InteractiveTentBoard>().imageExisted = true;
+            UpdateImage();
         }
         board.transform.parent.parent.GetComponentInChildren<InteractiveTent>().SetTriggerOnOff();
     }
@@ -139,9 +140,19 @@ public class FileManager : MonoBehaviourPun
     }
 
     [PunRPC]
-    public void UpdateImageRPC()
+    private void UpdateImageRPC()
     {
-
+    }
+    public void GetBoard(GameObject _board)
+    {
+        tmpBoard = _board;
+        photonView.RPC("GetBoardRPC", RpcTarget.AllBuffered);
+    }
+    [PunRPC]
+    private void GetBoardRPC()
+    {
+        board = tmpBoard;
+        Debug.Log(board);
     }
 
     public Texture2D RotateImage(Texture2D originTexture, int angle)
