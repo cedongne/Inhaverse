@@ -3546,6 +3546,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 295763988}
   m_CullTransparentMesh: 1
+--- !u!1 &298165385 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3103287488427274273, guid: 017c1e233b0f21446b822ba4b14a76a4, type: 3}
+  m_PrefabInstance: {fileID: 1061815031435328981}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &303713092
 GameObject:
   m_ObjectHideFlags: 0
@@ -9669,7 +9674,7 @@ MonoBehaviour:
   entrance: {fileID: 1061815031193958362, guid: 017c1e233b0f21446b822ba4b14a76a4, type: 3}
   board: {fileID: 0}
   boardList:
-  - {fileID: 1030691085}
+  - {fileID: 298165385}
   input: {fileID: 929108222}
   filePaths: []
 --- !u!114 &945244072
@@ -10629,11 +10634,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fda3fd99dc292264398174781a60b560, type: 3}
---- !u!1 &1030691085 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1061815031193958362, guid: 017c1e233b0f21446b822ba4b14a76a4, type: 3}
-  m_PrefabInstance: {fileID: 1061815031435328981}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1035060077
 GameObject:
   m_ObjectHideFlags: 0
@@ -23199,6 +23199,10 @@ PrefabInstance:
     - target: {fileID: 1061815032020316423, guid: 017c1e233b0f21446b822ba4b14a76a4, type: 3}
       propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103287488427274273, guid: 017c1e233b0f21446b822ba4b14a76a4, type: 3}
+      propertyPath: m_Name
+      value: BoardWindow101
       objectReference: {fileID: 0}
     - target: {fileID: 6773885768091019315, guid: 017c1e233b0f21446b822ba4b14a76a4, type: 3}
       propertyPath: sceneViewId
