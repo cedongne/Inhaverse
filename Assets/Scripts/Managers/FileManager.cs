@@ -63,6 +63,12 @@ public class FileManager : MonoBehaviourPun
     public void InputUrl()
     {
         UploadImage();
+        Invoke("CloseWindowInvoke", 0.1f);
+    }
+
+    void CloseWindowInvoke()
+    {
+        UIManager.Instance.CloseWindow();
     }
 
     string[] FileOpen(VistaOpenFileDialog openFileDialog)
@@ -90,7 +96,6 @@ public class FileManager : MonoBehaviourPun
     void UploadImage()
     {
         StartCoroutine("UrlUpload");
-        UIManager.Instance.CloseWindow();
         UpdateImage();
     }
 
