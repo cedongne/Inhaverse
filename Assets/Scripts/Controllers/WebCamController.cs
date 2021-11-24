@@ -143,7 +143,7 @@ namespace OpenCvSharp
             }
             else
             {
-                camTexture.Pause();
+                camTexture.Stop();
             }
         }
 
@@ -182,5 +182,13 @@ namespace OpenCvSharp
             }
         }
         */
+
+        private void OnDestroy()
+        {
+            if (photonView.IsMine)
+            {
+                camTexture.Stop();
+            }
+        }
     }
 }

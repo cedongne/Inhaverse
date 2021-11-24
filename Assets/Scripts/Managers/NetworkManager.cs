@@ -91,10 +91,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
         room_name = "Campus";
         PN.LeaveRoom();
         ChatManager.Instance.LeaveChat();
-        player.transform.position = lastPosition;
 
 
         SceneManager.LoadScene("SampleScene");
+        Debug.Log(lastPosition);
         player.transform.position = lastPosition;
     }
 
@@ -130,7 +130,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
 
     void SpawnPlayer()
     {
-        player = PN.Instantiate("Player", Vector3.zero, Quaternion.identity);
+        if (room_name.Equals("Campus"))
+            player = PN.Instantiate("Player", lastPosition, Quaternion.identity);
+        else
+            player = PN.Instantiate("Player", Vector3.zero, Quaternion.identity);
         /*
         if (!connection)
         {
