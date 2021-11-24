@@ -14,7 +14,7 @@ public class Background : MonoBehaviour
 
     void Update()
     {
-        ChangeDays();
+        //ChangeDays();
         if (!UIManager.Instance.isOpenWindow && !ChatManager.Instance.onChat)
         {
             ChageDaysWithButton();
