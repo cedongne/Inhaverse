@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Text.RegularExpressions;
 using Photon.Chat;
 
-public class InteractiveTable : InteractiveObject
+public class InteractiveConferenceTable : InteractiveObject
 {
     public bool[] chairs;
 

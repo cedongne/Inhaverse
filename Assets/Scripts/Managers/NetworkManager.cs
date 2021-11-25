@@ -40,7 +40,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
 
     private void Awake()
     {
-        AttendanceTable table = new AttendanceTable("Table", Define.ATTENDANCE.ATTENDANCE);
         if(instance == null)
         {
             instance = gameObject.GetComponent<NetworkManager>();
