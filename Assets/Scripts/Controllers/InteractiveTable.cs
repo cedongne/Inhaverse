@@ -29,11 +29,6 @@ public class InteractiveTable : InteractiveObject
         VoiceManager.Instance.ChangeVoiceChannel(conferenceNum);
     }
 
-    void SittingChair()
-    {
-        
-    }
-
     public void SetConferenceNum(string str)
     {
         string strTmp = Regex.Replace(str, @"\D", "");

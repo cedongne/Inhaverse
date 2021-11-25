@@ -65,4 +65,16 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
             }
         }
     }
+
+    public void ExitConference()
+    {
+        photonView.RPC("ExitConferenceRPC", RpcTarget.AllBuffered);
+    }
+
+    [PunRPC]
+    public void ExitConferenceRPC()
+    {
+        if(players.Contains(GameObject.Find(PlayfabManager.Instance.playerName)))
+            players.Remove(GameObject.Find(PlayfabManager.Instance.playerName));
+    }
 }

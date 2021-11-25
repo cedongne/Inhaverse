@@ -58,7 +58,6 @@ public class FileManager : MonoBehaviourPunCallbacks
 
     public void OnButtonDisconnectHost()
     {
-        board.GetComponent<InteractiveTentBoard>().DisconnectHost();
         DeleteImage();
 
     }
@@ -104,7 +103,24 @@ public class FileManager : MonoBehaviourPunCallbacks
 
     public void DeleteImage()
     {
-        board.GetComponent<MeshRenderer>().material.mainTexture = null;
+        for (int idx = 0; idx < boardList.Count; idx++)
+        {
+            if (boardList[idx].Equals(board))
+            {
+                photonView.RPC("DeleteImageRPC", RpcTarget.AllBuffered, idx);
+                break;
+            }
+        }
+
+    }
+    
+    [PunRPC]
+    public void DeleteImageRPC(int idx)
+    {
+        boardList[idx].GetComponent<MeshRenderer>().material.mainTexture = null;
+        boardList[idx].GetComponent<InteractiveTentBoard>().DisconnectHost();
+
+        boardList[idx].transform.parent.parent.GetComponentInChildren<InteractiveTent>().SetTriggerOnOff();
     }
 
     public IEnumerator UrlUpload(string url, string hostName)
