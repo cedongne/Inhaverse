@@ -9,7 +9,6 @@ using Photon.Chat;
 
 public class ConferenceManager : MonoBehaviourPunCallbacks
 {
-
     private ConferenceManager() { }
     private static ConferenceManager instance;
 
