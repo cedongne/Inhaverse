@@ -3369,7 +3369,7 @@ MonoBehaviour:
   voiceDetectionThreshold: 0.01
   voiceDetectionDelayMs: 500
   unityMicrophoneDevice: 
-  photonMicrophoneDeviceId: -1
+  photonMicrophoneDeviceId: 0
   interestGroup: 0
   debugEchoMode: 0
   reliableMode: 0
@@ -9076,6 +9076,16 @@ MonoBehaviour:
   conferenceWindow: {fileID: 1252261040217375608}
   playerInfoWindow: {fileID: 442784972}
   openFileWindow: {fileID: 1866391726}
+  hudChatInputField: {fileID: 2580658444375160559}
+  hudChatText: {fileID: 2580658444866257569}
+  hudChatScrollbar: {fileID: 2580658445780065053}
+  hudInputField: {fileID: 2580658444375160557}
+  hudSendButton: {fileID: 2580658444259038500}
+  conferenceChatInputField: {fileID: 1252261041968302298}
+  conferenceChatText: {fileID: 1252261042287440062}
+  conferenceChatScrollbar: {fileID: 1252261041009478825}
+  conferenceInputField: {fileID: 1252261041968302296}
+  conferenceSendButton: {fileID: 1252261040750033132}
   playerController: {fileID: 0}
   cameraController: {fileID: 0}
   webCamUIController: {fileID: 0}
@@ -9096,6 +9106,7 @@ MonoBehaviour:
   classButton: {fileID: 7319785340756496215, guid: b4c48f08c37d6cc459e0f95b633d1368, type: 3}
   ConferenceMemberText: {fileID: 1252261040726513308}
   isOpenWindow: 0
+  isOpenChat: 0
   playerName: {fileID: 104412335}
   playerSchoolId: {fileID: 1035060079}
   classListContent: {fileID: 514408066}
