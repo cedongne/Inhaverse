@@ -47,12 +47,12 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
 
     public void UpdateConferenceState()
     {
-        photonView.RPC("UpdateConferenceStateRPC", RpcTarget.AllBuffered);
-        for(int idx = 0; idx < 4; idx++)
+        for (int idx = 0; idx < 4; idx++)
         {
             GameObject.Find(ChatManager.Instance.currentChannelName).transform.Find($"IT_chair{4 - idx}").GetComponent<MeshCollider>().isTrigger = true;
         }
         GameObject.Find(ChatManager.Instance.currentChannelName).transform.Find("table").GetComponent<MeshCollider>().isTrigger = true;
+        photonView.RPC("UpdateConferenceStateRPC", RpcTarget.AllBuffered);
     }
 
     [PunRPC]
@@ -68,35 +68,35 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
             foreach(var name in client.PublicChannels[ChatManager.Instance.currentChannelName].Subscribers)
             {
                 players.Add(GameObject.Find(name));
-                Vector3 conferencePos = GameObject.Find(ChatManager.Instance.currentChannelName).transform.position - GameObject.Find("Conference001").transform.position;
-                conferenceWorldTransform.position = conferenceWorldOffset + conferencePos;
+            }
 
-                for (int idx = 0; idx < players.Count; idx++)
+            Vector3 conferencePos = GameObject.Find(ChatManager.Instance.currentChannelName).transform.position - GameObject.Find("Conference001").transform.position;
+            conferenceWorldTransform.position = conferenceWorldOffset + conferencePos;
+
+            for (int idx = 0; idx < players.Count; idx++)
+            {
+                players[idx].transform.position = conferenceWorldTransform.position;
+                if (idx == 0)
                 {
-                    players[idx].transform.position = conferenceWorldTransform.position;
-                    if(idx == 0)
-                    {
-                        //IT_Chair4
-                        players[idx].transform.position += new Vector3(-0.5f, 0, 0);
-                    }
-                    else if(idx == 1)
-                    {
-                        //IT_Chair3
-                        players[idx].transform.position += new Vector3(0.5f, 0, 0);
-                    }
-                    else if (idx == 2)
-                    {
-                        //IT_Chair2
-                        players[idx].transform.position += new Vector3(0, 0, -0.5f);
-                    }
-                    else if (idx == 3)
-                    {
-                        //IT_Chair1
-                        players[idx].transform.position += new Vector3(0, 0, 0.5f);
-                    }
-                    players[idx].transform.LookAt(conferenceWorldTransform);
+                    //IT_Chair4
+                    players[idx].transform.position += new Vector3(-0.5f, 0, 0);
                 }
-                
+                else if (idx == 1)
+                {
+                    //IT_Chair3
+                    players[idx].transform.position += new Vector3(0.5f, 0, 0);
+                }
+                else if (idx == 2)
+                {
+                    //IT_Chair2
+                    players[idx].transform.position += new Vector3(0, 0, -0.5f);
+                }
+                else if (idx == 3)
+                {
+                    //IT_Chair1
+                    players[idx].transform.position += new Vector3(0, 0, 0.5f);
+                }
+                players[idx].transform.LookAt(conferenceWorldTransform);
             }
         }
     }
@@ -111,9 +111,6 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
     {
         if (players.Contains(GameObject.Find(PlayfabManager.Instance.playerName)))
         {
-            int idx = players.IndexOf(GameObject.Find(PlayfabManager.Instance.playerName));
-            GameObject.Find(ChatManager.Instance.currentChannelName).transform.Find($"IT_chair{4 - idx}").GetComponent<MeshCollider>().isTrigger = false;
-
             players.Remove(GameObject.Find(PlayfabManager.Instance.playerName));
         }
     }

@@ -39,7 +39,6 @@ RenderSettings:
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
   m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
-  m_IndirectSpecularColor: {r: 0.36893475, g: 0.61060286, b: 0.8815479, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9095,7 +9094,7 @@ MonoBehaviour:
   studentIdInput: {fileID: 2103252869}
   studentListText: {fileID: 1329897613}
   classButton: {fileID: 7319785340756496215, guid: b4c48f08c37d6cc459e0f95b633d1368, type: 3}
-  ConferenceMemberText: {fileID: 0}
+  ConferenceMemberText: {fileID: 1252261040726513308}
   isOpenWindow: 0
   playerName: {fileID: 104412335}
   playerSchoolId: {fileID: 1035060079}
@@ -22637,8 +22636,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -960, y: -540}
-  m_SizeDelta: {x: -1920, y: -1080}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1252261040217375610
 MonoBehaviour:
@@ -23714,7 +23713,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1252261042120554187}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.893298
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -24383,7 +24382,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 1252261041964653280}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -24750,7 +24749,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 0.893298}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -25111,7 +25110,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00012207031, y: -999.99945}
+  m_AnchoredPosition: {x: -0.00012207031, y: -999.9576}
   m_SizeDelta: {x: 0, y: 26}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1252261042287440061
