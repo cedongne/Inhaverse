@@ -20,6 +20,7 @@ namespace Unity.WebRTC.Samples
         [SerializeField] private Dropdown micListDropdown;
         [SerializeField] private Camera cam;
         [SerializeField] private AudioClip clip;
+
         [SerializeField] private Vector2Int streamSize = new Vector2Int(1280, 720);
         [SerializeField] private RawImage sourceImage;
         [SerializeField] private AudioSource sourceAudio;

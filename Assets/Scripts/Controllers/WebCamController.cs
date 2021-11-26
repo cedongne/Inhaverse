@@ -23,6 +23,20 @@ namespace OpenCvSharp
         public RawImage conferenceDisplay;
         public RawImage nowDisplay;
 
+        //private RTCPeerConnection _pc1, _pc2;
+        //private List<RTCRtpSender> pc1Senders;
+        //private MediaStream videoStream, receiveStream;
+        //private DelegateOnIceConnectionChange pc1OnIceConnectionChange;
+        //private DelegateOnIceConnectionChange pc2OnIceConnectionChange;
+        //private DelegateOnIceCandidate pc1OnIceCandidate;
+        //private DelegateOnIceCandidate pc2OnIceCandidate;
+        //private DelegateOnTrack pc2Ontrack;
+        //private DelegateOnNegotiationNeeded pc1OnNegotiationNeeded;
+        //private bool videoUpdateStarted;
+
+        //private const int width = 1280;
+        //private const int height = 720;
+
         Mat image = new Mat();
         Texture2D destTexture;
 
