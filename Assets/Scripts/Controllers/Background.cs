@@ -9,12 +9,44 @@ using System;
 
 public class Background : MonoBehaviour
 {
+    private Background() { }
+    private static Background instance;
+
+
+    public static Background Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                var obj = FindObjectOfType<Background>();
+                if (obj != null)
+                {
+                    instance = obj;
+                }
+            }
+
+            return instance;
+        }
+    }
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = gameObject.GetComponent<Background>();
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+            Destroy(gameObject);
+    }
+
     public Material dayBox;
     public Material nightBox;
 
     void Update()
     {
-        //ChangeDays();
+        ChangeDays();
         if (!UIManager.Instance.isOpenWindow && !ChatManager.Instance.onChat)
         {
             ChageDaysWithButton();
