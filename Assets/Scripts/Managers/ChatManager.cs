@@ -90,6 +90,24 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 		}
 	}
 
+	public void SetHUDChatUI()
+    {
+		inputField = UIManager.Instance.hudChatInputField;
+		outputText = UIManager.Instance.hudChatText;
+		chatScrollBar = UIManager.Instance.hudChatScrollbar;
+		ifObject = UIManager.Instance.hudInputField;
+		sbObject = UIManager.Instance.hudSendButton;
+	}
+
+	public void SetConferenceChatUI()
+    {
+		inputField = UIManager.Instance.conferenceChatInputField;
+		outputText = UIManager.Instance.conferenceChatText;
+		chatScrollBar = UIManager.Instance.conferenceChatScrollbar;
+		ifObject = UIManager.Instance.conferenceInputField;
+		sbObject = UIManager.Instance.conferenceSendButton;
+	}
+
 
 	public void OnConnected()
 	{
@@ -170,7 +188,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 	void Update()
 	{
 		chatClient.Service();
-		if (!UIManager.Instance.isOpenWindow)
+		if (UIManager.Instance.isOpenChat)
 		{
 			Chat();
 		}
@@ -203,6 +221,11 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 
 	public void ExitConference()
     {
+		for (int idx = 0; idx < 4; idx++)
+		{
+			GameObject.Find(ChatManager.Instance.currentChannelName).transform.Find($"IT_chair{4 - idx}").GetComponent<MeshCollider>().isTrigger = false;
+		}
+		GameObject.Find(ChatManager.Instance.currentChannelName).transform.Find("table").GetComponent<MeshCollider>().isTrigger = false;
 		LeaveChat();
 		EnterLobbyChat();
 		UIManager.Instance.CloseWindow();

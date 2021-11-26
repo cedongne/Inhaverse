@@ -40,7 +40,6 @@ public class UtilityMethods
         else if (DateTime.Now.Minute >= 15 && DateTime.Now.Minute <= 30 + allowTime)
             nowClassTimeMinute = 2;
 
-        Debug.Log(nowClassTimeHour);
         Debug.Log("NowDayOfWeek : " + DateTime.Now.DayOfWeek + ", ClassDayOfWeek : " + dayOfWeek);
         Debug.Log("NowClassTime : " + (nowClassTimeHour + nowClassTimeMinute) + ", ClassTime : " + startTime);
 

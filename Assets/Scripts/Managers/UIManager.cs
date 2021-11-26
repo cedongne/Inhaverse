@@ -19,6 +19,22 @@ public class UIManager : MonoBehaviour
     public GameObject playerInfoWindow;
     public GameObject openFileWindow;
 
+    [Header("===== HUD 채팅 UI")]
+    [Space]
+    public InputField hudChatInputField;
+    public Text hudChatText;
+    public Scrollbar hudChatScrollbar;
+    public GameObject hudInputField;
+    public GameObject hudSendButton;
+
+    [Header("===== 회의채팅 UI")]
+    [Space]
+    public InputField conferenceChatInputField;
+    public Text conferenceChatText;
+    public Scrollbar conferenceChatScrollbar;
+    public GameObject conferenceInputField;
+    public GameObject conferenceSendButton;
+
     [Header("===== 객체 참조 =====")]
     [Space]
     public PlayerContoller playerController;
@@ -56,6 +72,7 @@ public class UIManager : MonoBehaviour
     [Space]
     public Text ConferenceMemberText;
     public bool isOpenWindow;
+    public bool isOpenChat = true;
 
     [Header("===== 플레이어 정보 UI =====")]
     [Space]
@@ -235,26 +252,32 @@ public class UIManager : MonoBehaviour
         if (showingWindow.Equals(Define.UI.CLASS))
         {
             classWindow.SetActive(true);
+            isOpenChat = false;
         }
         else if (showingWindow.Equals(Define.UI.CLASSMAKING))
         {
             classMakingWindow.SetActive(true);
+            isOpenChat = false;
         }
         else if (showingWindow.Equals(Define.UI.CLASSLIST))
         {
             classListWindow.SetActive(true);
+            isOpenChat = false;
         }
         else if (showingWindow.Equals(Define.UI.CONFERENCE))
         {
             conferenceWindow.SetActive(true);
+            isOpenChat = true;
         }
         else if (showingWindow.Equals(Define.UI.PLAYERINFO))
         {
             playerInfoWindow.SetActive(true);
+            isOpenChat = false;
         }
         else if (showingWindow.Equals(Define.UI.OPENFILE))
         {
             openFileWindow.SetActive(true);
+            isOpenChat = false;
         }
         isOpenWindow = true;
     }
@@ -273,6 +296,9 @@ public class UIManager : MonoBehaviour
         ClearClassMakingWindow();
         eventFunction = null;
         isOpenWindow = false;
+        isOpenChat = true;
+
+        ChatManager.Instance.SetHUDChatUI();
     }
 
 #region Class Interaction

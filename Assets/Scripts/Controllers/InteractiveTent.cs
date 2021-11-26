@@ -28,9 +28,11 @@ public class InteractiveTent : InteractiveObject
         ChatManager.Instance.EnterConferenceChat(transform.parent.name);
     }
 
+    [System.Obsolete]
     void VoiceControl()
     {
         SetConferenceNum(transform.parent.name);
+        Debug.Log(conferenceNum);
         VoiceManager.Instance.ChangeVoiceChannel(conferenceNum);
     }
 
@@ -54,6 +56,7 @@ public class InteractiveTent : InteractiveObject
             {
                 ChatManager.Instance.LeaveChat();
                 ChatManager.Instance.EnterLobbyChat();
+                VoiceManager.Instance.EnterLobbyChannel();
                 isEntered = false;
             }
         }

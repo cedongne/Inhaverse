@@ -53,10 +53,7 @@ public class InteractiveTentBoard : InteractiveObject
     public void DisconnectHost()
     {
         CancelInvoke();
-        rawImage.texture = null;
-        imageExisted = false;
-        hostName = "";
-        entrance.GetComponent<InteractiveTent>().SetTriggerOnOff();
+        InitializeHost();
     }
 
     private void InitializeHost()
@@ -64,6 +61,7 @@ public class InteractiveTentBoard : InteractiveObject
         rawImage.texture = null;
         imageExisted = false;
         hostName = "";
+        entrance.GetComponent<InteractiveTent>().SetTriggerOnOff();
     }
 
     private Texture2D TextureToTexture2D(Texture texture)
