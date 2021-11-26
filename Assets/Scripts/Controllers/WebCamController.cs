@@ -187,7 +187,8 @@ namespace OpenCvSharp
         {
             if (photonView.IsMine)
             {
-                camTexture.Stop();
+                if(camTexture != null)
+                    camTexture.Stop();
             }
         }
     }
