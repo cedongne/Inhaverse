@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 using Photon.Pun;
@@ -28,16 +29,25 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
 
     public int attendance_count = 0;
 
-#region Instructor's Function
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = GetComponent<ClassProcessManager>();
+        }
+    }
+
+    #region Instructor's Function
     public void StartClass()
     {
-        CheckAttendancePeriodically();
+        CheckAttendance();
         classState = Define.CLASSSTATE.START;
     }
 
     public void EndClass()
     {
         classState = Define.CLASSSTATE.END;
+        CancelInvoke("CheckAttendancePeriodically");
     }
 #endregion
 
@@ -50,7 +60,7 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
     public void CheckAttendancePeriodically()
     {
         attendance_count++;
-        Invoke("CheckAttendancePeriodically", 300);
+        Invoke("CheckAttendance", 300);
     }
 
     public void JoinClass()
@@ -61,12 +71,18 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        PlayfabManager.Instance.GetLeaderBoardUserValue(class_name + "" + UtilityMethods.GetWeekOfSemester().ToString(), PlayfabManager.Instance.playerName, "LoadAttendanceCount");
+        class_name = NetworkManager.Instance.room_name;
+        Debug.Log(NetworkManager.Instance.room_name);
+        PlayfabManager.Instance.GetLeaderBoardUserValue(class_name + "" + UtilityMethods.GetWeekOfSemester().ToString() + "" + UtilityMethods.ConvertDayOfWeekToKorean(DateTime.Now.DayOfWeek.ToString())
+            , PlayfabManager.Instance.playerName, "LoadAttendanceCount");
     }
 
     public override void OnLeftRoom()
     {
-        PlayfabManager.Instance.UpdateLeaderBoard(class_name, attendance_count);
+        Debug.Log("ClassManager");
+        class_name = NetworkManager.Instance.room_name;
+        PlayfabManager.Instance.UpdateLeaderBoard(class_name + "" + UtilityMethods.GetWeekOfSemester().ToString() + "" + UtilityMethods.ConvertDayOfWeekToKorean(DateTime.Now.DayOfWeek.ToString())
+            , attendance_count);
     }
 
     public void LoadAttendanceCount(int _attendance_count)

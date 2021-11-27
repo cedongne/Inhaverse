@@ -14,8 +14,10 @@ public class InteractiveConferenceTable : InteractiveObject
     {
         ChatControl();
         VoiceControl();
-        UIManager.Instance.OpenWindow(Define.UI.CONFERENCE);
+        UIManager.Instance.ShowUI(Define.UI.CONFERENCE);
         ChatManager.Instance.SetConferenceChatUI();
+
+        Cursor.lockState = CursorLockMode.None;
     }
 
     void ChatControl()

@@ -22,6 +22,8 @@ public class PlayerContoller : MonoBehaviourPun
     private GameObject playerUIObjects;
     [SerializeField]
     private GameObject webCamImage;
+    [SerializeField]
+    private OpenCvSharp.WebCamController webCamController;
 
     private Vector3 screenCenter;
     private InputField inputField;
@@ -76,7 +78,6 @@ public class PlayerContoller : MonoBehaviourPun
             if (PlayfabManager.Instance.playerName != "")
                 name = PlayfabManager.Instance.playerName;
             cameraArmTransform = cameraArm.transform;
-
             cameraArm.GetComponent<CameraController>().enabled = true;
             cameraArm.GetComponent<LobbyCameraRatate>().enabled = false;
 
@@ -89,11 +90,9 @@ public class PlayerContoller : MonoBehaviourPun
         moveSpeed = walkMoveSpeed;
 
         interactionUI = GameObject.Find("Canvas").transform.Find("Interaction UI").gameObject;
-//        currentTouch = GameObject.Find("Initializing Object").GetComponent<Outline>();
 
         DontDestroyOnLoad(cameraArm);
         DontDestroyOnLoad(GameObject.Find("Canvas"));
-//        DontDestroyOnLoad(GameObject.Find("Initializing Object"));
     }
 
     // Update is called once per frame
@@ -307,6 +306,11 @@ public class PlayerContoller : MonoBehaviourPun
         }
     }
 
+    public void OnOffWebCamController(bool onOff)
+    {
+        webCamController.enabled = onOff;
+    }
+
     private void OnDestroy()
     {
         RpcUIManager.Instance.playerList.Remove(gameObject.transform);
@@ -315,6 +319,7 @@ public class PlayerContoller : MonoBehaviourPun
         {
             cameraArm.GetComponent<CameraController>().enabled = false;
         }
+        Debug.Log("Destroy");
     }
 
 }

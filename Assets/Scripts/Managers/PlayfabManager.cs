@@ -213,6 +213,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
 
     public void UpdateLeaderBoard(string statisticName, int statisticValue)
     {
+        Debug.Log(statisticName + statisticValue);
         var request = new UpdatePlayerStatisticsRequest { Statistics = new List<StatisticUpdate> { new StatisticUpdate { StatisticName = statisticName, Value = statisticValue } } };
         PlayFabClientAPI.UpdatePlayerStatistics(request, (result) => Debug.Log("리더보드 업데이트 성공"), (error) => Debug.Log("리더보드 업데이트 실패")); ;
     }

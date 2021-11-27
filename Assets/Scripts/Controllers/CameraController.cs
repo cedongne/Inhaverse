@@ -80,10 +80,6 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-    }
-
     void GetInput()
     {
         isChangeCameraModeDown = Input.GetKeyDown(KeyCode.Tab);

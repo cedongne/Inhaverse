@@ -1,4 +1,3 @@
-
 namespace OpenCvSharp.Demo
 {
     using System;

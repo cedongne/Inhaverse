@@ -1282,6 +1282,7 @@ MonoBehaviour:
   interactionUI: {fileID: 0}
   playerUIObjects: {fileID: 8165507261125030204}
   webCamImage: {fileID: 0}
+  webCamController: {fileID: 4785481650045623811}
   walkMoveSpeed: 2
   runMoveSpeed: 4
   prevYPosition: 0
@@ -1914,6 +1915,8 @@ MonoBehaviour:
   playerNameTextUI: {fileID: 7033225817662524716}
   playerNameTextTransform: {fileID: 8627326748413722303}
   playerNameTextBackgroundImage: {fileID: 578513143335942390}
+  webCamImage: {fileID: 0}
+  playerController: {fileID: 0}
   playerNameTextOffset: {x: 0, y: 1.1, z: 0}
 --- !u!114 &7624779008093672677
 MonoBehaviour:
@@ -1928,6 +1931,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   webCamImage: {fileID: 8594035940355474103}
+  playerController: {fileID: 4259580593255142568}
   isWebCamDown: 0
 --- !u!114 &8131352529705652812
 MonoBehaviour:

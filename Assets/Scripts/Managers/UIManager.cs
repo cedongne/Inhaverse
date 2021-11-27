@@ -225,6 +225,7 @@ public class UIManager : MonoBehaviour
     {
         loginUI.SetActive(false);
         hudUI.SetActive(false);
+        conferenceWindow.SetActive(false);
 
         CloseWindow();
 
@@ -236,6 +237,11 @@ public class UIManager : MonoBehaviour
         {
             hudUI.SetActive(true);
         }
+        else if (showingUi.Equals(Define.UI.CONFERENCE))
+        {
+            conferenceWindow.SetActive(true);
+            isOpenChat = true;
+        }
     }
 
     public void OpenWindow(Define.UI showingWindow)
@@ -245,7 +251,6 @@ public class UIManager : MonoBehaviour
         classWindow.SetActive(false);
         classMakingWindow.SetActive(false);
         classListWindow.SetActive(false);
-        conferenceWindow.SetActive(false);
         playerInfoWindow.SetActive(false);
         openFileWindow.SetActive(false);
 
@@ -263,11 +268,6 @@ public class UIManager : MonoBehaviour
         {
             classListWindow.SetActive(true);
             isOpenChat = false;
-        }
-        else if (showingWindow.Equals(Define.UI.CONFERENCE))
-        {
-            conferenceWindow.SetActive(true);
-            isOpenChat = true;
         }
         else if (showingWindow.Equals(Define.UI.PLAYERINFO))
         {

@@ -46,6 +46,8 @@ namespace OpenCvSharp
             "Assets/Resources/haarcascade_frontalface_default.xml";
         CascadeClassifier faceCascade = new CascadeClassifier();
 
+        bool isWebCamDown;
+
 
         void Start()
         {

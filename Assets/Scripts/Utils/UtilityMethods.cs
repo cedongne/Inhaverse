@@ -120,7 +120,7 @@ public class UtilityMethods
         else if (dayOfWeek == "Friday")
             return "금";
         else
-            return "";
+            return "주말";
     }
 
     public static int GetWeekOfSemester()

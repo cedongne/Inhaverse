@@ -68,20 +68,19 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
     {
         PlayfabManager.Instance.getUserDataEvent.RemoveListener(JoinToClass);
 
-        string[] splitedTimeTableData = UtilityMethods.SplitTimeTableUserData(classData);
-        PN.LeaveRoom();
-        ChatManager.Instance.LeaveChat();
-        lastPosition = player.transform.position;
-        player.transform.position = Vector3.zero;
-
-        SceneManager.LoadScene("ClassroomScene");
-        if(UtilityMethods.DetermineAllowClassEnter(splitedTimeTableData))
+        if (UtilityMethods.DetermineAllowClassEnter(UtilityMethods.SplitTimeTableUserData(classData)))
             room_name = className;
         else
         {
             room_name = "OpenClass";
             Debug.Log(className + " 수업 시간이 아닙니다. 공개 수업방으로 입장합니다.");
         }
+        SceneManager.LoadSceneAsync("ClassroomScene");
+
+        PN.LeaveRoom();
+        ChatManager.Instance.LeaveChat();
+        lastPosition = player.transform.position;
+        player.transform.position = Vector3.zero;
     }
 
     public void JoinToCampus()
@@ -91,9 +90,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
         PN.LeaveRoom();
         ChatManager.Instance.LeaveChat();
 
-
         SceneManager.LoadScene("SampleScene");
-        Debug.Log(lastPosition);
         player.transform.position = lastPosition;
     }
 
@@ -103,9 +100,15 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
     }
 
     public override void OnJoinedRoom()
-    {
+    {/*
+        if (!room_name.Equals("Campus"))
+        {
+            SceneManager.LoadSceneAsync("ClassroomScene");
+        }
+       */ 
         Debug.Log(PN.CurrentRoom);
         GameStart();
+        Debug.Log(player);
     }
 
     public void OnLeaveLobby()
@@ -123,7 +126,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
     {
         SpawnPlayer();
         UIManager.Instance.ShowUI(Define.UI.HUD);
-        cameraArm.GetComponent<CameraController>().enabled = true;
         ChatManager.Instance.ChatStart();
     }
 
@@ -133,18 +135,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
             player = PN.Instantiate("Player", lastPosition, Quaternion.identity);
         else
             player = PN.Instantiate("Player", Vector3.zero, Quaternion.identity);
-        /*
-        if (!connection)
-        {
-//            DontDestroyOnLoad(player);
-        }
-        else
-        {
-            player.transform.position = Vector3.zero;
-            player.transform.rotation = Quaternion.identity;
-        }
-        connection = true;
-        */
     }
 
     void Update()

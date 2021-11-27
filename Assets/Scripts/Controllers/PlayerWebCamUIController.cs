@@ -8,6 +8,7 @@ using Photon.Realtime;
 public class PlayerWebCamUIController : MonoBehaviourPunCallbacks
 {
     public GameObject webCamImage;
+    public PlayerContoller playerController;
 
     public bool isWebCamDown;
 
@@ -26,17 +27,12 @@ public class PlayerWebCamUIController : MonoBehaviourPunCallbacks
             {
                 if (!ChatManager.Instance.onChat)
                 {
-                    GetInput();
                     TurnWebCam();
                 }
             }
         }
     }
 
-    void GetInput()
-    {
-        isWebCamDown = Input.GetKeyDown(KeyCode.C);
-    }
 
     public void TurnWebCam()
     {
@@ -48,10 +44,16 @@ public class PlayerWebCamUIController : MonoBehaviourPunCallbacks
     [PunRPC]
     public void TurnWebCamRPC()
     {
-        Debug.Log("Turn");
+        Debug.Log(photonView.Owner.NickName + "Turn");
         if (webCamImage.activeSelf)
+        {
+            playerController.OnOffWebCamController(false);
             webCamImage.SetActive(false);
+        }
         else
+        {
+            playerController.OnOffWebCamController(true);
             webCamImage.SetActive(true);
+        }
     }
 }
