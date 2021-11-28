@@ -110,7 +110,6 @@ public class PlayerContoller : MonoBehaviourPun
             {
                 Move();
                 JumpDown();
-                DetectInteractiveObject();
             }
         }
     }
@@ -129,6 +128,8 @@ public class PlayerContoller : MonoBehaviourPun
                 Jump();
                 WalkToRun();
                 TurnWebCam();
+
+                DetectInteractiveObject();
                 OnCursorVisible();
                 TeleportWayPoint();
 

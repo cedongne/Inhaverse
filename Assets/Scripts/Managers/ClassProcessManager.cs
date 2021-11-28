@@ -22,8 +22,9 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
             }
             return instance;
         }
+        
     }
-
+    Dictionary<UserInfo, int> studentAttendanceList = new Dictionary<UserInfo, int>();
     string class_name;
     public Define.CLASSSTATE classState;
 
@@ -31,38 +32,58 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
+        
         if(instance == null)
         {
             instance = GetComponent<ClassProcessManager>();
         }
+
+        classState = Define.CLASSSTATE.END;
     }
 
     #region Instructor's Function
     public void StartClass()
     {
-        CheckAttendance();
         classState = Define.CLASSSTATE.START;
+        CheckAttendance();
     }
 
     public void EndClass()
     {
         classState = Define.CLASSSTATE.END;
-        CancelInvoke("CheckAttendancePeriodically");
-    }
-#endregion
+        CancelInvoke("CheckAttendance");
+        photonView.RPC("SendAttendanceToInstructor", RpcTarget.AllBuffered);
 
-    public void CheckAttendance()
+        Invoke("PrintPlayerList", 5f);
+    }
+    #endregion
+
+    void CheckAttendance()
     {
         photonView.RPC("CheckAttendancePeriodically", RpcTarget.AllBuffered);
     }
 
     [PunRPC]
-    public void CheckAttendancePeriodically()
+    void CheckAttendancePeriodically()
     {
         attendance_count++;
-        Invoke("CheckAttendance", 300);
+        Invoke("CheckAttendance", 3);
     }
 
+    [PunRPC]
+    void SendAttendanceToInstructor()
+    {
+        studentAttendanceList.Add( new UserInfo { name = PlayfabManager.Instance.playerName, schoolId = PlayfabManager.Instance.playerSchoolId }, attendance_count );
+    }
+
+    void PrintPlayerList()
+    {
+        Debug.Log(studentAttendanceList.Count);
+        foreach(var a in studentAttendanceList)
+        {
+            Debug.Log(a.Key + " " + a.Value);
+        }
+    }
     public void JoinClass()
     {
         if(classState.Equals(Define.CLASSSTATE.START))
@@ -73,14 +94,14 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
     {
         class_name = NetworkManager.Instance.room_name;
         Debug.Log(NetworkManager.Instance.room_name);
-        PlayfabManager.Instance.GetLeaderBoardUserValue(class_name + "" + UtilityMethods.GetWeekOfSemester().ToString() + "" + UtilityMethods.ConvertDayOfWeekToKorean(DateTime.Now.DayOfWeek.ToString())
+        PlayfabManager.Instance.GetLeaderBoardUserValue(class_name + UtilityMethods.GetWeekOfSemester().ToString() + DateTime.Now.DayOfWeek.ToString()
             , PlayfabManager.Instance.playerName, "LoadAttendanceCount");
     }
 
     private void OnDisable()
     {
-        PlayfabManager.Instance.UpdateLeaderBoard(class_name + "" + UtilityMethods.GetWeekOfSemester().ToString() + "" + UtilityMethods.ConvertDayOfWeekToKorean(DateTime.Now.DayOfWeek.ToString())
-            , 1);
+        PlayfabManager.Instance.UpdateLeaderBoard(class_name + UtilityMethods.GetWeekOfSemester().ToString() + DateTime.Now.DayOfWeek.ToString()
+            , attendance_count);
         instance.enabled = false;
     }
 

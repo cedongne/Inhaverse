@@ -15,8 +15,13 @@ public class InteractiveInstructorTable : InteractiveObject
 
     public override void Interaction()
     {
-        if(ClassProcessManager.Instance.classState == Define.CLASSSTATE.END){
+        if(ClassProcessManager.Instance.classState == Define.CLASSSTATE.END)
+        {
             ClassProcessManager.Instance.StartClass();
+        }
+        else
+        {
+            ClassProcessManager.Instance.EndClass();
         }
     }
 }

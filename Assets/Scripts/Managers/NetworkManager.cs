@@ -112,15 +112,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
     }
 
     public override void OnJoinedRoom()
-    {/*
-        if (!room_name.Equals("Campus"))
-        {
-            SceneManager.LoadSceneAsync("ClassroomScene");
-        }
-       */ 
+    {
         Debug.Log(PN.CurrentRoom);
         GameStart();
-        Debug.Log(player);
     }
 
     public void OnLeaveLobby()
