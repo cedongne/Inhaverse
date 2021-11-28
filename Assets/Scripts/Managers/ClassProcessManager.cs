@@ -69,7 +69,7 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
             CheckAttendancePeriodically();
     }
 
-    public override void OnJoinedRoom()
+    private void OnEnable()
     {
         class_name = NetworkManager.Instance.room_name;
         Debug.Log(NetworkManager.Instance.room_name);
@@ -77,12 +77,11 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
             , PlayfabManager.Instance.playerName, "LoadAttendanceCount");
     }
 
-    public override void OnLeftRoom()
+    private void OnDisable()
     {
-        Debug.Log("ClassManager");
-        class_name = NetworkManager.Instance.room_name;
         PlayfabManager.Instance.UpdateLeaderBoard(class_name + "" + UtilityMethods.GetWeekOfSemester().ToString() + "" + UtilityMethods.ConvertDayOfWeekToKorean(DateTime.Now.DayOfWeek.ToString())
-            , attendance_count);
+            , 1);
+        instance.enabled = false;
     }
 
     public void LoadAttendanceCount(int _attendance_count)

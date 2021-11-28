@@ -66,6 +66,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
 
     public void JoinToClass(string className, string classData)
     {
+        PN.LeaveRoom();
         PlayfabManager.Instance.getUserDataEvent.RemoveListener(JoinToClass);
 
         if (UtilityMethods.DetermineAllowClassEnter(UtilityMethods.SplitTimeTableUserData(classData)))
@@ -75,21 +76,32 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
             room_name = "OpenClass";
             Debug.Log(className + " 수업 시간이 아닙니다. 공개 수업방으로 입장합니다.");
         }
-        SceneManager.LoadSceneAsync("ClassroomScene");
+        StartCoroutine("LoadClassRoomScene", "ClassroomScene");
 
-        PN.LeaveRoom();
         ChatManager.Instance.LeaveChat();
         lastPosition = player.transform.position;
         player.transform.position = Vector3.zero;
     }
 
+    IEnumerator LoadClassRoomScene(string scene_name)
+    {
+        AsyncOperation asyncLoadScene = SceneManager.LoadSceneAsync(scene_name);
+        while (!asyncLoadScene.isDone)
+        {
+            yield return null;
+            Debug.Log(asyncLoadScene.progress);
+        }
+        ClassProcessManager.Instance.enabled = true;
+
+    }
+
     public void JoinToCampus()
     {
-        Destroy(ConferenceManager.Instance.gameObject);
         room_name = "Campus";
         PN.LeaveRoom();
         ChatManager.Instance.LeaveChat();
 
+        Destroy(ConferenceManager.Instance.gameObject);
         SceneManager.LoadScene("SampleScene");
         player.transform.position = lastPosition;
     }
