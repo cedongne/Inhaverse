@@ -33,6 +33,12 @@ public class PlayerUIController : MonoBehaviourPunCallbacks, IPunObservable
         Invoke("SetPlayerName", 1f);
     }
 
+    private void Start()
+    {
+        OpenCvSharp.WebCamManager.Instance.headDisplay = webCamImage.GetComponent<RawImage>();
+        OpenCvSharp.WebCamManager.Instance.nowDisplay = webCamImage.GetComponent<RawImage>();
+    }
+
     void FixedUpdate()
     {
         playerNameTextTransform.position = Camera.main.WorldToScreenPoint(playerTransform.position + playerNameTextOffset);
