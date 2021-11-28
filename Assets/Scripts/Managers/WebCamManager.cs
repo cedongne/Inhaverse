@@ -95,7 +95,6 @@ namespace OpenCvSharp
             {
                 if (WebCamTexture.devices.Length != 0)
                 {
-                    Debug.Log("SHow");
                     SetWebCamDisplay();
                     ShowWebCam();
                 }

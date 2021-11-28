@@ -270,8 +270,7 @@ public class PlayerContoller : MonoBehaviourPun
         {
             Cursor.lockState = CursorLockMode.None;
             CancelInvoke("OnCursorUnvisible");
-            if(!UIManager.Instance.isOpenWindow)
-                Invoke("OnCursorUnvisible", 3);
+            Invoke("OnCursorUnvisible", 3);
         }
         else if (Input.GetMouseButtonDown(1))
         {
@@ -281,7 +280,8 @@ public class PlayerContoller : MonoBehaviourPun
 
     void OnCursorUnvisible()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        if(!UIManager.Instance.isOpenWindow)
+            Cursor.lockState = CursorLockMode.Locked;
     }
 
     void ShowPlayerUIAsDistance()
