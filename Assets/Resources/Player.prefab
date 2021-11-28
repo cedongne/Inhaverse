@@ -1282,6 +1282,7 @@ MonoBehaviour:
   interactionUI: {fileID: 0}
   playerUIObjects: {fileID: 8165507261125030204}
   webCamImage: {fileID: 0}
+  playerUIController: {fileID: 6825015168767009852}
   webCamController: {fileID: 4785481650045623811}
   walkMoveSpeed: 2
   runMoveSpeed: 4
@@ -1525,7 +1526,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4259261389110940774}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96258ab707de07c40babfd18fbe97573, type: 3}
   m_Name: 
@@ -1867,7 +1868,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8627326748413722303}
   - component: {fileID: 6825015168767009852}
-  - component: {fileID: 7624779008093672677}
   - component: {fileID: 8131352529705652812}
   - component: {fileID: 1010450522501227061}
   m_Layer: 5
@@ -1915,24 +1915,9 @@ MonoBehaviour:
   playerNameTextUI: {fileID: 7033225817662524716}
   playerNameTextTransform: {fileID: 8627326748413722303}
   playerNameTextBackgroundImage: {fileID: 578513143335942390}
-  webCamImage: {fileID: 0}
-  playerController: {fileID: 0}
-  playerNameTextOffset: {x: 0, y: 1.1, z: 0}
---- !u!114 &7624779008093672677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8165507261125030204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 456bb84c0bd60b84ca7ef016a27a8b5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   webCamImage: {fileID: 8594035940355474103}
   playerController: {fileID: 4259580593255142568}
-  isWebCamDown: 0
+  playerNameTextOffset: {x: 0, y: 1.1, z: 0}
 --- !u!114 &8131352529705652812
 MonoBehaviour:
   m_ObjectHideFlags: 0

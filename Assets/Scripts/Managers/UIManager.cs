@@ -39,7 +39,6 @@ public class UIManager : MonoBehaviour
     [Space]
     public PlayerContoller playerController;
     public CameraController cameraController;
-    public PlayerWebCamUIController webCamUIController;
 
     [Header("===== 강의 데이터 UI =====")]
     [Space]
@@ -146,8 +145,8 @@ public class UIManager : MonoBehaviour
 
     public void CamOnOffBtn()
     {
-        webCamUIController.isWebCamDown = true;
-        webCamUIController.TurnWebCam();
+        playerController.isCamDown = true;
+        playerController.TurnWebCam();
     }
 
     public void VoiceOnOffBtn()

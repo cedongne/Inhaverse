@@ -23,6 +23,8 @@ public class PlayerContoller : MonoBehaviourPun
     [SerializeField]
     private GameObject webCamImage;
     [SerializeField]
+    private PlayerUIController playerUIController;
+    [SerializeField]
     private OpenCvSharp.WebCamController webCamController;
 
     private Vector3 screenCenter;
@@ -126,9 +128,10 @@ public class PlayerContoller : MonoBehaviourPun
                 GetInput();
                 Jump();
                 WalkToRun();
-
+                TurnWebCam();
                 OnCursorVisible();
                 TeleportWayPoint();
+
             }
         }
         OpenInfoWindow();
@@ -306,9 +309,22 @@ public class PlayerContoller : MonoBehaviourPun
         }
     }
 
-    public void OnOffWebCamController(bool onOff)
+    public void TurnWebCam()
     {
-        webCamController.enabled = onOff;
+        if (isCamDown)
+        {
+            Debug.Log(isCamDown + " " + webCamController.enabled);
+            if (webCamController.enabled)
+            {
+                webCamController.enabled = false;
+                playerUIController.ShowWebCamImage(false);
+            }
+            else
+            {
+                webCamController.enabled = true;
+                playerUIController.ShowWebCamImage(true);
+            }
+        }
     }
 
     private void OnDestroy()
