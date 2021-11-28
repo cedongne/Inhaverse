@@ -104,6 +104,7 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
     public void ExitConference()
     {
         photonView.RPC("ExitConferenceRPC", RpcTarget.AllBuffered);
+        UIManager.Instance.ShowUI(Define.UI.HUD);
     }
 
     [PunRPC]

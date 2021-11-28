@@ -72,7 +72,6 @@ public class UIManager : MonoBehaviour
     [Space]
     public Text ConferenceMemberText;
     public bool isOpenWindow;
-    public bool isOpenChat = true;
 
     [Header("===== 플레이어 정보 UI =====")]
     [Space]
@@ -240,7 +239,6 @@ public class UIManager : MonoBehaviour
         else if (showingUi.Equals(Define.UI.CONFERENCE))
         {
             conferenceWindow.SetActive(true);
-            isOpenChat = true;
         }
     }
 
@@ -257,27 +255,22 @@ public class UIManager : MonoBehaviour
         if (showingWindow.Equals(Define.UI.CLASS))
         {
             classWindow.SetActive(true);
-            isOpenChat = false;
         }
         else if (showingWindow.Equals(Define.UI.CLASSMAKING))
         {
             classMakingWindow.SetActive(true);
-            isOpenChat = false;
         }
         else if (showingWindow.Equals(Define.UI.CLASSLIST))
         {
             classListWindow.SetActive(true);
-            isOpenChat = false;
         }
         else if (showingWindow.Equals(Define.UI.PLAYERINFO))
         {
             playerInfoWindow.SetActive(true);
-            isOpenChat = false;
         }
         else if (showingWindow.Equals(Define.UI.OPENFILE))
         {
             openFileWindow.SetActive(true);
-            isOpenChat = false;
         }
         isOpenWindow = true;
     }
@@ -296,7 +289,6 @@ public class UIManager : MonoBehaviour
         ClearClassMakingWindow();
         eventFunction = null;
         isOpenWindow = false;
-        isOpenChat = true;
 
         ChatManager.Instance.SetHUDChatUI();
     }

@@ -16,7 +16,7 @@ namespace OpenCvSharp
         public float delayTime = 1f;
         bool isDelay = false;
         bool detect_flag = false;
-        OpenCvSharp.Rect before_image;
+        Rect before_image;
 
         WebCamTexture camTexture;
         public RawImage headDisplay;
@@ -42,7 +42,7 @@ namespace OpenCvSharp
 
         private int currentIndex = 0;
 
-        String filenameFaceCascade =
+        string filenameFaceCascade =
             "Assets/Resources/haarcascade_frontalface_default.xml";
         CascadeClassifier faceCascade = new CascadeClassifier();
 
@@ -103,7 +103,7 @@ namespace OpenCvSharp
             Mat dst = new Mat();
             if (!isDelay)
             {
-                OpenCvSharp.Rect[] faces = faceCascade.DetectMultiScale(image);
+                Rect[] faces = faceCascade.DetectMultiScale(image);
                 foreach (var item in faces)
                 {
                     before_image = item;
