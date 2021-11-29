@@ -60,14 +60,15 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
 
     void CheckAttendance()
     {
-        photonView.RPC("CheckAttendancePeriodically", RpcTarget.AllBuffered);
+        CheckAttendancePeriodically();
+//        photonView.RPC("CheckAttendancePeriodically", RpcTarget.AllBuffered);
     }
 
-    [PunRPC]
+//    [PunRPC]
     void CheckAttendancePeriodically()
     {
         attendance_count++;
-        Invoke("CheckAttendance", 3);
+        Invoke("CheckAttendancePeriodically", 3);
     }
 
     [PunRPC]
