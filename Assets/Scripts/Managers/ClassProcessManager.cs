@@ -92,11 +92,17 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
     }
     public void UpdateAttendance(int attendances)
     {
-        Debug.Log(attendances & UtilityMethods.Exponential(2, UtilityMethods.GetWeekOfSemester()));
-//        if(attendances & UtilityMethods.Exponential(2, UtilityMethods.GetWeekOfSemester()) != 0){
-
-  //      }
-    //    PlayfabManager.Instance.UpdateLeaderBoard(class_name + "Attendance", attendances + UtilityMethods.Exponential(2, UtilityMethods.GetWeekOfSemester()));
+        Debug.Log(attendances + " " + UtilityMethods.Exponential(2, UtilityMethods.GetWeekOfSemester() - 1));
+        Debug.Log((attendances & UtilityMethods.Exponential(2, UtilityMethods.GetWeekOfSemester() - 1)));
+        if((attendances & UtilityMethods.Exponential(2, UtilityMethods.GetWeekOfSemester() - 1)) == 0)
+        {
+            Debug.Log("UPDATE");
+            PlayfabManager.Instance.UpdateLeaderBoard(class_name + "Attendance", attendances + UtilityMethods.Exponential(2, UtilityMethods.GetWeekOfSemester()));
+        }
+        else
+        {
+            Debug.Log("AlreadyAttend");
+        }
     }
     public void JoinClass()
     {

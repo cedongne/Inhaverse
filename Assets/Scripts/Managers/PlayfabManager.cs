@@ -363,7 +363,6 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
 
     public void GetLeaderBoardUserValue(string statisticName, string userName, string callbackMethodName)
     {
-        Debug.Log(statisticName);
         var request = new GetLeaderboardRequest
         {
             StartPosition = 0,
@@ -373,7 +372,6 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         };
         PlayFabClientAPI.GetLeaderboard(request, (result) =>
         {
-            Debug.Log("Good" + callbackMethodName);
             for (int count = 0; count < result.Leaderboard.Count; count++)
             {
                 if (result.Leaderboard[count].DisplayName.Equals(userName))
@@ -381,13 +379,22 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                     if (callbackMethodName.Equals("LoadAttendanceCount"))
                     {
                         ClassProcessManager.Instance.LoadAttendanceCount(result.Leaderboard[count].StatValue);
+                        return;
                     }
                     else if (callbackMethodName.Equals("UpdateAttendance"))
                     {
                         ClassProcessManager.Instance.UpdateAttendance(result.Leaderboard[count].StatValue);
+                        return;
                     }
                 }
             }
+            if (callbackMethodName.Equals("UpdateAttendance"))
+            {
+                Debug.Log("UP");
+                ClassProcessManager.Instance.UpdateAttendance(0);
+                return;
+            }
+
         }, (error) => Debug.Log(error.ErrorMessage));
     }
 
