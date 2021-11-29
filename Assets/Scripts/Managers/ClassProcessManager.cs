@@ -4,7 +4,7 @@ using System;
 using UnityEngine;
 
 using Photon.Pun;
-public class ClassProcessManager : MonoBehaviourPunCallbacks
+public class ClassProcessManager : MonoBehaviourPunCallbacks, IPunObservable
 {
     private static ClassProcessManager instance;
 
@@ -24,6 +24,9 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
         }
         
     }
+
+    public PlayerContoller playerContoller;
+
     Dictionary<UserInfo, int> studentAttendanceList = new Dictionary<UserInfo, int>();
     string class_name;
     public Define.CLASSSTATE classState;
@@ -50,47 +53,47 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
 
     public void EndClass()
     {
+        PlayfabManager.Instance.UpdateLeaderBoard(class_name + UtilityMethods.GetWeekOfSemester().ToString() + DateTime.Now.DayOfWeek.ToString()
+            , attendance_count);
+        photonView.RPC("StopCheckAttend", RpcTarget.AllBuffered, attendance_count);
         classState = Define.CLASSSTATE.END;
         CancelInvoke("CheckAttendancePeriodically");
-        photonView.RPC("SendAttendanceToInstructor", RpcTarget.AllBuffered);
-
-        Invoke("PrintPlayerList", 5f);
     }
     #endregion
 
     void CheckAttendance()
     {
-        CheckAttendancePeriodically();
         photonView.RPC("CheckAttendanceRPC", RpcTarget.AllBuffered);
     }
 
     [PunRPC]
     void CheckAttendanceRPC()
     {
-        Debug.Log("GO");
         CheckAttendancePeriodically();
     }
 
     void CheckAttendancePeriodically()
     {
         attendance_count++;
-        Debug.Log(photonView.Owner.NickName + attendance_count);
         Invoke("CheckAttendancePeriodically", 3);
     }
 
     [PunRPC]
-    void SendAttendanceToInstructor()
+    void StopCheckAttend(int total_attendance_count)
     {
-        studentAttendanceList.Add( new UserInfo { name = PlayfabManager.Instance.playerName, schoolId = PlayfabManager.Instance.playerSchoolId }, attendance_count );
-    }
-
-    void PrintPlayerList()
-    {
-        Debug.Log(studentAttendanceList.Count);
-        foreach(var a in studentAttendanceList)
+        Debug.Log(total_attendance_count);
+        if(total_attendance_count - attendance_count < 3)
         {
-            Debug.Log(a.Key + " " + a.Value);
+            PlayfabManager.Instance.GetLeaderBoardUserValue(class_name + "Attendance", PlayfabManager.Instance.playerName, "UpdateAttendance");
         }
+    }
+    public void UpdateAttendance(int attendances)
+    {
+        Debug.Log(attendances & UtilityMethods.Exponential(2, UtilityMethods.GetWeekOfSemester()));
+//        if(attendances & UtilityMethods.Exponential(2, UtilityMethods.GetWeekOfSemester()) != 0){
+
+  //      }
+    //    PlayfabManager.Instance.UpdateLeaderBoard(class_name + "Attendance", attendances + UtilityMethods.Exponential(2, UtilityMethods.GetWeekOfSemester()));
     }
     public void JoinClass()
     {
@@ -116,5 +119,27 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
     public void LoadAttendanceCount(int _attendance_count)
     {
         attendance_count = _attendance_count;
+    }
+
+    string _player_name;
+    string _player_school_id;
+    int _attendance_count;
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(PlayfabManager.Instance.playerName);
+            stream.SendNext(PlayfabManager.Instance.playerSchoolId);
+            stream.SendNext(attendance_count);
+        }
+        else
+        {
+            _player_name = (string)stream.ReceiveNext();
+            _player_school_id = (string)stream.ReceiveNext();
+            _attendance_count = (int)stream.ReceiveNext();
+            studentAttendanceList.Add(new UserInfo(_player_name, _player_school_id), _attendance_count);
+            Debug.Log(studentAttendanceList.Count);
+
+        }
     }
 }

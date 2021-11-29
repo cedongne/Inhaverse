@@ -380,6 +380,10 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                     {
                         ClassProcessManager.Instance.LoadAttendanceCount(result.Leaderboard[count].StatValue);
                     }
+                    else if (callbackMethodName.Equals("UpdateAttendance"))
+                    {
+                        ClassProcessManager.Instance.UpdateAttendance(result.Leaderboard[count].StatValue);
+                    }
                 }
             }
         }, (error) => Debug.Log(error.ErrorMessage));

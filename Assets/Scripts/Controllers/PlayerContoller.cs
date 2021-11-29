@@ -88,6 +88,7 @@ public class PlayerContoller : MonoBehaviourPun
             cameraArm.GetComponent<CameraController>().playerAvatar = GameObject.Find("Avatar");
             cameraArm.GetComponent<CameraController>().playerContoller = GetComponent<PlayerContoller>();
             UIManager.Instance.playerController = GetComponent<PlayerContoller>();
+            ClassProcessManager.Instance.playerContoller = GetComponent<PlayerContoller>();
         }
         moveSpeed = walkMoveSpeed;
 

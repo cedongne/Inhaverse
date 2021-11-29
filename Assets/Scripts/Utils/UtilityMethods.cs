@@ -131,4 +131,15 @@ public class UtilityMethods
 
         return calWeek;
     }
+
+    public static int Exponential(int _base, int _exponent)
+    {
+        int result = 1;
+
+        for(int count = 0; count < _exponent; count++)
+        {
+            result *= _base;
+        }
+        return result;
+    }
 }
