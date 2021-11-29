@@ -53,6 +53,8 @@ MonoBehaviour:
   - DeleteImageRPC
   - ShowWebCamImageRPC
   - SendAttendanceToInstructor
+  - CheckAttendanceRPC
+  - StopCheckAttend
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
