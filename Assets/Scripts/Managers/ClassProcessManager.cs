@@ -51,7 +51,7 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
     public void EndClass()
     {
         classState = Define.CLASSSTATE.END;
-        CancelInvoke("CheckAttendance");
+        CancelInvoke("CheckAttendancePeriodically");
         photonView.RPC("SendAttendanceToInstructor", RpcTarget.AllBuffered);
 
         Invoke("PrintPlayerList", 5f);
@@ -61,15 +61,19 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
     void CheckAttendance()
     {
         CheckAttendancePeriodically();
-//        photonView.RPC("CheckAttendancePeriodically", RpcTarget.AllBuffered);
+        photonView.RPC("CheckAttendanceRPC", RpcTarget.AllBuffered);
     }
 
-//    [PunRPC]
+    [PunRPC]
+    void CheckAttendanceRPC()
+    {
+        Invoke("CheckAttendancePeriodically", 3);
+    }
+
     void CheckAttendancePeriodically()
     {
         attendance_count++;
         Debug.Log(attendance_count);
-        Invoke("CheckAttendancePeriodically", 3);
     }
 
     [PunRPC]
