@@ -68,6 +68,7 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
     void CheckAttendancePeriodically()
     {
         attendance_count++;
+        Debug.Log(attendance_count);
         Invoke("CheckAttendancePeriodically", 3);
     }
 
