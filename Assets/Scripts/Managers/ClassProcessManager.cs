@@ -4,7 +4,7 @@ using System;
 using UnityEngine;
 
 using Photon.Pun;
-public class ClassProcessManager : MonoBehaviourPunCallbacks, IPunObservable
+public class ClassProcessManager : MonoBehaviourPunCallbacks
 {
     private static ClassProcessManager instance;
 
@@ -47,7 +47,6 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks, IPunObservable
     #region Instructor's Function
     public void StartClass()
     {
-        classState = Define.CLASSSTATE.START;
         CheckAttendance();
     }
 
@@ -56,10 +55,9 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks, IPunObservable
         PlayfabManager.Instance.UpdateLeaderBoard(class_name + UtilityMethods.GetWeekOfSemester().ToString() + DateTime.Now.DayOfWeek.ToString()
             , attendance_count);
         photonView.RPC("StopCheckAttend", RpcTarget.AllBuffered, attendance_count);
-        classState = Define.CLASSSTATE.END;
-        CancelInvoke("CheckAttendancePeriodically");
     }
     #endregion
+
 
     void CheckAttendance()
     {
@@ -69,6 +67,7 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     void CheckAttendanceRPC()
     {
+        classState = Define.CLASSSTATE.START;
         CheckAttendancePeriodically();
     }
 
@@ -82,11 +81,14 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     void StopCheckAttend(int total_attendance_count)
     {
+        CancelInvoke("CheckAttendancePeriodically");
+        classState = Define.CLASSSTATE.END;
+
         Debug.Log(total_attendance_count);
-        if(total_attendance_count - attendance_count < 3)
-        {
+//        if(total_attendance_count - attendance_count < 3)
+ //       {
             PlayfabManager.Instance.GetLeaderBoardUserValue(class_name + "Attendance", PlayfabManager.Instance.playerName, "UpdateAttendance");
-        }
+  //      }
     }
     public void UpdateAttendance(int attendances)
     {
