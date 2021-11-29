@@ -67,13 +67,14 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
     [PunRPC]
     void CheckAttendanceRPC()
     {
-        Invoke("CheckAttendancePeriodically", 3);
+        CheckAttendancePeriodically();
     }
 
     void CheckAttendancePeriodically()
     {
         attendance_count++;
         Debug.Log(attendance_count);
+        Invoke("CheckAttendancePeriodically", 3);
     }
 
     [PunRPC]
