@@ -363,6 +363,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
 
     public void GetLeaderBoardUserValue(string statisticName, string userName, string callbackMethodName)
     {
+        Debug.Log(statisticName);
         var request = new GetLeaderboardRequest
         {
             StartPosition = 0,
@@ -372,6 +373,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         };
         PlayFabClientAPI.GetLeaderboard(request, (result) =>
         {
+            Debug.Log("Good" + callbackMethodName);
             for (int count = 0; count < result.Leaderboard.Count; count++)
             {
                 if (result.Leaderboard[count].DisplayName.Equals(userName))
