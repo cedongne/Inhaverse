@@ -74,6 +74,7 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks, IPunObservable
 
     void CheckAttendancePeriodically()
     {
+        Debug.Log(attendance_count);
         attendance_count++;
         Invoke("CheckAttendancePeriodically", 3);
     }
@@ -119,27 +120,5 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks, IPunObservable
     public void LoadAttendanceCount(int _attendance_count)
     {
         attendance_count = _attendance_count;
-    }
-
-    string _player_name;
-    string _player_school_id;
-    int _attendance_count;
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            stream.SendNext(PlayfabManager.Instance.playerName);
-            stream.SendNext(PlayfabManager.Instance.playerSchoolId);
-            stream.SendNext(attendance_count);
-        }
-        else
-        {
-            _player_name = (string)stream.ReceiveNext();
-            _player_school_id = (string)stream.ReceiveNext();
-            _attendance_count = (int)stream.ReceiveNext();
-            studentAttendanceList.Add(new UserInfo(_player_name, _player_school_id), _attendance_count);
-            Debug.Log(studentAttendanceList.Count);
-
-        }
     }
 }
