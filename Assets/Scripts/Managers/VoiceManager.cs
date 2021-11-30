@@ -70,7 +70,7 @@ public class VoiceManager : MonoBehaviour
 
     void CheckMicColor()
     {
-        if(voiceRecorder.VoiceDetection)
+        if(voiceRecorder.IsCurrentlyTransmitting)
         {
             playerUIObject.GetComponentInChildren<UnityEngine.UI.Outline>().effectColor = Color.green;
         }
