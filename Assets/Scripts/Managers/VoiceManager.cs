@@ -16,6 +16,8 @@ public class VoiceManager : MonoBehaviour
 
     public bool isVoiceDown;
 
+    public GameObject playerUIObject;
+
     private VoiceManager() { }
     private static VoiceManager instance;
 
@@ -45,11 +47,13 @@ public class VoiceManager : MonoBehaviour
     }
 
     // Start is called before the first frame update
+    [System.Obsolete]
     void Start()
     {
-        voiceNetwork.Client.GlobalAudioGroup = 255;
-        voiceRecorder.TransmitEnabled = true;
-        onVoice = true;
+        EnterLobbyChannel();
+        onVoice = false;
+        voiceRecorder.TransmitEnabled = false;
+        voiceButton.GetComponent<Image>().color = Color.gray;
     }
 
     // Update is called once per frame
@@ -58,8 +62,23 @@ public class VoiceManager : MonoBehaviour
         GetInput();
         if (!UIManager.Instance.isOpenWindow)
             VoiceOnOff();
+        if (onVoice)
+        {
+            CheckMicColor();
+        }
     }
 
+    void CheckMicColor()
+    {
+        if(voiceRecorder.VoiceDetection)
+        {
+            playerUIObject.GetComponentInChildren<UnityEngine.UI.Outline>().effectColor = Color.green;
+        }
+        else
+        {
+            playerUIObject.GetComponentInChildren<UnityEngine.UI.Outline>().effectColor = Color.white;
+        }
+    }
     void GetInput()
     {
             isVoiceDown = Input.GetKeyDown(KeyCode.V);
@@ -74,6 +93,7 @@ public class VoiceManager : MonoBehaviour
                 onVoice = false;
                 voiceRecorder.TransmitEnabled = false;
                 voiceButton.GetComponent<Image>().color = Color.gray;
+                playerUIObject.GetComponentInChildren<UnityEngine.UI.Outline>().effectColor = Color.white;
             }
             else
             {
@@ -91,6 +111,7 @@ public class VoiceManager : MonoBehaviour
         voiceNetwork.Client.GlobalAudioGroup = channelNum;
     }
 
+    [System.Obsolete]
     public void EnterLobbyChannel()
     {
         voiceNetwork.Client.GlobalAudioGroup = 255;
