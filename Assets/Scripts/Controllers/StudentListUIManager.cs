@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using UnityEngine.EventSystems;
 
 public class StudentListUIManager : MonoBehaviourPunCallbacks
 {
     public GameObject studentListWindow;
+    public GameObject studentInfo;
+
+    public GameObject student;
 
     private StudentListUIManager() { }
 
@@ -49,6 +53,7 @@ public class StudentListUIManager : MonoBehaviourPunCallbacks
         for (int idx = 1; idx < 60; idx++)
         {
             studentListWindow.transform.Find($"Student{idx}").Find("Text").GetComponent<Text>().text = $"Student{idx}";
+            studentListWindow.transform.Find($"Student{idx}").Find("Text").GetComponent<Text>().fontSize = 20;
         }
     }
 
@@ -79,5 +84,17 @@ public class StudentListUIManager : MonoBehaviourPunCallbacks
                 break;
             }
         }
+    }
+
+    public void CloseStudentInfo()
+    {
+        student = null;
+        studentInfo.SetActive(false);
+    }
+
+    public void OpenStudentInfo()
+    {
+        studentInfo.SetActive(true);
+        student = GameObject.Find(EventSystem.current.currentSelectedGameObject.transform.Find("Text").GetComponent<Text>().text);
     }
 }
