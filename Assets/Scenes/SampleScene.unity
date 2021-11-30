@@ -2504,6 +2504,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 217934091}
   m_CullTransparentMesh: 1
+--- !u!1 &218880763 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4240216358391120506, guid: 4d0d944b00edff04fb989c38a4352f57, type: 3}
+  m_PrefabInstance: {fileID: 4240216358108345380}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &224305438
 GameObject:
   m_ObjectHideFlags: 0
@@ -9311,6 +9316,7 @@ MonoBehaviour:
   conferenceWindow: {fileID: 1252261040217375608}
   playerInfoWindow: {fileID: 442784972}
   openFileWindow: {fileID: 1866391726}
+  classStudentListWindow: {fileID: 218880763}
   hudChatInputField: {fileID: 2580658444375160559}
   hudChatText: {fileID: 2580658444866257569}
   hudChatScrollbar: {fileID: 2580658445780065053}
@@ -9577,6 +9583,7 @@ GameObject:
   - component: {fileID: 945244070}
   - component: {fileID: 945244074}
   - component: {fileID: 945244075}
+  - component: {fileID: 945244076}
   m_Layer: 0
   m_Name: RpcManager
   m_TagString: Untagged
@@ -9687,6 +9694,19 @@ MonoBehaviour:
   playerContoller: {fileID: 0}
   classState: 0
   attendance_count: 0
+--- !u!114 &945244076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945244069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 441df30d933e16548908673c30ec529f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  studentListWindow: {fileID: 218880763}
 --- !u!1 &954262505
 GameObject:
   m_ObjectHideFlags: 0
@@ -29766,6 +29786,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Class Student List Window
       objectReference: {fileID: 0}
+    - target: {fileID: 4240216358391120506, guid: 4d0d944b00edff04fb989c38a4352f57, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4240216358391120507, guid: 4d0d944b00edff04fb989c38a4352f57, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -29850,5 +29874,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6297190463252799898, guid: 4d0d944b00edff04fb989c38a4352f57, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4d0d944b00edff04fb989c38a4352f57, type: 3}
