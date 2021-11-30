@@ -94,6 +94,7 @@ public class StudentListUIManager : MonoBehaviourPunCallbacks
 
     public void OpenStudentInfo()
     {
+        if(!EventSystem.current.currentSelectedGameObject.transform.Find("Text").GetComponent<Text>().text.Contains("Student"))
         studentInfo.SetActive(true);
         student = GameObject.Find(EventSystem.current.currentSelectedGameObject.transform.Find("Text").GetComponent<Text>().text);
     }

@@ -235,6 +235,11 @@ public class PlayerContoller : MonoBehaviourPun
 
         if (hit.collider != null && hit.transform.gameObject.CompareTag("Interactive Object"))
         {
+            if (!currentTouch.Equals(hit.transform.gameObject.GetComponent<Outline>()))
+            {
+                currentTouch.enabled = false;
+                interactionUI.SetActive(false);
+            }
             currentTouch = hit.transform.gameObject.GetComponent<Outline>();
             currentTouch.enabled = true;
             interactionUI.SetActive(true);
