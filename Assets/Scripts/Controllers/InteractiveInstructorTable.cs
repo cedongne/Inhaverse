@@ -15,14 +15,21 @@ public class InteractiveInstructorTable : InteractiveObject
 
     public override void Interaction()
     {
-        if(ClassProcessManager.Instance.classState == Define.CLASSSTATE.END)
+        if (PlayfabManager.Instance.playerJob == "±³¼ö")
         {
-            ClassProcessManager.Instance.StartClass();
-            UIManager.Instance.OpenWindow(Define.UI.CLASSSTUDENTLIST);
+            if (ClassProcessManager.Instance.classState == Define.CLASSSTATE.END)
+            {
+                ClassProcessManager.Instance.StartClass();
+                UIManager.Instance.OpenWindow(Define.UI.CLASSSTUDENTLIST);
+            }
+            else
+            {
+                ClassProcessManager.Instance.EndClass();
+            }
         }
         else
         {
-            ClassProcessManager.Instance.EndClass();
+            UIManager.Instance.StartCoroutine(UIManager.Instance.FadeOutDontHaveAuthority());
         }
     }
 }

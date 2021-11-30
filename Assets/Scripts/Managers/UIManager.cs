@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     public GameObject playerInfoWindow;
     public GameObject openFileWindow;
     public GameObject classStudentListWindow;
+    public GameObject dontHaveAuthority;
 
     [Header("===== HUD 채팅 UI")]
     [Space]
@@ -70,6 +71,11 @@ public class UIManager : MonoBehaviour
     [Space]
     public Text ConferenceMemberText;
     public bool isOpenWindow;
+
+    [Header("=====권한 경고 메세지 UI =====")]
+    [Space]
+    public Image Authoritybackground;
+    public Text Authoritytext;
 
     [Header("===== 플레이어 정보 UI =====")]
     [Space]
@@ -459,6 +465,25 @@ public class UIManager : MonoBehaviour
                 studentListText.text = studentListText.text.Replace(studentsList[count].schoolId + " " + studentsList[count].name + "\n", "");
                 studentsList.RemoveAt(count);
             }
+        }
+    }
+
+    public IEnumerator FadeOutDontHaveAuthority()
+    {
+        dontHaveAuthority.SetActive(true);
+        yield return StartCoroutine(FadeOutCoroutine());
+        dontHaveAuthority.SetActive(false);
+    }
+
+    IEnumerator FadeOutCoroutine()
+    {
+        float fadeCount = 1.0f;
+        while(fadeCount > 0)
+        {
+            fadeCount -= 0.01f;
+            yield return new WaitForSeconds(0.01f);
+            Authoritybackground.color = new Color(Authoritybackground.color.r, Authoritybackground.color.g, Authoritybackground.color.b, fadeCount);
+            Authoritytext.color = new Color(Authoritytext.color.r, Authoritytext.color.g, Authoritytext.color.b, fadeCount);
         }
     }
     #endregion
