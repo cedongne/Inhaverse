@@ -46,11 +46,9 @@ public class UIManager : MonoBehaviour
     public InputField classInstructor;
 
     public InputField classNameInput;
-    public InputField classLateCheckTimeInput;
 
     public InputField classIdInput;
     public InputField classNumberInput;
-    public InputField classEnterAllowTimeInput;
 
     public Dropdown firstDayOfWeekInput;
     public InputField firstStartTimeInput;
@@ -196,16 +194,14 @@ public class UIManager : MonoBehaviour
         // 5 : Second class Day of week
         // 6 : Second class start time
         // 7 : Second class end time
-        // 8 : Late allow time
         splitedClassInfo[2] = UtilityMethods.ConvertDayOfWeekToKorean(splitedClassInfo[2]);
         splitedClassInfo[5] = UtilityMethods.ConvertDayOfWeekToKorean(splitedClassInfo[5]);
         newInfoTransform.GetChild(0).GetComponent<Text>().text = groupName;
         for (int count = 0; count < splitedClassInfo.Length; count++)
         {
-            newInfoTransform.GetChild(count + 1).GetComponent<Text>().text = splitedClassInfo[count].ToString();  // 0 : Class ID
+            newInfoTransform.GetChild(count + 1).GetComponent<Text>().text = splitedClassInfo[count].ToString();
         }
-        newInfoTransform.GetChild(splitedClassInfo.Length + 1).GetComponent<Text>().text += "Ка";
-
+        PlayfabManager.Instance.GetLeaderBoardUserValue(groupName, PlayfabManager.Instance.playerName, "MakeToListAttendance");
         Button deleteButton = newClassInfo.GetComponentInChildren<Button>();
         GameObject tmpClassInfo = newClassInfo;
         deleteButton.onClick.AddListener(delegate { DeleteClassBtn(tmpClassInfo); });
@@ -320,11 +316,9 @@ public class UIManager : MonoBehaviour
         ClassData classData = new ClassData();
 
         classData.className = classNameInput.text;
-        classData.classLateCheckTime = classLateCheckTimeInput.text;
 
         classData.classId = classIdInput.text;
         classData.classNumber = classNumberInput.text;
-        classData.classEnterAllowTime = classEnterAllowTimeInput.text;
 
         classData.classInstructor = classInstructor.text;
 
@@ -351,11 +345,9 @@ public class UIManager : MonoBehaviour
     void ClearClassMakingWindow()
     {
         classNameInput.text = "";
-        classLateCheckTimeInput.text = "";
 
         classIdInput.text = "";
         classNumberInput.text = "";
-        classEnterAllowTimeInput.text = "";
 
         firstDayOfWeekInput.value = 0;
         firstStartTimeInput.text = "";
@@ -416,11 +408,9 @@ public class UIManager : MonoBehaviour
     {
         ClassData classData = JsonUtility.FromJson<ClassData>(classObject.ToString());
         classNameInput.text = classData.className;
-        classLateCheckTimeInput.text = classData.classLateCheckTime;
 
         classIdInput.text = classData.classId;
         classNumberInput.text = classData.classNumber;
-        classEnterAllowTimeInput.text = classData.classEnterAllowTime;
         
         firstDayOfWeekInput.value = UtilityMethods.ConvertToDayCode(classData.firstDayOfWeek);
         firstStartTimeInput.text = classData.firstStartTime;

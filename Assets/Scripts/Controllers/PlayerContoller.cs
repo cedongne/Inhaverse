@@ -131,14 +131,13 @@ public class PlayerContoller : MonoBehaviourPun
                 Jump();
                 WalkToRun();
                 TurnWebCam();
+                OpenInfoWindow();
 
                 DetectInteractiveObject();
                 OnCursorVisible();
                 TeleportWayPoint();
-
             }
         }
-        OpenInfoWindow();
         ShowPlayerUIAsDistance();
     }
 
