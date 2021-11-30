@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     public GameObject conferenceWindow;
     public GameObject playerInfoWindow;
     public GameObject openFileWindow;
+    public GameObject classStudentListWindow;
 
     [Header("===== HUD Ã¤ÆÃ UI")]
     [Space]
@@ -271,6 +272,10 @@ public class UIManager : MonoBehaviour
         {
             openFileWindow.SetActive(true);
         }
+        else if (showingWindow.Equals(Define.UI.CLASSSTUDENTLIST))
+        {
+            classStudentListWindow.SetActive(true);
+        }
         isOpenWindow = true;
     }
 
@@ -284,6 +289,7 @@ public class UIManager : MonoBehaviour
         conferenceWindow.SetActive(false);
         playerInfoWindow.SetActive(false);
         openFileWindow.SetActive(false);
+        classStudentListWindow.SetActive(false);
 
         ClearClassMakingWindow();
         eventFunction = null;

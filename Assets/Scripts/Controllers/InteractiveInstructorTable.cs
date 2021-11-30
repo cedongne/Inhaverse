@@ -18,6 +18,7 @@ public class InteractiveInstructorTable : InteractiveObject
         if(ClassProcessManager.Instance.classState == Define.CLASSSTATE.END)
         {
             ClassProcessManager.Instance.StartClass();
+            UIManager.Instance.OpenWindow(Define.UI.CLASSSTUDENTLIST);
         }
         else
         {
