@@ -62,4 +62,22 @@ public class StudentListUIManager : MonoBehaviourPunCallbacks
     {
         studentListWindow.transform.Find($"Student{deskNum}").Find("Text").GetComponent<Text>().text = studentName;
     }
+
+    public void GetUpFromChair()
+    {
+        photonView.RPC("RemoveStudent", RpcTarget.AllBuffered, PlayfabManager.Instance.playerName);
+    }
+
+    [PunRPC]
+    public void RemoveStudent(string studentName)
+    {
+        for(int studentNum = 1; studentNum < 60; studentNum++)
+        {
+            if (studentListWindow.transform.Find($"Student{studentNum}").Find("Text").GetComponent<Text>().text.Equals(studentName))
+            {
+                studentListWindow.transform.Find($"Student{studentNum}").Find("Text").GetComponent<Text>().text = $"Student{studentNum}";
+                break;
+            }
+        }
+    }
 }
