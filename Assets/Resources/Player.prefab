@@ -1953,10 +1953,10 @@ MonoBehaviour:
   prefixField: -1
   Synchronization: 3
   OwnershipTransfer: 0
-  observableSearch: 0
+  observableSearch: 2
   ObservedComponents:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 6825015168767009852}
+  - {fileID: 1010450522501227061}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
