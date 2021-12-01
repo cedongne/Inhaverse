@@ -47,6 +47,7 @@ public class PlayerContoller : MonoBehaviourPun
     public bool isRunDown;
     public bool isCamDown;
     public bool isInfoWindowDown;
+    public bool isVoiceDown;
 
     public Outline currentTouch;
 
@@ -133,6 +134,7 @@ public class PlayerContoller : MonoBehaviourPun
                 TurnWebCam();
                 OpenInfoWindow();
 
+
                 DetectInteractiveObject();
                 OnCursorVisible();
                 TeleportWayPoint();
@@ -146,7 +148,7 @@ public class PlayerContoller : MonoBehaviourPun
         isRunDown = Input.GetKeyDown(KeyCode.R);
         isJumpDown = Input.GetKeyDown(KeyCode.Space);
         isCamDown = Input.GetKeyDown(KeyCode.C);
-        // isVoiceDown is in "VoiceController.cs"
+        isVoiceDown = Input.GetKeyDown(KeyCode.V);
         isInfoWindowDown = Input.GetKeyDown(KeyCode.I);
     }
 
@@ -269,6 +271,14 @@ public class PlayerContoller : MonoBehaviourPun
             {
                 Debug.Log(name);
             }
+        }
+    }
+
+    void VoiceOnOff()
+    {
+        if (isVoiceDown)
+        {
+            VoiceManager.Instance.VoiceOnOff();
         }
     }
 

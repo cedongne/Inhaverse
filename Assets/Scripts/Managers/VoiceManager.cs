@@ -25,10 +25,10 @@ public class VoiceManager : MonoBehaviour
     {
         get
         {
-            if(instance == null)
+            if (instance == null)
             {
                 var obj = FindObjectOfType<VoiceManager>();
-                if(obj != null)
+                if (obj != null)
                 {
                     instance = obj;
                 }
@@ -40,7 +40,7 @@ public class VoiceManager : MonoBehaviour
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
             instance = GetComponent<VoiceManager>();
         else
             Destroy(gameObject);
@@ -56,51 +56,20 @@ public class VoiceManager : MonoBehaviour
         voiceButton.GetComponent<Image>().color = Color.gray;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void VoiceOnOff()
     {
-        GetInput();
-        if (!UIManager.Instance.isOpenWindow)
-            VoiceOnOff();
         if (onVoice)
         {
-            CheckMicColor();
-        }
-    }
-
-    void CheckMicColor()
-    {
-        if(voiceRecorder.IsCurrentlyTransmitting)
-        {
-            playerUIObject.GetComponentInChildren<UnityEngine.UI.Outline>().effectColor = Color.green;
+            onVoice = false;
+            voiceRecorder.TransmitEnabled = false;
+            voiceButton.GetComponent<Image>().color = Color.gray;
+            playerUIObject.GetComponentInChildren<UnityEngine.UI.Outline>().effectColor = Color.white;
         }
         else
         {
-            playerUIObject.GetComponentInChildren<UnityEngine.UI.Outline>().effectColor = Color.white;
-        }
-    }
-    void GetInput()
-    {
-            isVoiceDown = Input.GetKeyDown(KeyCode.V);
-    }
-
-    public void VoiceOnOff()
-    {
-        if (isVoiceDown)
-        {
-            if (onVoice)
-            {
-                onVoice = false;
-                voiceRecorder.TransmitEnabled = false;
-                voiceButton.GetComponent<Image>().color = Color.gray;
-                playerUIObject.GetComponentInChildren<UnityEngine.UI.Outline>().effectColor = Color.white;
-            }
-            else
-            {
-                onVoice = true;
-                voiceRecorder.TransmitEnabled = true;
-                voiceButton.GetComponent<Image>().color = Color.white;
-            }
+            onVoice = true;
+            voiceRecorder.TransmitEnabled = true;
+            voiceButton.GetComponent<Image>().color = Color.white;
         }
     }
 

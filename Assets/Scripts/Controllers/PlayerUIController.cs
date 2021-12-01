@@ -12,6 +12,7 @@ public class PlayerUIController : MonoBehaviourPunCallbacks, IPunObservable
     public Text playerNameTextUI;
     public Transform playerNameTextTransform;
     public RectTransform playerNameTextBackgroundImage;
+    public UnityEngine.UI.Outline playerNameTextOutline;
 
     public GameObject webCamImage;
     public PlayerContoller playerController;
@@ -42,6 +43,19 @@ public class PlayerUIController : MonoBehaviourPunCallbacks, IPunObservable
     void FixedUpdate()
     {
         playerNameTextTransform.position = Camera.main.WorldToScreenPoint(playerTransform.position + playerNameTextOffset);
+        CheckMicColor();
+    }
+
+    public void CheckMicColor()
+    {
+        if (VoiceManager.Instance.voiceRecorder.IsCurrentlyTransmitting)
+        {
+            playerNameTextOutline.effectColor = Color.green;
+        }
+        else
+        {
+            playerNameTextOutline.effectColor = Color.white;
+        }
     }
 
     public void ShowWebCamImage(bool onOff)
