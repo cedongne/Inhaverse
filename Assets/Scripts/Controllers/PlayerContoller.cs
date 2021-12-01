@@ -355,5 +355,4 @@ public class PlayerContoller : MonoBehaviourPun
         }
         Debug.Log("Destroy");
     }
-
 }
