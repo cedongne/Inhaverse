@@ -133,7 +133,7 @@ public class PlayerContoller : MonoBehaviourPun
                 WalkToRun();
                 TurnWebCam();
                 OpenInfoWindow();
-                VoiceOnOff()
+                VoiceOnOff();
 
 
                 DetectInteractiveObject();
