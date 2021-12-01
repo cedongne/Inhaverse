@@ -9,6 +9,7 @@ public class StudentListUIManager : MonoBehaviourPunCallbacks
 {
     public GameObject studentListWindow;
     public GameObject studentInfo;
+    public Text studentName;
 
     public GameObject student;
 
@@ -97,5 +98,6 @@ public class StudentListUIManager : MonoBehaviourPunCallbacks
         if(!EventSystem.current.currentSelectedGameObject.transform.Find("Text").GetComponent<Text>().text.Contains("Student"))
         studentInfo.SetActive(true);
         student = GameObject.Find(EventSystem.current.currentSelectedGameObject.transform.Find("Text").GetComponent<Text>().text);
+        studentName.text = student.name;
     }
 }

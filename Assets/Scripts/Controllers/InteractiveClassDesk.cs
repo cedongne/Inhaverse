@@ -8,10 +8,7 @@ public class InteractiveClassDesk : InteractiveObject
 {
     public override void Interaction()
     {
-        if (PlayfabManager.Instance.playerJob == "ÇÐ»ý")
-        {
-            SittingChair();
-        }
+        SittingChair();
     }
 
     public void SittingChair()
