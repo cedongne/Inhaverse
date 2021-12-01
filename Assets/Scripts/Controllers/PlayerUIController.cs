@@ -83,10 +83,12 @@ public class PlayerUIController : MonoBehaviourPunCallbacks, IPunObservable
 
         if (stream.IsReading)
         {
+            Debug.Log("not mine: " + isOnVoice);
             isOnVoice = (bool)stream.ReceiveNext();
         }
         else if (stream.IsWriting)
         {
+            Debug.Log("mine: " + isOnVoice);
             stream.SendNext(isOnVoice);
         }
     }
