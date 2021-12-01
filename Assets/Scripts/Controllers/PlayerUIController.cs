@@ -38,7 +38,8 @@ public class PlayerUIController : MonoBehaviourPunCallbacks, IPunObservable
     void FixedUpdate()
     {
         playerNameTextTransform.position = Camera.main.WorldToScreenPoint(playerTransform.position + playerNameTextOffset);
-        CheckVoiceTransmitting();
+        if(photonView.IsMine)
+            CheckVoiceTransmitting();
         CheckMicColor();
     }
 
@@ -86,7 +87,7 @@ public class PlayerUIController : MonoBehaviourPunCallbacks, IPunObservable
         }
         else if (stream.IsWriting)
         {
-            stream.SendNext(isOnVoice);
+            stream.SendNext(VoiceManager.Instance.voiceRecorder.IsCurrentlyTransmitting);
         }
     }
 
