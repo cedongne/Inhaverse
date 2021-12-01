@@ -1292,6 +1292,7 @@ MonoBehaviour:
   isRunDown: 0
   isCamDown: 0
   isInfoWindowDown: 0
+  isVoiceDown: 0
   currentTouch: {fileID: 5030059289416126775}
   playerList: []
 --- !u!114 &3002047870756200745
@@ -1931,6 +1932,7 @@ MonoBehaviour:
   playerNameTextUI: {fileID: 7033225817662524716}
   playerNameTextTransform: {fileID: 8627326748413722303}
   playerNameTextBackgroundImage: {fileID: 578513143335942390}
+  playerNameTextOutline: {fileID: 92317050495814208}
   webCamImage: {fileID: 8594035940355474103}
   playerController: {fileID: 4259580593255142568}
   playerNameTextOffset: {x: 0, y: 1.1, z: 0}
