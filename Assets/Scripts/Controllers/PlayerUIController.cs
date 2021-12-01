@@ -87,7 +87,7 @@ public class PlayerUIController : MonoBehaviourPunCallbacks, IPunObservable
         }
         else if (stream.IsWriting)
         {
-            stream.SendNext(VoiceManager.Instance.voiceRecorder.IsCurrentlyTransmitting);
+            stream.SendNext(isOnVoice);
         }
     }
 
