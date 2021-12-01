@@ -22,11 +22,6 @@ public class PlayerUIController : MonoBehaviourPunCallbacks, IPunObservable
 
     bool isWebCamDown;
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        playerNameTextBackgroundImage.gameObject.SetActive(true);
-    }
-
     private void Awake()
     {
         playerNameTextTransform.parent = GameObject.Find("Canvas").transform;
@@ -43,12 +38,13 @@ public class PlayerUIController : MonoBehaviourPunCallbacks, IPunObservable
     void FixedUpdate()
     {
         playerNameTextTransform.position = Camera.main.WorldToScreenPoint(playerTransform.position + playerNameTextOffset);
+        CheckVoiceTransmitting();
         CheckMicColor();
     }
 
     public void CheckMicColor()
     {
-        if (VoiceManager.Instance.voiceRecorder.IsCurrentlyTransmitting)
+        if (isOnVoice)
         {
             playerNameTextOutline.effectColor = Color.green;
         }
@@ -77,6 +73,32 @@ public class PlayerUIController : MonoBehaviourPunCallbacks, IPunObservable
 
         playerNameTextBackgroundImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, playerNameTextUI.text.Length * 32);
         playerNameTextBackgroundImage.gameObject.SetActive(true);
+    }
 
+    private bool isOnVoice;
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        playerNameTextBackgroundImage.gameObject.SetActive(true);
+
+        if (stream.IsReading)
+        {
+            isOnVoice = (bool)stream.ReceiveNext();
+        }
+        else if (stream.IsWriting)
+        {
+            stream.SendNext(isOnVoice);
+        }
+    }
+
+    private void CheckVoiceTransmitting()
+    {
+        if (VoiceManager.Instance.voiceRecorder.IsCurrentlyTransmitting)
+        {
+            isOnVoice = true;
+        }
+        else
+        {
+            isOnVoice = false;
+        }
     }
 }
