@@ -149,4 +149,20 @@ public class UtilityMethods
         }
         return result;
     }
+
+    public static string ReverseString(string originString)
+    {
+        char[] originChar = originString.ToCharArray();
+        char tmp;
+        for(int count = 0; count< originString.Length / 2; count++)
+        {
+            tmp = originChar[count];
+            originChar[count] = originChar[originChar.Length - (count + 1)];
+            originChar[originChar.Length - (count + 1)] = tmp;
+        }
+        Debug.Log(originChar);
+        string resultString = originChar.ToString();
+
+        return resultString;
+    }
 }
