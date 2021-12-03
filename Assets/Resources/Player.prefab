@@ -1292,6 +1292,7 @@ MonoBehaviour:
   isRunDown: 0
   isCamDown: 0
   isInfoWindowDown: 0
+  isVoiceDown: 0
   currentTouch: {fileID: 5030059289416126775}
   playerList: []
 --- !u!114 &3002047870756200745
@@ -1423,7 +1424,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 15
+  MinDistance: 0
   MaxDistance: 15.000001
   Pan2D: 0
   rolloffMode: 1
@@ -1794,6 +1795,7 @@ GameObject:
   - component: {fileID: 578513143335942390}
   - component: {fileID: 2058101993523985660}
   - component: {fileID: 2951961066259873102}
+  - component: {fileID: 92317050495814208}
   m_Layer: 2
   m_Name: PlayerNameTextBackground
   m_TagString: Untagged
@@ -1858,6 +1860,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &92317050495814208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6003596450253563692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &8165507261125030204
 GameObject:
   m_ObjectHideFlags: 0
@@ -1915,6 +1932,7 @@ MonoBehaviour:
   playerNameTextUI: {fileID: 7033225817662524716}
   playerNameTextTransform: {fileID: 8627326748413722303}
   playerNameTextBackgroundImage: {fileID: 578513143335942390}
+  playerNameTextOutline: {fileID: 92317050495814208}
   webCamImage: {fileID: 8594035940355474103}
   playerController: {fileID: 4259580593255142568}
   playerNameTextOffset: {x: 0, y: 1.1, z: 0}
@@ -1937,7 +1955,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 0
   ObservedComponents:
-  - {fileID: 0}
+  - {fileID: 6825015168767009852}
   - {fileID: 0}
   sceneViewId: 0
   InstantiationId: 0

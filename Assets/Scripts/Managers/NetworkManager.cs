@@ -40,7 +40,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = gameObject.GetComponent<NetworkManager>();
             gameObject.SetActive(true);
@@ -67,10 +67,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
     public void JoinToClass(string className, string classData)
     {
         PN.LeaveRoom();
-        PlayfabManager.Instance.getUserDataEvent.RemoveListener(JoinToClass);
 
-        if (UtilityMethods.DetermineAllowClassEnter(UtilityMethods.SplitTimeTableUserData(classData)))
-            room_name = className;
+        string[] splitedClassData = UtilityMethods.SplitTimeTableUserData(classData);
+
+        if (UtilityMethods.DetermineAllowClassEnter(splitedClassData)) 
+            room_name = splitedClassData[0];
         else
         {
             room_name = "OpenClass";

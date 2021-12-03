@@ -28,23 +28,28 @@ public class UtilityMethods
         return splitedTimeTableString;
     }
 
-    public static bool DetermineIsClassTime(string dayOfWeek, int startTime, int allowTime)
+    public static bool DetermineIsClassTime(string dayOfWeek, int startTime, int endTime)
     {
         int nowClassTimeHour = ((DateTime.Now.Hour - 9) * 2);
         int nowClassTimeMinute = 0;
+        int nowClassTime;
 
         if (DateTime.Now.Minute >= 45)
             nowClassTimeMinute = 3;
-        else if (DateTime.Now.Minute <= allowTime)
+        else if (DateTime.Now.Minute < 15)
             nowClassTimeMinute = 1;
-        else if (DateTime.Now.Minute >= 15 && DateTime.Now.Minute <= 30 + allowTime)
+        else if (DateTime.Now.Minute >= 15 && DateTime.Now.Minute < 45)
             nowClassTimeMinute = 2;
 
+        nowClassTime = nowClassTimeHour + nowClassTimeMinute;
         Debug.Log("NowDayOfWeek : " + DateTime.Now.DayOfWeek + ", ClassDayOfWeek : " + dayOfWeek);
-        Debug.Log("NowClassTime : " + (nowClassTimeHour + nowClassTimeMinute) + ", ClassTime : " + startTime);
+        Debug.Log("NowClassTime : " + (nowClassTime) + ", ClassTime : " + startTime + " to " + endTime);
 
-        if (dayOfWeek.Equals(DateTime.Now.DayOfWeek) && startTime.Equals(nowClassTimeHour + nowClassTimeMinute))
-            return true;
+        if (dayOfWeek.Equals(DateTime.Now.DayOfWeek.ToString()))
+            if (nowClassTime >= startTime && nowClassTime <= endTime)
+                return true;
+            else
+                return false;
         else
             return false;
     }
@@ -53,9 +58,9 @@ public class UtilityMethods
     {
         bool isAllowEnterClass;
 
-        isAllowEnterClass = DetermineIsClassTime(splitedTimeTableString[2], int.Parse(splitedTimeTableString[3]), 15);
+        isAllowEnterClass = DetermineIsClassTime(splitedTimeTableString[2], int.Parse(splitedTimeTableString[3]), int.Parse(splitedTimeTableString[4]));
         if (!isAllowEnterClass && splitedTimeTableString.Length > 3)
-            isAllowEnterClass = DetermineIsClassTime(splitedTimeTableString[5], int.Parse(splitedTimeTableString[6]), 15);
+            isAllowEnterClass = DetermineIsClassTime(splitedTimeTableString[5], int.Parse(splitedTimeTableString[6]), int.Parse(splitedTimeTableString[7]));
 
         return isAllowEnterClass;
     }
@@ -73,6 +78,8 @@ public class UtilityMethods
 
         return studentIds;
     }
+
+
 
     public static string ConvertToDayOfWeek(int dayCode)
     {
@@ -130,5 +137,32 @@ public class UtilityMethods
         int calWeek = (elapsedDays / 7) + 1;
 
         return calWeek;
+    }
+
+    public static int Exponential(int _base, int _exponent)
+    {
+        int result = 1;
+
+        for(int count = 0; count < _exponent; count++)
+        {
+            result *= _base;
+        }
+        return result;
+    }
+
+    public static string ReverseString(string originString)
+    {
+        char[] originChar = originString.ToCharArray();
+        char tmp;
+        for(int count = 0; count< originString.Length / 2; count++)
+        {
+            tmp = originChar[count];
+            originChar[count] = originChar[originChar.Length - (count + 1)];
+            originChar[originChar.Length - (count + 1)] = tmp;
+        }
+        string resultString = new string(originChar);
+        Debug.Log(resultString);
+
+        return resultString;
     }
 }

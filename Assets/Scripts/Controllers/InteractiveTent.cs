@@ -42,6 +42,7 @@ public class InteractiveTent : InteractiveObject
         conferenceNum = byte.Parse(strTmp);
     }
 
+    [System.Obsolete]
     public void OnTriggerExit(Collider other)
     {
         if(other.tag == "Player")

@@ -16,6 +16,8 @@ public class VoiceManager : MonoBehaviour
 
     public bool isVoiceDown;
 
+    public GameObject playerUIObject;
+
     private VoiceManager() { }
     private static VoiceManager instance;
 
@@ -23,10 +25,10 @@ public class VoiceManager : MonoBehaviour
     {
         get
         {
-            if(instance == null)
+            if (instance == null)
             {
                 var obj = FindObjectOfType<VoiceManager>();
-                if(obj != null)
+                if (obj != null)
                 {
                     instance = obj;
                 }
@@ -38,49 +40,36 @@ public class VoiceManager : MonoBehaviour
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
             instance = GetComponent<VoiceManager>();
         else
             Destroy(gameObject);
     }
 
     // Start is called before the first frame update
+    [System.Obsolete]
     void Start()
     {
-        voiceNetwork.Client.GlobalAudioGroup = 255;
-        voiceRecorder.TransmitEnabled = true;
-        onVoice = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        GetInput();
-        if (!UIManager.Instance.isOpenWindow)
-            VoiceOnOff();
-    }
-
-    void GetInput()
-    {
-            isVoiceDown = Input.GetKeyDown(KeyCode.V);
+        EnterLobbyChannel();
+        onVoice = false;
+        voiceRecorder.TransmitEnabled = false;
+        voiceButton.GetComponent<Image>().color = Color.gray;
     }
 
     public void VoiceOnOff()
     {
-        if (isVoiceDown)
+        if (onVoice)
         {
-            if (onVoice)
-            {
-                onVoice = false;
-                voiceRecorder.TransmitEnabled = false;
-                voiceButton.GetComponent<Image>().color = Color.gray;
-            }
-            else
-            {
-                onVoice = true;
-                voiceRecorder.TransmitEnabled = true;
-                voiceButton.GetComponent<Image>().color = Color.white;
-            }
+            onVoice = false;
+            voiceRecorder.TransmitEnabled = false;
+            voiceButton.GetComponent<Image>().color = Color.gray;
+            playerUIObject.GetComponentInChildren<UnityEngine.UI.Outline>().effectColor = Color.white;
+        }
+        else
+        {
+            onVoice = true;
+            voiceRecorder.TransmitEnabled = true;
+            voiceButton.GetComponent<Image>().color = Color.white;
         }
     }
 
@@ -91,6 +80,7 @@ public class VoiceManager : MonoBehaviour
         voiceNetwork.Client.GlobalAudioGroup = channelNum;
     }
 
+    [System.Obsolete]
     public void EnterLobbyChannel()
     {
         voiceNetwork.Client.GlobalAudioGroup = 255;

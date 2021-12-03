@@ -37,6 +37,7 @@ namespace OpenCvSharp
         public RawImage headDisplay;
         public RawImage conferenceDisplay;
         public RawImage nowDisplay;
+        public Texture defaultTexture;
 
         //private RTCPeerConnection _pc1, _pc2;
         //private List<RTCRtpSender> pc1Senders;
@@ -182,6 +183,12 @@ namespace OpenCvSharp
             {
                 camTexture.Stop();
             }
+        }
+
+        private void OnDisable()
+        {
+            camTexture.Stop();
+            nowDisplay.texture = defaultTexture;
         }
 
         void ShowOtherWebCam()

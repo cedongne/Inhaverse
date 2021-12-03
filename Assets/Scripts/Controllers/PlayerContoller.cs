@@ -47,6 +47,7 @@ public class PlayerContoller : MonoBehaviourPun
     public bool isRunDown;
     public bool isCamDown;
     public bool isInfoWindowDown;
+    public bool isVoiceDown;
 
     public Outline currentTouch;
 
@@ -88,6 +89,9 @@ public class PlayerContoller : MonoBehaviourPun
             cameraArm.GetComponent<CameraController>().playerAvatar = GameObject.Find("Avatar");
             cameraArm.GetComponent<CameraController>().playerContoller = GetComponent<PlayerContoller>();
             UIManager.Instance.playerController = GetComponent<PlayerContoller>();
+            ClassProcessManager.Instance.playerContoller = GetComponent<PlayerContoller>();
+
+            VoiceManager.Instance.playerUIObject = playerUIObjects;
         }
         moveSpeed = walkMoveSpeed;
 
@@ -128,14 +132,15 @@ public class PlayerContoller : MonoBehaviourPun
                 Jump();
                 WalkToRun();
                 TurnWebCam();
+                OpenInfoWindow();
+                VoiceOnOff();
+
 
                 DetectInteractiveObject();
                 OnCursorVisible();
                 TeleportWayPoint();
-
             }
         }
-        OpenInfoWindow();
         ShowPlayerUIAsDistance();
     }
 
@@ -144,7 +149,7 @@ public class PlayerContoller : MonoBehaviourPun
         isRunDown = Input.GetKeyDown(KeyCode.R);
         isJumpDown = Input.GetKeyDown(KeyCode.Space);
         isCamDown = Input.GetKeyDown(KeyCode.C);
-        // isVoiceDown is in "VoiceController.cs"
+        isVoiceDown = Input.GetKeyDown(KeyCode.V);
         isInfoWindowDown = Input.GetKeyDown(KeyCode.I);
     }
 
@@ -232,6 +237,11 @@ public class PlayerContoller : MonoBehaviourPun
 
         if (hit.collider != null && hit.transform.gameObject.CompareTag("Interactive Object"))
         {
+            if (!currentTouch.Equals(hit.transform.gameObject.GetComponent<Outline>()))
+            {
+                currentTouch.enabled = false;
+                interactionUI.SetActive(false);
+            }
             currentTouch = hit.transform.gameObject.GetComponent<Outline>();
             currentTouch.enabled = true;
             interactionUI.SetActive(true);
@@ -262,6 +272,14 @@ public class PlayerContoller : MonoBehaviourPun
             {
                 Debug.Log(name);
             }
+        }
+    }
+
+    void VoiceOnOff()
+    {
+        if (isVoiceDown)
+        {
+            VoiceManager.Instance.VoiceOnOff();
         }
     }
 
@@ -337,5 +355,4 @@ public class PlayerContoller : MonoBehaviourPun
         }
         Debug.Log("Destroy");
     }
-
 }
