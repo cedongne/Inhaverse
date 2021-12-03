@@ -40,9 +40,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
 
     private void Awake()
     {
-        Debug.Log(UtilityMethods.ReverseString("asdf"));
-        Debug.Log(UtilityMethods.ReverseString("wer"));
-        Debug.Log(UtilityMethods.ReverseString("asdftg aer te  ye"));
         if (instance == null)
         {
             instance = gameObject.GetComponent<NetworkManager>();

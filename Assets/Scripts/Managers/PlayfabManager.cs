@@ -395,10 +395,10 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                 {
                     if (result.Leaderboard[count].DisplayName.Equals(userName))
                     {
-                        string attendance = Convert.ToString(result.Leaderboard[count].StatValue, 2).ToString();
+                        string attendance = UtilityMethods.ReverseString(Convert.ToString(result.Leaderboard[count].StatValue, 2).ToString());
                         for(int attenCount = attendance.Length; attenCount < 16; attenCount++)
                         {
-                            attendance = "0" + attendance;
+                            attendance = attendance + "0";
                         }
                         attendance = attendance.Replace("1", "O\t\t");
                         attendance = attendance.Replace("0", "X\t\t");

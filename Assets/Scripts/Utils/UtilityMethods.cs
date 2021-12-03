@@ -160,8 +160,8 @@ public class UtilityMethods
             originChar[count] = originChar[originChar.Length - (count + 1)];
             originChar[originChar.Length - (count + 1)] = tmp;
         }
-        Debug.Log(originChar);
-        string resultString = originChar.ToString();
+        string resultString = new string(originChar);
+        Debug.Log(resultString);
 
         return resultString;
     }
