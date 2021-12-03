@@ -77,15 +77,16 @@ public class UIManager : MonoBehaviour
     public Image Authoritybackground;
     public Text Authoritytext;
 
-    [Header("===== 플레이어 정보 UI =====")]
+    [Header("===== 플레이어 인포 UI =====")]
     [Space]
     public InputField playerName;
     public InputField playerSchoolId;
     public GameObject classListContent;
+    public List<Text> classAttendanceList = new List<Text>();
 
     List<GameObject> playerClassList = new List<GameObject>();
     Vector3 classListInitPosition = new Vector2(20, -20);
-    Vector3 classListOffset = new Vector2(0, -130);
+    Vector3 classListOffset = new Vector2(0, -160);
 
     public delegate void EventFunction(int num);
 
@@ -166,30 +167,30 @@ public class UIManager : MonoBehaviour
         {
             Destroy(box);
         }
-
+        Debug.Log("Btn");
         playerName.text = PlayfabManager.Instance.playerName;
         playerSchoolId.text = PlayfabManager.Instance.playerSchoolId;
 
-        PlayfabManager.Instance.GetGroupList(Define.GROUPLISTUSING.GETGROUPNAMES);
+        PlayfabManager.Instance.GetGroupList("ShowClassInfo");
 
         OpenWindow(Define.UI.PLAYERINFO);
     }
 
-    public void InfoBtnCallBack(List<PlayFab.GroupsModels.GroupWithRoles> groups)
+    public void ShowClassInfoBtnCallBack(List<PlayFab.GroupsModels.GroupWithRoles> groups)
     {
         for (int count = 0; count < groups.Count; count++)
         {
-            PlayfabManager.Instance.GetUserData(groups[count].GroupName, Define.USERDATAUSING.LOADCLASSINFO);
+            PlayfabManager.Instance.GetUserData(groups[count].GroupName, "InstantiateClassInfo");
         }
     }
 
     public void InstantiateClassInfo(string groupName, string classInfo)
     {
-        string[] splitedClassInfo = UtilityMethods.SplitTimeTableUserData(classInfo);
         GameObject newClassInfo = Instantiate(Resources.Load<GameObject>("UIPrefabs/ClassInfo Box"),
             classListContent.transform.position + classListInitPosition + classListOffset * playerClassList.Count, Quaternion.identity, classListContent.transform);
         newClassInfo.name = groupName;
 
+        string[] splitedClassInfo = UtilityMethods.SplitTimeTableUserData(classInfo);
         Transform newInfoTransform = newClassInfo.transform;
 
         // 0 : Class ID
@@ -201,24 +202,32 @@ public class UIManager : MonoBehaviour
         // 6 : Second class start time
         // 7 : Second class end time
         splitedClassInfo[2] = UtilityMethods.ConvertDayOfWeekToKorean(splitedClassInfo[2]);
-        splitedClassInfo[5] = UtilityMethods.ConvertDayOfWeekToKorean(splitedClassInfo[5]);
+        if(splitedClassInfo.Length == 8)
+            splitedClassInfo[5] = UtilityMethods.ConvertDayOfWeekToKorean(splitedClassInfo[5]);
         newInfoTransform.GetChild(0).GetComponent<Text>().text = groupName;
         for (int count = 0; count < splitedClassInfo.Length; count++)
         {
+            if(count == 5)
+            {
+                newInfoTransform.GetChild(13).GetComponent<Text>().gameObject.SetActive(true);
+                newInfoTransform.GetChild(14).GetComponent<Text>().gameObject.SetActive(true);
+            }
+            newInfoTransform.GetChild(count + 1).GetComponent<Text>().gameObject.SetActive(true);
             newInfoTransform.GetChild(count + 1).GetComponent<Text>().text = splitedClassInfo[count].ToString();
         }
-        PlayfabManager.Instance.GetLeaderBoardUserValue(groupName, PlayfabManager.Instance.playerName, "MakeToListAttendance");
         Button deleteButton = newClassInfo.GetComponentInChildren<Button>();
         GameObject tmpClassInfo = newClassInfo;
         deleteButton.onClick.AddListener(delegate { DeleteClassBtn(tmpClassInfo); });
 
         playerClassList.Add(newClassInfo);
+        newClassInfo.transform.position = classListContent.transform.position + classListInitPosition + classListOffset * playerClassList.IndexOf(newClassInfo);
+        PlayfabManager.Instance.GetLeaderBoardForTotalAttendanceUI(splitedClassInfo[0] + "Attendance", playerName.text, newInfoTransform.GetChild(11).GetComponent<Text>());
     }
 
     public void DeleteClassBtn(GameObject classInfo)
     {
         PlayfabManager.Instance.DeleteUserData(classInfo.name);
-        PlayfabManager.Instance.GetGroupList(Define.GROUPLISTUSING.FINDSPECIFICGROUP);
+//        PlayfabManager.Instance.GetGroupList(Define.GROUPLISTUSING.FINDSPECIFICGROUP);
     }
 #endregion
 
@@ -306,8 +315,7 @@ public class UIManager : MonoBehaviour
         OpenWindow(Define.UI.CLASSLIST);
 
         eventFunction += OnClickGetUserData;
-        PlayfabManager.Instance.getUserDataEvent.AddListener(NetworkManager.Instance.JoinToClass);
-        PlayfabManager.Instance.GetGroupList(Define.GROUPLISTUSING.MAKEBUTTONS);
+        PlayfabManager.Instance.GetGroupList("OpenClassListWindow");
         // Go to "OpenClassListWindowCallBack"
     }
 
@@ -373,7 +381,7 @@ public class UIManager : MonoBehaviour
     {
         classInstructor.text = PlayfabManager.Instance.playerName;
         OpenWindow(Define.UI.CLASSLIST);
-        PlayfabManager.Instance.GetGroupList(Define.GROUPLISTUSING.MAKEBUTTONS);
+        PlayfabManager.Instance.GetGroupList("OpenClassListWindow");
         eventFunction += OnClickModifyingClass;
     }
 
@@ -407,7 +415,7 @@ public class UIManager : MonoBehaviour
     public void OnClickGetUserData(int btnNum)
     {
         eventFunction -= OnClickGetUserData;
-        PlayfabManager.Instance.GetUserData(buttons[btnNum].button.name, Define.USERDATAUSING.JOINTOCLASS);
+        PlayfabManager.Instance.GetUserData(buttons[btnNum].button.name, "JoinToClass");
     }
 
     public void LoadModifyingClass(object classObject)

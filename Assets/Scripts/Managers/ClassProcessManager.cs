@@ -87,7 +87,7 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
         Debug.Log(total_attendance_count);
 //        if(total_attendance_count - attendance_count < 3)
  //       {
-            PlayfabManager.Instance.GetLeaderBoardUserValue(class_name + "Attendance", PlayfabManager.Instance.playerName, "UpdateAttendance");
+            PlayfabManager.Instance.GetLeaderBoard(class_name + "Attendance", PlayfabManager.Instance.playerName, "UpdateAttendance");
   //      }
     }
     public void UpdateAttendance(int attendances)
@@ -97,7 +97,7 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
         if((attendances & UtilityMethods.Exponential(2, UtilityMethods.GetWeekOfSemester() - 1)) == 0)
         {
             Debug.Log("UPDATE");
-            PlayfabManager.Instance.UpdateLeaderBoard(class_name + "Attendance", attendances + UtilityMethods.Exponential(2, UtilityMethods.GetWeekOfSemester()));
+            PlayfabManager.Instance.UpdateLeaderBoard(class_name + "Attendance", attendances + UtilityMethods.Exponential(2, UtilityMethods.GetWeekOfSemester() - 1));
         }
         else
         {
@@ -113,8 +113,7 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
     private void OnEnable()
     {
         class_name = NetworkManager.Instance.room_name;
-        Debug.Log(NetworkManager.Instance.room_name);
-        PlayfabManager.Instance.GetLeaderBoardUserValue(class_name + UtilityMethods.GetWeekOfSemester().ToString() + DateTime.Now.DayOfWeek.ToString()
+        PlayfabManager.Instance.GetLeaderBoard(class_name + UtilityMethods.GetWeekOfSemester().ToString() + DateTime.Now.DayOfWeek.ToString()
             , PlayfabManager.Instance.playerName, "LoadAttendanceCount");
     }
 

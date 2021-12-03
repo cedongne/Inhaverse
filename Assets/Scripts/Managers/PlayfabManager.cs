@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -185,21 +186,21 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         PlayFabClientAPI.UpdateUserData(request, (result) => { Debug.Log("값 저장 성공"); }, (error) => Debug.Log("값 저장 실패" + error));
     }
 
-    public void GetUserData(string key, Define.USERDATAUSING use)
+    public void GetUserData(string key, string use)
     {
         var request = new GetUserDataRequest { Keys = new List<string>() { key } };
         PlayFabClientAPI.GetUserData(request,
             (result) =>
             {
-                if (use.Equals(Define.USERDATAUSING.JOINTOCLASS))
+                if (use.Equals("JoinToClass"))
                 {
-                    getUserDataEvent.Invoke(key, result.Data[key].Value);
+                    NetworkManager.Instance.JoinToClass(key, result.Data[key].Value);
                 }
-                if (use.Equals(Define.USERDATAUSING.LOADCLASSINFO))
+                else if (use.Equals("InstantiateClassInfo"))
                 {
                     UIManager.Instance.InstantiateClassInfo(key, result.Data[key].Value);
                 }
-            }, (error) => { });
+            }, (error) => { Debug.Log(error); });
     }
 
     public void DeleteUserData(string key)
@@ -211,13 +212,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         PlayFabClientAPI.UpdateUserData(request, (result) => { Debug.Log("값 삭제 성공"); }, (error) => Debug.Log("값 삭제 실패" + error));
     }
 
-    public void UpdateLeaderBoard(string statisticName, int statisticValue)
-    {
-        
-        Debug.Log(statisticName + statisticValue);
-        var request = new UpdatePlayerStatisticsRequest { Statistics = new List<StatisticUpdate> { new StatisticUpdate { StatisticName = statisticName, Value = statisticValue } } };
-        PlayFabClientAPI.UpdatePlayerStatistics(request, (result) => Debug.Log("리더보드 업데이트 성공"), (error) => Debug.Log("리더보드 업데이트 실패")); ;
-    }
+    
 
     void GetUserJob()
     {
@@ -338,30 +333,16 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             }
         }, (error) => Debug.Log(error.ErrorMessage));
     }
-    
-    public void GetLeaderBoardUserId(string statisticName, string statisticValue)
+
+    public void UpdateLeaderBoard(string statisticName, int statisticValue)
     {
-        var request = new GetLeaderboardRequest
-        {
-            StartPosition = 0,
-            StatisticName = statisticName,
-            MaxResultsCount = 100,
-            ProfileConstraints = new PlayerProfileViewConstraints() { ShowDisplayName = true }
-        };
-        PlayFabClientAPI.GetLeaderboard(request, (result) =>
-        {
-            for (int count = 0; count < result.Leaderboard.Count; count++)
-            {
-                if (result.Leaderboard[count].StatValue.Equals(statisticValue))
-                {
-                    getLeaderBoardUserIDEvent.Invoke(result.Leaderboard[count].PlayFabId);
-                    break;
-                }
-            }
-        }, (error) => Debug.Log(error.ErrorMessage));
+
+        Debug.Log(statisticName + statisticValue);
+        var request = new UpdatePlayerStatisticsRequest { Statistics = new List<StatisticUpdate> { new StatisticUpdate { StatisticName = statisticName, Value = statisticValue } } };
+        PlayFabClientAPI.UpdatePlayerStatistics(request, (result) => Debug.Log("리더보드 업데이트 성공"), (error) => Debug.Log("리더보드 업데이트 실패")); ;
     }
 
-    public void GetLeaderBoardUserValue(string statisticName, string userName, string callbackMethodName)
+    public void GetLeaderBoard(string statisticName, string userName, string callbackMethodName)
     {
         var request = new GetLeaderboardRequest
         {
@@ -398,7 +379,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         }, (error) => Debug.Log(error.ErrorMessage));
     }
 
-    public void IncreaseLeaderBoardValue(string statisticName, string userName)
+    public void GetLeaderBoardForTotalAttendanceUI(string statisticName, string userName, Text textComponent)
     {
         var request = new GetLeaderboardRequest
         {
@@ -407,16 +388,27 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             MaxResultsCount = 100,
             ProfileConstraints = new PlayerProfileViewConstraints() { ShowDisplayName = true }
         };
-        PlayFabClientAPI.GetLeaderboard(request, (result) =>
-        {
-            for (int count = 0; count < result.Leaderboard.Count; count++)
+        PlayFabClientAPI.GetLeaderboard(request,
+            (result) =>
             {
-                if (result.Leaderboard[count].DisplayName.Equals(userName))
+                for (int count = 0; count < result.Leaderboard.Count; count++)
                 {
-                    UpdateLeaderBoard(statisticName, result.Leaderboard[count].StatValue + 1);
+                    if (result.Leaderboard[count].DisplayName.Equals(userName))
+                    {
+                        string attendance = Convert.ToString(result.Leaderboard[count].StatValue, 2).ToString();
+                        for(int attenCount = attendance.Length; attenCount < 16; attenCount++)
+                        {
+                            attendance = "0" + attendance;
+                        }
+                        attendance = attendance.Replace("1", "O\t\t");
+                        attendance = attendance.Replace("0", "X\t\t");
+                        textComponent.text = attendance;
+                        return;
+                    }
                 }
-            }
-        }, (error) => Debug.Log(error.ErrorMessage));
+                textComponent.alignment = TextAnchor.MiddleCenter;
+                textComponent.text = "출석 정보가 존재하지 않습니다.";
+            }, (error) => { Debug.Log(error); });
     }
 
     void SelectJob()
@@ -485,7 +477,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             });
     }
 
-    public void GetGroupList(Define.GROUPLISTUSING use)
+    public void GetGroupList(string use)
     {
         var groups = new List<GroupWithRoles>();
         var request = new ListMembershipRequest { Entity = new PlayFab.GroupsModels.EntityKey { Id = playerEntity.Id, Type = playerEntity.Type } };
@@ -494,10 +486,10 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             {
                 groups = result.Groups.ToList();
                 Debug.Log("그룹 목록 불러오기 성공. Count = " + groups.Count);
-                if (use.Equals(Define.GROUPLISTUSING.MAKEBUTTONS))
+                if (use.Equals("OpenClassListWindow"))
                     UIManager.Instance.OpenClassListWindowCallBack(groups);
-                else if (use.Equals(Define.GROUPLISTUSING.GETGROUPNAMES))
-                    UIManager.Instance.InfoBtnCallBack(groups);
+                else if (use.Equals("ShowClassInfo"))
+                    UIManager.Instance.ShowClassInfoBtnCallBack(groups);
             },
             (error) => { Debug.Log("그룹 목록 불러오기 실패 " + error); groups = null; });
     }

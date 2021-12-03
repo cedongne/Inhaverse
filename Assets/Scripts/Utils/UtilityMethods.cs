@@ -45,7 +45,7 @@ public class UtilityMethods
         Debug.Log("NowDayOfWeek : " + DateTime.Now.DayOfWeek + ", ClassDayOfWeek : " + dayOfWeek);
         Debug.Log("NowClassTime : " + (nowClassTime) + ", ClassTime : " + startTime + " to " + endTime);
 
-        if (dayOfWeek.Equals(DateTime.Now.DayOfWeek))
+        if (dayOfWeek.Equals(DateTime.Now.DayOfWeek.ToString()))
             if (nowClassTime >= startTime && nowClassTime <= endTime)
                 return true;
             else
@@ -78,6 +78,8 @@ public class UtilityMethods
 
         return studentIds;
     }
+
+
 
     public static string ConvertToDayOfWeek(int dayCode)
     {
