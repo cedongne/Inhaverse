@@ -1218,7 +1218,6 @@ GameObject:
   - component: {fileID: 102541280}
   - component: {fileID: 102541282}
   - component: {fileID: 102541281}
-  - component: {fileID: 102541283}
   m_Layer: 5
   m_Name: WebRTC1
   m_TagString: Untagged
@@ -1280,23 +1279,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 102541279}
   m_CullTransparentMesh: 1
---- !u!114 &102541283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 102541279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d06b8a9afc8b02c4289f36a79b47c8b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  streamingSize: {x: 0, y: 0}
-  cam: {fileID: 3650513701422348238}
-  sourceImage: {fileID: 102541281}
-  receiveImage1: {fileID: 677136971}
-  rotateObject: {fileID: 0}
 --- !u!1 &104412333
 GameObject:
   m_ObjectHideFlags: 0
@@ -7145,7 +7127,6 @@ GameObject:
   - component: {fileID: 677136970}
   - component: {fileID: 677136972}
   - component: {fileID: 677136971}
-  - component: {fileID: 677136973}
   m_Layer: 5
   m_Name: WebRTC2
   m_TagString: Untagged
@@ -7207,23 +7188,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 677136969}
   m_CullTransparentMesh: 1
---- !u!114 &677136973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 677136969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d06b8a9afc8b02c4289f36a79b47c8b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  streamingSize: {x: 0, y: 0}
-  cam: {fileID: 3650513701422348238}
-  sourceImage: {fileID: 102541281}
-  receiveImage1: {fileID: 677136971}
-  rotateObject: {fileID: 0}
 --- !u!1001 &677900093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29835,6 +29799,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3650513701422348233}
   - component: {fileID: 3650513701422348238}
+  - component: {fileID: 3650513701422348237}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -29842,6 +29807,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &3650513701422348237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3650513701422348236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d06b8a9afc8b02c4289f36a79b47c8b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  streamingSize: {x: 0, y: 0}
+  cam: {fileID: 3650513701422348238}
+  sourceImage: {fileID: 102541281}
+  receiveImage1: {fileID: 677136971}
+  rotateObject: {fileID: 0}
 --- !u!20 &3650513701422348238
 Camera:
   m_ObjectHideFlags: 0

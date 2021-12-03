@@ -13,7 +13,6 @@ namespace Unity.WebRTC.Samples
         [SerializeField] private RawImage sourceImage;
         [SerializeField] private RawImage receiveImage1;
       //  [SerializeField] private RawImage receiveImage2;
-        [SerializeField] private Transform rotateObject;
 #pragma warning restore 0649
 
         private static RTCConfiguration configuration = new RTCConfiguration
@@ -21,7 +20,7 @@ namespace Unity.WebRTC.Samples
             iceServers = new[] { new RTCIceServer { urls = new[] { "stun:stun.l.google.com:19302" } } }
         };
 
-        private RTCPeerConnection pc1Local, pc1Remote; /*pc2Local, pc2Remote;*/
+        private RTCPeerConnection pc1Local//, pc1Remote; /*pc2Local, pc2Remote;*/
         private MediaStream sourceStream;
 
         private void Awake()
