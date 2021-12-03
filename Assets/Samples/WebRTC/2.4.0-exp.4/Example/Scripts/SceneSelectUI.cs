@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Unity.WebRTC.Samples
 {
-    internal static class WebRTCSettings
+    public /*internal static*/ class WebRTCSettings
     {
         private static bool s_enableHWCodec = false;
         private static bool s_limitTextureSize = true;

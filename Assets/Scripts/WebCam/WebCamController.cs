@@ -1,107 +1,177 @@
-namespace OpenCvSharp.Demo
+using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace Unity.WebRTC.Samples
 {
-    using System;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Collections;
-    using System.Collections.Generic;
-    using UnityEngine;
-    using OpenCvSharp;
-    using OpenCvSharp.Demo;
-    using UnityEngine.UI;
-    using UnityEngine.Diagnostics;
-
-    public class WebCamController : MonoBehaviour
+    class WebCamController : MonoBehaviour
     {
-        float timer = 0f;
-        public float delayTime = 0.5f;
-        public bool isDelay = false;
-        int circle_x = 0, circle_y = 0;
-        public RawImage display;
+#pragma warning disable 0649
         WebCamTexture camTexture;
-        private int currentIndex = 0;
-        String filenameFaceCascade =
-            "Assets/Resources/haarcascade_frontalface_default.xml";
-        CascadeClassifier faceCascade = new CascadeClassifier();
+        [SerializeField] private Vector2Int streamingSize;
+        [SerializeField] private Camera cam;
+        [SerializeField] private RawImage sourceImage;
+        [SerializeField] private RawImage receiveImage1;
+      //  [SerializeField] private RawImage receiveImage2;
+        [SerializeField] private Transform rotateObject;
+#pragma warning restore 0649
 
-        // Start is called before the first frame update
-        void Start()
+        private static RTCConfiguration configuration = new RTCConfiguration
         {
+            iceServers = new[] { new RTCIceServer { urls = new[] { "stun:stun.l.google.com:19302" } } }
+        };
+
+        private RTCPeerConnection pc1Local, pc1Remote; /*pc2Local, pc2Remote;*/
+        private MediaStream sourceStream;
+
+        private void Awake()
+        {
+            streamingSize.x = 1280;
+            streamingSize.y = 720;
+            //    Debug.Log(gameObject.name);
+            WebRTC.Initialize(EncoderType.Software/*WebRTCSettings.EncoderType*/, WebRTCSettings.LimitTextureSize);
+        }
+
+        private void OnDestroy()
+        {
+            WebRTC.Dispose();
+            HangUp();
+        }
+
+        private void Start()
+        {
+            StartCoroutine(WebRTC.Update());
+
+            Setup();
+            Call();
+
+        }
+        private void Setup()
+        {
+            Debug.Log("Set up source/receive streams");
+            sourceStream = new MediaStream();
+
             if (camTexture != null)
             {
-                display.texture = null;
+                sourceImage.texture = null;
                 camTexture.Stop();
                 camTexture = null;
             }
-            //VideoCapture capture = new VideoCapture(0);
-
-            Debug.Log(currentIndex);
-            WebCamDevice device = WebCamTexture.devices[currentIndex];
-            camTexture = new WebCamTexture(device.name);
-          //  display.texture = camTexture;
+            if (WebCamTexture.devices.Length != 0)
+            {
+                WebCamDevice device = WebCamTexture.devices[0];
+                camTexture = new WebCamTexture(device.name);
+            }
             camTexture.Play();
 
-            if (!faceCascade.Load(filenameFaceCascade))
-            {
-                Debug.Log("Video Load Error");
-            }
+            var videoTrack = new VideoStreamTrack(camTexture);
+            sourceStream.AddTrack(videoTrack);
+            sourceImage.texture = camTexture;
+
         }
 
-        // Update is called once per frame
-        void Update()
+        private void Call()
         {
-            Mat image = new Mat();
-            Mat dst = new Mat();
-            Texture2D destTexture = new Texture2D(camTexture.width, camTexture.height, TextureFormat.ARGB32, false);
-            //Texture2D tmpTexture = new Texture2D();
-            image = Unity.TextureToMat(camTexture);
+            Debug.Log("Starting calls");
 
-            //Color[] textureData = camTexture.GetPixels();
-            //destTexture.SetPixels(textureData);
-
-            //Mat grayMat = new Mat();
-            //Cv2.CvtColor(image, grayMat, ColorConversionCodes.BGR2GRAY);
-                      
-            //detect Rect
-            if (!isDelay)
+            pc1Local = new RTCPeerConnection(ref configuration);
+            pc1Remote = new RTCPeerConnection(ref configuration);
+            pc1Remote.OnTrack = e =>
             {
-                OpenCvSharp.Rect[] faces = faceCascade.DetectMultiScale(image);
-                foreach (var item in faces)
+                if (e.Track is VideoStreamTrack videoTrack && !videoTrack.IsDecoderInitialized)
                 {
-                    //Cv2.Rectangle(image, item, Scalar.Red); // add rectangle to the image
-
-                    circle_x = item.Left + (item.Width / 2);
-                    circle_y = item.Top + (item.Height / 2);
-
-                    //   dst = image.SubMat(item);
+                    receiveImage1.texture = videoTrack.InitializeReceiver(streamingSize.x, streamingSize.y);
                 }
-                isDelay = true;
-            }
-         //   Debug.Log(circle_x + " " + circle_y);
-            if(circle_x != 0 && circle_y != 0)
-            {
-                Cv2.Circle(image, new Point(circle_x, circle_y), 250, Scalar.Green, 3, LineTypes.AntiAlias);
-            }
-            destTexture = Unity.MatToTexture(image);
+            };
+            pc1Local.OnIceCandidate = candidate => pc1Remote.AddIceCandidate(candidate);
+            pc1Remote.OnIceCandidate = candidate => pc1Local.AddIceCandidate(candidate);
+            Debug.Log("pc1: created local and remote peer connection object");
 
-            //camTexture = new WebCamTexture(destTexture.height, destTexture.width);
-
-            //if(!dst.Empty())
+            //pc2Local = new RTCPeerConnection(ref configuration);
+            //pc2Remote = new RTCPeerConnection(ref configuration);
+            //pc2Remote.OnTrack = e =>
             //{
-            //    destTexture = Unity.MatToTexture(dst);
-            //}
-            display.texture = destTexture;
+            //    if (e.Track is VideoStreamTrack videoTrack && !videoTrack.IsDecoderInitialized)
+            //    {
+            //        receiveImage2.texture = videoTrack.InitializeReceiver(streamingSize.x, streamingSize.y);
+            //    }
 
-            if (isDelay)
+            //};
+            //pc2Local.OnIceCandidate = candidate => pc2Remote.AddIceCandidate(candidate);
+            //pc2Remote.OnIceCandidate = candidate => pc2Local.AddIceCandidate(candidate);
+            //Debug.Log("pc2: created local and remote peer connection object");
+
+            foreach (var track in sourceStream.GetTracks())
             {
-                timer += Time.deltaTime;
-                if (timer >= delayTime)
-                {
-                    timer = 0f;
-                    isDelay = false;
-                }
+                pc1Local.AddTrack(track, sourceStream);
+                //    pc2Local.AddTrack(track, sourceStream);
             }
+
+            Debug.Log("Adding local stream to pc1Local/pc2Local");
+
+            StartCoroutine(NegotiationPeer(pc1Local, pc1Remote));
+            // StartCoroutine(NegotiationPeer(pc2Local, pc2Remote));
+        }
+
+        private void HangUp()
+        {
+            foreach (var track in sourceStream.GetTracks())
+            {
+                track.Dispose();
+            }
+            sourceStream.Dispose();
+            sourceStream = null;
+            pc1Local.Close();
+            pc1Remote.Close();
+            //pc2Local.Close();
+            //pc2Remote.Close();
+            pc1Local.Dispose();
+            pc1Remote.Dispose();
+            //pc2Local.Dispose();
+            //pc2Remote.Dispose();
+            pc1Local = null;
+            pc1Remote = null;
+            //pc2Local = null;
+            //pc2Remote = null;
+
+            sourceImage.texture = null;
+            receiveImage1.texture = null;
+        }
+
+        private static void OnCreateSessionDescriptionError(RTCError error)
+        {
+            Debug.LogError($"Failed to create session description: {error.message}");
+        }
+
+        private static IEnumerator NegotiationPeer(RTCPeerConnection localPeer, RTCPeerConnection remotePeer)
+        {
+            var opCreateOffer = localPeer.CreateOffer();
+            yield return opCreateOffer;
+
+            if (opCreateOffer.IsError)
+            {
+                OnCreateSessionDescriptionError(opCreateOffer.Error);
+                yield break;
+            }
+
+            var offerDesc = opCreateOffer.Desc;
+            yield return localPeer.SetLocalDescription(ref offerDesc);
+            Debug.Log($"Offer from LocalPeer \n {offerDesc.sdp}");
+            yield return remotePeer.SetRemoteDescription(ref offerDesc);
+
+            var opCreateAnswer = remotePeer.CreateAnswer();
+            yield return opCreateAnswer;
+
+            if (opCreateAnswer.IsError)
+            {
+                OnCreateSessionDescriptionError(opCreateAnswer.Error);
+                yield break;
+            }
+
+            var answerDesc = opCreateAnswer.Desc;
+            yield return remotePeer.SetLocalDescription(ref answerDesc);
+            Debug.Log($"Answer from RemotePeer \n {answerDesc.sdp}");
+            yield return localPeer.SetRemoteDescription(ref answerDesc);
         }
     }
 }
