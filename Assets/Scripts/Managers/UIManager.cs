@@ -8,6 +8,8 @@ using System.Linq;
 
 public class UIManager : MonoBehaviour
 {
+    public bool isOpenWindow;
+
     [Header("===== UI 오브젝트 참조 =====")]
     [Space]
     public GameObject loginUI;
@@ -17,9 +19,8 @@ public class UIManager : MonoBehaviour
     public GameObject classListWindow;
     public GameObject conferenceWindow;
     public GameObject playerInfoWindow;
-    public GameObject openFileWindow;
-    public GameObject classStudentListWindow;
-    public GameObject dontHaveAuthority;
+    public GameObject optionWindow;
+    public GameObject commandWindow;
 
     [Space]
     public Image curCamIcon;
@@ -81,10 +82,18 @@ public class UIManager : MonoBehaviour
     [Header("===== 회의 UI =====")]
     [Space]
     public Text ConferenceMemberText;
-    public bool isOpenWindow;
+
+    [Header("===== 강의 UI =====")]
+    [Space]
+    public GameObject classStudentListWindow;
+
+    [Header("===== 부스 UI =====")]
+    [Space]
+    public GameObject openFileWindow;
 
     [Header("=====권한 경고 메세지 UI =====")]
     [Space]
+    public GameObject dontHaveAuthority;
     public Image Authoritybackground;
     public Text Authoritytext;
 
@@ -147,23 +156,15 @@ public class UIManager : MonoBehaviour
             playerController.name = _playerName;
         
     }
-    #region HUD Icons
-    public void ChangeViewBtn()
-    {
-        cameraController.isChangeCameraModeDown = true;
-        cameraController.ChangeCameraMode();
-    }
-
-    public void ChangeRunBtn()
-    {
-        playerController.isRunDown = true;
-        playerController.WalkToRun();
-    }
-
+#region HUD Icons
     public void CamOnOffBtn()
     {
         playerController.isCamDown = true;
         playerController.TurnWebCam();
+    }
+
+    public void SpeakerOnOffBtn()
+    {
     }
 
     public void VoiceOnOffBtn()
@@ -233,6 +234,30 @@ public class UIManager : MonoBehaviour
         PlayfabManager.Instance.GetLeaderBoardForTotalAttendanceUI(splitedClassInfo[0] + "Attendance", playerName.text, newInfoTransform.GetChild(11).GetComponent<Text>());
     }
 
+    public void OptionBtn()
+    {
+        OpenWindow(Define.UI.OPTION);
+    }
+
+    public void CommandBtn()
+    {
+        OpenWindow(Define.UI.COMMAND);
+    }
+
+    public void LogoutBtn()
+    {
+        playerController.cameraArm.GetComponent<CameraController>().enabled = false;
+        playerController.cameraArm.GetComponent<LobbyCameraRatate>().enabled = true;
+        NetworkManager.Instance.LeaveGame();
+        ShowUI(Define.UI.LOGIN);
+    }
+
+    public void QuitGameBtn()
+    {
+        Application.Quit();
+        UnityEditor.EditorApplication.isPlaying = false;
+    }
+
 #endregion
 
     public void ShowUI(Define.UI showingUi)
@@ -246,6 +271,7 @@ public class UIManager : MonoBehaviour
         if (showingUi.Equals(Define.UI.LOGIN))
         {
             loginUI.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
         }
         else if (showingUi.Equals(Define.UI.HUD))
         {
@@ -273,6 +299,8 @@ public class UIManager : MonoBehaviour
         classListWindow.SetActive(false);
         playerInfoWindow.SetActive(false);
         openFileWindow.SetActive(false);
+        optionWindow.SetActive(false);
+        commandWindow.SetActive(false);
 
         if (showingWindow.Equals(Define.UI.CLASS))
         {
@@ -298,6 +326,14 @@ public class UIManager : MonoBehaviour
         {
             classStudentListWindow.SetActive(true);
         }
+        else if (showingWindow.Equals(Define.UI.OPTION))
+        {
+            optionWindow.SetActive(true);
+        }
+        else if (showingWindow.Equals(Define.UI.COMMAND))
+        {
+            commandWindow.SetActive(true);
+        }
         isOpenWindow = true;
     }
 
@@ -312,6 +348,8 @@ public class UIManager : MonoBehaviour
         playerInfoWindow.SetActive(false);
         openFileWindow.SetActive(false);
         classStudentListWindow.SetActive(false);
+        optionWindow.SetActive(false);
+        commandWindow.SetActive(false);
 
         ClearClassMakingWindow();
         eventFunction = null;
@@ -505,7 +543,7 @@ public class UIManager : MonoBehaviour
             Authoritytext.color = new Color(Authoritytext.color.r, Authoritytext.color.g, Authoritytext.color.b, fadeCount);
         }
     }
-    #endregion
+#endregion
 
 #region Conference Interaction
 

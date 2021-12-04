@@ -11,7 +11,7 @@ public class PlayerContoller : MonoBehaviourPun
     [SerializeField]
     private Transform playerTransform;
     [SerializeField]
-    private GameObject cameraArm;
+    public GameObject cameraArm;
     [SerializeField]
     private Transform cameraArmTransform;
     [SerializeField]
@@ -46,8 +46,9 @@ public class PlayerContoller : MonoBehaviourPun
     public bool isJumpDown;
     public bool isRunDown;
     public bool isCamDown;
-    public bool isInfoWindowDown;
     public bool isVoiceDown;
+    public bool isInfoWindowDown;
+    public bool isOptionWindowDown;
 
     public Outline currentTouch;
 
@@ -113,9 +114,9 @@ public class PlayerContoller : MonoBehaviourPun
             if (!ChatManager.Instance.onChat)
             {
                 Move();
-                JumpDown();
             }
         }
+        JumpDown();
     }
 
     private void Update()
@@ -129,19 +130,19 @@ public class PlayerContoller : MonoBehaviourPun
             if (!ChatManager.Instance.onChat)
             {
                 GetInput();
-                Jump();
-                WalkToRun();
-                TurnWebCam();
-                OpenInfoWindow();
-                VoiceOnOff();
-
-
-                DetectInteractiveObject();
-                OnCursorVisible();
                 TeleportWayPoint();
+                DetectInteractiveObject();
             }
         }
+        Jump();
+        WalkToRun();
+        TurnWebCam();
+        OpenInfoWindow();
+        VoiceOnOff();
+
+        OnCursorVisible();
         ShowPlayerUIAsDistance();
+        OpenOptionWindow();
     }
 
     void GetInput()
@@ -150,7 +151,8 @@ public class PlayerContoller : MonoBehaviourPun
         isJumpDown = Input.GetKeyDown(KeyCode.Space);
         isCamDown = Input.GetKeyDown(KeyCode.C);
         isVoiceDown = Input.GetKeyDown(KeyCode.V);
-        isInfoWindowDown = Input.GetKeyDown(KeyCode.I);
+//        isInfoWindowDown = Input.GetKeyDown(KeyCode.I);
+//        isOptionWindowDown = Input.GetKeyDown(KeyCode.Escape);
     }
 
     public void WalkToRun()
@@ -342,6 +344,17 @@ public class PlayerContoller : MonoBehaviourPun
                 OpenCvSharp.WebCamManager.Instance.enabled = true;
                 playerUIController.ShowWebCamImage(true);
             }
+        }
+    }
+
+    public void OpenOptionWindow()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (UIManager.Instance.isOpenWindow)
+                UIManager.Instance.CloseWindow();
+            else
+                UIManager.Instance.OptionBtn();
         }
     }
 

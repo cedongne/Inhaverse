@@ -74,10 +74,10 @@ public class CameraController : MonoBehaviour
         {
             GetInput();
             FPSLookAround();
-            MoveCamera();
             ChangeCameraMode();
             DontBeyondWall();
         }
+        MoveCamera();
     }
 
     void GetInput()

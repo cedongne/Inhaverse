@@ -118,9 +118,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
         GameStart();
     }
 
-    public void OnLeaveLobby()
+    public void LeaveGame()
     {
-        PN.LeaveLobby();
+        PN.Disconnect();
     }
 
     public override void OnLeftLobby()
