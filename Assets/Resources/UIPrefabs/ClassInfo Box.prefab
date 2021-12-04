@@ -1193,7 +1193,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "1\t\t2\t\t3\t\t4\t\t5\t\t6\t\t7\t\t8\t\t9\t\t10\t\t11\t\t12\t\t13\t\t14\t\t15\t\t16"
+  m_Text: 
 --- !u!1 &7847079089048537370
 GameObject:
   m_ObjectHideFlags: 0

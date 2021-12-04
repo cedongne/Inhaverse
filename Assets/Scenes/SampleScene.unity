@@ -848,7 +848,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uC218\uAC15 \uAC15\uC758 \uBAA9\uB85D"
+  m_Text: "\uCC38\uC5EC \uAC15\uC758 \uBAA9\uB85D"
 --- !u!222 &48054119
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3026,7 +3026,7 @@ RectTransform:
   - {fileID: 2057204185}
   - {fileID: 865735698}
   m_Father: {fileID: 931321783}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4555,7 +4555,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 931321785}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: MakeClassBtn
         m_Mode: 1
@@ -5201,7 +5201,7 @@ RectTransform:
   - {fileID: 1064822288}
   - {fileID: 48054117}
   m_Father: {fileID: 931321783}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6191,7 +6191,7 @@ RectTransform:
   - {fileID: 1222642289}
   - {fileID: 1618463950}
   m_Father: {fileID: 931321783}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10552,13 +10552,13 @@ RectTransform:
   m_Children:
   - {fileID: 2580658444220035261}
   - {fileID: 2580658445182027415}
+  - {fileID: 1252261040217375609}
   - {fileID: 217934092}
   - {fileID: 2074335321}
   - {fileID: 518430894}
   - {fileID: 1563579448}
   - {fileID: 442784973}
   - {fileID: 1866391727}
-  - {fileID: 1252261040217375609}
   - {fileID: 393033311}
   - {fileID: 1600421343}
   - {fileID: 102541280}
@@ -10601,10 +10601,10 @@ MonoBehaviour:
   isOpenWindow: 0
   loginUI: {fileID: 2580658445182027412}
   hudUI: {fileID: 2580658444220035258}
+  conferenceUI: {fileID: 1252261040217375608}
   classWindow: {fileID: 217934091}
   classMakingWindow: {fileID: 2074335320}
   classListWindow: {fileID: 518430893}
-  conferenceWindow: {fileID: 1252261040217375608}
   playerInfoWindow: {fileID: 442784972}
   optionWindow: {fileID: 670585040}
   commandWindow: {fileID: 654663521}
@@ -10642,6 +10642,9 @@ MonoBehaviour:
   studentIdInput: {fileID: 2103252869}
   studentListText: {fileID: 1329897613}
   classButton: {fileID: 7319785340756496215, guid: b4c48f08c37d6cc459e0f95b633d1368, type: 3}
+  buttons: []
+  studentsList: []
+  removeStudentsList: []
   ConferenceMemberText: {fileID: 1252261040726513308}
   classStudentListWindow: {fileID: 218880763}
   openFileWindow: {fileID: 1866391726}
@@ -10822,7 +10825,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 931321785}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: DeleteStudentInClassButton
         m_Mode: 1
@@ -18053,7 +18056,7 @@ RectTransform:
   - {fileID: 1331986660}
   - {fileID: 1996347251}
   m_Father: {fileID: 931321783}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -19300,7 +19303,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 931321785}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: AddStudentInClassButton
         m_Mode: 1
@@ -21470,7 +21473,7 @@ Transform:
   - {fileID: 466009623}
   - {fileID: 789795908}
   m_Father: {fileID: 931321783}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1869873064
 GameObject:
@@ -24491,7 +24494,7 @@ RectTransform:
   - {fileID: 895040491}
   - {fileID: 1065196509}
   m_Father: {fileID: 931321783}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -25763,7 +25766,7 @@ GameObject:
   - component: {fileID: 1252261040217375611}
   - component: {fileID: 1252261040217375610}
   m_Layer: 5
-  m_Name: Conference Window
+  m_Name: Conference Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25795,7 +25798,7 @@ RectTransform:
   - {fileID: 1252261041213131127}
   - {fileID: 1252261040864096080}
   m_Father: {fileID: 931321783}
-  m_RootOrder: 8
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

@@ -14,10 +14,10 @@ public class UIManager : MonoBehaviour
     [Space]
     public GameObject loginUI;
     public GameObject hudUI;
+    public GameObject conferenceUI;
     public GameObject classWindow;
     public GameObject classMakingWindow;
     public GameObject classListWindow;
-    public GameObject conferenceWindow;
     public GameObject playerInfoWindow;
     public GameObject optionWindow;
     public GameObject commandWindow;
@@ -76,8 +76,9 @@ public class UIManager : MonoBehaviour
     public GameObject classButton;
 
     [Space]
-    List<ClassList> buttons = new List<ClassList>();
-    List<UserInfo> studentsList = new List<UserInfo>();
+    public List<ClassList> buttons = new List<ClassList>();
+    public List<UserInfo> studentsList = new List<UserInfo>();
+    public List<UserInfo> removeStudentsList = new List<UserInfo>();
 
     [Header("===== È¸ÀÇ UI =====")]
     [Space]
@@ -135,7 +136,6 @@ public class UIManager : MonoBehaviour
     }
 
 
-    // Start is called before the first frame update
     void Awake()
     {
         if (instance == null)
@@ -231,7 +231,7 @@ public class UIManager : MonoBehaviour
 
         playerClassList.Add(newClassInfo);
         newClassInfo.transform.position = classListContent.transform.position + classListInitPosition + classListOffset * playerClassList.IndexOf(newClassInfo);
-        PlayfabManager.Instance.GetLeaderBoardForTotalAttendanceUI(splitedClassInfo[0] + "Attendance", playerName.text, newInfoTransform.GetChild(11).GetComponent<Text>());
+        PlayfabManager.Instance.GetLeaderBoardForTotalAttendanceUI(splitedClassInfo[0] + "Attendance", playerName.text, newInfoTransform.GetChild(10).GetComponent<Text>());
     }
 
     public void OptionBtn()
@@ -264,7 +264,7 @@ public class UIManager : MonoBehaviour
     {
         loginUI.SetActive(false);
         hudUI.SetActive(false);
-        conferenceWindow.SetActive(false);
+        conferenceUI.SetActive(false);
 
         CloseWindow();
 
@@ -286,7 +286,7 @@ public class UIManager : MonoBehaviour
             curCamIcon = conferenceCamIcon;
             curSpeakerIcon = conferenceSpeakerIcon;
             curVoiceIcon = conferenceVoiceIcon;
-            conferenceWindow.SetActive(true);
+            conferenceUI.SetActive(true);
         }
     }
 
@@ -299,6 +299,7 @@ public class UIManager : MonoBehaviour
         classListWindow.SetActive(false);
         playerInfoWindow.SetActive(false);
         openFileWindow.SetActive(false);
+        classStudentListWindow.SetActive(false);
         optionWindow.SetActive(false);
         commandWindow.SetActive(false);
 
@@ -344,7 +345,6 @@ public class UIManager : MonoBehaviour
         classWindow.SetActive(false);
         classMakingWindow.SetActive(false);
         classListWindow.SetActive(false);
-        conferenceWindow.SetActive(false);
         playerInfoWindow.SetActive(false);
         openFileWindow.SetActive(false);
         classStudentListWindow.SetActive(false);
@@ -394,6 +394,11 @@ public class UIManager : MonoBehaviour
         classData.secondEndTime = secondEndTimeInput.text;
 
         classData.students = studentsList.ToList();
+        for(int count = 0; count < removeStudentsList.Count; count++)
+        {
+            Debug.Log("remove count : " + count);
+            PlayfabManager.Instance.RemoveMemberFromGroup(classNameInput.text + classNumberInput.text, removeStudentsList[count].name);
+        }
 
         PlayfabManager.Instance.CreateGroup(classNameInput.text + classNumberInput.text, "ClassData", classData);
         CloseWindow();
@@ -517,10 +522,13 @@ public class UIManager : MonoBehaviour
     {
         for (int count = 0; count < studentsList.Count; count++)
         {
+            Debug.Log(count);
             if (studentsList[count].schoolId.Equals(studentIdInput.text))
             {
                 studentListText.text = studentListText.text.Replace(studentsList[count].schoolId + " " + studentsList[count].name + "\n", "");
                 studentsList.RemoveAt(count);
+                removeStudentsList.Add(studentsList[count]);
+                Debug.Log("REmoveStudent" + count);
             }
         }
     }
