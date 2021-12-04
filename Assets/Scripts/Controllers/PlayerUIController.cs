@@ -57,6 +57,10 @@ public class PlayerUIController : MonoBehaviourPunCallbacks, IPunObservable
 
     public void ShowWebCamImage(bool onOff)
     {
+        if (webCamImage.activeSelf)
+            UIManager.Instance.curCamIcon.color = Color.gray;
+        else
+            UIManager.Instance.curCamIcon.color = Color.white;
         photonView.RPC("ShowWebCamImageRPC", RpcTarget.AllBuffered, onOff);
     }
 

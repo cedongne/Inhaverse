@@ -21,6 +21,17 @@ public class UIManager : MonoBehaviour
     public GameObject classStudentListWindow;
     public GameObject dontHaveAuthority;
 
+    [Space]
+    public Image curCamIcon;
+    public Image curSpeakerIcon;
+    public Image curVoiceIcon;
+    public Image hudCamIcon;
+    public Image hudSpeakerIcon;
+    public Image hudVoiceIcon;
+    public Image conferenceCamIcon;
+    public Image conferenceSpeakerIcon;
+    public Image conferenceVoiceIcon;
+
     [Header("===== HUD Ã¤ÆÃ UI")]
     [Space]
     public InputField hudChatInputField;
@@ -167,7 +178,7 @@ public class UIManager : MonoBehaviour
         {
             Destroy(box);
         }
-        Debug.Log("Btn");
+        playerClassList.Clear();
         playerName.text = PlayfabManager.Instance.playerName;
         playerSchoolId.text = PlayfabManager.Instance.playerSchoolId;
 
@@ -209,26 +220,19 @@ public class UIManager : MonoBehaviour
         {
             if(count == 5)
             {
+                newInfoTransform.GetChild(12).GetComponent<Text>().gameObject.SetActive(true);
                 newInfoTransform.GetChild(13).GetComponent<Text>().gameObject.SetActive(true);
-                newInfoTransform.GetChild(14).GetComponent<Text>().gameObject.SetActive(true);
             }
             newInfoTransform.GetChild(count + 1).GetComponent<Text>().gameObject.SetActive(true);
             newInfoTransform.GetChild(count + 1).GetComponent<Text>().text = splitedClassInfo[count].ToString();
         }
-        Button deleteButton = newClassInfo.GetComponentInChildren<Button>();
         GameObject tmpClassInfo = newClassInfo;
-        deleteButton.onClick.AddListener(delegate { DeleteClassBtn(tmpClassInfo); });
 
         playerClassList.Add(newClassInfo);
         newClassInfo.transform.position = classListContent.transform.position + classListInitPosition + classListOffset * playerClassList.IndexOf(newClassInfo);
         PlayfabManager.Instance.GetLeaderBoardForTotalAttendanceUI(splitedClassInfo[0] + "Attendance", playerName.text, newInfoTransform.GetChild(11).GetComponent<Text>());
     }
 
-    public void DeleteClassBtn(GameObject classInfo)
-    {
-        PlayfabManager.Instance.DeleteUserData(classInfo.name);
-//        PlayfabManager.Instance.GetGroupList(Define.GROUPLISTUSING.FINDSPECIFICGROUP);
-    }
 #endregion
 
     public void ShowUI(Define.UI showingUi)
@@ -245,10 +249,17 @@ public class UIManager : MonoBehaviour
         }
         else if (showingUi.Equals(Define.UI.HUD))
         {
+            curCamIcon = hudCamIcon;
+            curSpeakerIcon = hudSpeakerIcon;
+            curVoiceIcon = hudVoiceIcon;
+
             hudUI.SetActive(true);
         }
         else if (showingUi.Equals(Define.UI.CONFERENCE))
         {
+            curCamIcon = conferenceCamIcon;
+            curSpeakerIcon = conferenceSpeakerIcon;
+            curVoiceIcon = conferenceVoiceIcon;
             conferenceWindow.SetActive(true);
         }
     }
