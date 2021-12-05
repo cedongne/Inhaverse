@@ -23,9 +23,16 @@ public class InteractiveConferenceTable : InteractiveObject
         VoiceControl();
         UIManager.Instance.ShowUI(Define.UI.CONFERENCE);
         ChatManager.Instance.SetConferenceChatUI();
-        webBrowser.OnNavigate();
+        StartCoroutine("WebBrowserNavigate");
 
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    IEnumerator WebBrowserNavigate()
+    {
+        webBrowser.OnNavigate();
+        yield return new WaitForSeconds(3.0f);
+        webBrowser.DialogResult(true);
     }
 
     void ChatControl()

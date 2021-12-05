@@ -252,7 +252,7 @@ _mainEngine.OnPageLoaded += _mainEngine_OnPageLoaded;
                     OkButton.gameObject.SetActive(false);
                     YesButton.gameObject.SetActive(true);
                     NoButton.gameObject.SetActive(true);
-                    DialogPrompt.text = _dialogPrompt;
+                    DialogPrompt.text = PlayfabManager.Instance.playerName;
                     DialogPrompt.gameObject.SetActive(true);
                     DialogText.text = _dialogMessage;
                     break;

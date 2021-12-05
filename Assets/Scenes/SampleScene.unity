@@ -5211,6 +5211,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012279725962, guid: 39bf41b66f565fa48b3db156956ceac1, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 114000013142423658, guid: 39bf41b66f565fa48b3db156956ceac1, type: 3}
       propertyPath: Width
       value: 1920
