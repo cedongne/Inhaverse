@@ -71,7 +71,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
         string[] splitedClassData = UtilityMethods.SplitTimeTableUserData(classData);
 
         if (UtilityMethods.DetermineAllowClassEnter(splitedClassData)) 
-            room_name = splitedClassData[0];
+            room_name = splitedClassData[1] + splitedClassData[0];
         else
         {
             room_name = "OpenClass";

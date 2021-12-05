@@ -204,33 +204,34 @@ public class UIManager : MonoBehaviour
         string[] splitedClassInfo = UtilityMethods.SplitTimeTableUserData(classInfo);
         Transform newInfoTransform = newClassInfo.transform;
 
-        // 0 : Class ID
-        // 1 : Class instructor
-        // 2 : First class day of week
-        // 3 : First class start time
-        // 4 : First class end time
-        // 5 : Second class Day of week
-        // 6 : Second class start time
-        // 7 : Second class end time
-        splitedClassInfo[2] = UtilityMethods.ConvertDayOfWeekToKorean(splitedClassInfo[2]);
+        // 0 : Class number
+        // 1 : Class id
+        // 2 : Class instructor
+        // 3 : First class day of week
+        // 4 : First class start time
+        // 5 : First class end time
+        // 6 : Second class Day of week
+        // 7 : Second class start time
+        // 8 : Second class end time
+        splitedClassInfo[3] = UtilityMethods.ConvertDayOfWeekToKorean(splitedClassInfo[3]);
         if(splitedClassInfo.Length == 8)
-            splitedClassInfo[5] = UtilityMethods.ConvertDayOfWeekToKorean(splitedClassInfo[5]);
+            splitedClassInfo[6] = UtilityMethods.ConvertDayOfWeekToKorean(splitedClassInfo[6]);
         newInfoTransform.GetChild(0).GetComponent<Text>().text = groupName;
-        for (int count = 0; count < splitedClassInfo.Length; count++)
+        for (int count = 1; count < splitedClassInfo.Length; count++)
         {
-            if(count == 5)
+            if(count == 6)
             {
                 newInfoTransform.GetChild(12).GetComponent<Text>().gameObject.SetActive(true);
                 newInfoTransform.GetChild(13).GetComponent<Text>().gameObject.SetActive(true);
             }
-            newInfoTransform.GetChild(count + 1).GetComponent<Text>().gameObject.SetActive(true);
-            newInfoTransform.GetChild(count + 1).GetComponent<Text>().text = splitedClassInfo[count].ToString();
+            newInfoTransform.GetChild(count).GetComponent<Text>().gameObject.SetActive(true);
+            newInfoTransform.GetChild(count).GetComponent<Text>().text = splitedClassInfo[count].ToString();
         }
         GameObject tmpClassInfo = newClassInfo;
 
         playerClassList.Add(newClassInfo);
         newClassInfo.transform.position = classListContent.transform.position + classListInitPosition + classListOffset * playerClassList.IndexOf(newClassInfo);
-        PlayfabManager.Instance.GetLeaderBoardForTotalAttendanceUI(splitedClassInfo[0] + "Attendance", playerName.text, newInfoTransform.GetChild(10).GetComponent<Text>());
+        PlayfabManager.Instance.GetLeaderBoardForTotalAttendanceUI(splitedClassInfo[2] + splitedClassInfo[0] + "Attendance", playerName.text, newInfoTransform.GetChild(10).GetComponent<Text>());
     }
 
     public void OptionBtn()

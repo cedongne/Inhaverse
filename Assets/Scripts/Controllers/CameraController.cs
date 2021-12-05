@@ -55,6 +55,8 @@ public class CameraController : MonoBehaviour
         playerTransform = defaultObjectTransform;
         cameraArmTransform = GetComponent<Transform>();
         UIManager.Instance.cameraController = GetComponent<CameraController>();
+        
+        isTPS = true;
     }
 
     private void Start()
@@ -64,7 +66,6 @@ public class CameraController : MonoBehaviour
 
         camera_dist = Mathf.Sqrt(cameraPositionOffset.y * cameraPositionOffset.y + cameraPositionOffset.z * cameraPositionOffset.z);
 
-        isTPS = true;
     }
 
     // Update is called once per frame

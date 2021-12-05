@@ -7,6 +7,7 @@ using Photon.Pun;
 public class InteractiveInstructorTable : InteractiveObject
 {
     string class_name;
+    public Transform professorViewObject;
 
     private void Start()
     {
@@ -20,6 +21,7 @@ public class InteractiveInstructorTable : InteractiveObject
             if (ClassProcessManager.Instance.classState == Define.CLASSSTATE.END)
             {
                 ClassProcessManager.Instance.StartClass();
+                ClassProcessManager.Instance.SetProfessorView(professorViewObject);
                 UIManager.Instance.OpenWindow(Define.UI.CLASSSTUDENTLIST);
             }
             else

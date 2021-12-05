@@ -190,7 +190,6 @@ public class PlayerContoller : MonoBehaviourPun
     {
         if (isChangeCameraModeDown)
         {
-            Debug.Log(cameraController.isTPS);
             if (cameraController.isTPS)
                 playerUIObjects.SetActive(false);
             else
@@ -376,12 +375,12 @@ public class PlayerContoller : MonoBehaviourPun
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            currentTouch.enabled = false;
+            interactionUI.SetActive(false);
             if (UIManager.Instance.isOpenWindow)
                 UIManager.Instance.CloseWindow();
             else if (UIManager.Instance.conferenceUI.activeSelf)
-            {
                 ConferenceManager.Instance.ExitConference();
-            }
             else
                 UIManager.Instance.OptionBtn();
         }

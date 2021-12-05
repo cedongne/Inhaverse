@@ -31,11 +31,12 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
     string class_name;
     public Define.CLASSSTATE classState;
 
+    public Transform professorViewObjectTransform;
+
     public int attendance_count = 0;
 
     private void Awake()
     {
-        
         if(instance == null)
         {
             instance = GetComponent<ClassProcessManager>();
@@ -45,6 +46,12 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
     }
 
     #region Instructor's Function
+
+    public void ReadyClass()
+    {
+
+    }
+
     public void StartClass()
     {
         CheckAttendance();
@@ -55,6 +62,8 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
         PlayfabManager.Instance.UpdateLeaderBoard(class_name + UtilityMethods.GetWeekOfSemester().ToString() + DateTime.Now.DayOfWeek.ToString()
             , attendance_count);
         photonView.RPC("StopCheckAttend", RpcTarget.AllBuffered, attendance_count);
+
+        GameObject.Find("Camera Arm").GetComponent<CameraController>().playerTransform = playerContoller.transform;
     }
     #endregion
 
@@ -104,10 +113,16 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
             Debug.Log("AlreadyAttend");
         }
     }
+
     public void JoinClass()
     {
         if(classState.Equals(Define.CLASSSTATE.START))
             CheckAttendancePeriodically();
+    }
+
+    public void SetProfessorView(Transform viewObjectTransform)
+    {
+        professorViewObjectTransform = viewObjectTransform;
     }
 
     private void OnEnable()
