@@ -12,7 +12,9 @@ public class Define
         PLAYERINFO,
         BOARD,
         OPENFILE,
-        CLASSSTUDENTLIST
+        CLASSSTUDENTLIST,
+        OPTION,
+        COMMAND
     }
 
     public enum GROUPLISTUSING
@@ -38,6 +40,7 @@ public class Define
 
     public enum CLASSSTATE
     {
+        IDLE,
         START,
         END
     }

@@ -13,15 +13,15 @@ public class UtilityMethods
 
     public static string[] SplitTimeTableUserData(string timeTableData)
     {
-        // 0 : Class ID
-        // 1 : Class instructor
-        // 2 : First class day of week
-        // 3 : First class start time
-        // 4 : First class end time
-        // 5 : Second class Day of week
-        // 6 : Second class start time
-        // 7 : Second class end time
-        // 8 : Late allow time
+        // 0 : Class number
+        // 1 : Class id
+        // 2 : Class instructor
+        // 3 : First class day of week
+        // 4 : First class start time
+        // 5 : First class end time
+        // 6 : Second class Day of week
+        // 7 : Second class start time
+        // 8 : Second class end time
         char[] delimiters = { ',', '~' };
         string[] splitedTimeTableString = timeTableData.Split(delimiters);
 
@@ -58,9 +58,9 @@ public class UtilityMethods
     {
         bool isAllowEnterClass;
 
-        isAllowEnterClass = DetermineIsClassTime(splitedTimeTableString[2], int.Parse(splitedTimeTableString[3]), int.Parse(splitedTimeTableString[4]));
+        isAllowEnterClass = DetermineIsClassTime(splitedTimeTableString[3], int.Parse(splitedTimeTableString[4]), int.Parse(splitedTimeTableString[5]));
         if (!isAllowEnterClass && splitedTimeTableString.Length > 3)
-            isAllowEnterClass = DetermineIsClassTime(splitedTimeTableString[5], int.Parse(splitedTimeTableString[6]), int.Parse(splitedTimeTableString[7]));
+            isAllowEnterClass = DetermineIsClassTime(splitedTimeTableString[6], int.Parse(splitedTimeTableString[7]), int.Parse(splitedTimeTableString[8]));
 
         return isAllowEnterClass;
     }

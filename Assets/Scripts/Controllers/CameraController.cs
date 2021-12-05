@@ -55,6 +55,8 @@ public class CameraController : MonoBehaviour
         playerTransform = defaultObjectTransform;
         cameraArmTransform = GetComponent<Transform>();
         UIManager.Instance.cameraController = GetComponent<CameraController>();
+        
+        isTPS = true;
     }
 
     private void Start()
@@ -64,7 +66,6 @@ public class CameraController : MonoBehaviour
 
         camera_dist = Mathf.Sqrt(cameraPositionOffset.y * cameraPositionOffset.y + cameraPositionOffset.z * cameraPositionOffset.z);
 
-        isTPS = true;
     }
 
     // Update is called once per frame
@@ -72,18 +73,12 @@ public class CameraController : MonoBehaviour
     {
         if (!UIManager.Instance.isOpenWindow)
         {
-            GetInput();
             FPSLookAround();
-            MoveCamera();
-            ChangeCameraMode();
             DontBeyondWall();
         }
+        MoveCamera();
     }
 
-    void GetInput()
-    {
-        isChangeCameraModeDown = Input.GetKeyDown(KeyCode.Tab);
-    }
 
     void FPSLookAround()
     {
@@ -110,20 +105,17 @@ public class CameraController : MonoBehaviour
 
     public void ChangeCameraMode()
     {
-        if (isChangeCameraModeDown)
+        if (isTPS)
         {
-            if (isTPS)
-            {
-                cameraPositionTransform.localPosition = FPSCameraOffset;
-                playerAvatar.layer = 8;   // Player
-                isTPS = false;
-            }
-            else if (!isTPS)
-            {
-                cameraPositionTransform.localPosition = TPSCameraOffset;
-                playerAvatar.layer = 2;   // Ignore Raycast
-                isTPS = true;
-            }
+            cameraPositionTransform.localPosition = FPSCameraOffset;
+            playerAvatar.layer = 8;   // Player
+            isTPS = false;
+        }
+        else if (!isTPS)
+        {
+            cameraPositionTransform.localPosition = TPSCameraOffset;
+            playerAvatar.layer = 2;   // Ignore Raycast
+            isTPS = true;
         }
     }
     void DontBeyondWall()

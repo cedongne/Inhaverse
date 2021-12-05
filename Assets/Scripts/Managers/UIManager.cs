@@ -8,18 +8,30 @@ using System.Linq;
 
 public class UIManager : MonoBehaviour
 {
+    public bool isOpenWindow;
+
     [Header("===== UI 오브젝트 참조 =====")]
     [Space]
     public GameObject loginUI;
     public GameObject hudUI;
+    public GameObject conferenceUI;
     public GameObject classWindow;
     public GameObject classMakingWindow;
     public GameObject classListWindow;
-    public GameObject conferenceWindow;
     public GameObject playerInfoWindow;
-    public GameObject openFileWindow;
-    public GameObject classStudentListWindow;
-    public GameObject dontHaveAuthority;
+    public GameObject optionWindow;
+    public GameObject commandWindow;
+
+    [Space]
+    public Image curCamIcon;
+    public Image curSpeakerIcon;
+    public Image curVoiceIcon;
+    public Image hudCamIcon;
+    public Image hudSpeakerIcon;
+    public Image hudVoiceIcon;
+    public Image conferenceCamIcon;
+    public Image conferenceSpeakerIcon;
+    public Image conferenceVoiceIcon;
 
     [Header("===== HUD 채팅 UI")]
     [Space]
@@ -64,16 +76,25 @@ public class UIManager : MonoBehaviour
     public GameObject classButton;
 
     [Space]
-    List<ClassList> buttons = new List<ClassList>();
-    List<UserInfo> studentsList = new List<UserInfo>();
+    public List<ClassList> buttons = new List<ClassList>();
+    public List<UserInfo> studentsList = new List<UserInfo>();
+    public List<UserInfo> removeStudentsList = new List<UserInfo>();
 
     [Header("===== 회의 UI =====")]
     [Space]
     public Text ConferenceMemberText;
-    public bool isOpenWindow;
+
+    [Header("===== 강의 UI =====")]
+    [Space]
+    public GameObject classStudentListWindow;
+
+    [Header("===== 부스 UI =====")]
+    [Space]
+    public GameObject openFileWindow;
 
     [Header("=====권한 경고 메세지 UI =====")]
     [Space]
+    public GameObject dontHaveAuthority;
     public Image Authoritybackground;
     public Text Authoritytext;
 
@@ -115,7 +136,6 @@ public class UIManager : MonoBehaviour
     }
 
 
-    // Start is called before the first frame update
     void Awake()
     {
         if (instance == null)
@@ -134,25 +154,16 @@ public class UIManager : MonoBehaviour
         playerSchoolId.text = _playerSchoolId;
         if(playerController != null)
             playerController.name = _playerName;
-        
     }
-    #region HUD Icons
-    public void ChangeViewBtn()
-    {
-        cameraController.isChangeCameraModeDown = true;
-        cameraController.ChangeCameraMode();
-    }
-
-    public void ChangeRunBtn()
-    {
-        playerController.isRunDown = true;
-        playerController.WalkToRun();
-    }
-
+#region HUD Icons
     public void CamOnOffBtn()
     {
         playerController.isCamDown = true;
         playerController.TurnWebCam();
+    }
+
+    public void SpeakerOnOffBtn()
+    {
     }
 
     public void VoiceOnOffBtn()
@@ -167,7 +178,7 @@ public class UIManager : MonoBehaviour
         {
             Destroy(box);
         }
-        Debug.Log("Btn");
+        playerClassList.Clear();
         playerName.text = PlayfabManager.Instance.playerName;
         playerSchoolId.text = PlayfabManager.Instance.playerSchoolId;
 
@@ -193,63 +204,89 @@ public class UIManager : MonoBehaviour
         string[] splitedClassInfo = UtilityMethods.SplitTimeTableUserData(classInfo);
         Transform newInfoTransform = newClassInfo.transform;
 
-        // 0 : Class ID
-        // 1 : Class instructor
-        // 2 : First class day of week
-        // 3 : First class start time
-        // 4 : First class end time
-        // 5 : Second class Day of week
-        // 6 : Second class start time
-        // 7 : Second class end time
-        splitedClassInfo[2] = UtilityMethods.ConvertDayOfWeekToKorean(splitedClassInfo[2]);
+        // 0 : Class number
+        // 1 : Class id
+        // 2 : Class instructor
+        // 3 : First class day of week
+        // 4 : First class start time
+        // 5 : First class end time
+        // 6 : Second class Day of week
+        // 7 : Second class start time
+        // 8 : Second class end time
+        splitedClassInfo[3] = UtilityMethods.ConvertDayOfWeekToKorean(splitedClassInfo[3]);
         if(splitedClassInfo.Length == 8)
-            splitedClassInfo[5] = UtilityMethods.ConvertDayOfWeekToKorean(splitedClassInfo[5]);
+            splitedClassInfo[6] = UtilityMethods.ConvertDayOfWeekToKorean(splitedClassInfo[6]);
         newInfoTransform.GetChild(0).GetComponent<Text>().text = groupName;
-        for (int count = 0; count < splitedClassInfo.Length; count++)
+        for (int count = 1; count < splitedClassInfo.Length; count++)
         {
-            if(count == 5)
+            if(count == 6)
             {
+                newInfoTransform.GetChild(12).GetComponent<Text>().gameObject.SetActive(true);
                 newInfoTransform.GetChild(13).GetComponent<Text>().gameObject.SetActive(true);
-                newInfoTransform.GetChild(14).GetComponent<Text>().gameObject.SetActive(true);
             }
-            newInfoTransform.GetChild(count + 1).GetComponent<Text>().gameObject.SetActive(true);
-            newInfoTransform.GetChild(count + 1).GetComponent<Text>().text = splitedClassInfo[count].ToString();
+            newInfoTransform.GetChild(count).GetComponent<Text>().gameObject.SetActive(true);
+            newInfoTransform.GetChild(count).GetComponent<Text>().text = splitedClassInfo[count].ToString();
         }
-        Button deleteButton = newClassInfo.GetComponentInChildren<Button>();
         GameObject tmpClassInfo = newClassInfo;
-        deleteButton.onClick.AddListener(delegate { DeleteClassBtn(tmpClassInfo); });
 
         playerClassList.Add(newClassInfo);
         newClassInfo.transform.position = classListContent.transform.position + classListInitPosition + classListOffset * playerClassList.IndexOf(newClassInfo);
-        PlayfabManager.Instance.GetLeaderBoardForTotalAttendanceUI(splitedClassInfo[0] + "Attendance", playerName.text, newInfoTransform.GetChild(11).GetComponent<Text>());
+        PlayfabManager.Instance.GetLeaderBoardForTotalAttendanceUI(splitedClassInfo[2] + splitedClassInfo[0] + "Attendance", playerName.text, newInfoTransform.GetChild(10).GetComponent<Text>());
     }
 
-    public void DeleteClassBtn(GameObject classInfo)
+    public void OptionBtn()
     {
-        PlayfabManager.Instance.DeleteUserData(classInfo.name);
-//        PlayfabManager.Instance.GetGroupList(Define.GROUPLISTUSING.FINDSPECIFICGROUP);
+        OpenWindow(Define.UI.OPTION);
     }
+
+    public void CommandBtn()
+    {
+        OpenWindow(Define.UI.COMMAND);
+    }
+
+    public void LogoutBtn()
+    {
+        playerController.cameraArm.GetComponent<CameraController>().enabled = false;
+        playerController.cameraArm.GetComponent<LobbyCameraRatate>().enabled = true;
+        NetworkManager.Instance.LeaveGame();
+        ShowUI(Define.UI.LOGIN);
+    }
+
+    public void QuitGameBtn()
+    {
+        Application.Quit();
+        UnityEditor.EditorApplication.isPlaying = false;
+    }
+
 #endregion
 
     public void ShowUI(Define.UI showingUi)
     {
         loginUI.SetActive(false);
         hudUI.SetActive(false);
-        conferenceWindow.SetActive(false);
+        conferenceUI.SetActive(false);
 
         CloseWindow();
 
         if (showingUi.Equals(Define.UI.LOGIN))
         {
             loginUI.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
         }
         else if (showingUi.Equals(Define.UI.HUD))
         {
+            curCamIcon = hudCamIcon;
+            curSpeakerIcon = hudSpeakerIcon;
+            curVoiceIcon = hudVoiceIcon;
+
             hudUI.SetActive(true);
         }
         else if (showingUi.Equals(Define.UI.CONFERENCE))
         {
-            conferenceWindow.SetActive(true);
+            curCamIcon = conferenceCamIcon;
+            curSpeakerIcon = conferenceSpeakerIcon;
+            curVoiceIcon = conferenceVoiceIcon;
+            conferenceUI.SetActive(true);
         }
     }
 
@@ -262,6 +299,9 @@ public class UIManager : MonoBehaviour
         classListWindow.SetActive(false);
         playerInfoWindow.SetActive(false);
         openFileWindow.SetActive(false);
+        classStudentListWindow.SetActive(false);
+        optionWindow.SetActive(false);
+        commandWindow.SetActive(false);
 
         if (showingWindow.Equals(Define.UI.CLASS))
         {
@@ -287,6 +327,14 @@ public class UIManager : MonoBehaviour
         {
             classStudentListWindow.SetActive(true);
         }
+        else if (showingWindow.Equals(Define.UI.OPTION))
+        {
+            optionWindow.SetActive(true);
+        }
+        else if (showingWindow.Equals(Define.UI.COMMAND))
+        {
+            commandWindow.SetActive(true);
+        }
         isOpenWindow = true;
     }
 
@@ -297,10 +345,11 @@ public class UIManager : MonoBehaviour
         classWindow.SetActive(false);
         classMakingWindow.SetActive(false);
         classListWindow.SetActive(false);
-        conferenceWindow.SetActive(false);
         playerInfoWindow.SetActive(false);
         openFileWindow.SetActive(false);
         classStudentListWindow.SetActive(false);
+        optionWindow.SetActive(false);
+        commandWindow.SetActive(false);
 
         ClearClassMakingWindow();
         eventFunction = null;
@@ -345,6 +394,11 @@ public class UIManager : MonoBehaviour
         classData.secondEndTime = secondEndTimeInput.text;
 
         classData.students = studentsList.ToList();
+        for(int count = 0; count < removeStudentsList.Count; count++)
+        {
+            Debug.Log("remove count : " + count);
+            PlayfabManager.Instance.RemoveMemberFromGroup(classNameInput.text + classNumberInput.text, removeStudentsList[count].name);
+        }
 
         PlayfabManager.Instance.CreateGroup(classNameInput.text + classNumberInput.text, "ClassData", classData);
         CloseWindow();
@@ -468,10 +522,13 @@ public class UIManager : MonoBehaviour
     {
         for (int count = 0; count < studentsList.Count; count++)
         {
+            Debug.Log(count);
             if (studentsList[count].schoolId.Equals(studentIdInput.text))
             {
                 studentListText.text = studentListText.text.Replace(studentsList[count].schoolId + " " + studentsList[count].name + "\n", "");
                 studentsList.RemoveAt(count);
+                removeStudentsList.Add(studentsList[count]);
+                Debug.Log("REmoveStudent" + count);
             }
         }
     }
@@ -494,7 +551,7 @@ public class UIManager : MonoBehaviour
             Authoritytext.color = new Color(Authoritytext.color.r, Authoritytext.color.g, Authoritytext.color.b, fadeCount);
         }
     }
-    #endregion
+#endregion
 
 #region Conference Interaction
 

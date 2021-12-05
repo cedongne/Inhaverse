@@ -11,9 +11,11 @@ public class PlayerContoller : MonoBehaviourPun
     [SerializeField]
     private Transform playerTransform;
     [SerializeField]
-    private GameObject cameraArm;
+    public GameObject cameraArm;
     [SerializeField]
     private Transform cameraArmTransform;
+    [SerializeField]
+    private CameraController cameraController;
     [SerializeField]
     private Rigidbody playerRigid;
     [SerializeField]
@@ -46,9 +48,10 @@ public class PlayerContoller : MonoBehaviourPun
     public bool isJumpDown;
     public bool isRunDown;
     public bool isCamDown;
-    public bool isInfoWindowDown;
     public bool isVoiceDown;
-
+    public bool isInfoWindowDown;
+    public bool isOptionWindowDown;
+    public bool isChangeCameraModeDown;
     public Outline currentTouch;
 
     public List<string> playerList;
@@ -80,14 +83,23 @@ public class PlayerContoller : MonoBehaviourPun
         {
             if (PlayfabManager.Instance.playerName != "")
                 name = PlayfabManager.Instance.playerName;
+
+            cameraController = cameraArm.GetComponent<CameraController>();
             cameraArmTransform = cameraArm.transform;
-            cameraArm.GetComponent<CameraController>().enabled = true;
+            cameraController.enabled = true;
             cameraArm.GetComponent<LobbyCameraRatate>().enabled = false;
 
             cameraArmTransform.rotation = Quaternion.identity;
-            cameraArm.GetComponent<CameraController>().playerTransform = transform;
-            cameraArm.GetComponent<CameraController>().playerAvatar = GameObject.Find("Avatar");
-            cameraArm.GetComponent<CameraController>().playerContoller = GetComponent<PlayerContoller>();
+            cameraController.playerTransform = transform;
+            cameraController.playerAvatar = GameObject.Find("Avatar");
+            cameraController.playerContoller = GetComponent<PlayerContoller>();
+            if (!cameraController.isTPS)
+            {
+                cameraController.isTPS = true;
+                isChangeCameraModeDown = true;
+                ChangeCameraMode();
+            }
+
             UIManager.Instance.playerController = GetComponent<PlayerContoller>();
             ClassProcessManager.Instance.playerContoller = GetComponent<PlayerContoller>();
 
@@ -113,9 +125,9 @@ public class PlayerContoller : MonoBehaviourPun
             if (!ChatManager.Instance.onChat)
             {
                 Move();
-                JumpDown();
             }
         }
+        JumpDown();
     }
 
     private void Update()
@@ -129,19 +141,20 @@ public class PlayerContoller : MonoBehaviourPun
             if (!ChatManager.Instance.onChat)
             {
                 GetInput();
-                Jump();
-                WalkToRun();
-                TurnWebCam();
-                OpenInfoWindow();
-                VoiceOnOff();
-
-
-                DetectInteractiveObject();
-                OnCursorVisible();
                 TeleportWayPoint();
+                DetectInteractiveObject();
             }
         }
+        Jump();
+        WalkToRun();
+        ChangeCameraMode();
+        TurnWebCam();
+        OpenInfoWindow();
+        VoiceOnOff();
+
+        OnCursorVisible();
         ShowPlayerUIAsDistance();
+        OpenOptionWindow();
     }
 
     void GetInput()
@@ -150,7 +163,9 @@ public class PlayerContoller : MonoBehaviourPun
         isJumpDown = Input.GetKeyDown(KeyCode.Space);
         isCamDown = Input.GetKeyDown(KeyCode.C);
         isVoiceDown = Input.GetKeyDown(KeyCode.V);
-        isInfoWindowDown = Input.GetKeyDown(KeyCode.I);
+        //        isInfoWindowDown = Input.GetKeyDown(KeyCode.I);
+        //        isOptionWindowDown = Input.GetKeyDown(KeyCode.Escape);
+        isChangeCameraModeDown = Input.GetKeyDown(KeyCode.Tab);
     }
 
     public void WalkToRun()
@@ -171,6 +186,17 @@ public class PlayerContoller : MonoBehaviourPun
         }
     }
 
+    public void ChangeCameraMode()
+    {
+        if (isChangeCameraModeDown)
+        {
+            if (cameraController.isTPS)
+                playerUIObjects.SetActive(false);
+            else
+                playerUIObjects.SetActive(true);
+            cameraController.ChangeCameraMode();
+        }
+    }
     void Move()
     {
         Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -345,13 +371,28 @@ public class PlayerContoller : MonoBehaviourPun
         }
     }
 
+    public void OpenOptionWindow()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            currentTouch.enabled = false;
+            interactionUI.SetActive(false);
+            if (UIManager.Instance.isOpenWindow)
+                UIManager.Instance.CloseWindow();
+            else if (UIManager.Instance.conferenceUI.activeSelf)
+                ConferenceManager.Instance.ExitConference();
+            else
+                UIManager.Instance.OptionBtn();
+        }
+    }
+
     private void OnDestroy()
     {
         RpcUIManager.Instance.playerList.Remove(gameObject.transform);
         RpcUIManager.Instance.playerUILIst.Remove(playerUIObjects);
         if (photonView.IsMine)
         {
-            cameraArm.GetComponent<CameraController>().enabled = false;
+            cameraController.enabled = false;
         }
         Debug.Log("Destroy");
     }

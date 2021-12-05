@@ -11,6 +11,7 @@ public class LobbyCameraRatate : MonoBehaviourPun
     [SerializeField]
     private Vector3 rotateSpeed = new Vector3(0, 1f, 0);
 
+
     private void Awake()
     {
         cameraArmTransform = transform;
@@ -19,5 +20,9 @@ public class LobbyCameraRatate : MonoBehaviourPun
     private void Update()
     {
         cameraArmTransform.Rotate(rotateSpeed * Time.deltaTime * 50);
+    }
+    private void OnEnable()
+    {
+        cameraArmTransform.rotation = Quaternion.identity;
     }
 }
