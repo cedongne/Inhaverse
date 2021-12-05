@@ -154,7 +154,6 @@ public class UIManager : MonoBehaviour
         playerSchoolId.text = _playerSchoolId;
         if(playerController != null)
             playerController.name = _playerName;
-        
     }
 #region HUD Icons
     public void CamOnOffBtn()

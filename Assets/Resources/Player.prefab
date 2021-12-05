@@ -1278,6 +1278,7 @@ MonoBehaviour:
   playerTransform: {fileID: 4254862202448794908}
   cameraArm: {fileID: 0}
   cameraArmTransform: {fileID: 0}
+  cameraController: {fileID: 0}
   playerRigid: {fileID: 4259580593255142575}
   interactionUI: {fileID: 0}
   playerUIObjects: {fileID: 8165507261125030204}
@@ -1294,6 +1295,7 @@ MonoBehaviour:
   isVoiceDown: 0
   isInfoWindowDown: 0
   isOptionWindowDown: 0
+  isChangeCameraModeDown: 0
   currentTouch: {fileID: 5030059289416126775}
   playerList: []
 --- !u!114 &3002047870756200745

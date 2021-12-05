@@ -10649,8 +10649,8 @@ MonoBehaviour:
   classStudentListWindow: {fileID: 218880763}
   openFileWindow: {fileID: 1866391726}
   dontHaveAuthority: {fileID: 1600421342}
-  Authoritybackground: {fileID: 0}
-  Authoritytext: {fileID: 0}
+  Authoritybackground: {fileID: 1235363594}
+  Authoritytext: {fileID: 1570695187}
   playerName: {fileID: 104412335}
   playerSchoolId: {fileID: 1035060079}
   classListContent: {fileID: 685751563}
@@ -27315,30 +27315,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 295047769}
-        m_TargetAssemblyTypeName: VoiceManager, Assembly-CSharp
-        m_MethodName: EnterLobbyChannel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 295047770}
-        m_TargetAssemblyTypeName: ChatManager, Assembly-CSharp
-        m_MethodName: ExitConference
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 945244072}
         m_TargetAssemblyTypeName: ConferenceManager, Assembly-CSharp
         m_MethodName: ExitConference
@@ -31113,7 +31089,7 @@ MonoBehaviour:
   mainCameraTransform: {fileID: 3650513701422348233}
   defaultObjectTransform: {fileID: 1970636842}
   TPSCameraOffset: {x: 0, y: 1, z: -3}
-  FPSCameraOffset: {x: 0, y: -0.1, z: -0.4}
+  FPSCameraOffset: {x: 0, y: 0.5, z: -0.4}
   isTPS: 0
   isChangeCameraModeDown: 0
 --- !u!4 &3650513701645454889
