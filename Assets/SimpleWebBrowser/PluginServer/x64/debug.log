@@ -5,3 +5,5 @@
 [1205/153035.051:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
 [1205/153109.528:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
 [1205/171215.440:ERROR:browser_host_impl.cc(1556)] Invalid URL passed to CefBrowserHostImpl::LoadURL: 
+[1205/192835.751:ERROR:browser_host_impl.cc(1556)] Invalid URL passed to CefBrowserHostImpl::LoadURL: 
+[1205/193500.067:ERROR:browser_host_impl.cc(1556)] Invalid URL passed to CefBrowserHostImpl::LoadURL: 

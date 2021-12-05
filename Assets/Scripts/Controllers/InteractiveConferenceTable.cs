@@ -10,12 +10,20 @@ public class InteractiveConferenceTable : InteractiveObject
 
     private byte conferenceNum;
 
+    public SimpleWebBrowser.WebBrowser webBrowser;
+
+    private void Start()
+    {
+        webBrowser = GameObject.Find("InworldBrowser").GetComponent<SimpleWebBrowser.WebBrowser>();
+    }
+
     public override void Interaction()
     {
         ChatControl();
         VoiceControl();
         UIManager.Instance.ShowUI(Define.UI.CONFERENCE);
         ChatManager.Instance.SetConferenceChatUI();
+        webBrowser.OnNavigate();
 
         Cursor.lockState = CursorLockMode.None;
     }

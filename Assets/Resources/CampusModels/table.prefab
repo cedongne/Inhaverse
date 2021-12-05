@@ -130,3 +130,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chairs: 
+  webBrowser: {fileID: 0}
