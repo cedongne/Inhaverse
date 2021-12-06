@@ -23,20 +23,6 @@ namespace OpenCvSharp
         public RawImage conferenceDisplay;
         public RawImage nowDisplay;
 
-        //private RTCPeerConnection _pc1, _pc2;
-        //private List<RTCRtpSender> pc1Senders;
-        //private MediaStream videoStream, receiveStream;
-        //private DelegateOnIceConnectionChange pc1OnIceConnectionChange;
-        //private DelegateOnIceConnectionChange pc2OnIceConnectionChange;
-        //private DelegateOnIceCandidate pc1OnIceCandidate;
-        //private DelegateOnIceCandidate pc2OnIceCandidate;
-        //private DelegateOnTrack pc2Ontrack;
-        //private DelegateOnNegotiationNeeded pc1OnNegotiationNeeded;
-        //private bool videoUpdateStarted;
-
-        //private const int width = 1280;
-        //private const int height = 720;
-
         Mat image = new Mat();
         Texture2D destTexture;
 
@@ -140,20 +126,21 @@ namespace OpenCvSharp
         }
         void ShowWebCam()
         {
+            Debug.Log(detect_flag);
             if (nowDisplay.gameObject.activeSelf)
             {
                 camTexture.Play();
                 image = Unity.TextureToMat(camTexture);
                 destTexture = Unity.MatToTexture(image);
-                /*
-                if (detect_flag)
-                {
-                    FaceDetect();
-                }
-                else
-                {*/
-                    destTexture = Unity.MatToTexture(image);
-             //   }
+
+                //FaceDetect();
+                //if (detect_flag)
+                //{
+                //}
+                //else
+                //{
+                //    destTexture = Unity.MatToTexture(image);
+                //}
 
                 nowDisplay.texture = destTexture;
             }
@@ -170,34 +157,6 @@ namespace OpenCvSharp
                 nowDisplay.texture = destTexture;
             }
         }
-
-        byte[] receivedImage;
-        string receivedImageStr;
-        /*
-        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-        {
-            if (stream.IsWriting)
-            {
-                Debug.Log("Send : " + PlayfabManager.Instance.playerName);
-                if (nowDisplay.gameObject.activeSelf)
-                {
-                    //                stream.SendNext(destTexture.EncodeToPNG());
-                    //                Debug.Log(destTexture.EncodeToPNG().Length);
-                    stream.SendNext(Convert.ToBase64String(destTexture.EncodeToPNG()));
-                    Debug.Log(Convert.ToBase64String(destTexture.EncodeToPNG()));
-                }
-            }
-            else
-            {
-                receivedImageStr = (string)stream.ReceiveNext();
-                Debug.Log(receivedImageStr);
-                destTexture.LoadImage(Convert.FromBase64String(receivedImageStr));
- //               receivedImage = (byte[])stream.ReceiveNext();
- //               destTexture.LoadRawTextureData(receivedImage);
-                Debug.Log("RE");
-            }
-        }
-        */
 
         private void OnDestroy()
         {

@@ -37,7 +37,6 @@ namespace SimpleWebBrowser
         #endregion
 
 
-
         [Header("UI settings")]
         [SerializeField]
         public BrowserUI mainUIPanel;
@@ -86,9 +85,6 @@ namespace SimpleWebBrowser
 
 
         private Material _mainMaterial;
-
-
-
 
 
         private BrowserEngine _mainEngine;
