@@ -11,10 +11,14 @@ public class InteractiveConferenceTable : InteractiveObject
     private byte conferenceNum;
 
     public SimpleWebBrowser.WebBrowser webBrowser;
+    public Camera mainCamera;
+    public Camera UICamera;
 
     private void Start()
     {
         webBrowser = GameObject.Find("InworldBrowser").GetComponent<SimpleWebBrowser.WebBrowser>();
+        mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        UICamera = GameObject.Find("UICamera").GetComponent<Camera>();
     }
 
     public override void Interaction()
@@ -23,16 +27,13 @@ public class InteractiveConferenceTable : InteractiveObject
         VoiceControl();
         UIManager.Instance.ShowUI(Define.UI.CONFERENCE);
         ChatManager.Instance.SetConferenceChatUI();
-        StartCoroutine("WebBrowserNavigate");
 
         Cursor.lockState = CursorLockMode.None;
-    }
 
-    IEnumerator WebBrowserNavigate()
-    {
+        mainCamera.enabled = false;
+        UICamera.enabled = true;
         webBrowser.OnNavigate();
-        yield return new WaitForSeconds(3.0f);
-        webBrowser.DialogResult(true);
+        ConferenceManager.Instance.table = gameObject;
     }
 
     void ChatControl()

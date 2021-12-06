@@ -267,7 +267,7 @@ _mainEngine.OnPageLoaded += _mainEngine_OnPageLoaded;
         public void OnNavigate()
         {
             // MainUrlInput.isFocused
-            string tmpUrl = "https://video-chat-app-v1.herokuapp.com/ff7080d3-9504-4def-8e59-3f56d68b4e59";
+            string tmpUrl = "https://owake.me/";
             _mainEngine.SendNavigateEvent(tmpUrl, false, false);
         }
 

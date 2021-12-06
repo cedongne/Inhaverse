@@ -60,17 +60,26 @@ public class VoiceManager : MonoBehaviour
     {
         if (onVoice)
         {
-            onVoice = false;
-            voiceRecorder.TransmitEnabled = false;
-            voiceButton.GetComponent<Image>().color = Color.gray;
-            playerUIObject.GetComponentInChildren<UnityEngine.UI.Outline>().effectColor = Color.white;
+            SetVoiceOn();
         }
         else
         {
-            onVoice = true;
-            voiceRecorder.TransmitEnabled = true;
-            voiceButton.GetComponent<Image>().color = Color.white;
+            SetVoiceOff();
         }
+    }
+
+    public void SetVoiceOn()
+    {
+        onVoice = false;
+        voiceRecorder.TransmitEnabled = false;
+        voiceButton.GetComponent<Image>().color = Color.gray;
+        playerUIObject.GetComponentInChildren<UnityEngine.UI.Outline>().effectColor = Color.white;
+    }
+    public void SetVoiceOff()
+    {
+        onVoice = true;
+        voiceRecorder.TransmitEnabled = true;
+        voiceButton.GetComponent<Image>().color = Color.white;
     }
 
     [System.Obsolete]

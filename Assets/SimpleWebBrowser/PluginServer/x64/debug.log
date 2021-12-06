@@ -191,3 +191,413 @@
 [1205/214342.034:ERROR:acm_receiver.cc(51)] AcmReceiver::SetExtraDelay 1726
 [1205/214342.034:ERROR:rtp_streams_synchronizer.cc(166)] Error setting voice delay.
 [1205/214342.974:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/214448.788:WARNING:webrtcvoiceengine.cc(2023)] Unknown codec red/48000/2 (63)
+[1205/214448.788:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time, id: 2}
+[1205/214448.788:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 4}
+[1205/214448.788:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id, id: 5}
+[1205/214448.788:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id, id: 6}
+[1205/214448.788:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-content-type, id: 11}
+[1205/214448.788:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-timing, id: 7}
+[1205/214448.788:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/color-space, id: 8}
+[1205/214448.788:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 4}
+[1205/214448.788:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id, id: 5}
+[1205/214448.788:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id, id: 6}
+[1205/214448.798:WARNING:stunport.cc(385)] Jingle:Port[00000233DAA13A40:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1205/214448.883:WARNING:stunport.cc(385)] Jingle:Port[00000233DAA13A40:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1205/214448.883:WARNING:turnport.cc(701)] Jingle:Port[00000233E0CA3FF0:0:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1205/214448.907:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000233DAAB78C0:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1205/214448.907:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000233DAAB78C0:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1205/214448.907:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000233DAAB78C0:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1205/214448.907:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000233DA93F560:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1205/214448.907:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000233DA93F560:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1205/214448.907:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000233DA93F560:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1205/214458.405:ERROR:stunport.cc(89)] Binding request timed out from 0.0.0.x:59035 (any)
+[1205/214458.422:WARNING:turnport.cc(1168)] Jingle:Port[00000233E0CA3A40:0:1:0:relay:Net[any:0.0.0.x/0:Unknown]]: TURN allocate request 797744613359503062453551 timout
+[1205/214503.580:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/232729.322:WARNING:webrtcvoiceengine.cc(2023)] Unknown codec red/48000/2 (63)
+[1205/232729.322:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time, id: 2}
+[1205/232729.322:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 4}
+[1205/232729.322:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id, id: 5}
+[1205/232729.322:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id, id: 6}
+[1205/232729.322:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-content-type, id: 11}
+[1205/232729.322:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-timing, id: 7}
+[1205/232729.322:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/color-space, id: 8}
+[1205/232729.322:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 4}
+[1205/232729.322:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id, id: 5}
+[1205/232729.322:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id, id: 6}
+[1205/232729.339:WARNING:stunport.cc(385)] Jingle:Port[000001FF9F310AD0:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1205/232729.415:WARNING:stunport.cc(385)] Jingle:Port[000001FF9F310AD0:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1205/232729.415:WARNING:turnport.cc(701)] Jingle:Port[000001FF9F7594C0:0:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1205/232729.433:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001FF9F72F7C0:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1205/232729.433:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001FF9F72F7C0:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1205/232729.433:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001FF9F72F7C0:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1205/232729.433:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001FF9F66EA40:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1205/232729.433:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001FF9F66EA40:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1205/232729.433:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001FF9F66EA40:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1205/232738.931:ERROR:stunport.cc(89)] Binding request timed out from 0.0.0.x:59589 (any)
+[1205/232738.931:WARNING:turnport.cc(1168)] Jingle:Port[000001FF9F758700:0:1:0:relay:Net[any:0.0.0.x/0:Unknown]]: TURN allocate request 6a6b4537394a754e55686a50 timout
+[1205/232740.553:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/232952.136:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/233015.417:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/233057.344:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/233124.392:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/233144.085:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/233200.738:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/233620.473:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/233744.655:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/233800.196:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/234143.893:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/234200.932:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/234220.179:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/234237.927:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/234255.959:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/234323.246:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=1
+[1205/234323.267:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=2
+[1205/234323.297:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=3
+[1205/234323.300:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/234436.448:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/234538.448:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/234608.461:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/234734.216:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/234853.482:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/235011.265:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/003102.568:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/003454.101:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/010025.964:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/010044.705:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/010501.211:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/010533.011:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/011301.652:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/011425.013:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/012443.647:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/012518.521:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/012634.565:WARNING:audio_send_stream.cc(303)] SetSendCodec() failed: 8005
+[1206/012634.565:ERROR:audio_send_stream.cc(90)] Failed to set up send codec state.
+[1206/012634.637:WARNING:stunport.cc(385)] Jingle:Port[000001A4B61323B0:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/012634.637:WARNING:stunport.cc(385)] Jingle:Port[000001A4B6130130:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/012634.669:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001A4B640AA90:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1206/012634.670:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001A4B63F2DF0:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1206/012634.670:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001A4B63A5250:video:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1206/012634.670:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001A4B63A5250:video:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1206/012634.670:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001A4B63A5250:video:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1206/012634.670:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001A4B64CCB90:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1206/012634.670:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001A4B64CCB90:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1206/012634.670:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001A4B64CCB90:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1206/012634.738:WARNING:stunport.cc(385)] Jingle:Port[000001A4B61323B0:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/012634.739:WARNING:stunport.cc(385)] Jingle:Port[000001A4B6130130:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/012634.739:WARNING:turnport.cc(701)] Jingle:Port[000001A4B643B910:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/012634.739:WARNING:turnport.cc(701)] Jingle:Port[000001A4B643E4A0:video:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/012644.281:ERROR:stunport.cc(89)] Binding request timed out from 0.0.0.x:61388 (any)
+[1206/012644.281:ERROR:stunport.cc(89)] Binding request timed out from 0.0.0.x:61390 (any)
+[1206/012644.281:WARNING:turnport.cc(1168)] Jingle:Port[000001A4B643AB50:audio:1:0:relay:Net[any:0.0.0.x/0:Unknown]]: TURN allocate request 492f725675336f576a5a4858 timout
+[1206/012644.281:WARNING:turnport.cc(1168)] Jingle:Port[000001A4B643BEC0:video:1:0:relay:Net[any:0.0.0.x/0:Unknown]]: TURN allocate request 6a473479695548426f774650 timout
+[1206/012645.735:WARNING:audio_send_stream.cc(303)] SetSendCodec() failed: 8005
+[1206/012645.735:ERROR:audio_send_stream.cc(90)] Failed to set up send codec state.
+[1206/012645.738:WARNING:stunport.cc(385)] Jingle:Port[000001A4B6132C50:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/012645.738:WARNING:stunport.cc(385)] Jingle:Port[000001A4B6132C50:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/012645.738:WARNING:stunport.cc(385)] Jingle:Port[000001A4B6130E20:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/012645.738:WARNING:stunport.cc(385)] Jingle:Port[000001A4B6130E20:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/012645.798:WARNING:turnport.cc(701)] Jingle:Port[000001A4B6443240:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/012645.798:WARNING:turnport.cc(701)] Jingle:Port[000001A4B645F6F0:video:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/012645.859:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001A4B62CE170:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1206/012645.859:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001A4B64610C0:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1206/012645.859:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001A4B6461450:video:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1206/012645.859:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001A4B6461450:video:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1206/012645.859:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001A4B6461450:video:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1206/012645.859:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001A4B6522650:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1206/012645.859:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001A4B6522650:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1206/012645.859:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001A4B6522650:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1206/012655.262:ERROR:stunport.cc(89)] Binding request timed out from 0.0.0.x:51061 (any)
+[1206/012655.262:ERROR:stunport.cc(89)] Binding request timed out from 0.0.0.x:51063 (any)
+[1206/012655.346:WARNING:turnport.cc(1168)] Jingle:Port[000001A4B642AC00:audio:1:0:relay:Net[any:0.0.0.x/0:Unknown]]: TURN allocate request 37664e576c77747a4e396958 timout
+[1206/012655.346:WARNING:turnport.cc(1168)] Jingle:Port[000001A4B645E930:video:1:0:relay:Net[any:0.0.0.x/0:Unknown]]: TURN allocate request 6535615749627a4f352b5479 timout
+[1206/012708.199:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/012823.179:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/012855.103:WARNING:webrtcvoiceengine.cc(2023)] Unknown codec red/48000/2 (63)
+[1206/012855.103:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time, id: 2}
+[1206/012855.103:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 4}
+[1206/012855.103:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id, id: 5}
+[1206/012855.103:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id, id: 6}
+[1206/012855.104:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-content-type, id: 11}
+[1206/012855.104:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-timing, id: 7}
+[1206/012855.104:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/color-space, id: 8}
+[1206/012855.104:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 4}
+[1206/012855.104:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id, id: 5}
+[1206/012855.104:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id, id: 6}
+[1206/012855.154:WARNING:stunport.cc(385)] Jingle:Port[000001303180EFB0:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/012855.154:WARNING:stunport.cc(385)] Jingle:Port[000001303180EFB0:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/012855.215:WARNING:basicportallocator.cc(730)] Discarding candidate because port is already done gathering.
+[1206/012904.668:ERROR:stunport.cc(89)] Binding request timed out from 0.0.0.x:65512 (any)
+[1206/012927.559:WARNING:audio_send_stream.cc(303)] SetSendCodec() failed: 8005
+[1206/012927.559:ERROR:audio_send_stream.cc(90)] Failed to set up send codec state.
+[1206/012927.562:WARNING:stunport.cc(385)] Jingle:Port[000001303180DE70:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/012927.562:WARNING:stunport.cc(385)] Jingle:Port[000001303180DE70:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/012927.562:WARNING:stunport.cc(385)] Jingle:Port[000001303180E2C0:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/012927.562:WARNING:stunport.cc(385)] Jingle:Port[000001303180E2C0:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/012927.610:WARNING:turnport.cc(701)] Jingle:Port[000001303651F180:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/012927.610:WARNING:turnport.cc(701)] Jingle:Port[000001303687F120:video:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/012927.661:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000013036290090:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1206/012927.661:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000013036290420:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1206/012927.661:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000130362907B0:video:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1206/012927.661:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000130362907B0:video:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1206/012927.661:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000130362907B0:video:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1206/012927.661:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001303628FD00:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1206/012927.661:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001303628FD00:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1206/012927.661:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001303628FD00:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1206/012927.998:WARNING:p2ptransportchannel.cc(966)] SetOption(1, 65536) failed: 0
+[1206/012927.998:WARNING:p2ptransportchannel.cc(966)] SetOption(1, 65536) failed: 0
+[1206/012927.998:WARNING:p2ptransportchannel.cc(966)] SetOption(2, 65536) failed: 0
+[1206/012927.998:WARNING:p2ptransportchannel.cc(966)] SetOption(2, 65536) failed: 0
+[1206/012937.076:ERROR:stunport.cc(89)] Binding request timed out from 0.0.0.x:54664 (any)
+[1206/012937.115:WARNING:turnport.cc(1168)] Jingle:Port[0000013036644EE0:audio:1:0:relay:Net[any:0.0.0.x/0:Unknown]]: TURN allocate request 3146426c78366a5741436634 timout
+[1206/013005.584:WARNING:rtp_rtcp_impl.cc(174)] webrtc::ModuleRtpRtcpImpl::Process: Timeout: No RTCP RR received.
+[1206/013005.589:WARNING:rtp_rtcp_impl.cc(176)] webrtc::ModuleRtpRtcpImpl::Process: Timeout: No increase in RTCP RR extended highest sequence number.
+[1206/013010.157:WARNING:rtp_rtcp_impl.cc(356)] Failed to send RTCP BYE
+[1206/013011.872:ERROR:rtpreceiver.cc(61)] AudioRtpReceiver::OnSetVolume: No audio channel exists.
+[1206/013011.872:WARNING:rtpsender.cc(231)] ClearAudioSend: No audio channel exists.
+[1206/013011.872:WARNING:rtpsender.cc(400)] SetVideoSend: No video channel exists.
+[1206/013011.876:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/013011.879:WARNING:rtp_rtcp_impl.cc(356)] Failed to send RTCP BYE
+[1206/013011.881:WARNING:rtpsender.cc(231)] ClearAudioSend: No audio channel exists.
+[1206/013011.881:WARNING:rtpsender.cc(400)] SetVideoSend: No video channel exists.
+[1206/013016.312:WARNING:webrtcvoiceengine.cc(2023)] Unknown codec red/48000/2 (63)
+[1206/013016.312:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time, id: 2}
+[1206/013016.312:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 4}
+[1206/013016.312:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id, id: 5}
+[1206/013016.312:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id, id: 6}
+[1206/013016.313:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-content-type, id: 11}
+[1206/013016.313:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-timing, id: 7}
+[1206/013016.313:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/color-space, id: 8}
+[1206/013016.313:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 4}
+[1206/013016.313:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id, id: 5}
+[1206/013016.313:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id, id: 6}
+[1206/013016.321:WARNING:stunport.cc(385)] Jingle:Port[0000013037377340:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/013016.420:WARNING:stunport.cc(385)] Jingle:Port[0000013037377340:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/013016.420:WARNING:turnport.cc(701)] Jingle:Port[0000013031BBD6C0:0:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/013016.439:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000013037CE4690:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1206/013016.439:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000013037CE4690:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1206/013016.439:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000013037CE4690:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1206/013016.439:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000013037CE4A20:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1206/013016.439:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000013037CE4A20:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1206/013016.439:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000013037CE4A20:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1206/013025.952:ERROR:stunport.cc(89)] Binding request timed out from 0.0.0.x:60764 (any)
+[1206/013025.952:WARNING:turnport.cc(1168)] Jingle:Port[0000013036168DE0:0:1:0:relay:Net[any:0.0.0.x/0:Unknown]]: TURN allocate request 6c757a665a4b6b324c734e61 timout
+[1206/013201.258:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/014009.686:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=1
+[1206/014009.706:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=2
+[1206/014009.726:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=3
+[1206/014009.975:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/015917.204:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/021526.925:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=1
+[1206/021526.945:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=2
+[1206/021526.965:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=3
+[1206/021526.985:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=4
+[1206/021527.223:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/205248.456:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/225240.788:WARNING:audio_send_stream.cc(303)] SetSendCodec() failed: 8005
+[1206/225240.788:ERROR:audio_send_stream.cc(90)] Failed to set up send codec state.
+[1206/225240.810:WARNING:stunport.cc(385)] Jingle:Port[000002655F7410D0:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/225240.810:WARNING:stunport.cc(385)] Jingle:Port[000002655F740C80:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/225240.864:WARNING:webrtcvideoengine2.cc(1731)] RTX SSRCs configured but there's no configured RTX payload type. Ignoring.
+[1206/225240.886:WARNING:turnport.cc(701)] Jingle:Port[000002656721C640:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/225240.886:WARNING:turnport.cc(701)] Jingle:Port[000002656721CBF0:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/225240.898:WARNING:webrtcsession.cc(1683)] Candidate has an unknown component: Cand[:1:2:udp:2103266323:129.227.57.152:4715:local::0:vZaF:l39KYhCKUV93VwDkADIWrUdQ:0:0:0] for content: audio
+[1206/225240.913:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000002655FB2DD20:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1206/225240.913:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000002655FB2DD20:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1206/225240.913:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000002655FB2DD20:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 34) failed: 0
+[1206/225240.913:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000002655F6DB470:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1206/225240.913:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000002655F6DB470:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1206/225240.913:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000002655F6DB470:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 34) failed: 0
+[1206/225240.925:WARNING:turnport.cc(397)] Socket is bound to a different address:192.168.75.135, rather then the local port:0.0.0.0. Still allowing it since it's any address, possibly caused by multiple_routes being disabled.
+[1206/225240.977:WARNING:basicportallocator.cc(730)] Discarding candidate because port is already done gathering.
+[1206/225241.006:WARNING:basicportallocator.cc(730)] Discarding candidate because port is already done gathering.
+[1206/225241.038:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1206/225255.927:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/225346.320:WARNING:audio_send_stream.cc(303)] SetSendCodec() failed: 8005
+[1206/225346.320:ERROR:audio_send_stream.cc(90)] Failed to set up send codec state.
+[1206/225346.326:WARNING:stunport.cc(385)] Jingle:Port[00000141AECF60C0:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/225346.326:WARNING:stunport.cc(385)] Jingle:Port[00000141AECF6510:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/225346.370:WARNING:webrtcvideoengine2.cc(1731)] RTX SSRCs configured but there's no configured RTX payload type. Ignoring.
+[1206/225346.374:WARNING:turnport.cc(701)] Jingle:Port[00000141AF1FE010:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/225346.374:WARNING:turnport.cc(701)] Jingle:Port[00000141B76A7DA0:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/225346.374:WARNING:webrtcsession.cc(1683)] Candidate has an unknown component: Cand[:1:2:udp:2103266323:129.227.156.24:4706:local::0:fRBA:/C0Im5ryRLW6zqCnR+DYG25H:0:0:0] for content: audio
+[1206/225346.412:WARNING:turnport.cc(397)] Socket is bound to a different address:192.168.75.135, rather then the local port:0.0.0.0. Still allowing it since it's any address, possibly caused by multiple_routes being disabled.
+[1206/225346.455:WARNING:basicportallocator.cc(730)] Discarding candidate because port is already done gathering.
+[1206/225346.493:WARNING:basicportallocator.cc(730)] Discarding candidate because port is already done gathering.
+[1206/225346.630:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1206/225356.278:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1206/225356.278:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1206/225356.284:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/225356.284:WARNING:rtp_rtcp_impl.cc(356)] Failed to send RTCP BYE
+[1206/225401.141:WARNING:audio_send_stream.cc(303)] SetSendCodec() failed: 8005
+[1206/225401.141:ERROR:audio_send_stream.cc(90)] Failed to set up send codec state.
+[1206/225401.144:WARNING:stunport.cc(385)] Jingle:Port[00000141AECF4B30:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/225401.144:WARNING:stunport.cc(385)] Jingle:Port[00000141AECF7200:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/225401.150:WARNING:webrtcvideoengine2.cc(1731)] RTX SSRCs configured but there's no configured RTX payload type. Ignoring.
+[1206/225401.153:WARNING:webrtcsession.cc(1683)] Candidate has an unknown component: Cand[:1:2:udp:2103266323:45.43.42.69:4704:local::0:nooY:M0jeYTLYlxU2AfCFgiFmk6DT:0:0:0] for content: audio
+[1206/225401.449:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1206/225402.891:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1206/225402.891:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1206/225402.892:WARNING:rtp_rtcp_impl.cc(356)] Failed to send RTCP BYE
+[1206/225402.893:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/225427.286:WARNING:audio_send_stream.cc(303)] SetSendCodec() failed: 8005
+[1206/225427.287:ERROR:audio_send_stream.cc(90)] Failed to set up send codec state.
+[1206/225427.292:WARNING:stunport.cc(385)] Jingle:Port[000001637487ACE0:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/225427.293:WARNING:stunport.cc(385)] Jingle:Port[000001637487D800:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/225427.337:WARNING:turnport.cc(701)] Jingle:Port[00000163749C6050:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/225427.337:WARNING:turnport.cc(701)] Jingle:Port[00000163749C8E30:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/225427.337:WARNING:turnport.cc(701)] Jingle:Port[00000163749CB4B0:video:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/225427.337:WARNING:turnport.cc(701)] Jingle:Port[00000163749CCE70:video:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/225427.358:WARNING:webrtcvideoengine2.cc(1731)] RTX SSRCs configured but there's no configured RTX payload type. Ignoring.
+[1206/225427.362:WARNING:webrtcsession.cc(1683)] Candidate has an unknown component: Cand[:1:2:udp:2103266323:103.65.41.140:4701:local::0:6ouC:wqdO7pQQ/RH2qbq87QMcR84C:0:0:0] for content: audio
+[1206/225427.387:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000016374809100:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1206/225427.387:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000016374809100:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1206/225427.387:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000016374809100:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 34) failed: 0
+[1206/225427.387:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001637480F130:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1206/225427.387:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001637480F130:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1206/225427.387:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001637480F130:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 34) failed: 0
+[1206/225427.393:WARNING:turnport.cc(397)] Socket is bound to a different address:192.168.75.135, rather then the local port:0.0.0.0. Still allowing it since it's any address, possibly caused by multiple_routes being disabled.
+[1206/225427.453:WARNING:basicportallocator.cc(730)] Discarding candidate because port is already done gathering.
+[1206/225427.503:WARNING:basicportallocator.cc(730)] Discarding candidate because port is already done gathering.
+[1206/225427.600:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1206/225442.798:WARNING:spdy_session.cc(2276)] Received HEADERS for invalid stream 15
+[1206/225443.386:WARNING:spdy_session.cc(2276)] Received HEADERS for invalid stream 23
+[1206/225448.064:WARNING:spdy_session.cc(2276)] Received HEADERS for invalid stream 35
+[1206/225448.295:WARNING:spdy_session.cc(2276)] Received HEADERS for invalid stream 39
+[1206/225448.369:WARNING:spdy_session.cc(2276)] Received HEADERS for invalid stream 43
+[1206/225448.522:WARNING:spdy_session.cc(2276)] Received HEADERS for invalid stream 25
+[1206/225451.574:WARNING:spdy_session.cc(2276)] Received HEADERS for invalid stream 29
+[1206/225502.397:WARNING:rtp_rtcp_impl.cc(356)] Failed to send RTCP BYE
+[1206/225523.179:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/231051.278:WARNING:audio_send_stream.cc(303)] SetSendCodec() failed: 8005
+[1206/231051.278:ERROR:audio_send_stream.cc(90)] Failed to set up send codec state.
+[1206/231051.284:WARNING:stunport.cc(385)] Jingle:Port[00000177ED887FE0:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/231051.284:WARNING:stunport.cc(385)] Jingle:Port[00000177ED885910:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/231051.328:WARNING:turnport.cc(701)] Jingle:Port[00000177F603C980:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/231051.328:WARNING:turnport.cc(701)] Jingle:Port[00000177F603E750:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/231051.328:WARNING:turnport.cc(701)] Jingle:Port[00000177F6041DF0:video:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/231051.328:WARNING:turnport.cc(701)] Jingle:Port[00000177F60423A0:video:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/231051.344:WARNING:webrtcvideoengine2.cc(1731)] RTX SSRCs configured but there's no configured RTX payload type. Ignoring.
+[1206/231051.347:WARNING:webrtcsession.cc(1683)] Candidate has an unknown component: Cand[:1:2:udp:2103266323:103.65.41.140:4709:local::0:GRAE:Mzal7viN5EzSlLLQ3U6ENACa:0:0:0] for content: audio
+[1206/231051.378:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000177EDAC40E0:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1206/231051.378:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000177EDAC40E0:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1206/231051.378:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000177EDAC40E0:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 34) failed: 0
+[1206/231051.378:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000177ED6F15D0:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1206/231051.378:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000177ED6F15D0:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1206/231051.378:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000177ED6F15D0:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 34) failed: 0
+[1206/231051.385:WARNING:turnport.cc(397)] Socket is bound to a different address:192.168.75.135, rather then the local port:0.0.0.0. Still allowing it since it's any address, possibly caused by multiple_routes being disabled.
+[1206/231051.445:WARNING:basicportallocator.cc(730)] Discarding candidate because port is already done gathering.
+[1206/231051.498:WARNING:basicportallocator.cc(730)] Discarding candidate because port is already done gathering.
+[1206/231051.607:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1206/231105.823:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/231110.178:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1206/231110.178:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1206/231110.183:WARNING:rtp_rtcp_impl.cc(356)] Failed to send RTCP BYE
+[1206/231110.183:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/231111.895:WARNING:audio_send_stream.cc(303)] SetSendCodec() failed: 8005
+[1206/231111.895:ERROR:audio_send_stream.cc(90)] Failed to set up send codec state.
+[1206/231111.898:WARNING:stunport.cc(385)] Jingle:Port[00000177F6817BB0:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/231111.899:WARNING:stunport.cc(385)] Jingle:Port[00000177F6814C40:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/231111.941:WARNING:webrtcvideoengine2.cc(1731)] RTX SSRCs configured but there's no configured RTX payload type. Ignoring.
+[1206/231111.944:WARNING:webrtcsession.cc(1683)] Candidate has an unknown component: Cand[:1:2:udp:2103266323:129.227.156.30:4714:local::0:WeXV:eYnviyTraR0YT0smhk+w9Hbj:0:0:0] for content: audio
+[1206/231111.946:WARNING:turnport.cc(701)] Jingle:Port[00000177F5398D60:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/231111.946:WARNING:turnport.cc(701)] Jingle:Port[00000177ED703E10:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/231111.985:WARNING:turnport.cc(397)] Socket is bound to a different address:192.168.75.135, rather then the local port:0.0.0.0. Still allowing it since it's any address, possibly caused by multiple_routes being disabled.
+[1206/231112.028:WARNING:basicportallocator.cc(730)] Discarding candidate because port is already done gathering.
+[1206/231112.061:WARNING:basicportallocator.cc(730)] Discarding candidate because port is already done gathering.
+[1206/231112.217:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1206/231116.130:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1206/231116.130:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1206/231116.132:WARNING:rtp_rtcp_impl.cc(356)] Failed to send RTCP BYE
+[1206/231116.133:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/231146.327:WARNING:audio_send_stream.cc(303)] SetSendCodec() failed: 8005
+[1206/231146.327:ERROR:audio_send_stream.cc(90)] Failed to set up send codec state.
+[1206/231146.329:WARNING:stunport.cc(385)] Jingle:Port[00000177F6814C40:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/231146.330:WARNING:stunport.cc(385)] Jingle:Port[00000177F6817760:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/231146.372:WARNING:webrtcvideoengine2.cc(1731)] RTX SSRCs configured but there's no configured RTX payload type. Ignoring.
+[1206/231146.376:WARNING:webrtcsession.cc(1683)] Candidate has an unknown component: Cand[:1:2:udp:2103266323:129.227.57.151:4704:local::0:hwGU:knXMbgGYRgVtFFvYmEQGE88x:0:0:0] for content: audio
+[1206/231146.378:WARNING:turnport.cc(701)] Jingle:Port[00000177EDA0BA60:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/231146.378:WARNING:turnport.cc(701)] Jingle:Port[00000177F54B7020:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/231146.417:WARNING:turnport.cc(397)] Socket is bound to a different address:192.168.75.135, rather then the local port:0.0.0.0. Still allowing it since it's any address, possibly caused by multiple_routes being disabled.
+[1206/231146.462:WARNING:basicportallocator.cc(730)] Discarding candidate because port is already done gathering.
+[1206/231146.496:WARNING:basicportallocator.cc(730)] Discarding candidate because port is already done gathering.
+[1206/231146.649:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1206/231157.458:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/231344.096:WARNING:audio_send_stream.cc(303)] SetSendCodec() failed: 8005
+[1206/231344.096:ERROR:audio_send_stream.cc(90)] Failed to set up send codec state.
+[1206/231344.101:WARNING:stunport.cc(385)] Jingle:Port[00000130651BCD00:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/231344.101:WARNING:stunport.cc(385)] Jingle:Port[00000130651BC460:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/231344.148:WARNING:turnport.cc(701)] Jingle:Port[0000013065088DB0:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/231344.148:WARNING:turnport.cc(701)] Jingle:Port[0000013065089360:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/231344.148:WARNING:turnport.cc(701)] Jingle:Port[0000013065399520:video:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/231344.149:WARNING:turnport.cc(701)] Jingle:Port[0000013065399AD0:video:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/231344.162:WARNING:webrtcvideoengine2.cc(1731)] RTX SSRCs configured but there's no configured RTX payload type. Ignoring.
+[1206/231344.165:WARNING:webrtcsession.cc(1683)] Candidate has an unknown component: Cand[:1:2:udp:2103266323:103.65.41.143:4714:local::0:Rpe1:EVrvzYGpqyCzqrCty/7kYfMF:0:0:0] for content: audio
+[1206/231344.198:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001306CBE7A80:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1206/231344.198:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001306CBE7A80:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1206/231344.198:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001306CBE7A80:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 34) failed: 0
+[1206/231344.198:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001306CBE7360:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1206/231344.198:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001306CBE7360:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1206/231344.198:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001306CBE7360:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 34) failed: 0
+[1206/231344.206:WARNING:turnport.cc(397)] Socket is bound to a different address:192.168.75.135, rather then the local port:0.0.0.0. Still allowing it since it's any address, possibly caused by multiple_routes being disabled.
+[1206/231344.281:WARNING:basicportallocator.cc(730)] Discarding candidate because port is already done gathering.
+[1206/231344.318:WARNING:basicportallocator.cc(730)] Discarding candidate because port is already done gathering.
+[1206/231344.414:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1206/231405.404:WARNING:rtp_rtcp_impl.cc(356)] Failed to send RTCP BYE
+[1206/231405.419:WARNING:rtpsender.cc(400)] SetVideoSend: No video channel exists.
+[1206/231405.419:WARNING:rtpsender.cc(231)] ClearAudioSend: No audio channel exists.
+[1206/231405.426:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/231406.438:WARNING:audio_send_stream.cc(303)] SetSendCodec() failed: 8005
+[1206/231406.438:ERROR:audio_send_stream.cc(90)] Failed to set up send codec state.
+[1206/231406.441:WARNING:stunport.cc(385)] Jingle:Port[00000130651BD5A0:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/231406.441:WARNING:stunport.cc(385)] Jingle:Port[00000130651BD9F0:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/231406.489:WARNING:turnport.cc(701)] Jingle:Port[00000130650A9920:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/231406.489:WARNING:turnport.cc(701)] Jingle:Port[00000130651A2850:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/231406.489:WARNING:turnport.cc(701)] Jingle:Port[0000013065038750:video:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/231406.489:WARNING:turnport.cc(701)] Jingle:Port[000001306E34FB90:video:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/231406.499:WARNING:webrtcvideoengine2.cc(1731)] RTX SSRCs configured but there's no configured RTX payload type. Ignoring.
+[1206/231406.501:WARNING:webrtcsession.cc(1683)] Candidate has an unknown component: Cand[:1:2:udp:2103266323:129.227.57.153:4714:local::0:10Td:bMNeO4Dr9oFZy0421FBkemzL:0:0:0] for content: audio
+[1206/231406.528:WARNING:turnport.cc(397)] Socket is bound to a different address:192.168.75.135, rather then the local port:0.0.0.0. Still allowing it since it's any address, possibly caused by multiple_routes being disabled.
+[1206/231406.538:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001306CBE8C50:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1206/231406.538:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001306CBE8C50:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1206/231406.538:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001306CBE8C50:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 34) failed: 0
+[1206/231406.543:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001306CBE76F0:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1206/231406.543:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001306CBE76F0:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1206/231406.543:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001306CBE76F0:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 34) failed: 0
+[1206/231406.567:WARNING:basicportallocator.cc(730)] Discarding candidate because port is already done gathering.
+[1206/231406.607:WARNING:basicportallocator.cc(730)] Discarding candidate because port is already done gathering.
+[1206/231406.756:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1206/231410.554:WARNING:rtp_rtcp_impl.cc(356)] Failed to send RTCP BYE
+[1206/231410.571:WARNING:rtpsender.cc(400)] SetVideoSend: No video channel exists.
+[1206/231410.571:WARNING:rtpsender.cc(231)] ClearAudioSend: No audio channel exists.
+[1206/231410.578:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/231411.309:WARNING:audio_send_stream.cc(303)] SetSendCodec() failed: 8005
+[1206/231411.309:ERROR:audio_send_stream.cc(90)] Failed to set up send codec state.
+[1206/231411.313:WARNING:stunport.cc(385)] Jingle:Port[00000130651BDE40:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/231411.313:WARNING:stunport.cc(385)] Jingle:Port[000001306DC46DC0:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/231411.360:WARNING:turnport.cc(701)] Jingle:Port[00000130650A9920:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/231411.360:WARNING:turnport.cc(701)] Jingle:Port[00000130651A2850:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/231411.362:WARNING:webrtcvideoengine2.cc(1731)] RTX SSRCs configured but there's no configured RTX payload type. Ignoring.
+[1206/231411.364:WARNING:webrtcsession.cc(1683)] Candidate has an unknown component: Cand[:1:2:udp:2103266323:129.227.234.114:4704:local::0:2dln:XU/1Jgg15cvBux9rF6c3CDEs:0:0:0] for content: audio
+[1206/231411.395:WARNING:turnport.cc(397)] Socket is bound to a different address:192.168.75.135, rather then the local port:0.0.0.0. Still allowing it since it's any address, possibly caused by multiple_routes being disabled.
+[1206/231411.439:WARNING:basicportallocator.cc(730)] Discarding candidate because port is already done gathering.
+[1206/231411.464:WARNING:basicportallocator.cc(730)] Discarding candidate because port is already done gathering.
+[1206/231411.617:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1206/231450.530:WARNING:rtp_rtcp_impl.cc(356)] Failed to send RTCP BYE
+[1206/231450.793:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/231510.738:WARNING:audio_send_stream.cc(303)] SetSendCodec() failed: 8005
+[1206/231510.738:ERROR:audio_send_stream.cc(90)] Failed to set up send codec state.
+[1206/231510.745:WARNING:stunport.cc(385)] Jingle:Port[000001E5EA8B25C0:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/231510.745:WARNING:stunport.cc(385)] Jingle:Port[000001E5EA8B1D20:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/231510.785:WARNING:webrtcvideoengine2.cc(1731)] RTX SSRCs configured but there's no configured RTX payload type. Ignoring.
+[1206/231510.788:WARNING:webrtcsession.cc(1683)] Candidate has an unknown component: Cand[:1:2:udp:2103266323:129.227.234.114:4704:local::0:ggPk:v28tKvSjSBdPkjWg4MrlvdjM:0:0:0] for content: audio
+[1206/231510.790:WARNING:turnport.cc(701)] Jingle:Port[000001E5EBCF3960:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/231510.790:WARNING:turnport.cc(701)] Jingle:Port[000001E5EBCF4530:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/231510.826:WARNING:turnport.cc(397)] Socket is bound to a different address:192.168.75.135, rather then the local port:0.0.0.0. Still allowing it since it's any address, possibly caused by multiple_routes being disabled.
+[1206/231510.868:WARNING:basicportallocator.cc(730)] Discarding candidate because port is already done gathering.
+[1206/231510.896:WARNING:basicportallocator.cc(730)] Discarding candidate because port is already done gathering.
+[1206/231511.055:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1206/231512.825:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1206/231512.825:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1206/231512.830:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1206/231512.830:WARNING:rtp_rtcp_impl.cc(356)] Failed to send RTCP BYE

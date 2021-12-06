@@ -7,7 +7,7 @@ public class UICameraController : MonoBehaviour
     public GameObject targetObject;
     public Vector3 CameraPos;
     // Start is called before the first frame update
-    void Start()
+    void Update()
     {
 
         transform.position = targetObject.transform.position + CameraPos;

@@ -41,9 +41,12 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
     public string channelName;
 
     public List<GameObject> players;
+    public List<string> playerUrl;
     public List<RawImage> webCamImages;
     public Transform conferenceWorldTransform;
     public Vector3 conferenceWorldOffset;
+
+    public GameObject table;
 
     public void UpdateConferenceState()
     {
@@ -107,6 +110,9 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
         UIManager.Instance.ShowUI(Define.UI.HUD);
         ChatManager.Instance.ExitConference();
         VoiceManager.Instance.EnterLobbyChannel();
+        table.GetComponent<InteractiveConferenceTable>().mainCamera.enabled = true;
+        table.GetComponent<InteractiveConferenceTable>().UICamera.enabled = false;
+
     }
 
     [PunRPC]
