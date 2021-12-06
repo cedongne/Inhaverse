@@ -292,6 +292,21 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void ShowSubUI(Define.UI showingSubUi)
+    {
+        classReadyWindow.SetActive(false);
+
+        if (showingSubUi.Equals(Define.UI.CLASSREADY))
+        {
+            classReadyWindow.SetActive(true);
+        }
+    }
+
+    public void HideSubUI()
+    {
+        classReadyWindow.SetActive(false);
+    }
+
     public void OpenWindow(Define.UI showingWindow)
     {
         Cursor.lockState = CursorLockMode.None;

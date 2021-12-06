@@ -20,9 +20,9 @@ public class InteractiveInstructorTable : InteractiveObject
         {
             if (ClassProcessManager.Instance.classState == Define.CLASSSTATE.END)
             {
-                ClassProcessManager.Instance.StartClass();
+                ClassProcessManager.Instance.ReadyClass();
                 ClassProcessManager.Instance.SetProfessorView(professorViewObject);
-                UIManager.Instance.OpenWindow(Define.UI.CLASSSTUDENTLIST);
+//                UIManager.Instance.OpenWindow(Define.UI.CLASSSTUDENTLIST);
             }
             else
             {

@@ -14,7 +14,8 @@ public class Define
         OPENFILE,
         CLASSSTUDENTLIST,
         OPTION,
-        COMMAND
+        COMMAND,
+        CLASSREADY
     }
 
     public enum GROUPLISTUSING

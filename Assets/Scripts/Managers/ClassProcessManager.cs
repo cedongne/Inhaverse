@@ -52,7 +52,13 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
 
     public void ReadyClass()
     {
+        UIManager.Instance.ShowSubUI(Define.UI.CLASSREADY);
         PlayfabManager.Instance.GetLeaderBoard(class_name, PlayfabManager.Instance.playerName, "CountStudentNumber");
+    }
+
+    public void StopReadyClass()
+    {
+        UIManager.Instance.HideSubUI();
     }
 
     public void CountStudentNumber(int _students_count)
@@ -60,9 +66,31 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
         student_count = _students_count;
     }
 
-    public void StartClass()
+    public void StartClassBtn()
     {
-        CheckAttendance();
+        photonView.RPC("NoticeClassStart", RpcTarget.AllBuffered, Define.CLASSSTATE.START);
+    }
+
+    public void ShowSeatsBtn()
+    {
+        UIManager.Instance.OpenWindow(Define.UI.CLASSSTUDENTLIST);
+    }
+
+    public void SomeoneJoinToClass()
+    {
+        photonView.RPC("NoticeClassStart", RpcTarget.AllBuffered, classState);
+    }
+
+    [PunRPC]
+    public void NoticeClassStart(Define.CLASSSTATE nowClassState)
+    {
+        Debug.Log(classState + " " + classState.Equals(Define.CLASSSTATE.END));
+        if (classState.Equals(Define.CLASSSTATE.END) && nowClassState.Equals(Define.CLASSSTATE.START))
+        {
+            Debug.Log("ClassStarted");
+            classState = Define.CLASSSTATE.START;
+            Invoke("CheckAttendancePeriodically", 3);
+        }
     }
 
     public void EndClass()
@@ -70,23 +98,11 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
         PlayfabManager.Instance.UpdateLeaderBoard(class_name + UtilityMethods.GetWeekOfSemester().ToString() + DateTime.Now.DayOfWeek.ToString()
             , attendance_count);
         photonView.RPC("StopCheckAttend", RpcTarget.AllBuffered, attendance_count);
+        UIManager.Instance.HideSubUI();
 
         GameObject.Find("Camera Arm").GetComponent<CameraController>().playerTransform = playerContoller.transform;
     }
     #endregion
-
-
-    void CheckAttendance()
-    {
-        photonView.RPC("CheckAttendanceRPC", RpcTarget.AllBuffered);
-    }
-
-    [PunRPC]
-    void CheckAttendanceRPC()
-    {
-        classState = Define.CLASSSTATE.START;
-        CheckAttendancePeriodically();
-    }
 
     void CheckAttendancePeriodically()
     {
@@ -122,9 +138,9 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
         }
     }
 
-    public void JoinClass()
+    public void JoinToClass(string room_name)
     {
-        if(classState.Equals(Define.CLASSSTATE.START))
+        if (classState.Equals(Define.CLASSSTATE.START))
             CheckAttendancePeriodically();
     }
 
@@ -145,11 +161,6 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
         PlayfabManager.Instance.UpdateLeaderBoard(class_name + UtilityMethods.GetWeekOfSemester().ToString() + DateTime.Now.DayOfWeek.ToString()
             , attendance_count);
         instance.enabled = false;
-    }
-
-    public override void OnPlayerEnteredRoom(Player newPlayer)
-    {
-        Debug.Log("########Someone is comming");
     }
 
     public void LoadAttendanceCount(int _attendance_count)
