@@ -601,3 +601,17 @@
 [1206/231512.825:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
 [1206/231512.830:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
 [1206/231512.830:WARNING:rtp_rtcp_impl.cc(356)] Failed to send RTCP BYE
+[1206/235035.591:WARNING:audio_send_stream.cc(303)] SetSendCodec() failed: 8005
+[1206/235035.591:ERROR:audio_send_stream.cc(90)] Failed to set up send codec state.
+[1206/235035.596:WARNING:stunport.cc(385)] Jingle:Port[000001657C5E24C0:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/235035.597:WARNING:stunport.cc(385)] Jingle:Port[000001657C5DFDF0:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1206/235035.638:WARNING:webrtcvideoengine2.cc(1731)] RTX SSRCs configured but there's no configured RTX payload type. Ignoring.
+[1206/235035.640:WARNING:webrtcsession.cc(1683)] Candidate has an unknown component: Cand[:1:2:udp:2103266323:129.227.57.151:4705:local::0:wwfy:efgqRglFJS15AZn/WgKNnyBb:0:0:0] for content: audio
+[1206/235035.641:WARNING:turnport.cc(701)] Jingle:Port[00000165050B9560:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/235035.641:WARNING:turnport.cc(701)] Jingle:Port[00000165050BA320:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1206/235035.681:WARNING:turnport.cc(397)] Socket is bound to a different address:192.168.75.135, rather then the local port:0.0.0.0. Still allowing it since it's any address, possibly caused by multiple_routes being disabled.
+[1206/235035.724:WARNING:basicportallocator.cc(730)] Discarding candidate because port is already done gathering.
+[1206/235035.760:WARNING:basicportallocator.cc(730)] Discarding candidate because port is already done gathering.
+[1206/235035.921:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1206/235038.119:WARNING:rtp_rtcp_impl.cc(356)] Failed to send RTCP BYE
+[1206/235038.380:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
