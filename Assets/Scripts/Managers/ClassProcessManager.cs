@@ -33,6 +33,7 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
 
     public Transform professorViewObjectTransform;
 
+    public int student_count;
     public int attendance_count = 0;
 
     private void Awake()
@@ -49,7 +50,12 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
 
     public void ReadyClass()
     {
+        PlayfabManager.Instance.GetLeaderBoard(class_name, PlayfabManager.Instance.playerName, "CountStudentNumber");
+    }
 
+    public void CountStudentNumber(int _students_count)
+    {
+        student_count = _students_count;
     }
 
     public void StartClass()
