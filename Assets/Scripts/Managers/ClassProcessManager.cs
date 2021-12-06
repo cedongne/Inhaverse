@@ -35,7 +35,8 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
 
     public Transform professorViewObjectTransform;
 
-    public int student_count;
+    public int all_student_number;
+    public int now_student_number;
     public int attendance_count = 0;
 
     private void Awake()
@@ -48,22 +49,19 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
         classState = Define.CLASSSTATE.END;
     }
 
-    #region Instructor's Function
-
+#region Instructor's Function
     public void ReadyClass()
     {
+        classState = Define.CLASSSTATE.READY;
+        UpdateStudentNumberInClassroom();
         UIManager.Instance.ShowSubUI(Define.UI.CLASSREADY);
-        PlayfabManager.Instance.GetLeaderBoard(class_name, PlayfabManager.Instance.playerName, "CountStudentNumber");
+        PlayfabManager.Instance.GetLeaderBoard(class_name + "Attendance", PlayfabManager.Instance.playerName, "CountStudentNumber");
     }
 
-    public void StopReadyClass()
+    public void StopReadyClassBtn()
     {
+        classState = Define.CLASSSTATE.END;
         UIManager.Instance.HideSubUI();
-    }
-
-    public void CountStudentNumber(int _students_count)
-    {
-        student_count = _students_count;
     }
 
     public void StartClassBtn()
@@ -71,26 +69,26 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
         photonView.RPC("NoticeClassStart", RpcTarget.AllBuffered, Define.CLASSSTATE.START);
     }
 
-    public void ShowSeatsBtn()
-    {
-        UIManager.Instance.OpenWindow(Define.UI.CLASSSTUDENTLIST);
-    }
-
-    public void SomeoneJoinToClass()
-    {
-        photonView.RPC("NoticeClassStart", RpcTarget.AllBuffered, classState);
-    }
-
     [PunRPC]
     public void NoticeClassStart(Define.CLASSSTATE nowClassState)
     {
-        Debug.Log(classState + " " + classState.Equals(Define.CLASSSTATE.END));
         if (classState.Equals(Define.CLASSSTATE.END) && nowClassState.Equals(Define.CLASSSTATE.START))
         {
             Debug.Log("ClassStarted");
             classState = Define.CLASSSTATE.START;
             Invoke("CheckAttendancePeriodically", 3);
         }
+    }
+
+    public void ShowSeatsBtn()
+    {
+        UIManager.Instance.OpenWindow(Define.UI.CLASSSTUDENTLIST);
+    }
+
+    public void UpdateStudentNumberInClassroom()
+    {
+        now_student_number = PhotonNetwork.CurrentRoom.PlayerCount - 1;
+        UIManager.Instance.studentNumberInClassText.text = "[강의실 인원] " + now_student_number + " / " + all_student_number;
     }
 
     public void EndClass()
@@ -102,7 +100,39 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
 
         GameObject.Find("Camera Arm").GetComponent<CameraController>().playerTransform = playerContoller.transform;
     }
-    #endregion
+#endregion
+
+#region Callback methods
+    public void SomeoneJoinToClass()
+    {
+        UpdateStudentNumberInClassroom();
+        photonView.RPC("NoticeClassStart", RpcTarget.AllBuffered, classState);
+    }
+
+    public void LoadAttendanceCount(int _attendance_count)
+    {
+        attendance_count = _attendance_count;
+    }
+
+    public void CountStudentNumber(int students_number)
+    {
+        all_student_number = students_number;
+        UpdateStudentNumberInClassroom();
+    }
+    private void OnEnable()
+    {
+        class_name = NetworkManager.Instance.room_name;
+        PlayfabManager.Instance.GetLeaderBoard(class_name + UtilityMethods.GetWeekOfSemester().ToString() + DateTime.Now.DayOfWeek.ToString()
+            , PlayfabManager.Instance.playerName, "LoadAttendanceCount");
+    }
+
+    private void OnDisable()
+    {
+        PlayfabManager.Instance.UpdateLeaderBoard(class_name + UtilityMethods.GetWeekOfSemester().ToString() + DateTime.Now.DayOfWeek.ToString()
+            , attendance_count);
+        instance.enabled = false;
+    }
+#endregion
 
     void CheckAttendancePeriodically()
     {
@@ -138,33 +168,8 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
         }
     }
 
-    public void JoinToClass(string room_name)
-    {
-        if (classState.Equals(Define.CLASSSTATE.START))
-            CheckAttendancePeriodically();
-    }
-
     public void SetProfessorView(Transform viewObjectTransform)
     {
         professorViewObjectTransform = viewObjectTransform;
-    }
-
-    private void OnEnable()
-    {
-        class_name = NetworkManager.Instance.room_name;
-        PlayfabManager.Instance.GetLeaderBoard(class_name + UtilityMethods.GetWeekOfSemester().ToString() + DateTime.Now.DayOfWeek.ToString()
-            , PlayfabManager.Instance.playerName, "LoadAttendanceCount");
-    }
-
-    private void OnDisable()
-    {
-        PlayfabManager.Instance.UpdateLeaderBoard(class_name + UtilityMethods.GetWeekOfSemester().ToString() + DateTime.Now.DayOfWeek.ToString()
-            , attendance_count);
-        instance.enabled = false;
-    }
-
-    public void LoadAttendanceCount(int _attendance_count)
-    {
-        attendance_count = _attendance_count;
     }
 }

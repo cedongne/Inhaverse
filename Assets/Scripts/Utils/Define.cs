@@ -41,7 +41,7 @@ public class Define
 
     public enum CLASSSTATE
     {
-        IDLE,
+        READY,
         START,
         END
     }

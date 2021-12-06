@@ -142,7 +142,8 @@ public class PlayerContoller : MonoBehaviourPun
             {
                 GetInput();
                 TeleportWayPoint();
-                DetectInteractiveObject();
+                if(!ClassProcessManager.Instance.classState.Equals(Define.CLASSSTATE.READY))
+                    DetectInteractiveObject();
             }
         }
         Jump();

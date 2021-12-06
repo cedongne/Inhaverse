@@ -15,13 +15,13 @@ public class UIManager : MonoBehaviour
     public GameObject loginUI;
     public GameObject hudUI;
     public GameObject conferenceUI;
+    public GameObject classReadySubUI;
     public GameObject classWindow;
     public GameObject classMakingWindow;
     public GameObject classListWindow;
     public GameObject playerInfoWindow;
     public GameObject optionWindow;
     public GameObject commandWindow;
-    public GameObject classReadyWindow;
 
     [Space]
     public Image curCamIcon;
@@ -215,8 +215,9 @@ public class UIManager : MonoBehaviour
         // 6 : Second class Day of week
         // 7 : Second class start time
         // 8 : Second class end time
+        Debug.Log(splitedClassInfo[3] + " " + splitedClassInfo[6]);
         splitedClassInfo[3] = UtilityMethods.ConvertDayOfWeekToKorean(splitedClassInfo[3]);
-        if(splitedClassInfo.Length == 8)
+        if(splitedClassInfo.Length > 6)
             splitedClassInfo[6] = UtilityMethods.ConvertDayOfWeekToKorean(splitedClassInfo[6]);
         newInfoTransform.GetChild(0).GetComponent<Text>().text = groupName;
         for (int count = 1; count < splitedClassInfo.Length; count++)
@@ -294,17 +295,17 @@ public class UIManager : MonoBehaviour
 
     public void ShowSubUI(Define.UI showingSubUi)
     {
-        classReadyWindow.SetActive(false);
+        classReadySubUI.SetActive(false);
 
         if (showingSubUi.Equals(Define.UI.CLASSREADY))
         {
-            classReadyWindow.SetActive(true);
+            classReadySubUI.SetActive(true);
         }
     }
 
     public void HideSubUI()
     {
-        classReadyWindow.SetActive(false);
+        classReadySubUI.SetActive(false);
     }
 
     public void OpenWindow(Define.UI showingWindow)
