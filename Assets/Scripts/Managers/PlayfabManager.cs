@@ -358,6 +358,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             },
             (error) => { Debug.Log("시간표 갱신 실패" + error); });
     }
+
     public void GetLeaderBoard(string statisticName, string userName, string callbackMethodName)
     {
         var request = new GetLeaderboardRequest
@@ -369,6 +370,11 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         };
         PlayFabClientAPI.GetLeaderboard(request, (result) =>
         {
+            if (callbackMethodName.Equals("CountStudentNumber"))
+            {
+                ClassProcessManager.Instance.CountStudentNumber(result.Leaderboard.Count);
+                return;
+            }
             for (int count = 0; count < result.Leaderboard.Count; count++)
             {
                 if (result.Leaderboard[count].DisplayName.Equals(userName))

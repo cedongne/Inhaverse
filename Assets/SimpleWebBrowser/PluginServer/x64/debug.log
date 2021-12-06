@@ -7,3 +7,187 @@
 [1205/171215.440:ERROR:browser_host_impl.cc(1556)] Invalid URL passed to CefBrowserHostImpl::LoadURL: 
 [1205/192835.751:ERROR:browser_host_impl.cc(1556)] Invalid URL passed to CefBrowserHostImpl::LoadURL: 
 [1205/193500.067:ERROR:browser_host_impl.cc(1556)] Invalid URL passed to CefBrowserHostImpl::LoadURL: 
+[1205/213743.667:WARNING:webrtcvoiceengine.cc(2023)] Unknown codec red/48000/2 (63)
+[1205/213743.667:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time, id: 2}
+[1205/213743.667:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 4}
+[1205/213743.667:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id, id: 5}
+[1205/213743.667:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id, id: 6}
+[1205/213743.667:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-content-type, id: 11}
+[1205/213743.668:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-timing, id: 7}
+[1205/213743.668:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/color-space, id: 8}
+[1205/213743.668:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 4}
+[1205/213743.668:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id, id: 5}
+[1205/213743.668:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id, id: 6}
+[1205/213743.684:WARNING:stunport.cc(385)] Jingle:Port[000001C17F1AF1E0:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1205/213743.763:WARNING:stunport.cc(385)] Jingle:Port[000001C17F1AF1E0:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1205/213743.763:WARNING:turnport.cc(701)] Jingle:Port[000001C17F4F6910:0:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1205/213743.775:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001C17F3E64F0:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1205/213743.775:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001C17F3E64F0:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1205/213743.775:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001C17F3E64F0:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1205/213743.775:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001C17F3E58D0:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1205/213743.775:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001C17F3E58D0:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1205/213743.775:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001C17F3E58D0:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1205/213753.307:ERROR:stunport.cc(89)] Binding request timed out from 0.0.0.x:63963 (any)
+[1205/213753.309:WARNING:turnport.cc(1168)] Jingle:Port[000001C17F4F5F60:0:1:0:relay:Net[any:0.0.0.x/0:Unknown]]: TURN allocate request 7762597832374f4771322b4a timout
+[1205/213813.789:WARNING:rtp_rtcp_impl.cc(356)] Failed to send RTCP BYE
+[1205/213813.791:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/213813.794:WARNING:rtpsender.cc(231)] ClearAudioSend: No audio channel exists.
+[1205/213813.794:WARNING:rtpsender.cc(400)] SetVideoSend: No video channel exists.
+[1205/213818.357:WARNING:webrtcvoiceengine.cc(2023)] Unknown codec red/48000/2 (63)
+[1205/213818.357:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time, id: 2}
+[1205/213818.357:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 4}
+[1205/213818.357:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id, id: 5}
+[1205/213818.357:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id, id: 6}
+[1205/213818.358:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-content-type, id: 11}
+[1205/213818.358:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-timing, id: 7}
+[1205/213818.358:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/color-space, id: 8}
+[1205/213818.358:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 4}
+[1205/213818.358:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id, id: 5}
+[1205/213818.358:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id, id: 6}
+[1205/213818.367:WARNING:stunport.cc(385)] Jingle:Port[000001C105C36010:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1205/213818.367:WARNING:stunport.cc(385)] Jingle:Port[000001C105C36010:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1205/213818.419:WARNING:turnport.cc(701)] Jingle:Port[000001C105B25FF0:0:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1205/213818.479:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001C17F332830:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1205/213818.479:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001C17F332830:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1205/213818.479:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001C17F332830:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1205/213818.479:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001C17F413930:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1205/213818.479:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001C17F413930:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1205/213818.479:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001C17F413930:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1205/213823.423:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/213916.317:WARNING:webrtcvoiceengine.cc(2023)] Unknown codec red/48000/2 (63)
+[1205/213916.317:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time, id: 2}
+[1205/213916.317:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 4}
+[1205/213916.317:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id, id: 5}
+[1205/213916.317:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id, id: 6}
+[1205/213916.317:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-content-type, id: 11}
+[1205/213916.317:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-timing, id: 7}
+[1205/213916.317:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/color-space, id: 8}
+[1205/213916.317:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 4}
+[1205/213916.317:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id, id: 5}
+[1205/213916.317:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id, id: 6}
+[1205/213916.330:WARNING:stunport.cc(385)] Jingle:Port[00000204311EEFE0:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1205/213916.428:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000204314DF490:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1205/213916.428:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000204314DF490:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1205/213916.428:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000204314DF490:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1205/213916.428:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000204315A40C0:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1205/213916.428:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000204315A40C0:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1205/213916.428:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000204315A40C0:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1205/213916.452:WARNING:stunport.cc(385)] Jingle:Port[00000204311EEFE0:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1205/213916.453:WARNING:turnport.cc(701)] Jingle:Port[00000204315AEF40:0:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1205/213925.987:ERROR:stunport.cc(89)] Binding request timed out from 0.0.0.x:58247 (any)
+[1205/213925.987:WARNING:turnport.cc(1168)] Jingle:Port[00000204315AE990:0:1:0:relay:Net[any:0.0.0.x/0:Unknown]]: TURN allocate request 323449486f4239504d565a73 timout
+[1205/213927.477:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/214116.902:WARNING:webrtcvoiceengine.cc(2023)] Unknown codec red/48000/2 (63)
+[1205/214116.902:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time, id: 2}
+[1205/214116.902:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 4}
+[1205/214116.902:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id, id: 5}
+[1205/214116.902:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id, id: 6}
+[1205/214116.902:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-content-type, id: 11}
+[1205/214116.902:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-timing, id: 7}
+[1205/214116.902:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/color-space, id: 8}
+[1205/214116.902:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 4}
+[1205/214116.903:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id, id: 5}
+[1205/214116.903:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id, id: 6}
+[1205/214116.911:WARNING:stunport.cc(385)] Jingle:Port[000001BBA3D4E810:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1205/214117.005:WARNING:stunport.cc(385)] Jingle:Port[000001BBA3D4E810:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1205/214117.005:WARNING:turnport.cc(701)] Jingle:Port[000001BBA889F730:0:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1205/214117.017:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001BBA3A0E920:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1205/214117.017:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001BBA3A0E920:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1205/214117.017:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001BBA3A0E920:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1205/214117.017:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001BBA3D51D60:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1205/214117.017:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001BBA3D51D60:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1205/214117.017:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001BBA3D51D60:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1205/214126.525:ERROR:stunport.cc(89)] Binding request timed out from 0.0.0.x:55284 (any)
+[1205/214126.525:WARNING:turnport.cc(1168)] Jingle:Port[000001BBA9CB1D50:0:1:0:relay:Net[any:0.0.0.x/0:Unknown]]: TURN allocate request 66683357624e692b6e73375a timout
+[1205/214135.853:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/214159.386:WARNING:webrtcvoiceengine.cc(2023)] Unknown codec red/48000/2 (63)
+[1205/214159.386:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time, id: 2}
+[1205/214159.386:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 4}
+[1205/214159.386:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id, id: 5}
+[1205/214159.386:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id, id: 6}
+[1205/214159.387:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-content-type, id: 11}
+[1205/214159.387:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-timing, id: 7}
+[1205/214159.387:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/color-space, id: 8}
+[1205/214159.387:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 4}
+[1205/214159.387:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id, id: 5}
+[1205/214159.387:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id, id: 6}
+[1205/214159.397:WARNING:stunport.cc(385)] Jingle:Port[0000027D47FEB660:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1205/214159.397:WARNING:stunport.cc(385)] Jingle:Port[0000027D47FEB660:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1205/214159.456:WARNING:turnport.cc(701)] Jingle:Port[0000027D4E0516F0:0:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1205/214159.506:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000027D47EB6540:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1205/214159.506:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000027D47EB6540:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1205/214159.506:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000027D47EB6540:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1205/214159.506:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000027D47EBF2E0:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1205/214159.506:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000027D47EBF2E0:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1205/214159.506:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000027D47EBF2E0:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1205/214201.849:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/214227.014:WARNING:webrtcvoiceengine.cc(2023)] Unknown codec red/48000/2 (63)
+[1205/214227.014:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time, id: 2}
+[1205/214227.014:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 4}
+[1205/214227.014:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id, id: 5}
+[1205/214227.014:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id, id: 6}
+[1205/214227.015:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-content-type, id: 11}
+[1205/214227.015:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-timing, id: 7}
+[1205/214227.015:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/color-space, id: 8}
+[1205/214227.015:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 4}
+[1205/214227.015:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id, id: 5}
+[1205/214227.015:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id, id: 6}
+[1205/214227.029:WARNING:stunport.cc(385)] Jingle:Port[0000019E76146570:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1205/214227.108:WARNING:stunport.cc(385)] Jingle:Port[0000019E76146570:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1205/214227.108:WARNING:turnport.cc(701)] Jingle:Port[0000019E7C5C23D0:0:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1205/214227.128:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000019E764B1C10:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1205/214227.128:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000019E764B1C10:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1205/214227.128:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000019E764B1C10:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1205/214227.128:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000019E765AC160:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1205/214227.128:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000019E765AC160:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1205/214227.128:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000019E765AC160:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1205/214228.596:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1205/214246.698:WARNING:webrtcvoiceengine.cc(2023)] Unknown codec red/48000/2 (63)
+[1205/214246.698:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time, id: 2}
+[1205/214246.698:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 4}
+[1205/214246.698:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id, id: 5}
+[1205/214246.698:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id, id: 6}
+[1205/214246.699:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-content-type, id: 11}
+[1205/214246.699:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/video-timing, id: 7}
+[1205/214246.699:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: http://www.webrtc.org/experiments/rtp-hdrext/color-space, id: 8}
+[1205/214246.699:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:mid, id: 4}
+[1205/214246.699:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id, id: 5}
+[1205/214246.699:WARNING:webrtcmediaengine.cc(162)] Unsupported RTP extension: {uri: urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id, id: 6}
+[1205/214246.711:WARNING:stunport.cc(385)] Jingle:Port[0000027AF90A63B0:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1205/214246.711:WARNING:stunport.cc(385)] Jingle:Port[0000027AF90A63B0:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1205/214246.766:WARNING:turnport.cc(701)] Jingle:Port[0000027AF944FC20:0:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1205/214246.825:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000027AF916B350:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1205/214246.825:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000027AF916B350:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1205/214246.825:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000027AF916B350:0:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1205/214246.825:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000027AF93B1B80:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1205/214246.825:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000027AF93B1B80:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1205/214246.825:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000027AF93B1B80:0:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 0) failed: 0
+[1205/214256.239:ERROR:stunport.cc(89)] Binding request timed out from 0.0.0.x:64021 (any)
+[1205/214256.320:WARNING:turnport.cc(1168)] Jingle:Port[0000027AF944F670:0:1:0:relay:Net[any:0.0.0.x/0:Unknown]]: TURN allocate request 50586f776c6c5955736c614e timout
+[1205/214329.961:ERROR:acm_receiver.cc(51)] AcmReceiver::SetExtraDelay 766
+[1205/214329.962:ERROR:rtp_streams_synchronizer.cc(166)] Error setting voice delay.
+[1205/214330.967:ERROR:acm_receiver.cc(51)] AcmReceiver::SetExtraDelay 846
+[1205/214330.967:ERROR:rtp_streams_synchronizer.cc(166)] Error setting voice delay.
+[1205/214331.974:ERROR:acm_receiver.cc(51)] AcmReceiver::SetExtraDelay 926
+[1205/214331.974:ERROR:rtp_streams_synchronizer.cc(166)] Error setting voice delay.
+[1205/214332.980:ERROR:acm_receiver.cc(51)] AcmReceiver::SetExtraDelay 1006
+[1205/214332.980:ERROR:rtp_streams_synchronizer.cc(166)] Error setting voice delay.
+[1205/214333.986:ERROR:acm_receiver.cc(51)] AcmReceiver::SetExtraDelay 1086
+[1205/214333.986:ERROR:rtp_streams_synchronizer.cc(166)] Error setting voice delay.
+[1205/214334.992:ERROR:acm_receiver.cc(51)] AcmReceiver::SetExtraDelay 1166
+[1205/214334.992:ERROR:rtp_streams_synchronizer.cc(166)] Error setting voice delay.
+[1205/214335.998:ERROR:acm_receiver.cc(51)] AcmReceiver::SetExtraDelay 1246
+[1205/214335.998:ERROR:rtp_streams_synchronizer.cc(166)] Error setting voice delay.
+[1205/214337.003:ERROR:acm_receiver.cc(51)] AcmReceiver::SetExtraDelay 1326
+[1205/214337.003:ERROR:rtp_streams_synchronizer.cc(166)] Error setting voice delay.
+[1205/214338.008:ERROR:acm_receiver.cc(51)] AcmReceiver::SetExtraDelay 1406
+[1205/214338.008:ERROR:rtp_streams_synchronizer.cc(166)] Error setting voice delay.
+[1205/214339.013:ERROR:acm_receiver.cc(51)] AcmReceiver::SetExtraDelay 1486
+[1205/214339.013:ERROR:rtp_streams_synchronizer.cc(166)] Error setting voice delay.
+[1205/214340.021:ERROR:acm_receiver.cc(51)] AcmReceiver::SetExtraDelay 1566
+[1205/214340.021:ERROR:rtp_streams_synchronizer.cc(166)] Error setting voice delay.
+[1205/214341.029:ERROR:acm_receiver.cc(51)] AcmReceiver::SetExtraDelay 1646
+[1205/214341.029:ERROR:rtp_streams_synchronizer.cc(166)] Error setting voice delay.
+[1205/214342.034:ERROR:acm_receiver.cc(51)] AcmReceiver::SetExtraDelay 1726
+[1205/214342.034:ERROR:rtp_streams_synchronizer.cc(166)] Error setting voice delay.
+[1205/214342.974:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
