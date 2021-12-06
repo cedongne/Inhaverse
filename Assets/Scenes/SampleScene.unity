@@ -10133,11 +10133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetObject: {fileID: 167897331}
-
   CameraPos: {x: 0, y: 7.7, z: 0}
-
-  CameraPos: {x: 0, y: 0, z: 0}
-
 --- !u!20 &905394977
 Camera:
   m_ObjectHideFlags: 0
