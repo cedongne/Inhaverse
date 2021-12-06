@@ -4,6 +4,8 @@ using System;
 using UnityEngine;
 
 using Photon.Pun;
+using Photon.Realtime;
+
 public class ClassProcessManager : MonoBehaviourPunCallbacks
 {
     private static ClassProcessManager instance;
@@ -143,6 +145,11 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
         PlayfabManager.Instance.UpdateLeaderBoard(class_name + UtilityMethods.GetWeekOfSemester().ToString() + DateTime.Now.DayOfWeek.ToString()
             , attendance_count);
         instance.enabled = false;
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        Debug.Log("Someone is comming");
     }
 
     public void LoadAttendanceCount(int _attendance_count)
