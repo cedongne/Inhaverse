@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
     public GameObject playerInfoWindow;
     public GameObject optionWindow;
     public GameObject commandWindow;
+    public GameObject classReadyWindow;
 
     [Space]
     public Image curCamIcon;
@@ -87,6 +88,7 @@ public class UIManager : MonoBehaviour
     [Header("===== 강의 UI =====")]
     [Space]
     public GameObject classStudentListWindow;
+    public Text studentNumberInClassText;
 
     [Header("===== 부스 UI =====")]
     [Space]
@@ -288,6 +290,21 @@ public class UIManager : MonoBehaviour
             curVoiceIcon = conferenceVoiceIcon;
             conferenceUI.SetActive(true);
         }
+    }
+
+    public void ShowSubUI(Define.UI showingSubUi)
+    {
+        classReadyWindow.SetActive(false);
+
+        if (showingSubUi.Equals(Define.UI.CLASSREADY))
+        {
+            classReadyWindow.SetActive(true);
+        }
+    }
+
+    public void HideSubUI()
+    {
+        classReadyWindow.SetActive(false);
     }
 
     public void OpenWindow(Define.UI showingWindow)
