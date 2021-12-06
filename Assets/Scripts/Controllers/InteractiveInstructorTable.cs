@@ -22,7 +22,6 @@ public class InteractiveInstructorTable : InteractiveObject
             {
                 ClassProcessManager.Instance.ReadyClass();
                 ClassProcessManager.Instance.SetProfessorView(professorViewObject);
-//                UIManager.Instance.OpenWindow(Define.UI.CLASSSTUDENTLIST);
             }
             else
             {

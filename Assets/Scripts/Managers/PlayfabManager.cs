@@ -372,6 +372,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         {
             if (callbackMethodName.Equals("CountStudentNumber"))
             {
+                Debug.Log(statisticName + " " + result.Leaderboard.Count);
                 ClassProcessManager.Instance.CountStudentNumber(result.Leaderboard.Count);
                 return;
             }
