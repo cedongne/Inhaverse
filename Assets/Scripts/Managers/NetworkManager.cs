@@ -63,11 +63,15 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
     {
         PN.JoinOrCreateRoom(room_name, new RoomOptions { MaxPlayers = 10 }, null);
     }
+
+    /*
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
 
         Debug.Log("Come");
     }
+    */
+
     public void JoinToClass(string className, string classData)
     {
         PN.LeaveRoom();

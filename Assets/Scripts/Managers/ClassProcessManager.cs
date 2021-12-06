@@ -149,7 +149,7 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        Debug.Log("Someone is comming");
+        Debug.Log("########Someone is comming");
     }
 
     public void LoadAttendanceCount(int _attendance_count)
