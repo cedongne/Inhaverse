@@ -28,7 +28,7 @@ namespace OpenCvSharp
         }
 
         float timer = 0f;
-        public float delayTime = 1f;
+        public float delayTime = 5f;
         bool isDelay = false;
         bool detect_flag = false;
         Rect before_image;
@@ -39,19 +39,6 @@ namespace OpenCvSharp
         public RawImage nowDisplay;
         public Texture defaultTexture;
 
-        //private RTCPeerConnection _pc1, _pc2;
-        //private List<RTCRtpSender> pc1Senders;
-        //private MediaStream videoStream, receiveStream;
-        //private DelegateOnIceConnectionChange pc1OnIceConnectionChange;
-        //private DelegateOnIceConnectionChange pc2OnIceConnectionChange;
-        //private DelegateOnIceCandidate pc1OnIceCandidate;
-        //private DelegateOnIceCandidate pc2OnIceCandidate;
-        //private DelegateOnTrack pc2Ontrack;
-        //private DelegateOnNegotiationNeeded pc1OnNegotiationNeeded;
-        //private bool videoUpdateStarted;
-
-        //private const int width = 1280;
-        //private const int height = 720;
 
         Mat image = new Mat();
         Texture2D destTexture;
@@ -94,11 +81,11 @@ namespace OpenCvSharp
         {
             if (photonView.IsMine)
             {
-                if (WebCamTexture.devices.Length != 0)
-                {
-                    SetWebCamDisplay();
-                    ShowWebCam();
-                }
+                SetWebCamDisplay();
+                ShowWebCam();
+                //if (WebCamTexture.devices.Length != 0)
+                //{
+                //}
             }
             else
             {
@@ -108,16 +95,16 @@ namespace OpenCvSharp
 
         void SetWebCamDisplay()
         {
-            if (ChatManager.Instance.currentChannelName.Contains("Conference"))
-            {
-                detect_flag = false;
-                nowDisplay = conferenceDisplay;
-            }
-            else
-            {
-                detect_flag = true;
+            //if (ChatManager.Instance.currentChannelName.Contains("Conference"))
+            //{
+            //    detect_flag = false;
+            //    nowDisplay = conferenceDisplay;
+            //}
+            //else
+            //{
+            //    detect_flag = true;
                 nowDisplay = headDisplay;
-            }
+            //}
         }
 
         void FaceDetect()
@@ -167,15 +154,15 @@ namespace OpenCvSharp
                 camTexture.Play();
                 image = Unity.TextureToMat(camTexture);
                 destTexture = Unity.MatToTexture(image);
-                /*
-                if (detect_flag)
-                {
+
+                //if (detect_flag)
+                //{
                     FaceDetect();
-                }
-                else
-                {*/
-                destTexture = Unity.MatToTexture(image);
-                //   }
+                //}
+                //else
+                //{
+                //    destTexture = Unity.MatToTexture(image);
+                //}
 
                 nowDisplay.texture = destTexture;
             }
@@ -199,8 +186,8 @@ namespace OpenCvSharp
             }
         }
 
-        byte[] receivedImage;
-        string receivedImageStr;
+        //byte[] receivedImage;
+        //string receivedImageStr;
         /*
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
