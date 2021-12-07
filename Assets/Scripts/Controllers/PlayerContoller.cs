@@ -387,6 +387,7 @@ public class PlayerContoller : MonoBehaviourPun
         photonView.RPC("OnKinematicRPC", RpcTarget.AllBuffered, set);
     }
 
+    [PunRPC]
     public void OnKinematicRPC(bool set)
     {
         GetComponent<Rigidbody>().isKinematic = set;
