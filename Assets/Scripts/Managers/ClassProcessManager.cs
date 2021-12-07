@@ -39,6 +39,8 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
     public int now_student_number;
     public int attendance_count = 0;
 
+    string classChannelName;
+
     private void Awake()
     {
         if(instance == null)
@@ -49,7 +51,62 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
         classState = Define.CLASSSTATE.END;
     }
 
-#region Instructor's Function
+    public void StartClassBtn()
+    {
+        Debug.Log("test////////////////////");
+        classState = Define.CLASSSTATE.START;
+        photonView.RPC("ReadyCLASS", RpcTarget.AllBuffered, classState);
+        Application.OpenURL("https://owake.me/");
+
+        UIManager.Instance.ClassChannelNameInputObject.SetActive(true);
+    }
+
+    [PunRPC]
+    public void ReadyCLASS(Define.CLASSSTATE sender_conference_state)
+    {
+        Debug.Log("Ready Receiver " + sender_conference_state);
+        if (sender_conference_state.Equals(Define.CLASSSTATE.READY))
+        {
+            Debug.Log("ReadyCLASS");
+            UIManager.Instance.videoConferenceButton.interactable = false;
+            UIManager.Instance.videoConferenceText.text = "수업 생성 중...";
+        }
+    }
+    public void EnterCLASSChannelNameBtn()
+    {
+        classChannelName = UIManager.Instance.conferenceChannelNameInputField.text;
+        classState = Define.CLASSSTATE.START;
+        photonView.RPC("StartCLASS", RpcTarget.AllBuffered, classState);
+
+        UIManager.Instance.conferenceChannelNameInputObject.SetActive(false);
+    }
+
+
+    [PunRPC]
+    public void StartCLASS(string sender_channel_name, string conference_channel_name)
+    {
+        Debug.Log("Start Receiver " + sender_channel_name + " " + conference_channel_name);
+        Debug.Log("StartCLASS");
+        UIManager.Instance.conferenceChannelNameText.text = conference_channel_name;
+        UIManager.Instance.conferenceChannelNameObject.SetActive(true);
+
+        UIManager.Instance.videoConferenceButton.interactable = true;
+    }
+
+    [PunRPC]
+    public void EndCLASS(string sender_channel_name)
+    {
+        Debug.Log("End Receiver " + sender_channel_name);
+        Debug.Log("CLASS");
+        UIManager.Instance.conferenceChannelNameText.text = "";
+        UIManager.Instance.conferenceChannelNameObject.SetActive(false);
+        UIManager.Instance.conferenceChannelNameInputField.text = "";
+        UIManager.Instance.conferenceChannelNameInputObject.SetActive(false);
+
+        UIManager.Instance.videoConferenceButton.interactable = true;
+        UIManager.Instance.videoConferenceText.text = "수업 시작";
+    }
+    #region Instructor's Function
     public void ReadyClass()
     {
         classState = Define.CLASSSTATE.READY;
@@ -62,11 +119,6 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
     {
         classState = Define.CLASSSTATE.END;
         UIManager.Instance.HideSubUI();
-    }
-
-    public void StartClassBtn()
-    {
-        photonView.RPC("NoticeClassStart", RpcTarget.AllBuffered, Define.CLASSSTATE.START);
     }
 
     [PunRPC]

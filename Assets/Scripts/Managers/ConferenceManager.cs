@@ -54,6 +54,7 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
 
     public void StartVideoConferenceBtn()
     {
+        Debug.Log("test......................");
         conferenceState = Define.VIDEOCONFERENCESTATE.READY;
         photonView.RPC("ReadyVideoConference", RpcTarget.AllBuffered, channelName, conferenceState);
         Application.OpenURL("https://owake.me/");

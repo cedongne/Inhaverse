@@ -64,6 +64,9 @@ MonoBehaviour:
   - EndVideoConference
   - ReadyVideoConference
   - StartVideoConference
+  - EndCLASS
+  - ReadyCLASS
+  - StartCLASS
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
