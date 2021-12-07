@@ -6218,6 +6218,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 0}
   player: {fileID: 0}
+  cameraController: {fileID: 0}
+  cameraArm: {fileID: 0}
   playerUI: {fileID: 0}
 --- !u!4 &479837504 stripped
 Transform:
@@ -34134,6 +34136,8 @@ MonoBehaviour:
   cameraPositionTransform: {fileID: 1638841389}
   mainCameraTransform: {fileID: 3650513701422348233}
   defaultObjectTransform: {fileID: 1970636842}
+  cameraArmPositionOffset: {x: 0, y: 0.5, z: 0}
+  cameraPositionOffset: {x: 0, y: 0.5, z: -3}
   TPSCameraOffset: {x: 0, y: 1, z: -3}
   FPSCameraOffset: {x: 0, y: 0.5, z: -0.4}
   isTPS: 0

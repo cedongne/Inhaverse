@@ -35,8 +35,8 @@ public class CameraController : MonoBehaviour
     private Transform mainCameraTransform;
     public Transform defaultObjectTransform;
 
-    Vector3 cameraArmPositionOffset = new Vector3(0, 0.5f, 0);
-    Vector3 cameraPositionOffset = new Vector3(0, 0.5f, -3f);
+    public Vector3 cameraArmPositionOffset = new Vector3(0, 0.5f, 0);
+    public Vector3 cameraPositionOffset = new Vector3(0, 0.5f, -3f);
     float camera_dist;
 
     public Vector3 TPSCameraOffset;
@@ -61,11 +61,13 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
+        MineManager.Instance.cameraController = GetComponent<CameraController>();
+        MineManager.Instance.cameraArm = gameObject;
+
         cameraPositionTransform.localPosition = TPSCameraOffset;
         mainCameraTransform.localPosition = Vector3.zero;
 
         camera_dist = Mathf.Sqrt(cameraPositionOffset.y * cameraPositionOffset.y + cameraPositionOffset.z * cameraPositionOffset.z);
-
     }
 
     // Update is called once per frame

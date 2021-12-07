@@ -286,6 +286,7 @@ public class UIManager : MonoBehaviour
             curVoiceIcon = hudVoiceIcon;
 
             hudUI.SetActive(true);
+            Cursor.lockState = CursorLockMode.Locked;
         }
         else if (showingUi.Equals(Define.UI.CONFERENCE))
         {

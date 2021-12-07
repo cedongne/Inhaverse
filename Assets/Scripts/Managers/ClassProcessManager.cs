@@ -181,5 +181,7 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
         MineManager.Instance.playerController.canMove = true;
         MineManager.Instance.playerController.canDetectInteractive = true;
         MineManager.Instance.playerController.canGetInput = true;
+
+        MineManager.Instance.cameraController.cameraArmPositionOffset.y -= 0.3f;
     }
 }

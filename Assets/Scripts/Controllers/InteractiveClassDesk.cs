@@ -24,6 +24,7 @@ public class InteractiveClassDesk : InteractiveObject
 
     public void SittingChair()
     {
+        MineManager.Instance.cameraController.cameraArmPositionOffset.y += 0.3f;
         UIManager.Instance.ShowSubUI(Define.UI.CLASSCHAIR);
         //StudentListUIManager.Instance.SetStudentListUI(GetDeskNum(gameObject.name), PlayfabManager.Instance.playerName);
 
