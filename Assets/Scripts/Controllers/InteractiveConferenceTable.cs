@@ -23,6 +23,7 @@ public class InteractiveConferenceTable : InteractiveObject
         ChatManager.Instance.SetConferenceChatUI();
 
         ConferenceManager.Instance.table = gameObject;
+
         MineManager.Instance.playerController.OnKinematic(true); // 물리엔진 배제 ON
         MineManager.Instance.playerController.canMove = false;
         MineManager.Instance.playerController.canDetectInteractive = false;
