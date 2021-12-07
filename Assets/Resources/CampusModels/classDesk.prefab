@@ -98,7 +98,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -7015218594191233304, guid: 821894bc4ccfe124abfecc55ed7c57aa, type: 3}
 --- !u!114 &-7615637402343575035
@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5231ad8c32e799d49898a358ca4a0b4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chairAddress: {fileID: 5436405170736464147, guid: 6745dceb8304a3f47a79d652cd6103a0, type: 3}
 --- !u!114 &-2126016940605159621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,6 +227,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -914298981813949167, guid: 821894bc4ccfe124abfecc55ed7c57aa, type: 3}

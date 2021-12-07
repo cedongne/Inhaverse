@@ -820,7 +820,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2990362321203560099, guid: fed90b18873b6e04dbea465a261f401f, type: 3}
       propertyPath: m_Name
-      value: classDesk58
+      value: classDesk59
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fed90b18873b6e04dbea465a261f401f, type: 3}
@@ -973,7 +973,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2990362321203560099, guid: fed90b18873b6e04dbea465a261f401f, type: 3}
       propertyPath: m_Name
-      value: classDesk59
+      value: classDesk60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fed90b18873b6e04dbea465a261f401f, type: 3}

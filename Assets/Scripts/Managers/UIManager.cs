@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
     public GameObject playerInfoWindow;
     public GameObject optionWindow;
     public GameObject commandWindow;
+    public GameObject classChairUI;
 
     [Space]
     public Image curCamIcon;
@@ -298,16 +299,22 @@ public class UIManager : MonoBehaviour
     public void ShowSubUI(Define.UI showingSubUi)
     {
         classReadySubUI.SetActive(false);
+        classChairUI.SetActive(false);
 
         if (showingSubUi.Equals(Define.UI.CLASSREADY))
         {
             classReadySubUI.SetActive(true);
+        }
+        else if (showingSubUi.Equals(Define.UI.CLASSCHAIR))
+        {
+            classChairUI.SetActive(true);
         }
     }
 
     public void HideSubUI()
     {
         classReadySubUI.SetActive(false);
+        classChairUI.SetActive(false);
     }
 
     public void OpenWindow(Define.UI showingWindow)
