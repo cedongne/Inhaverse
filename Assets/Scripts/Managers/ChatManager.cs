@@ -138,7 +138,6 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 		chatClient.Subscribe(channelName, 0, 10, conferenceOption);
 		currentChannelName = channelName;
 		ConferenceManager.Instance.channelName = currentChannelName;
-
 	}
 
 	public void LeaveConferenceChat(string channelName)
@@ -153,9 +152,9 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 	}
 
 	public void LeaveChat()
-    {
-		chatClient.Unsubscribe(new string[] { currentChannelName });
+	{
 		EraseText();
+		chatClient.Unsubscribe(new string[] { currentChannelName });
 	}
 
 	public void EraseText()

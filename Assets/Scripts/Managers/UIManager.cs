@@ -272,7 +272,7 @@ public class UIManager : MonoBehaviour
         hudUI.SetActive(false);
         conferenceUI.SetActive(false);
 
-        CloseWindow();
+//        CloseWindow();
 
         if (showingUi.Equals(Define.UI.LOGIN))
         {
