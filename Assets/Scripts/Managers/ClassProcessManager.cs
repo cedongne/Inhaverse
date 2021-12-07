@@ -172,4 +172,10 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
     {
         professorViewObjectTransform = viewObjectTransform;
     }
+
+    public void GetUpFromChair()
+    {
+        MineManager.Instance.player.transform.GetComponent<Rigidbody>().isKinematic = false;
+        UIManager.Instance.HideSubUI();
+    }
 }

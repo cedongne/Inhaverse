@@ -15,7 +15,8 @@ public class Define
         CLASSSTUDENTLIST,
         OPTION,
         COMMAND,
-        CLASSREADY
+        CLASSREADY,
+        CLASSCHAIR
     }
 
     public enum GROUPLISTUSING
