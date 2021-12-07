@@ -615,6 +615,177 @@
 [1206/235035.921:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
 [1206/235038.119:WARNING:rtp_rtcp_impl.cc(356)] Failed to send RTCP BYE
 [1206/235038.380:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+<<<<<<< HEAD
+[1207/192553.661:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=1
+[1207/192553.723:WARNING:audio_send_stream.cc(303)] SetSendCodec() failed: 8005
+[1207/192553.724:ERROR:audio_send_stream.cc(90)] Failed to set up send codec state.
+[1207/192553.734:WARNING:stunport.cc(385)] Jingle:Port[00000181EC62E470:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1207/192553.734:WARNING:stunport.cc(385)] Jingle:Port[00000181EC62ED10:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1207/192553.775:WARNING:turnport.cc(701)] Jingle:Port[00000181F5E501D0:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1207/192553.775:WARNING:turnport.cc(701)] Jingle:Port[00000181F5E54790:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1207/192553.777:WARNING:webrtcvideoengine2.cc(1731)] RTX SSRCs configured but there's no configured RTX payload type. Ignoring.
+[1207/192553.787:WARNING:webrtcsession.cc(1683)] Candidate has an unknown component: Cand[:1:2:udp:2103266323:129.227.234.114:4715:local::0:KthT:cDWBLylYoLauy5lITYlAy5CT:0:0:0] for content: audio
+[1207/192553.811:WARNING:turnport.cc(397)] Socket is bound to a different address:192.168.75.135, rather then the local port:0.0.0.0. Still allowing it since it's any address, possibly caused by multiple_routes being disabled.
+[1207/192553.825:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000181EC3059E0:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1207/192553.825:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000181EC3059E0:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1207/192553.825:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000181EC3059E0:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 34) failed: 0
+[1207/192553.825:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000181EC305D70:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(1, 65536) failed: 0
+[1207/192553.825:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000181EC305D70:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(2, 65536) failed: 0
+[1207/192553.825:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000181EC305D70:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 34) failed: 0
+[1207/192553.853:WARNING:basicportallocator.cc(730)] Discarding candidate because port is already done gathering.
+[1207/192553.881:WARNING:basicportallocator.cc(730)] Discarding candidate because port is already done gathering.
+[1207/192554.616:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/192554.616:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/192554.620:WARNING:rtp_rtcp_impl.cc(356)] Failed to send RTCP BYE
+[1207/192554.621:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1207/192601.153:WARNING:rtpsender.cc(400)] SetVideoSend: No video channel exists.
+[1207/192601.153:WARNING:rtpsender.cc(231)] ClearAudioSend: No audio channel exists.
+[1207/192855.928:ERROR:browser_host_impl.cc(1556)] Invalid URL passed to CefBrowserHostImpl::LoadURL: 
+[1207/193423.038:WARNING:audio_send_stream.cc(303)] SetSendCodec() failed: 8005
+[1207/193423.038:ERROR:audio_send_stream.cc(90)] Failed to set up send codec state.
+[1207/193423.044:WARNING:stunport.cc(385)] Jingle:Port[0000017FF4B729D0:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1207/193423.045:WARNING:stunport.cc(385)] Jingle:Port[0000017FF4B736C0:video:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: StunPort: stun host lookup received error 0
+[1207/193423.087:WARNING:webrtcvideoengine2.cc(1731)] RTX SSRCs configured but there's no configured RTX payload type. Ignoring.
+[1207/193423.091:WARNING:turnport.cc(701)] Jingle:Port[0000017FF5B81860:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1207/193423.091:WARNING:turnport.cc(701)] Jingle:Port[0000017FF5B81E10:audio:1:0:relay:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: TURN host lookup received error 0
+[1207/193423.091:WARNING:webrtcsession.cc(1683)] Candidate has an unknown component: Cand[:1:2:udp:2103266323:129.227.156.24:4709:local::0:mq4T:UB27li81PiBvtsso/duLzptH:0:0:0] for content: audio
+[1207/193423.130:WARNING:turnport.cc(397)] Socket is bound to a different address:192.168.75.135, rather then the local port:0.0.0.0. Still allowing it since it's any address, possibly caused by multiple_routes being disabled.
+[1207/193423.169:WARNING:basicportallocator.cc(730)] Discarding candidate because port is already done gathering.
+[1207/193423.207:WARNING:basicportallocator.cc(730)] Discarding candidate because port is already done gathering.
+[1207/193423.360:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/193434.777:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1207/193839.504:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
+[1207/193839.819:WARNING:audio_send_stream.cc(303)] SetSendCodec() failed: 8005
+[1207/193839.819:ERROR:audio_send_stream.cc(90)] Failed to set up send codec state.
+[1207/193839.935:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000155B50B57B0:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 46) failed: 0
+[1207/193839.935:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000155B4FBF8D0:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 46) failed: 0
+[1207/193840.131:WARNING:dtlstransportchannel.cc(339)] Ignoring new SRTP ciphers while DTLS is negotiating
+[1207/193840.131:WARNING:p2ptransportchannel.cc(966)] SetOption(5, 34) failed: 0
+[1207/193840.131:WARNING:p2ptransportchannel.cc(966)] SetOption(5, 34) failed: 0
+[1207/193840.131:WARNING:p2ptransportchannel.cc(966)] SetOption(1, 65536) failed: 0
+[1207/193840.131:WARNING:p2ptransportchannel.cc(966)] SetOption(1, 65536) failed: 0
+[1207/193840.131:WARNING:p2ptransportchannel.cc(966)] SetOption(2, 65536) failed: 0
+[1207/193840.131:WARNING:p2ptransportchannel.cc(966)] SetOption(2, 65536) failed: 0
+[1207/193840.689:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
+[1207/193840.689:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
+[1207/193851.097:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/193851.097:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/193851.110:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/193851.440:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/193851.440:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/193854.212:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/193854.212:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/193854.212:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/193913.754:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/193913.754:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/193916.136:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/193916.136:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/193916.137:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/193916.447:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/193916.447:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/193938.198:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/193938.199:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/193938.210:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/193938.210:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/193943.204:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/193943.204:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/193943.709:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/193943.709:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/193943.720:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/193944.296:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/193944.296:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1207/193947.905:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1207/194000.650:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
+[1207/194000.955:WARNING:audio_send_stream.cc(303)] SetSendCodec() failed: 8005
+[1207/194000.955:ERROR:audio_send_stream.cc(90)] Failed to set up send codec state.
+[1207/194001.066:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000002B4A70272D0:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 46) failed: 0
+[1207/194001.066:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000002B4A91DA960:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 46) failed: 0
+[1207/194001.255:WARNING:dtlstransportchannel.cc(339)] Ignoring new SRTP ciphers while DTLS is negotiating
+[1207/194001.255:WARNING:p2ptransportchannel.cc(966)] SetOption(5, 34) failed: 0
+[1207/194001.256:WARNING:p2ptransportchannel.cc(966)] SetOption(5, 34) failed: 0
+[1207/194001.256:WARNING:p2ptransportchannel.cc(966)] SetOption(1, 65536) failed: 0
+[1207/194001.256:WARNING:p2ptransportchannel.cc(966)] SetOption(1, 65536) failed: 0
+[1207/194001.256:WARNING:p2ptransportchannel.cc(966)] SetOption(2, 65536) failed: 0
+[1207/194001.256:WARNING:p2ptransportchannel.cc(966)] SetOption(2, 65536) failed: 0
+[1207/194001.799:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
+[1207/194001.799:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
+[1207/194011.686:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1207/194749.273:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
+[1207/194749.579:WARNING:audio_send_stream.cc(303)] SetSendCodec() failed: 8005
+[1207/194749.579:ERROR:audio_send_stream.cc(90)] Failed to set up send codec state.
+[1207/194749.679:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000016BFBB1AEB0:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 46) failed: 0
+[1207/194749.679:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000016BFBC967C0:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 46) failed: 0
+[1207/194749.878:WARNING:dtlstransportchannel.cc(339)] Ignoring new SRTP ciphers while DTLS is negotiating
+[1207/194749.879:WARNING:p2ptransportchannel.cc(966)] SetOption(5, 34) failed: 0
+[1207/194749.879:WARNING:p2ptransportchannel.cc(966)] SetOption(5, 34) failed: 0
+[1207/194749.879:WARNING:p2ptransportchannel.cc(966)] SetOption(1, 65536) failed: 0
+[1207/194749.879:WARNING:p2ptransportchannel.cc(966)] SetOption(1, 65536) failed: 0
+[1207/194749.879:WARNING:p2ptransportchannel.cc(966)] SetOption(2, 65536) failed: 0
+[1207/194749.879:WARNING:p2ptransportchannel.cc(966)] SetOption(2, 65536) failed: 0
+[1207/194750.457:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
+[1207/194750.458:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
+[1207/194836.565:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1207/195045.790:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
+[1207/195046.091:WARNING:audio_send_stream.cc(303)] SetSendCodec() failed: 8005
+[1207/195046.091:ERROR:audio_send_stream.cc(90)] Failed to set up send codec state.
+[1207/195046.205:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000013A01FD78B0:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 46) failed: 0
+[1207/195046.205:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000013A01CFD500:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 46) failed: 0
+[1207/195046.386:WARNING:dtlstransportchannel.cc(339)] Ignoring new SRTP ciphers while DTLS is negotiating
+[1207/195046.386:WARNING:p2ptransportchannel.cc(966)] SetOption(5, 34) failed: 0
+[1207/195046.386:WARNING:p2ptransportchannel.cc(966)] SetOption(5, 34) failed: 0
+[1207/195046.386:WARNING:p2ptransportchannel.cc(966)] SetOption(1, 65536) failed: 0
+[1207/195046.386:WARNING:p2ptransportchannel.cc(966)] SetOption(1, 65536) failed: 0
+[1207/195046.386:WARNING:p2ptransportchannel.cc(966)] SetOption(2, 65536) failed: 0
+[1207/195046.386:WARNING:p2ptransportchannel.cc(966)] SetOption(2, 65536) failed: 0
+[1207/195046.953:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
+[1207/195046.953:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
+[1207/195053.737:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1207/195109.453:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
+[1207/195109.753:WARNING:audio_send_stream.cc(303)] SetSendCodec() failed: 8005
+[1207/195109.753:ERROR:audio_send_stream.cc(90)] Failed to set up send codec state.
+[1207/195109.856:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001C6DCA29F90:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 46) failed: 0
+[1207/195109.856:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001C6DB61ABB0:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 46) failed: 0
+[1207/195110.046:WARNING:dtlstransportchannel.cc(339)] Ignoring new SRTP ciphers while DTLS is negotiating
+[1207/195110.046:WARNING:p2ptransportchannel.cc(966)] SetOption(5, 34) failed: 0
+[1207/195110.046:WARNING:p2ptransportchannel.cc(966)] SetOption(5, 34) failed: 0
+[1207/195110.046:WARNING:p2ptransportchannel.cc(966)] SetOption(1, 65536) failed: 0
+[1207/195110.046:WARNING:p2ptransportchannel.cc(966)] SetOption(1, 65536) failed: 0
+[1207/195110.046:WARNING:p2ptransportchannel.cc(966)] SetOption(2, 65536) failed: 0
+[1207/195110.046:WARNING:p2ptransportchannel.cc(966)] SetOption(2, 65536) failed: 0
+[1207/195110.612:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
+[1207/195110.613:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
+[1207/195119.126:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1207/212936.109:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
+[1207/212936.441:WARNING:audio_send_stream.cc(303)] SetSendCodec() failed: 8005
+[1207/212936.441:ERROR:audio_send_stream.cc(90)] Failed to set up send codec state.
+[1207/212936.561:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000021D69D129F0:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 46) failed: 0
+[1207/212936.561:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000021D69D21E00:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 46) failed: 0
+[1207/212936.758:WARNING:dtlstransportchannel.cc(339)] Ignoring new SRTP ciphers while DTLS is negotiating
+[1207/212936.758:WARNING:p2ptransportchannel.cc(966)] SetOption(5, 34) failed: 0
+[1207/212936.758:WARNING:p2ptransportchannel.cc(966)] SetOption(5, 34) failed: 0
+[1207/212936.758:WARNING:p2ptransportchannel.cc(966)] SetOption(1, 65536) failed: 0
+[1207/212936.758:WARNING:p2ptransportchannel.cc(966)] SetOption(1, 65536) failed: 0
+[1207/212936.758:WARNING:p2ptransportchannel.cc(966)] SetOption(2, 65536) failed: 0
+[1207/212936.758:WARNING:p2ptransportchannel.cc(966)] SetOption(2, 65536) failed: 0
+[1207/212937.293:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
+[1207/212937.293:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
+[1207/212958.683:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1207/213024.773:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
+[1207/213025.070:WARNING:audio_send_stream.cc(303)] SetSendCodec() failed: 8005
+[1207/213025.070:ERROR:audio_send_stream.cc(90)] Failed to set up send codec state.
+[1207/213025.183:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001AE85E8FA60:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 46) failed: 0
+[1207/213025.183:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001AE8977E530:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 46) failed: 0
+[1207/213025.360:WARNING:dtlstransportchannel.cc(339)] Ignoring new SRTP ciphers while DTLS is negotiating
+[1207/213025.360:WARNING:p2ptransportchannel.cc(966)] SetOption(5, 34) failed: 0
+[1207/213025.360:WARNING:p2ptransportchannel.cc(966)] SetOption(5, 34) failed: 0
+[1207/213025.360:WARNING:p2ptransportchannel.cc(966)] SetOption(1, 65536) failed: 0
+[1207/213025.360:WARNING:p2ptransportchannel.cc(966)] SetOption(1, 65536) failed: 0
+[1207/213025.360:WARNING:p2ptransportchannel.cc(966)] SetOption(2, 65536) failed: 0
+[1207/213025.360:WARNING:p2ptransportchannel.cc(966)] SetOption(2, 65536) failed: 0
+[1207/213025.888:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
+[1207/213025.889:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
+[1207/213033.731:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+=======
 [1207/190432.407:WARNING:audio_send_stream.cc(303)] SetSendCodec() failed: 8005
 [1207/190432.407:ERROR:audio_send_stream.cc(90)] Failed to set up send codec state.
 [1207/190432.519:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[00000209F33550C0:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 46) failed: 0
@@ -725,3 +896,4 @@
 [1207/191233.966:WARNING:rtp_rtcp_impl.cc(356)] Failed to send RTCP BYE
 [1207/191234.003:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=1
 [1207/191234.281:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+>>>>>>> 1b99e1e0aa369fb276e5e169779ba6c8148c8b1d

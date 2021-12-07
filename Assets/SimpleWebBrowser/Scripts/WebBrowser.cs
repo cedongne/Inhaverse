@@ -263,7 +263,7 @@ _mainEngine.OnPageLoaded += _mainEngine_OnPageLoaded;
         public void OnNavigate()
         {
             // MainUrlInput.isFocused
-            string tmpUrl = "https://owake.me/";
+            string tmpUrl = "https://v3demo.mediasoup.org/";
             _mainEngine.SendNavigateEvent(tmpUrl, false, false);
         }
 

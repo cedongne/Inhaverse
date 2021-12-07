@@ -51,6 +51,7 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
     public Vector3 conferenceWorldOffset;
 
     public GameObject table;
+    public InputField browserChannelNameInputField;
 
     public void StartVideoConferenceBtn()
     {
@@ -100,11 +101,11 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
             GameObject.Find(ChatManager.Instance.currentChannelName).transform.Find($"IT_chair{4 - idx}").GetComponent<MeshCollider>().isTrigger = true;
         }
         GameObject.Find(ChatManager.Instance.currentChannelName).transform.Find("table").GetComponent<MeshCollider>().isTrigger = true;
-        photonView.RPC("UpdateConferenceStateRPC", RpcTarget.AllBuffered);
+        photonView.RPC("UpdateConferenceStateRPC", RpcTarget.AllBuffered, browserChannelNameInputField.text);
     }
 
     [PunRPC]
-    public void UpdateConferenceStateRPC()
+    public void UpdateConferenceStateRPC(string browserChannelName)
     {
         ChatClient client = ChatManager.Instance.chatClient;
         if (client.PublicChannels.ContainsKey(ChatManager.Instance.currentChannelName))
@@ -115,7 +116,15 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
 
             foreach(var name in client.PublicChannels[ChatManager.Instance.currentChannelName].Subscribers)
             {
-                players.Add(GameObject.Find(name));
+                if(!players.Contains(GameObject.Find(name)))
+                {
+                    players.Add(GameObject.Find(name));
+                }
+            }
+
+            if(browserChannelName != "")
+            {
+                browserChannelNameInputField.text = browserChannelName;
             }
 
             Vector3 conferencePos = GameObject.Find(ChatManager.Instance.currentChannelName).transform.position - GameObject.Find("Conference001").transform.position;
@@ -161,8 +170,6 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
         UIManager.Instance.ShowUI(Define.UI.HUD);
         ChatManager.Instance.ExitConference();
         VoiceManager.Instance.EnterLobbyChannel();
-        table.GetComponent<InteractiveConferenceTable>().mainCamera.enabled = true;
-        table.GetComponent<InteractiveConferenceTable>().UICamera.enabled = false;
 
     }
 
@@ -172,6 +179,26 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
         if (players.Contains(GameObject.Find(PlayfabManager.Instance.playerName)))
         {
             players.Remove(GameObject.Find(PlayfabManager.Instance.playerName));
+            browserChannelNameInputField.text = "";
         }
+    }
+
+    public void ChangeInputField()
+    {
+        photonView.RPC("ChangeInputFieldRPC", RpcTarget.AllBuffered, browserChannelNameInputField.text);
+    }
+
+    [PunRPC]
+    public void ChangeInputFieldRPC(string browserChannelName)
+    {
+        if (browserChannelName != "")
+        {
+            browserChannelNameInputField.text = browserChannelName;
+        }
+    }
+
+    public void OnButtonOpenBrowser()
+    {
+        Application.OpenURL("https://owake.me/");
     }
 }
