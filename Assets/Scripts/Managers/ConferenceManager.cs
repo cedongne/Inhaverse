@@ -111,6 +111,7 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
             UIManager.Instance.conferenceChannelNameText.text = "";
             UIManager.Instance.conferenceChannelNameObject.SetActive(false);
             UIManager.Instance.conferenceChannelNameInputField.text = "";
+            UIManager.Instance.conferenceChannelNameInputObject.SetActive(false);
 
             UIManager.Instance.videoConferenceButton.interactable = true;
             UIManager.Instance.videoConferenceText.text = "화상회의 시작";
@@ -194,11 +195,12 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
         UIManager.Instance.ShowUI(Define.UI.HUD);
         ChatManager.Instance.ExitConference();
         VoiceManager.Instance.EnterLobbyChannel();
-        table.GetComponent<InteractiveConferenceTable>().mainCamera.enabled = true;
-        table.GetComponent<InteractiveConferenceTable>().UICamera.enabled = false;
 
         photonView.RPC("EndVideoConference", RpcTarget.AllBuffered, channelName);
+
         MineManager.Instance.player.GetComponent<Rigidbody>().isKinematic = false;
+        MineManager.Instance.playerContoller.canMove = true;
+        MineManager.Instance.playerContoller.canDetectInteractive = true;
     }
 
     [PunRPC]

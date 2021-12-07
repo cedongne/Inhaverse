@@ -73,14 +73,15 @@ public class CameraController : MonoBehaviour
     {
         if (!UIManager.Instance.isOpenWindow)
         {
-            FPSLookAround();
+            if(Cursor.lockState.Equals(CursorLockMode.Locked))
+                LookAround();
             DontBeyondWall();
         }
         MoveCamera();
     }
 
 
-    void FPSLookAround()
+    void LookAround()
     {
         Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X") * 2, Input.GetAxis("Mouse Y") * 2);
         Vector3 camAngle = cameraArmTransform.rotation.eulerAngles;
