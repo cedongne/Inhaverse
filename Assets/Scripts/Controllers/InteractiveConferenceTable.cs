@@ -30,7 +30,7 @@ public class InteractiveConferenceTable : InteractiveObject
 
         Cursor.lockState = CursorLockMode.None;
 
-        Application.OpenURL("https://owake.me/");
+//        Application.OpenURL("https://owake.me/");
 //        webBrowser.OnNavigate();
         ConferenceManager.Instance.table = gameObject;
     }
