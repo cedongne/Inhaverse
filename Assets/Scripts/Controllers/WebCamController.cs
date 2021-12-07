@@ -25,7 +25,7 @@ namespace OpenCvSharp
 
         Mat image = new Mat();
         Texture2D destTexture;
-        Texture2D loadedTexture = new Texture2D(640, 360);
+        Texture2D loadedTexture;
 
         private int currentIndex = 0;
 
@@ -37,26 +37,31 @@ namespace OpenCvSharp
 
         private void Awake()
         {
-            MineManager.Instance.webCamController = GetComponent<WebCamController>();
+            if(photonView.IsMine)
+                MineManager.Instance.webCamController = GetComponent<WebCamController>();
+
+            loadedTexture = new Texture2D(640, 360);
         }
 
         void Start()
         {
-            conferenceDisplay = RpcUIManager.Instance.webCamImageList[0].GetComponent<RawImage>();
-            destTexture = Texture2D.blackTexture;
-
-            if (WebCamTexture.devices.Length != 0)
+            if (photonView.IsMine)
             {
-                WebCamDevice device = WebCamTexture.devices[0];
-                camTexture = new WebCamTexture(device.name);
-            }
-            nowDisplay = headDisplay;
-            conferenceDisplay = RpcUIManager.Instance.webCamImageList[0].GetComponent<RawImage>();
+                conferenceDisplay = RpcUIManager.Instance.webCamImageList[0].GetComponent<RawImage>();
+                destTexture = Texture2D.blackTexture;
 
-            if (!faceCascade.Load(filenameFaceCascade))
-            {
-                Console.WriteLine("error");
-                return;
+                if (WebCamTexture.devices.Length != 0)
+                {
+                    WebCamDevice device = WebCamTexture.devices[0];
+                    camTexture = new WebCamTexture(device.name);
+                }
+                nowDisplay = headDisplay;
+
+                if (!faceCascade.Load(filenameFaceCascade))
+                {
+                    Console.WriteLine("error");
+                    return;
+                }
             }
         }
 
