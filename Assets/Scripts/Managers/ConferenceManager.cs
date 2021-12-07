@@ -126,11 +126,6 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
 
     public void UpdateConferenceState()
     {
-        for (int idx = 0; idx < 4; idx++)
-        {
-            GameObject.Find(ChatManager.Instance.currentChannelName).transform.Find($"IT_chair{4 - idx}").GetComponent<MeshCollider>().isTrigger = true;
-        }
-        GameObject.Find(ChatManager.Instance.currentChannelName).transform.Find("table").GetComponent<MeshCollider>().isTrigger = true;
         photonView.RPC("UpdateConferenceStateRPC", RpcTarget.AllBuffered);
     }
 
@@ -239,6 +234,7 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
         players.Clear();
         */
         photonView.RPC("ExitConferenceRPC", RpcTarget.AllBuffered, MineManager.Instance.player.name);
+        players.Clear();
         UIManager.Instance.ShowUI(Define.UI.HUD);
         ChatManager.Instance.ExitConference();
         VoiceManager.Instance.EnterLobbyChannel();
