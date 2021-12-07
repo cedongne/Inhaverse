@@ -46,7 +46,7 @@ public class Define
         END
     }
 
-    public enum CONFERENCESTATE
+    public enum VIDEOCONFERENCESTATE
     {
         READY,
         START,
