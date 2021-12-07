@@ -141,6 +141,7 @@ namespace OpenCvSharp
         {
             if (stream.IsWriting)
             {
+                Debug.Log("writing");
                 var bytes = destTexture.EncodeToJPG();
                 var str = Convert.ToBase64String(bytes);
 
