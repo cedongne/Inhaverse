@@ -144,6 +144,7 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
                 var obj = GameObject.Find(name);
                 players.Add(obj);
             }
+            players.Sort();
 
             Vector3 conferencePos = GameObject.Find(ChatManager.Instance.currentChannelName).transform.position - GameObject.Find("Conference001").transform.position;
             conferenceWorldTransform.position = conferenceWorldOffset + conferencePos;
