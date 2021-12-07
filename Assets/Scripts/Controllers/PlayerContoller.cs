@@ -86,6 +86,10 @@ public class PlayerContoller : MonoBehaviourPun
             if (PlayfabManager.Instance.playerName != "")
                 name = PlayfabManager.Instance.playerName;
 
+            MineManager.Instance.player = gameObject;
+            MineManager.Instance.playerContoller = GetComponent<PlayerContoller>();
+            MineManager.Instance.playerUI = playerUIObjects;
+
             cameraController = cameraArm.GetComponent<CameraController>();
             cameraArmTransform = cameraArm.transform;
             cameraController.enabled = true;
@@ -380,14 +384,14 @@ public class PlayerContoller : MonoBehaviourPun
     {
         if (isCamDown)
         {
-            if (OpenCvSharp.WebCamManager.Instance.enabled)
+            if (MineManager.Instance.webCamController.enabled)
             {
-                OpenCvSharp.WebCamManager.Instance.enabled = false;
+                MineManager.Instance.webCamController.enabled = false;
                 playerUIController.ShowWebCamImage(false);
             }
             else
             {
-                OpenCvSharp.WebCamManager.Instance.enabled = true;
+                MineManager.Instance.webCamController.enabled = true;
                 playerUIController.ShowWebCamImage(true);
             }
         }

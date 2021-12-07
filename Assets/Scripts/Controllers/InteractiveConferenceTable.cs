@@ -26,6 +26,15 @@ public class InteractiveConferenceTable : InteractiveObject
         ChatManager.Instance.SetConferenceChatUI();
 
         Cursor.lockState = CursorLockMode.None;
+<<<<<<< HEAD
+=======
+
+        mainCamera.enabled = false;
+        UICamera.enabled = true;
+        Application.OpenURL("https://owake.me/");
+//        webBrowser.OnNavigate();
+        ConferenceManager.Instance.table = gameObject;
+>>>>>>> 1b99e1e0aa369fb276e5e169779ba6c8148c8b1d
     }
 
     void ChatControl()

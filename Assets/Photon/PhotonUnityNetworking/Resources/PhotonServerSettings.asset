@@ -58,6 +58,7 @@ MonoBehaviour:
   - SetStudentListUIRPC
   - RemoveStudent
   - NoticeClassStart
+  - ChangeInputFieldRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

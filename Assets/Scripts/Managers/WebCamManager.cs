@@ -152,8 +152,8 @@ namespace OpenCvSharp
             if (nowDisplay.gameObject.activeSelf)
             {
                 camTexture.Play();
-                image = Unity.TextureToMat(camTexture);
-                destTexture = Unity.MatToTexture(image);
+                //image = Unity.TextureToMat(camTexture);
+                //destTexture = Unity.MatToTexture(image);
 
                 //if (detect_flag)
                 //{
