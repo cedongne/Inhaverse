@@ -1294,7 +1294,6 @@ MonoBehaviour:
   isInfoWindowDown: 0
   isOptionWindowDown: 0
   isChangeCameraModeDown: 0
-  isSpeakerDown: 0
   currentTouch: {fileID: 5030059289416126775}
   playerList: []
 --- !u!114 &3002047870756200745

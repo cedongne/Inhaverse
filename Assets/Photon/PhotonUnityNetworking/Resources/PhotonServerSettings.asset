@@ -58,11 +58,8 @@ MonoBehaviour:
   - SetStudentListUIRPC
   - RemoveStudent
   - NoticeClassStart
-  - ChangeInputFieldRPC
-
   - ConnectingVideoConference
   - OpenVideoConference
-
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
