@@ -65,6 +65,8 @@ MonoBehaviour:
   - ReadyVideoConference
   - StartVideoConference
   - OnKinematicRPC
+  - PlayersArrayRPC
+  - SetName
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
