@@ -83,7 +83,11 @@ public class UIManager : MonoBehaviour
 
     [Header("===== 회의 UI =====")]
     [Space]
-    public Text ConferenceMemberText;
+    public Text conferenceMemberText;
+    public Button videoConferenceButton;
+    public Text videoConferenceText;
+    public GameObject conferenceChannelNameObject;
+    public Text conferenceChannelNameText;
 
     [Header("===== 강의 UI =====")]
     [Space]
@@ -158,11 +162,6 @@ public class UIManager : MonoBehaviour
             playerController.name = _playerName;
     }
 #region HUD Icons
-    public void CamOnOffBtn()
-    {
-        playerController.isCamDown = true;
-        playerController.TurnWebCam();
-    }
 
     public void SpeakerOnOffBtn()
     {

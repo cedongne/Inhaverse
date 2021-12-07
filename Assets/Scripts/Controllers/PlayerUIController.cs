@@ -31,8 +31,6 @@ public class PlayerUIController : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Start()
     {
-        OpenCvSharp.WebCamManager.Instance.headDisplay = webCamImage.GetComponent<RawImage>();
-        OpenCvSharp.WebCamManager.Instance.nowDisplay = webCamImage.GetComponent<RawImage>();
     }
 
     void FixedUpdate()

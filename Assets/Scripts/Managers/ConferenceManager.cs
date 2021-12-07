@@ -36,9 +36,13 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
         }
         else
             Destroy(gameObject);
+        conferenceState = Define.VIDEOCONFERENCESTATE.END;
     }
 
+    public Define.VIDEOCONFERENCESTATE conferenceState;
+
     public string channelName;
+    public string conferenceChannelName;
 
     public List<GameObject> players;
     public List<string> playerUrl;
@@ -48,6 +52,46 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
 
     public GameObject table;
     public InputField browserChannelNameInputField;
+
+    public void StartVideoConferenceBtn()
+    {
+
+        photonView.RPC("ConnectingVideoConference", RpcTarget.AllBuffered, channelName);
+    }
+
+    [PunRPC]
+    public void UpdateStateVideoConference(string sender_channel_name, Define.VIDEOCONFERENCESTATE sender_conference_state)
+    {
+        Debug.Log("Receiver " + sender_channel_name + " " + sender_conference_state);
+        if (sender_channel_name.Equals(channelName))
+        {
+            if (sender_conference_state.Equals(Define.VIDEOCONFERENCESTATE.READY))
+            {
+                Debug.Log("ReadyVideoConference");
+                UIManager.Instance.videoConferenceButton.interactable = false;
+                UIManager.Instance.videoConferenceText.text = "회의 생성 중...";
+            }
+            else if (sender_conference_state.Equals(Define.VIDEOCONFERENCESTATE.START))
+            {
+                Debug.Log("StartVideoConference");
+                UIManager.Instance.conferenceChannelNameText.text = sender_channel_name;
+                UIManager.Instance.conferenceChannelNameObject.SetActive(true);
+
+                UIManager.Instance.videoConferenceButton.interactable = true;
+                UIManager.Instance.videoConferenceText.text = "화상회의 참여";
+            }
+            else
+            {
+                Debug.Log("EndVideoConference");
+                UIManager.Instance.conferenceChannelNameText.text = "";
+                UIManager.Instance.conferenceChannelNameObject.SetActive(false);
+
+                UIManager.Instance.videoConferenceButton.interactable = true;
+                UIManager.Instance.videoConferenceText.text = "화상회의 시작";
+
+            }
+        }
+    }
 
     public void UpdateConferenceState()
     {
@@ -65,7 +109,7 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
         ChatClient client = ChatManager.Instance.chatClient;
         if (client.PublicChannels.ContainsKey(ChatManager.Instance.currentChannelName))
         {
-            UIManager.Instance.ConferenceMemberText.text = "[" + "회의실" + "] " +
+            UIManager.Instance.conferenceMemberText.text = "[" + "회의실" + "] " +
                 client.PublicChannels[ChatManager.Instance.currentChannelName].Subscribers.Count + " / " + 
                 client.PublicChannels[ChatManager.Instance.currentChannelName].MaxSubscribers;
 
@@ -109,6 +153,12 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
                     players[idx].transform.position += new Vector3(0, 0, 0.5f);
                 }
                 players[idx].transform.LookAt(conferenceWorldTransform);
+            }
+
+            if (!conferenceChannelName.Equals(""))
+            {
+                Debug.Log("Sender");
+                photonView.RPC("UpdateStateVideoConference", RpcTarget.AllBuffered, channelName, conferenceState);
             }
         }
     }

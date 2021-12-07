@@ -46,4 +46,10 @@ public class Define
         END
     }
 
+    public enum CONFERENCESTATE
+    {
+        READY,
+        START,
+        END
+    }
 }

@@ -10,7 +10,7 @@ namespace OpenCvSharp
 
     using OpenCvSharp;
 
-    public class WebCamController : MonoBehaviourPunCallbacks, IPunObservable
+    public class WebCamController : MonoBehaviourPunCallbacks
     {
         float timer = 0f;
         public float delayTime = 1f;
@@ -37,9 +37,6 @@ namespace OpenCvSharp
 
         private void Awake()
         {
-            if(photonView.IsMine)
-                MineManager.Instance.webCamController = GetComponent<WebCamController>();
-
             loadedTexture = new Texture2D(640, 360);
         }
 
@@ -137,24 +134,5 @@ namespace OpenCvSharp
             }
         }
 
-        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-        {
-            if (stream.IsWriting)
-            {
-                Debug.Log("writing");
-                var bytes = destTexture.EncodeToJPG();
-                var str = Convert.ToBase64String(bytes);
-
-                stream.SendNext(str);
-            }
-            else
-            {
-                var str = (string)stream.ReceiveNext();
-                var bytes = Convert.FromBase64String(str);
-                loadedTexture.LoadImage(bytes);
-
-                nowDisplay.texture = loadedTexture;
-            }
-        }
     }
 }
