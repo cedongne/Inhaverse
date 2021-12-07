@@ -88,6 +88,8 @@ public class UIManager : MonoBehaviour
     public Text videoConferenceText;
     public GameObject conferenceChannelNameObject;
     public Text conferenceChannelNameText;
+    public InputField conferenceChannelNameInputField;
+    public Button conferenceChannelNameInputButton;
 
     [Header("===== °­ÀÇ UI =====")]
     [Space]
