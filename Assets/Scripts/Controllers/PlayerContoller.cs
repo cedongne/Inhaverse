@@ -47,7 +47,6 @@ public class PlayerContoller : MonoBehaviourPun
 
     public bool isJumpDown;
     public bool isRunDown;
-    public bool isCamDown;
     public bool isVoiceDown;
     public bool isInfoWindowDown;
     public bool isOptionWindowDown;
@@ -153,7 +152,6 @@ public class PlayerContoller : MonoBehaviourPun
         Jump();
         WalkToRun();
         ChangeCameraMode();
-        TurnWebCam();
         OpenInfoWindow();
         VoiceOnOff();
 
@@ -166,7 +164,6 @@ public class PlayerContoller : MonoBehaviourPun
     {
         isRunDown = Input.GetKeyDown(KeyCode.R);
         isJumpDown = Input.GetKeyDown(KeyCode.Space);
-        isCamDown = Input.GetKeyDown(KeyCode.C);
         isVoiceDown = Input.GetKeyDown(KeyCode.V);
         //        isInfoWindowDown = Input.GetKeyDown(KeyCode.I);
         //        isOptionWindowDown = Input.GetKeyDown(KeyCode.Escape);
@@ -356,23 +353,6 @@ public class PlayerContoller : MonoBehaviourPun
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             playerTransform.position = new Vector3(-23, 0.2f, 37);
-        }
-    }
-
-    public void TurnWebCam()
-    {
-        if (isCamDown)
-        {
-            if (MineManager.Instance.webCamController.enabled)
-            {
-                MineManager.Instance.webCamController.enabled = false;
-                playerUIController.ShowWebCamImage(false);
-            }
-            else
-            {
-                MineManager.Instance.webCamController.enabled = true;
-                playerUIController.ShowWebCamImage(true);
-            }
         }
     }
 

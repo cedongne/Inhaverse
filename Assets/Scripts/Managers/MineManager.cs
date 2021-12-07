@@ -37,7 +37,6 @@ public class MineManager : MonoBehaviour
     public PlayerContoller playerContoller;
     public GameObject player;
 
-    public OpenCvSharp.WebCamController webCamController;
     public GameObject playerUI;
 
 }
