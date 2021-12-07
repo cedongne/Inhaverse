@@ -222,11 +222,6 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 
 	public void ExitConference()
     {
-		for (int idx = 0; idx < 4; idx++)
-		{
-			GameObject.Find(ChatManager.Instance.currentChannelName).transform.Find($"IT_chair{4 - idx}").GetComponent<MeshCollider>().isTrigger = false;
-		}
-		GameObject.Find(ChatManager.Instance.currentChannelName).transform.Find("table").GetComponent<MeshCollider>().isTrigger = false;
 		LeaveChat();
 		EnterLobbyChat();
 		UIManager.Instance.CloseWindow();
