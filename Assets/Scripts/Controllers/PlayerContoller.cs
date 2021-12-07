@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.Audio;
 
 public class PlayerContoller : MonoBehaviourPun
 {
@@ -52,6 +53,7 @@ public class PlayerContoller : MonoBehaviourPun
     public bool isInfoWindowDown;
     public bool isOptionWindowDown;
     public bool isChangeCameraModeDown;
+    public bool isSpeakerDown;
     public Outline currentTouch;
 
     public List<string> playerList;
@@ -152,6 +154,7 @@ public class PlayerContoller : MonoBehaviourPun
         TurnWebCam();
         OpenInfoWindow();
         VoiceOnOff();
+        SpeakerOnOff();
 
         OnCursorVisible();
         ShowPlayerUIAsDistance();
@@ -164,6 +167,7 @@ public class PlayerContoller : MonoBehaviourPun
         isJumpDown = Input.GetKeyDown(KeyCode.Space);
         isCamDown = Input.GetKeyDown(KeyCode.C);
         isVoiceDown = Input.GetKeyDown(KeyCode.V);
+        isSpeakerDown = Input.GetKeyDown(KeyCode.M);
         //        isInfoWindowDown = Input.GetKeyDown(KeyCode.I);
         //        isOptionWindowDown = Input.GetKeyDown(KeyCode.Escape);
         isChangeCameraModeDown = Input.GetKeyDown(KeyCode.Tab);
@@ -307,6 +311,23 @@ public class PlayerContoller : MonoBehaviourPun
         if (isVoiceDown)
         {
             VoiceManager.Instance.VoiceOnOff();
+        }
+    }
+
+    void SpeakerOnOff()
+    {
+        if(isSpeakerDown)
+        {
+            if(cameraArm.GetComponent<AudioListener>().enabled == true)
+            {
+                cameraArm.GetComponent<AudioListener>().enabled = false;
+                UIManager.Instance.hudSpeakerIcon.GetComponent<Image>().color = Color.gray;
+            }
+            else
+            {
+                cameraArm.GetComponent<AudioListener>().enabled = true;
+                UIManager.Instance.hudSpeakerIcon.GetComponent<Image>().color = Color.white;
+            }
         }
     }
 
