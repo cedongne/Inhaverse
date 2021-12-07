@@ -30,6 +30,10 @@ public class InteractiveConferenceTable : InteractiveObject
 
         Cursor.lockState = CursorLockMode.None;
 
+        mainCamera.enabled = false;
+        UICamera.enabled = true;
+        Application.OpenURL("https://owake.me/");
+//        webBrowser.OnNavigate();
         ConferenceManager.Instance.table = gameObject;
     }
 
