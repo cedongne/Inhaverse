@@ -32,7 +32,8 @@ public class InteractiveConferenceTable : InteractiveObject
 
         mainCamera.enabled = false;
         UICamera.enabled = true;
-        webBrowser.OnNavigate();
+        Application.OpenURL("https://owake.me/");
+//        webBrowser.OnNavigate();
         ConferenceManager.Instance.table = gameObject;
     }
 
