@@ -10,7 +10,7 @@ namespace OpenCvSharp
 
     using OpenCvSharp;
 
-    public class WebCamController : MonoBehaviourPunCallbacks
+    public class WebCamController : MonoBehaviourPunCallbacks, IPunObservable
     {
         float timer = 0f;
         public float delayTime = 1f;
@@ -25,6 +25,7 @@ namespace OpenCvSharp
 
         Mat image = new Mat();
         Texture2D destTexture;
+        Texture2D loadedTexture = new Texture2D(640, 360);
 
         private int currentIndex = 0;
 
@@ -68,11 +69,12 @@ namespace OpenCvSharp
                     SetWebCamDisplay();
                     ShowWebCam();
                 }
-            }
+            }/*
             else
             {
                 ShowOtherWebCam();
             }
+            */
         }
 
         void SetWebCamDisplay()
@@ -91,14 +93,21 @@ namespace OpenCvSharp
 
         void ShowWebCam()
         {
-            Debug.Log(detect_flag);
             if (nowDisplay.gameObject.activeSelf)
             {
                 camTexture.Play();
                 image = Unity.TextureToMat(camTexture);
                 destTexture = Unity.MatToTexture(image);
 
-                nowDisplay.texture = destTexture;
+                var bytes = destTexture.EncodeToJPG();
+                var str = Convert.ToBase64String(bytes);
+
+                var abytes = Convert.FromBase64String(str);
+                Texture2D Textures = new Texture2D(640, 360);
+                
+                Textures.LoadImage(abytes);
+
+                nowDisplay.texture = Textures;
             }
             else
             {
@@ -120,6 +129,25 @@ namespace OpenCvSharp
             {
                 if(camTexture != null)
                     camTexture.Stop();
+            }
+        }
+
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        {
+            if (stream.IsWriting)
+            {
+                var bytes = destTexture.EncodeToJPG();
+                var str = Convert.ToBase64String(bytes);
+
+                stream.SendNext(str);
+            }
+            else
+            {
+                var str = (string)stream.ReceiveNext();
+                var bytes = Convert.FromBase64String(str);
+                loadedTexture.LoadImage(bytes);
+
+                nowDisplay.texture = loadedTexture;
             }
         }
     }

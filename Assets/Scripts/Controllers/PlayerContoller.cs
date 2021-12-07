@@ -363,14 +363,14 @@ public class PlayerContoller : MonoBehaviourPun
     {
         if (isCamDown)
         {
-            if (OpenCvSharp.WebCamManager.Instance.enabled)
+            if (MineManager.Instance.webCamController.enabled)
             {
-                OpenCvSharp.WebCamManager.Instance.enabled = false;
+                MineManager.Instance.webCamController.enabled = false;
                 playerUIController.ShowWebCamImage(false);
             }
             else
             {
-                OpenCvSharp.WebCamManager.Instance.enabled = true;
+                MineManager.Instance.webCamController.enabled = true;
                 playerUIController.ShowWebCamImage(true);
             }
         }
