@@ -137,14 +137,11 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
                 client.PublicChannels[ChatManager.Instance.currentChannelName].Subscribers.Count + " / " + 
                 client.PublicChannels[ChatManager.Instance.currentChannelName].MaxSubscribers;
 
-            if (players.Count == 0)
+            foreach (var name in client.PublicChannels[ChatManager.Instance.currentChannelName].Subscribers)
             {
-                foreach (var name in client.PublicChannels[ChatManager.Instance.currentChannelName].Subscribers)
-                {
-                    var obj = GameObject.Find(name);
-                    if (!players.Contains(obj))
-                        players.Add(obj);
-                }
+                var obj = GameObject.Find(name);
+                if (!players.Contains(obj))
+                    players.Add(obj);
             }
 
             Vector3 conferencePos = GameObject.Find(ChatManager.Instance.currentChannelName).transform.position - GameObject.Find("Conference001").transform.position;
@@ -191,7 +188,7 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
 
     public void ExitConference()
     {
-        photonView.RPC("ExitConferenceRPC", RpcTarget.AllBuffered);
+        photonView.RPC("ExitConferenceRPC", RpcTarget.AllBuffered, MineManager.Instance.player.name);
         UIManager.Instance.ShowUI(Define.UI.HUD);
         ChatManager.Instance.ExitConference();
         VoiceManager.Instance.EnterLobbyChannel();
@@ -205,11 +202,11 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void ExitConferenceRPC()
+    public void ExitConferenceRPC(string playerName)
     {
-        if (players.Contains(GameObject.Find(PlayfabManager.Instance.playerName)))
-        {
-            players.Remove(GameObject.Find(PlayfabManager.Instance.playerName));
-        }
+        ChatClient client = ChatManager.Instance.chatClient;
+        var obj = GameObject.Find(playerName);
+        if (players.Contains(obj))
+            players.Remove(obj);
     }
 }
