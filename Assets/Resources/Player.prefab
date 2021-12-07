@@ -1290,6 +1290,7 @@ MonoBehaviour:
   jumpPower: 5
   canMove: 0
   canDetectInteractive: 0
+  canGetInput: 0
   isJumpDown: 0
   isRunDown: 0
   isInfoWindowDown: 0
