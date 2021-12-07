@@ -55,21 +55,25 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
     public void StartVideoConferenceBtn()
     {
         conferenceState = Define.VIDEOCONFERENCESTATE.READY;
-        photonView.RPC("UpdateStateVideoConference", RpcTarget.AllBuffered, channelName, conferenceState);
+        photonView.RPC("ReadyVideoConference", RpcTarget.AllBuffered, channelName, conferenceState);
         Application.OpenURL("https://owake.me/");
+
+        UIManager.Instance.conferenceChannelNameInputObject.SetActive(true);
     }
 
     public void EnterVideoConferenceChannelNameBtn()
     {
+        conferenceChannelName = UIManager.Instance.conferenceChannelNameInputField.text;
         conferenceState = Define.VIDEOCONFERENCESTATE.START;
-        photonView.RPC("UpdateStateVideoConference", RpcTarget.AllBuffered, channelName, conferenceState);
+        photonView.RPC("StartVideoConference", RpcTarget.AllBuffered, channelName, conferenceChannelName);
 
+        UIManager.Instance.conferenceChannelNameInputObject.SetActive(false);
     }
 
     [PunRPC]
-    public void UpdateStateVideoConference(string sender_channel_name, Define.VIDEOCONFERENCESTATE sender_conference_state)
+    public void ReadyVideoConference(string sender_channel_name, Define.VIDEOCONFERENCESTATE sender_conference_state)
     {
-        Debug.Log("Receiver " + sender_channel_name + " " + sender_conference_state);
+        Debug.Log("Ready Receiver " + sender_channel_name + " " + sender_conference_state);
         if (sender_channel_name.Equals(channelName))
         {
             if (sender_conference_state.Equals(Define.VIDEOCONFERENCESTATE.READY))
@@ -78,28 +82,40 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
                 UIManager.Instance.videoConferenceButton.interactable = false;
                 UIManager.Instance.videoConferenceText.text = "회의 생성 중...";
             }
-            else if (sender_conference_state.Equals(Define.VIDEOCONFERENCESTATE.START))
-            {
-                Debug.Log("StartVideoConference");
-                UIManager.Instance.conferenceChannelNameText.text = sender_channel_name;
-                UIManager.Instance.conferenceChannelNameObject.SetActive(true);
-
-                UIManager.Instance.videoConferenceButton.interactable = true;
-                UIManager.Instance.videoConferenceText.text = "화상회의 참여";
-            }
-            else
-            {
-                Debug.Log("EndVideoConference");
-                UIManager.Instance.conferenceChannelNameText.text = "";
-                UIManager.Instance.conferenceChannelNameObject.SetActive(false);
-
-                UIManager.Instance.videoConferenceButton.interactable = true;
-                UIManager.Instance.videoConferenceText.text = "화상회의 시작";
-
-            }
         }
     }
 
+    [PunRPC]
+    public void StartVideoConference(string sender_channel_name, string conference_channel_name)
+    {
+        Debug.Log("Start Receiver " + sender_channel_name + " " + conference_channel_name);
+        if (sender_channel_name.Equals(channelName))
+        {
+            Debug.Log("StartVideoConference");
+            UIManager.Instance.conferenceChannelNameText.text = conference_channel_name;
+            UIManager.Instance.conferenceChannelNameObject.SetActive(true);
+
+            UIManager.Instance.videoConferenceButton.interactable = true;
+            UIManager.Instance.videoConferenceText.text = "화상회의 참여";
+        }
+    }
+
+    [PunRPC]
+    public void EndVideoConference(string sender_channel_name)
+    {
+        Debug.Log("End Receiver " + sender_channel_name);
+        if (sender_channel_name.Equals(channelName))
+        {
+            Debug.Log("EndVideoConference");
+            conferenceChannelName = "";
+            UIManager.Instance.conferenceChannelNameText.text = "";
+            UIManager.Instance.conferenceChannelNameObject.SetActive(false);
+            UIManager.Instance.conferenceChannelNameInputField.text = "";
+
+            UIManager.Instance.videoConferenceButton.interactable = true;
+            UIManager.Instance.videoConferenceText.text = "화상회의 시작";
+        }
+    }
     public void UpdateConferenceState()
     {
         for (int idx = 0; idx < 4; idx++)
@@ -120,9 +136,14 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
                 client.PublicChannels[ChatManager.Instance.currentChannelName].Subscribers.Count + " / " + 
                 client.PublicChannels[ChatManager.Instance.currentChannelName].MaxSubscribers;
 
-            foreach(var name in client.PublicChannels[ChatManager.Instance.currentChannelName].Subscribers)
+            if (players.Count == 0)
             {
-                players.Add(GameObject.Find(name));
+                foreach (var name in client.PublicChannels[ChatManager.Instance.currentChannelName].Subscribers)
+                {
+                    var obj = GameObject.Find(name);
+                    if (!players.Contains(obj))
+                        players.Add(obj);
+                }
             }
 
             Vector3 conferencePos = GameObject.Find(ChatManager.Instance.currentChannelName).transform.position - GameObject.Find("Conference001").transform.position;
@@ -156,8 +177,13 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
 
             if (!conferenceChannelName.Equals(""))
             {
-                Debug.Log("Sender");
-                photonView.RPC("UpdateStateVideoConference", RpcTarget.AllBuffered, channelName, conferenceState);
+                if(conferenceState.Equals(Define.VIDEOCONFERENCESTATE.READY))
+                    photonView.RPC("ReadyVideoConference", RpcTarget.AllBuffered, channelName, conferenceState);
+                else if (conferenceState.Equals(Define.VIDEOCONFERENCESTATE.START))
+                    photonView.RPC("StartVideoConference", RpcTarget.AllBuffered, channelName, conferenceChannelName);
+                else
+                    photonView.RPC("EndVideoConference", RpcTarget.AllBuffered, channelName);
+
             }
         }
     }
@@ -171,6 +197,8 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
         table.GetComponent<InteractiveConferenceTable>().mainCamera.enabled = true;
         table.GetComponent<InteractiveConferenceTable>().UICamera.enabled = false;
 
+        photonView.RPC("EndVideoConference", RpcTarget.AllBuffered, channelName);
+        MineManager.Instance.player.GetComponent<Rigidbody>().isKinematic = false;
     }
 
     [PunRPC]

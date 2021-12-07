@@ -33,6 +33,7 @@ public class InteractiveConferenceTable : InteractiveObject
 //        Application.OpenURL("https://owake.me/");
 //        webBrowser.OnNavigate();
         ConferenceManager.Instance.table = gameObject;
+        MineManager.Instance.player.GetComponent<Rigidbody>().isKinematic = true;
     }
 
     void ChatControl()

@@ -88,6 +88,7 @@ public class UIManager : MonoBehaviour
     public Text videoConferenceText;
     public GameObject conferenceChannelNameObject;
     public Text conferenceChannelNameText;
+    public GameObject conferenceChannelNameInputObject;
     public InputField conferenceChannelNameInputField;
     public Button conferenceChannelNameInputButton;
 
