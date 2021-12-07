@@ -22,7 +22,6 @@ public class InteractiveConferenceTable : InteractiveObject
         UIManager.Instance.ShowUI(Define.UI.CONFERENCE);
         ChatManager.Instance.SetConferenceChatUI();
 
-
 //        webBrowser.OnNavigate();
         ConferenceManager.Instance.table = gameObject;
         MineManager.Instance.player.GetComponent<Rigidbody>().isKinematic = true;
