@@ -34,8 +34,11 @@ public class MineManager : MonoBehaviour
         }
     }
 
-    public PlayerContoller playerContoller;
+    public PlayerContoller playerController;
     public GameObject player;
+
+    public CameraController cameraController;
+    public GameObject cameraArm;
 
     public GameObject playerUI;
 

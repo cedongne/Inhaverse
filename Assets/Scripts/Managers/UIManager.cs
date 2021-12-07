@@ -288,6 +288,7 @@ public class UIManager : MonoBehaviour
             curVoiceIcon = hudVoiceIcon;
 
             hudUI.SetActive(true);
+            Cursor.lockState = CursorLockMode.Locked;
         }
         else if (showingUi.Equals(Define.UI.CONFERENCE))
         {
@@ -384,6 +385,7 @@ public class UIManager : MonoBehaviour
         eventFunction = null;
         isOpenWindow = false;
 
+        ChatManager.Instance.EraseText();
         ChatManager.Instance.SetHUDChatUI();
     }
 

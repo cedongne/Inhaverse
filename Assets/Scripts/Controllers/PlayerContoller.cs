@@ -47,6 +47,7 @@ public class PlayerContoller : MonoBehaviourPun
 
     public bool canMove;
     public bool canDetectInteractive;
+    public bool canGetInput;
 
     public bool isJumpDown;
     public bool isRunDown;
@@ -67,6 +68,7 @@ public class PlayerContoller : MonoBehaviourPun
 
         canMove = true;
         canDetectInteractive = true;
+        canGetInput = true;
     }
 
     // Start is called before the first frame update
@@ -74,7 +76,6 @@ public class PlayerContoller : MonoBehaviourPun
     {
         if (!photonView.IsMine)
         {
-            name = photonView.Owner.NickName;
             RpcUIManager.Instance.playerList.Add(gameObject.transform);
             RpcUIManager.Instance.playerUILIst.Add(playerUIObjects);
             RpcUIManager.Instance.webCamImageList.Add(webCamImage);
@@ -88,7 +89,7 @@ public class PlayerContoller : MonoBehaviourPun
                 name = PlayfabManager.Instance.playerName;
 
             MineManager.Instance.player = gameObject;
-            MineManager.Instance.playerContoller = GetComponent<PlayerContoller>();
+            MineManager.Instance.playerController = GetComponent<PlayerContoller>();
             MineManager.Instance.playerUI = playerUIObjects;
 
             cameraController = cameraArm.GetComponent<CameraController>();
@@ -120,11 +121,18 @@ public class PlayerContoller : MonoBehaviourPun
         DontDestroyOnLoad(GameObject.Find("Canvas"));
     }
 
+    [PunRPC]
+    public void SetName()
+    {
+        name = photonView.Owner.NickName;
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
         if (!photonView.IsMine)
         {
+            photonView.RPC("SetName", RpcTarget.AllBuffered);
             return;
         }
         if (!UIManager.Instance.isOpenWindow)
@@ -166,6 +174,8 @@ public class PlayerContoller : MonoBehaviourPun
 
     void GetInput()
     {
+        if (!canGetInput)
+            return;
         isRunDown = Input.GetKeyDown(KeyCode.R);
         isJumpDown = Input.GetKeyDown(KeyCode.Space);
         isChangeCameraModeDown = Input.GetKeyDown(KeyCode.Tab);
@@ -376,6 +386,17 @@ public class PlayerContoller : MonoBehaviourPun
             else
                 UIManager.Instance.OptionBtn();
         }
+    }
+
+    public void OnKinematic(bool set)
+    {
+        photonView.RPC("OnKinematicRPC", RpcTarget.AllBuffered, set);
+    }
+
+    [PunRPC]
+    public void OnKinematicRPC(bool set)
+    {
+        GetComponent<Rigidbody>().isKinematic = set;
     }
 
     private void OnDestroy()

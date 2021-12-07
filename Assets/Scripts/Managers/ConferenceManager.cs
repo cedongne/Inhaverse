@@ -118,14 +118,15 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
             UIManager.Instance.videoConferenceText.text = "화상회의 시작";
         }
     }
+
     public void UpdateConferenceState()
     {
-        for (int idx = 0; idx < 4; idx++)
-        {
-            GameObject.Find(ChatManager.Instance.currentChannelName).transform.Find($"IT_chair{4 - idx}").GetComponent<MeshCollider>().isTrigger = true;
-        }
-        GameObject.Find(ChatManager.Instance.currentChannelName).transform.Find("table").GetComponent<MeshCollider>().isTrigger = true;
         photonView.RPC("UpdateConferenceStateRPC", RpcTarget.AllBuffered);
+    }
+
+    public int compare(GameObject x, GameObject y)
+    {
+        return x.name.CompareTo(y.name);
     }
 
     [PunRPC]
@@ -138,44 +139,48 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
                 client.PublicChannels[ChatManager.Instance.currentChannelName].Subscribers.Count + " / " + 
                 client.PublicChannels[ChatManager.Instance.currentChannelName].MaxSubscribers;
 
-            if (players.Count == 0)
+            players.Clear();
+            foreach (var name in client.PublicChannels[ChatManager.Instance.currentChannelName].Subscribers)
             {
-                foreach (var name in client.PublicChannels[ChatManager.Instance.currentChannelName].Subscribers)
-                {
-                    var obj = GameObject.Find(name);
-                    if (!players.Contains(obj))
-                        players.Add(obj);
-                }
+                var obj = GameObject.Find(name);
+                players.Add(obj);
             }
+            players.Sort(compare);
 
             Vector3 conferencePos = GameObject.Find(ChatManager.Instance.currentChannelName).transform.position - GameObject.Find("Conference001").transform.position;
             conferenceWorldTransform.position = conferenceWorldOffset + conferencePos;
-
             for (int idx = 0; idx < players.Count; idx++)
             {
-                players[idx].transform.position = conferenceWorldTransform.position;
-                if (idx == 0)
+                if (players[idx].Equals(MineManager.Instance.player))
                 {
-                    //IT_Chair4
-                    players[idx].transform.position += new Vector3(-0.5f, 0, 0);
+                    Debug.Log(idx);
+                    players[idx].transform.position = conferenceWorldTransform.position;
+                    if (idx == 0)
+                    {
+                        //IT_Chair4
+                        players[idx].transform.position += new Vector3(-0.5f, 0, 0);
+                    }
+                    else if (idx == 1)
+                    {
+                        //IT_Chair3
+                        players[idx].transform.position += new Vector3(0.5f, 0, 0);
+                    }
+                    else if (idx == 2)
+                    {
+                        //IT_Chair2
+                        players[idx].transform.position += new Vector3(0, 0, -0.5f);
+                    }
+                    else if (idx == 3)
+                    {
+                        //IT_Chair1
+                        players[idx].transform.position += new Vector3(0, 0, 0.5f);
+                    }
+                    players[idx].transform.LookAt(conferenceWorldTransform);
+                    break;
                 }
-                else if (idx == 1)
-                {
-                    //IT_Chair3
-                    players[idx].transform.position += new Vector3(0.5f, 0, 0);
-                }
-                else if (idx == 2)
-                {
-                    //IT_Chair2
-                    players[idx].transform.position += new Vector3(0, 0, -0.5f);
-                }
-                else if (idx == 3)
-                {
-                    //IT_Chair1
-                    players[idx].transform.position += new Vector3(0, 0, 0.5f);
-                }
-                players[idx].transform.LookAt(conferenceWorldTransform);
             }
+
+            
 
             if (!conferenceChannelName.Equals(""))
             {
@@ -192,24 +197,27 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
 
     public void ExitConference()
     {
-        photonView.RPC("ExitConferenceRPC", RpcTarget.AllBuffered);
+        players.Clear();
+
+        photonView.RPC("ExitConferenceRPC", RpcTarget.AllBuffered, MineManager.Instance.player.name);
         UIManager.Instance.ShowUI(Define.UI.HUD);
         ChatManager.Instance.ExitConference();
         VoiceManager.Instance.EnterLobbyChannel();
 
         photonView.RPC("EndVideoConference", RpcTarget.AllBuffered, channelName);
 
-        MineManager.Instance.player.GetComponent<Rigidbody>().isKinematic = false;
-        MineManager.Instance.playerContoller.canMove = true;
-        MineManager.Instance.playerContoller.canDetectInteractive = true;
+        MineManager.Instance.playerController.OnKinematic(false);
+        MineManager.Instance.playerController.canMove = true;
+        MineManager.Instance.playerController.canDetectInteractive = true;
+        MineManager.Instance.playerController.canGetInput = true;
     }
 
     [PunRPC]
-    public void ExitConferenceRPC()
+    public void ExitConferenceRPC(string playerName)
     {
-        if (players.Contains(GameObject.Find(PlayfabManager.Instance.playerName)))
-        {
-            players.Remove(GameObject.Find(PlayfabManager.Instance.playerName));
-        }
+        ChatClient client = ChatManager.Instance.chatClient;
+        var obj = GameObject.Find(playerName);
+        if (players.Contains(obj))
+            players.Remove(obj);
     }
 }
