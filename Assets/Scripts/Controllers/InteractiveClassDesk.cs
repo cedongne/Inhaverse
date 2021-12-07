@@ -14,6 +14,11 @@ public class InteractiveClassDesk : InteractiveObject
 
     public override void Interaction()
     {
+        MineManager.Instance.playerController.OnKinematic(true); // 물리엔진 배제 ON
+        MineManager.Instance.playerController.canMove = false;
+        MineManager.Instance.playerController.canDetectInteractive = false;
+        MineManager.Instance.playerController.canGetInput = false;
+
         SittingChair();
     }
 
@@ -21,7 +26,6 @@ public class InteractiveClassDesk : InteractiveObject
     {
         UIManager.Instance.ShowSubUI(Define.UI.CLASSCHAIR);
         //StudentListUIManager.Instance.SetStudentListUI(GetDeskNum(gameObject.name), PlayfabManager.Instance.playerName);
-        MineManager.Instance.player.transform.GetComponent<Rigidbody>().isKinematic = true;
 
         Debug.Log(GetDeskNumInt(gameObject.name));
         deskNumInt = (GetDeskNumInt(gameObject.name) - 1);

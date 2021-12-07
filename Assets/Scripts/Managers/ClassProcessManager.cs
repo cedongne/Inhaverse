@@ -175,7 +175,11 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
 
     public void GetUpFromChair()
     {
-        MineManager.Instance.player.transform.GetComponent<Rigidbody>().isKinematic = false;
         UIManager.Instance.HideSubUI();
+
+        MineManager.Instance.playerController.OnKinematic(false);
+        MineManager.Instance.playerController.canMove = true;
+        MineManager.Instance.playerController.canDetectInteractive = true;
+        MineManager.Instance.playerController.canGetInput = true;
     }
 }
