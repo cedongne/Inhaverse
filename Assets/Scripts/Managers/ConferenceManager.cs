@@ -138,21 +138,19 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
                 client.PublicChannels[ChatManager.Instance.currentChannelName].Subscribers.Count + " / " + 
                 client.PublicChannels[ChatManager.Instance.currentChannelName].MaxSubscribers;
 
+            players.Clear();
             foreach (var name in client.PublicChannels[ChatManager.Instance.currentChannelName].Subscribers)
             {
                 var obj = GameObject.Find(name);
-                if (!players.Contains(obj))
-                    players.Add(obj);
+                players.Add(obj);
             }
 
             Vector3 conferencePos = GameObject.Find(ChatManager.Instance.currentChannelName).transform.position - GameObject.Find("Conference001").transform.position;
             conferenceWorldTransform.position = conferenceWorldOffset + conferencePos;
-
-            if (photonView.IsMine)
+            for (int idx = 0; idx < players.Count; idx++)
             {
-                for (int idx = 0; idx < players.Count; idx++)
+                if (players[idx].Equals(MineManager.Instance.player))
                 {
-                    Debug.Log(idx + " " + players.Count + " " + players[idx].name);
                     players[idx].transform.position = conferenceWorldTransform.position;
                     if (idx == 0)
                     {
@@ -175,8 +173,11 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
                         players[idx].transform.position += new Vector3(0, 0, 0.5f);
                     }
                     players[idx].transform.LookAt(conferenceWorldTransform);
+                    break;
                 }
             }
+
+            
 
             if (!conferenceChannelName.Equals(""))
             {
