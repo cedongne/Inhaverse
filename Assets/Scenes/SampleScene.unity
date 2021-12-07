@@ -3894,7 +3894,7 @@ MonoBehaviour:
   voiceDetectionThreshold: 0.01
   voiceDetectionDelayMs: 500
   unityMicrophoneDevice: 
-  photonMicrophoneDeviceId: -1
+  photonMicrophoneDeviceId: 0
   interestGroup: 0
   debugEchoMode: 0
   reliableMode: 0
@@ -5725,6 +5725,7 @@ GameObject:
   - component: {fileID: 472855810}
   - component: {fileID: 472855809}
   - component: {fileID: 472855811}
+  - component: {fileID: 472855812}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -5827,6 +5828,22 @@ MonoBehaviour:
   invitingGroupEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &472855812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472855808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bae46f028d181a42aeb87fa76b1493b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerContoller: {fileID: 0}
+  player: {fileID: 0}
+  webCamController: {fileID: 0}
+  playerUI: {fileID: 0}
 --- !u!4 &479837504 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5239691896952471829, guid: 88aaa36b33a9cd943b3c7cd91c34c610, type: 3}

@@ -10,7 +10,7 @@ namespace OpenCvSharp
 
     using OpenCvSharp;
 
-    public class WebCamController : MonoBehaviourPunCallbacks//, IPunObservable
+    public class WebCamController : MonoBehaviourPunCallbacks
     {
         float timer = 0f;
         public float delayTime = 1f;
@@ -34,9 +34,14 @@ namespace OpenCvSharp
 
         bool isWebCamDown;
 
+        private void Awake()
+        {
+            MineManager.Instance.webCamController = GetComponent<WebCamController>();
+        }
 
         void Start()
         {
+            conferenceDisplay = RpcUIManager.Instance.webCamImageList[0].GetComponent<RawImage>();
             destTexture = Texture2D.blackTexture;
 
             if (WebCamTexture.devices.Length != 0)
@@ -84,46 +89,6 @@ namespace OpenCvSharp
             }
         }
 
-        void FaceDetect()
-        {
-            Mat dst = new Mat();
-            if (!isDelay)
-            {
-                Rect[] faces = faceCascade.DetectMultiScale(image);
-                foreach (var item in faces)
-                {
-                    before_image = item;
-                    dst = image.SubMat(before_image);
-                }
-                if (dst.Empty())
-                {
-                    destTexture = Unity.MatToTexture(image);
-                }
-                else
-                {
-                    destTexture = Unity.MatToTexture(dst);
-                }
-                isDelay = true;
-            }
-            else if (isDelay)
-            {
-                timer += Time.deltaTime;
-                if (timer >= delayTime)
-                {
-                    timer = 0f;
-                    isDelay = false;
-                }
-                if (before_image.Top != 0 && before_image.Left != 0) 
-                {
-                    dst = image.SubMat(before_image);
-                    destTexture = Unity.MatToTexture(dst);
-                }
-                else
-                {
-                    destTexture = Unity.MatToTexture(image);
-                }
-            }
-        }
         void ShowWebCam()
         {
             Debug.Log(detect_flag);
@@ -132,15 +97,6 @@ namespace OpenCvSharp
                 camTexture.Play();
                 image = Unity.TextureToMat(camTexture);
                 destTexture = Unity.MatToTexture(image);
-
-                //FaceDetect();
-                //if (detect_flag)
-                //{
-                //}
-                //else
-                //{
-                //    destTexture = Unity.MatToTexture(image);
-                //}
 
                 nowDisplay.texture = destTexture;
             }

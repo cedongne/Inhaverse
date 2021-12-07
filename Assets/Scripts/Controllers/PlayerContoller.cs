@@ -84,6 +84,10 @@ public class PlayerContoller : MonoBehaviourPun
             if (PlayfabManager.Instance.playerName != "")
                 name = PlayfabManager.Instance.playerName;
 
+            MineManager.Instance.player = gameObject;
+            MineManager.Instance.playerContoller = GetComponent<PlayerContoller>();
+            MineManager.Instance.playerUI = playerUIObjects;
+
             cameraController = cameraArm.GetComponent<CameraController>();
             cameraArmTransform = cameraArm.transform;
             cameraController.enabled = true;

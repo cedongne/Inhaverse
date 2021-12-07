@@ -1890,6 +1890,7 @@ GameObject:
   - component: {fileID: 6825015168767009852}
   - component: {fileID: 8131352529705652812}
   - component: {fileID: 1010450522501227061}
+  - component: {fileID: 4329358396691878799}
   m_Layer: 5
   m_Name: PlayerUI
   m_TagString: Untagged
@@ -1979,6 +1980,22 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 0
+--- !u!114 &4329358396691878799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8165507261125030204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96258ab707de07c40babfd18fbe97573, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayTime: 1
+  headDisplay: {fileID: 7815241381185037499}
+  conferenceDisplay: {fileID: 0}
+  nowDisplay: {fileID: 0}
 --- !u!1 &8594035940355474103
 GameObject:
   m_ObjectHideFlags: 0
