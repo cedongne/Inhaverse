@@ -152,6 +152,7 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
                 for (int idx = 0; idx < players.Count; idx++)
                 {
                     Debug.Log(idx + " " + players.Count + " " + players[idx].name);
+
                     players[idx].transform.position = conferenceWorldTransform.position;
                     if (idx == 0)
                     {
