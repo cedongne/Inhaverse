@@ -754,3 +754,33 @@
 [1207/195110.612:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
 [1207/195110.613:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
 [1207/195119.126:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1207/212936.109:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
+[1207/212936.441:WARNING:audio_send_stream.cc(303)] SetSendCodec() failed: 8005
+[1207/212936.441:ERROR:audio_send_stream.cc(90)] Failed to set up send codec state.
+[1207/212936.561:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000021D69D129F0:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 46) failed: 0
+[1207/212936.561:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[0000021D69D21E00:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 46) failed: 0
+[1207/212936.758:WARNING:dtlstransportchannel.cc(339)] Ignoring new SRTP ciphers while DTLS is negotiating
+[1207/212936.758:WARNING:p2ptransportchannel.cc(966)] SetOption(5, 34) failed: 0
+[1207/212936.758:WARNING:p2ptransportchannel.cc(966)] SetOption(5, 34) failed: 0
+[1207/212936.758:WARNING:p2ptransportchannel.cc(966)] SetOption(1, 65536) failed: 0
+[1207/212936.758:WARNING:p2ptransportchannel.cc(966)] SetOption(1, 65536) failed: 0
+[1207/212936.758:WARNING:p2ptransportchannel.cc(966)] SetOption(2, 65536) failed: 0
+[1207/212936.758:WARNING:p2ptransportchannel.cc(966)] SetOption(2, 65536) failed: 0
+[1207/212937.293:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
+[1207/212937.293:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
+[1207/212958.683:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)
+[1207/213024.773:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
+[1207/213025.070:WARNING:audio_send_stream.cc(303)] SetSendCodec() failed: 8005
+[1207/213025.070:ERROR:audio_send_stream.cc(90)] Failed to set up send codec state.
+[1207/213025.183:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001AE85E8FA60:audio:1:0:local:Net[any:0.0.0.x/0:Unknown]]: SetOption(5, 46) failed: 0
+[1207/213025.183:WARNING:p2ptransportchannel.cc(514)] Jingle:Port[000001AE8977E530:audio:1:0:local:Net[any:0:0:0:x:x:x:x:x/0:Unknown]]: SetOption(5, 46) failed: 0
+[1207/213025.360:WARNING:dtlstransportchannel.cc(339)] Ignoring new SRTP ciphers while DTLS is negotiating
+[1207/213025.360:WARNING:p2ptransportchannel.cc(966)] SetOption(5, 34) failed: 0
+[1207/213025.360:WARNING:p2ptransportchannel.cc(966)] SetOption(5, 34) failed: 0
+[1207/213025.360:WARNING:p2ptransportchannel.cc(966)] SetOption(1, 65536) failed: 0
+[1207/213025.360:WARNING:p2ptransportchannel.cc(966)] SetOption(1, 65536) failed: 0
+[1207/213025.360:WARNING:p2ptransportchannel.cc(966)] SetOption(2, 65536) failed: 0
+[1207/213025.360:WARNING:p2ptransportchannel.cc(966)] SetOption(2, 65536) failed: 0
+[1207/213025.888:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
+[1207/213025.889:ERROR:datachannel.cc(167)] maxRetransmits and maxRetransmitTime should not be both set.
+[1207/213033.731:INFO:user_input_monitor_win.cc(171)] RegisterRawInputDevices() failed for RIDEV_REMOVE: 매개 변수가 틀립니다. (0x57)

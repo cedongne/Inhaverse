@@ -16,9 +16,6 @@ public class InteractiveConferenceTable : InteractiveObject
 
     private void Start()
     {
-        webBrowser = GameObject.Find("InworldBrowser").GetComponent<SimpleWebBrowser.WebBrowser>();
-        mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-        UICamera = GameObject.Find("UICamera").GetComponent<Camera>();
     }
 
     public override void Interaction()
@@ -29,11 +26,6 @@ public class InteractiveConferenceTable : InteractiveObject
         ChatManager.Instance.SetConferenceChatUI();
 
         Cursor.lockState = CursorLockMode.None;
-
-        mainCamera.enabled = false;
-        UICamera.enabled = true;
-        webBrowser.OnNavigate();
-        ConferenceManager.Instance.table = gameObject;
     }
 
     void ChatControl()
