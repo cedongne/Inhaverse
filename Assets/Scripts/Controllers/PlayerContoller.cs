@@ -47,6 +47,7 @@ public class PlayerContoller : MonoBehaviourPun
 
     public bool canMove;
     public bool canDetectInteractive;
+    public bool canGetInput;
 
     public bool isJumpDown;
     public bool isRunDown;
@@ -67,6 +68,7 @@ public class PlayerContoller : MonoBehaviourPun
 
         canMove = true;
         canDetectInteractive = true;
+        canGetInput = true;
     }
 
     // Start is called before the first frame update
@@ -88,7 +90,7 @@ public class PlayerContoller : MonoBehaviourPun
                 name = PlayfabManager.Instance.playerName;
 
             MineManager.Instance.player = gameObject;
-            MineManager.Instance.playerContoller = GetComponent<PlayerContoller>();
+            MineManager.Instance.playerController = GetComponent<PlayerContoller>();
             MineManager.Instance.playerUI = playerUIObjects;
 
             cameraController = cameraArm.GetComponent<CameraController>();
@@ -166,6 +168,8 @@ public class PlayerContoller : MonoBehaviourPun
 
     void GetInput()
     {
+        if (!canGetInput)
+            return;
         isRunDown = Input.GetKeyDown(KeyCode.R);
         isJumpDown = Input.GetKeyDown(KeyCode.Space);
         isChangeCameraModeDown = Input.GetKeyDown(KeyCode.Tab);
@@ -376,6 +380,16 @@ public class PlayerContoller : MonoBehaviourPun
             else
                 UIManager.Instance.OptionBtn();
         }
+    }
+
+    public void OnKinematic(bool set)
+    {
+        photonView.RPC("OnKinematicRPC", RpcTarget.AllBuffered, set);
+    }
+
+    public void OnKinematicRPC(bool set)
+    {
+        GetComponent<Rigidbody>().isKinematic = set;
     }
 
     private void OnDestroy()

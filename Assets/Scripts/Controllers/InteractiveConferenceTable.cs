@@ -22,12 +22,11 @@ public class InteractiveConferenceTable : InteractiveObject
         UIManager.Instance.ShowUI(Define.UI.CONFERENCE);
         ChatManager.Instance.SetConferenceChatUI();
 
-
-//        webBrowser.OnNavigate();
         ConferenceManager.Instance.table = gameObject;
-        MineManager.Instance.player.GetComponent<Rigidbody>().isKinematic = true;
-        MineManager.Instance.playerContoller.canMove = false;
-        MineManager.Instance.playerContoller.canDetectInteractive = false;
+        MineManager.Instance.playerController.OnKinematic(true); // 물리엔진 배제 ON
+        MineManager.Instance.playerController.canMove = false;
+        MineManager.Instance.playerController.canDetectInteractive = false;
+        MineManager.Instance.playerController.canGetInput = false;
     }
 
     void ChatControl()

@@ -198,9 +198,10 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
 
         photonView.RPC("EndVideoConference", RpcTarget.AllBuffered, channelName);
 
-        MineManager.Instance.player.GetComponent<Rigidbody>().isKinematic = false;
-        MineManager.Instance.playerContoller.canMove = true;
-        MineManager.Instance.playerContoller.canDetectInteractive = true;
+        MineManager.Instance.playerController.OnKinematic(false);
+        MineManager.Instance.playerController.canMove = true;
+        MineManager.Instance.playerController.canDetectInteractive = true;
+        MineManager.Instance.playerController.canGetInput = true;
     }
 
     [PunRPC]
