@@ -272,7 +272,7 @@ public class UIManager : MonoBehaviour
         hudUI.SetActive(false);
         conferenceUI.SetActive(false);
 
-//        CloseWindow();
+        CloseWindow();
 
         if (showingUi.Equals(Define.UI.LOGIN))
         {
@@ -382,6 +382,7 @@ public class UIManager : MonoBehaviour
         eventFunction = null;
         isOpenWindow = false;
 
+        ChatManager.Instance.EraseText();
         ChatManager.Instance.SetHUDChatUI();
     }
 
