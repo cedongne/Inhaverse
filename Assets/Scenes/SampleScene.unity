@@ -12338,6 +12338,8 @@ MonoBehaviour:
   videoConferenceText: {fileID: 736621199}
   conferenceChannelNameObject: {fileID: 668161730}
   conferenceChannelNameText: {fileID: 1067172816}
+  conferenceChannelNameInputField: {fileID: 0}
+  conferenceChannelNameInputButton: {fileID: 0}
   classStudentListWindow: {fileID: 218880763}
   studentNumberInClassText: {fileID: 3317719302401766916}
   openFileWindow: {fileID: 1866391726}
@@ -12642,6 +12644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6f0db40933ddc349934706eaa4ed797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  conferenceState: 0
   channelName: 
   conferenceChannelName: 
   players: []

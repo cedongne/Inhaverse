@@ -60,6 +60,7 @@ MonoBehaviour:
   - NoticeClassStart
   - ConnectingVideoConference
   - OpenVideoConference
+  - UpdateStateVideoConference
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
