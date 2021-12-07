@@ -37,9 +37,6 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
         else
             Destroy(gameObject);
         conferenceState = Define.VIDEOCONFERENCESTATE.END;
-
-        currentIndex = -1;
-        players = new GameObject[4];
     }
 
     public Define.VIDEOCONFERENCESTATE conferenceState;
@@ -47,10 +44,7 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
     public string channelName;
     public string conferenceChannelName;
 
-    //    public List<GameObject> players;
-    public GameObject[] players;
-    public int currentIndex;
-
+    public List<GameObject> players;
     public List<string> playerUrl;
     public List<RawImage> webCamImages;
     public Transform conferenceWorldTransform;
@@ -126,6 +120,11 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
 
     public void UpdateConferenceState()
     {
+        for (int idx = 0; idx < 4; idx++)
+        {
+            GameObject.Find(ChatManager.Instance.currentChannelName).transform.Find($"IT_chair{4 - idx}").GetComponent<MeshCollider>().isTrigger = true;
+        }
+        GameObject.Find(ChatManager.Instance.currentChannelName).transform.Find("table").GetComponent<MeshCollider>().isTrigger = true;
         photonView.RPC("UpdateConferenceStateRPC", RpcTarget.AllBuffered);
     }
 
@@ -139,24 +138,16 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
                 client.PublicChannels[ChatManager.Instance.currentChannelName].Subscribers.Count + " / " + 
                 client.PublicChannels[ChatManager.Instance.currentChannelName].MaxSubscribers;
 
-
+            foreach (var name in client.PublicChannels[ChatManager.Instance.currentChannelName].Subscribers)
+            {
+                var obj = GameObject.Find(name);
+                if (!players.Contains(obj))
+                    players.Add(obj);
+            }
 
             Vector3 conferencePos = GameObject.Find(ChatManager.Instance.currentChannelName).transform.position - GameObject.Find("Conference001").transform.position;
             conferenceWorldTransform.position = conferenceWorldOffset + conferencePos;
-            if (client.PublicChannels[ChatManager.Instance.currentChannelName].Subscribers.Count == 1)
-            {
-                Debug.Log("AASDASDA");
-                currentIndex = 0;
-                players[currentIndex++] = MineManager.Instance.player;
-                MineManager.Instance.player.transform.position = conferenceWorldTransform.position + ((currentIndex < 2) ? new Vector3(-0.5f + currentIndex, 0, 0) : new Vector3(0, 0, -0.5f + currentIndex % 2));
-                MineManager.Instance.player.transform.LookAt(conferenceWorldTransform);
-            }
-            else if (currentIndex != -1)
-            {
-                photonView.RPC("PlayersArrayRPC", RpcTarget.AllBuffered, channelName, players, currentIndex);
-            }
 
-            /*
             if (photonView.IsMine)
             {
                 for (int idx = 0; idx < players.Count; idx++)
@@ -186,7 +177,6 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
                     players[idx].transform.LookAt(conferenceWorldTransform);
                 }
             }
-            */
 
             if (!conferenceChannelName.Equals(""))
             {
@@ -201,37 +191,10 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
         }
     }
 
-    [PunRPC]
-    public void PlayersArrayRPC(string sender_channel_name, GameObject[] _players, int _currentIndex)
-    {
-        Debug.Log(sender_channel_name + " " + currentIndex);
-        if (sender_channel_name.Equals(channelName) && currentIndex == -1)
-        {
-            Debug.Log("A");
-            _players[_currentIndex] = MineManager.Instance.player;
-            MineManager.Instance.player.transform.position = conferenceWorldTransform.position + ((currentIndex < 2) ? new Vector3(-0.5f + currentIndex, 0, 0) : new Vector3(0, 0, -0.5f + currentIndex % 2));
-            MineManager.Instance.player.transform.LookAt(conferenceWorldTransform);
-            for (int count = 0; count < 4; count++)
-            {
-                if (_players[count] == null)
-                {
-                    currentIndex = count;
-                }
-            }
-            photonView.RPC("PlayersArrayRPC", RpcTarget.AllBuffered, sender_channel_name, _players, currentIndex);
-        }
-        else if (sender_channel_name.Equals(channelName))
-        {
-            players = _players;
-            currentIndex = _currentIndex;
-        }
-    }
-
     public void ExitConference()
     {
-        /*
         players.Clear();
-        */
+
         photonView.RPC("ExitConferenceRPC", RpcTarget.AllBuffered, MineManager.Instance.player.name);
         UIManager.Instance.ShowUI(Define.UI.HUD);
         ChatManager.Instance.ExitConference();
@@ -250,9 +213,7 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
     {
         ChatClient client = ChatManager.Instance.chatClient;
         var obj = GameObject.Find(playerName);
-        /*
         if (players.Contains(obj))
             players.Remove(obj);
-        */
     }
 }
