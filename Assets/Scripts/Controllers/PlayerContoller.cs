@@ -76,7 +76,6 @@ public class PlayerContoller : MonoBehaviourPun
     {
         if (!photonView.IsMine)
         {
-            name = photonView.Owner.NickName;
             RpcUIManager.Instance.playerList.Add(gameObject.transform);
             RpcUIManager.Instance.playerUILIst.Add(playerUIObjects);
             RpcUIManager.Instance.webCamImageList.Add(webCamImage);
@@ -122,11 +121,18 @@ public class PlayerContoller : MonoBehaviourPun
         DontDestroyOnLoad(GameObject.Find("Canvas"));
     }
 
+    [PunRPC]
+    public void SetName()
+    {
+        name = photonView.Owner.NickName;
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
         if (!photonView.IsMine)
         {
+            photonView.RPC("SetName", RpcTarget.AllBuffered);
             return;
         }
         if (!UIManager.Instance.isOpenWindow)
