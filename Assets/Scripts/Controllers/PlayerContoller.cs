@@ -45,11 +45,12 @@ public class PlayerContoller : MonoBehaviourPun
     bool isJump;
     bool isDown;
 
+    public bool canMove;
+    public bool canDetectInteractive;
+
     public bool isJumpDown;
     public bool isRunDown;
-    public bool isVoiceDown;
     public bool isInfoWindowDown;
-    public bool isOptionWindowDown;
     public bool isChangeCameraModeDown;
     public Outline currentTouch;
 
@@ -63,6 +64,9 @@ public class PlayerContoller : MonoBehaviourPun
         screenCenter = new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2);
         animator = GetComponent<Animator>();
         cameraArm = GameObject.Find("Camera Arm");
+
+        canMove = true;
+        canDetectInteractive = true;
     }
 
     // Start is called before the first frame update
@@ -145,18 +149,18 @@ public class PlayerContoller : MonoBehaviourPun
             {
                 GetInput();
                 TeleportWayPoint();
-                if(!ClassProcessManager.Instance.classState.Equals(Define.CLASSSTATE.READY))
-                    DetectInteractiveObject();
+                DetectInteractiveObject();
             }
         }
         Jump();
         WalkToRun();
         ChangeCameraMode();
         OpenInfoWindow();
-        VoiceOnOff();
 
         OnCursorVisible();
         ShowPlayerUIAsDistance();
+
+        VoiceOnOff();
         OpenOptionWindow();
     }
 
@@ -164,9 +168,6 @@ public class PlayerContoller : MonoBehaviourPun
     {
         isRunDown = Input.GetKeyDown(KeyCode.R);
         isJumpDown = Input.GetKeyDown(KeyCode.Space);
-        isVoiceDown = Input.GetKeyDown(KeyCode.V);
-        //        isInfoWindowDown = Input.GetKeyDown(KeyCode.I);
-        //        isOptionWindowDown = Input.GetKeyDown(KeyCode.Escape);
         isChangeCameraModeDown = Input.GetKeyDown(KeyCode.Tab);
     }
 
@@ -201,6 +202,9 @@ public class PlayerContoller : MonoBehaviourPun
     }
     void Move()
     {
+        if (!canMove)
+            return;
+
         Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         bool isMove = moveInput.magnitude != 0;
         animator.SetBool("isMove", isMove);
@@ -250,6 +254,9 @@ public class PlayerContoller : MonoBehaviourPun
 
     void DetectInteractiveObject()
     {
+        if (!canDetectInteractive)
+            return;
+
         RaycastHit hit;
 
         if (Cursor.lockState == CursorLockMode.Locked)
@@ -305,7 +312,7 @@ public class PlayerContoller : MonoBehaviourPun
 
     void VoiceOnOff()
     {
-        if (isVoiceDown)
+        if (Input.GetKeyDown(KeyCode.V))
         {
             VoiceManager.Instance.VoiceOnOff();
         }

@@ -10,15 +10,9 @@ public class InteractiveConferenceTable : InteractiveObject
 
     private byte conferenceNum;
 
-    public SimpleWebBrowser.WebBrowser webBrowser;
-    public Camera mainCamera;
-    public Camera UICamera;
 
     private void Start()
     {
-        webBrowser = GameObject.Find("InworldBrowser").GetComponent<SimpleWebBrowser.WebBrowser>();
-        mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-        UICamera = GameObject.Find("UICamera").GetComponent<Camera>();
     }
 
     public override void Interaction()
@@ -28,12 +22,12 @@ public class InteractiveConferenceTable : InteractiveObject
         UIManager.Instance.ShowUI(Define.UI.CONFERENCE);
         ChatManager.Instance.SetConferenceChatUI();
 
-        Cursor.lockState = CursorLockMode.None;
 
-//        Application.OpenURL("https://owake.me/");
 //        webBrowser.OnNavigate();
         ConferenceManager.Instance.table = gameObject;
         MineManager.Instance.player.GetComponent<Rigidbody>().isKinematic = true;
+        MineManager.Instance.playerContoller.canMove = false;
+        MineManager.Instance.playerContoller.canDetectInteractive = false;
     }
 
     void ChatControl()
