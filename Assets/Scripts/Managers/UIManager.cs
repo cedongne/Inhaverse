@@ -97,6 +97,8 @@ public class UIManager : MonoBehaviour
     [Space]
     public GameObject classStudentListWindow;
     public Text studentNumberInClassText;
+    public GameObject ClassChannelNameInputObject;
+    public Button StartClassButton;
 
     [Header("===== ºÎ½º UI =====")]
     [Space]
