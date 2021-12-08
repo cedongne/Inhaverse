@@ -61,6 +61,11 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
         UIManager.Instance.ClassChannelNameInputObject.SetActive(true);
     }
 
+    public void JoinClassBtn()
+    {
+        Application.OpenURL("https://owake.me/");
+    }
+
     [PunRPC]
     public void ReadyCLASS(Define.CLASSSTATE sender_conference_state)
     {
@@ -76,21 +81,31 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
     {
         classChannelName = UIManager.Instance.conferenceChannelNameInputField.text;
         classState = Define.CLASSSTATE.START;
-        photonView.RPC("StartCLASS", RpcTarget.AllBuffered, classState);
+        photonView.RPC("StartCLASS", RpcTarget.AllBuffered, classChannelName);
+        photonView.RPC("NoticeClassStart", RpcTarget.AllBuffered, classState);
 
-        UIManager.Instance.conferenceChannelNameInputObject.SetActive(false);
+        UIManager.Instance.ClassChannelNameInputObject.SetActive(false);
+        UIManager.Instance.ClassChannelNameInputField.text = "";
+        UIManager.Instance.classhannelNameObject.SetActive(true);
+        UIManager.Instance.classChannelNameText.text = classChannelName;
+
+
     }
 
 
     [PunRPC]
-    public void StartCLASS(string sender_channel_name, string conference_channel_name)
+    public void StartCLASS(string classChannelName)
     {
-        Debug.Log("Start Receiver " + sender_channel_name + " " + conference_channel_name);
-        Debug.Log("StartCLASS");
-        UIManager.Instance.conferenceChannelNameText.text = conference_channel_name;
-        UIManager.Instance.conferenceChannelNameObject.SetActive(true);
+        if (PlayfabManager.Instance.playerJob.Equals("학생"))
+        {
+            Debug.Log("Start Receiver " + " " + classChannelName);
+            Debug.Log("StartCLASS");
+            UIManager.Instance.studentClasshannelNameText.text = classChannelName;
+            UIManager.Instance.studentClasshannelNameObject.SetActive(true);
 
-        UIManager.Instance.videoConferenceButton.interactable = true;
+            UIManager.Instance.classJoinButton.interactable = true;
+            UIManager.Instance.classJoinText.text = "화상 수업 참여";
+        }
     }
 
     [PunRPC]
@@ -98,26 +113,31 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("End Receiver " + sender_channel_name);
         Debug.Log("CLASS");
-        UIManager.Instance.conferenceChannelNameText.text = "";
-        UIManager.Instance.conferenceChannelNameObject.SetActive(false);
-        UIManager.Instance.conferenceChannelNameInputField.text = "";
-        UIManager.Instance.conferenceChannelNameInputObject.SetActive(false);
+        UIManager.Instance.classChannelNameText.text = "";
+        UIManager.Instance.classhannelNameObject.SetActive(false);
+        UIManager.Instance.ClassChannelNameInputField.text = "";
+        UIManager.Instance.ClassChannelNameInputObject.SetActive(false);
+        UIManager.Instance.studentClasshannelNameText.text = "";
+        UIManager.Instance.studentClasshannelNameObject.SetActive(false);
 
-        UIManager.Instance.videoConferenceButton.interactable = true;
-        UIManager.Instance.videoConferenceText.text = "수업 시작";
+        UIManager.Instance.classJoinButton.interactable = false;
+        UIManager.Instance.classJoinText.text = "화상 수업 시작 전..";
     }
+
     #region Instructor's Function
     public void ReadyClass()
     {
         classState = Define.CLASSSTATE.READY;
         UpdateStudentNumberInClassroom();
         UIManager.Instance.ShowSubUI(Define.UI.CLASSREADY);
+        MineManager.Instance.playerController.canDetectInteractive = false;
         PlayfabManager.Instance.GetLeaderBoard(class_name + "Attendance", PlayfabManager.Instance.playerName, "CountStudentNumber");
     }
 
     public void StopReadyClassBtn()
     {
         classState = Define.CLASSSTATE.END;
+        MineManager.Instance.playerController.canDetectInteractive = true;
         UIManager.Instance.HideSubUI();
     }
 
@@ -150,6 +170,7 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
         photonView.RPC("StopCheckAttend", RpcTarget.AllBuffered, attendance_count);
         UIManager.Instance.HideSubUI();
 
+        MineManager.Instance.playerController.canDetectInteractive = true;
         GameObject.Find("Camera Arm").GetComponent<CameraController>().playerTransform = playerContoller.transform;
     }
 #endregion

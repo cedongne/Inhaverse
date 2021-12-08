@@ -67,6 +67,8 @@ MonoBehaviour:
   - EndCLASS
   - ReadyCLASS
   - StartCLASS
+  - OnKinematicRPC
+  - SetName
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
