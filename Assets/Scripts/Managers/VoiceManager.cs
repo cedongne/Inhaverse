@@ -6,6 +6,7 @@ using Photon.Voice.Unity;
 using Photon.Voice.PUN;
 using Photon.Voice;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class VoiceManager : MonoBehaviour
 {
@@ -17,6 +18,12 @@ public class VoiceManager : MonoBehaviour
     public bool isVoiceDown;
 
     public GameObject playerUIObject;
+
+    public AudioMixer speakerAudioMixer;
+    public Slider speakerSlider;
+
+    [SerializeField]
+    public float volume;
 
     private VoiceManager() { }
     private static VoiceManager instance;
@@ -95,5 +102,31 @@ public class VoiceManager : MonoBehaviour
         voiceNetwork.Client.GlobalAudioGroup = 255;
     }
 
+    public void SpeakerBtn()
+    {
+        if (speakerSlider.gameObject.activeSelf)
+            ShowSpeakerSlider(false);
+        else
+            ShowSpeakerSlider(true);
+    }
+
+    public void ShowSpeakerSlider(bool set)
+    {
+        speakerSlider.gameObject.SetActive(set);
+    }
+
+    public void OnSliderControl()
+    {
+        volume = speakerSlider.value;
+        speakerAudioMixer.SetFloat("SpeakerAudioMixer", volume);
+        if (volume == -20)
+        {
+            UIManager.Instance.curSpeakerIcon.color = Color.gray;
+        }
+        else
+        {
+            UIManager.Instance.curSpeakerIcon.color = Color.white;
+        }
+    }
 
 }

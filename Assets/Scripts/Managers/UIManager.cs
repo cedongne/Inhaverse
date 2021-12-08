@@ -268,11 +268,11 @@ public class UIManager : MonoBehaviour
 
     public void ShowUI(Define.UI showingUi)
     {
+        CloseWindow();
         loginUI.SetActive(false);
         hudUI.SetActive(false);
         conferenceUI.SetActive(false);
 
-        CloseWindow();
 
         if (showingUi.Equals(Define.UI.LOGIN))
         {
@@ -369,7 +369,8 @@ public class UIManager : MonoBehaviour
     public void CloseWindow()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        
+
+
         classWindow.SetActive(false);
         classMakingWindow.SetActive(false);
         classListWindow.SetActive(false);
@@ -383,7 +384,6 @@ public class UIManager : MonoBehaviour
         eventFunction = null;
         isOpenWindow = false;
 
-        ChatManager.Instance.EraseText();
         ChatManager.Instance.SetHUDChatUI();
     }
 

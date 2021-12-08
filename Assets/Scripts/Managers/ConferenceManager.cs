@@ -152,7 +152,6 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
             {
                 if (players[idx].Equals(MineManager.Instance.player))
                 {
-                    Debug.Log(idx);
                     players[idx].transform.position = conferenceWorldTransform.position;
                     if (idx == 0)
                     {
@@ -179,7 +178,6 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
                 }
             }
 
-            
 
             if (!conferenceChannelName.Equals(""))
             {

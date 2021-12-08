@@ -68,7 +68,16 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 		//		userName = manager.GetComponent<PlayfabManager>().playerName;
 		userName = PlayfabManager.Instance.playerName;
 
-		ChatStart();
+//		ChatStart();
+	}
+
+	void Update()
+	{
+		chatClient.Service();
+		if (!UIManager.Instance.isOpenWindow)
+		{
+			Chat();
+		}
 	}
 
 	public void ChatStart()
@@ -159,8 +168,10 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 
 	public void EraseText()
     {
+		Debug.Log("Erase");
 		outputText.text = "";
-    }
+		Debug.Log("Erased");
+	}
 
 	public void OnUnsubscribed(string[] channels)
 	{
@@ -184,15 +195,6 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 	public void OnStatusUpdate(string user, int status, bool gotMessage, object message)
 	{
 		Debug.Log("status : " + string.Format("{0} is {1}, Msg : {2} ", user, status, message));
-	}
-
-	void Update()
-	{
-		chatClient.Service();
-		if (!UIManager.Instance.isOpenWindow)
-		{
-			Chat();
-		}
 	}
 
 	void Chat()
@@ -224,7 +226,6 @@ public class ChatManager : MonoBehaviour, IChatClientListener
     {
 		LeaveChat();
 		EnterLobbyChat();
-		UIManager.Instance.CloseWindow();
     }
 
 #region Useless
