@@ -139,7 +139,8 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 	public void OnSubscribed(string[] channels, bool[] results)
 	{
 		AddLine(string.Format("{0}에 입장하셨습니다.", string.Join(",", channels)));
-		ConferenceManager.Instance.UpdateConferenceState();
+		if(currentChannelName.Contains("Conference"))
+			ConferenceManager.Instance.UpdateConferenceState();
 	}
 
 	public void EnterConferenceChat(string channelName)
