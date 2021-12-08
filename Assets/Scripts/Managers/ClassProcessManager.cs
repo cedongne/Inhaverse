@@ -73,13 +73,13 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
         if (sender_conference_state.Equals(Define.CLASSSTATE.READY))
         {
             Debug.Log("ReadyCLASS");
-            UIManager.Instance.videoConferenceButton.interactable = false;
-            UIManager.Instance.videoConferenceText.text = "수업 생성 중...";
+  //          UIManager.Instance.videoConferenceButton.interactable = false;
+  //          UIManager.Instance.videoConferenceText.text = "수업 생성 중...";
         }
     }
     public void EnterCLASSChannelNameBtn()
     {
-        classChannelName = UIManager.Instance.conferenceChannelNameInputField.text;
+        classChannelName = UIManager.Instance.ClassChannelNameInputField.text;
         classState = Define.CLASSSTATE.START;
         photonView.RPC("StartCLASS", RpcTarget.AllBuffered, classChannelName);
         photonView.RPC("NoticeClassStart", RpcTarget.AllBuffered, classState);
@@ -88,8 +88,6 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
         UIManager.Instance.ClassChannelNameInputField.text = "";
         UIManager.Instance.classhannelNameObject.SetActive(true);
         UIManager.Instance.classChannelNameText.text = classChannelName;
-
-
     }
 
 
