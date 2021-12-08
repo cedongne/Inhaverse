@@ -107,9 +107,8 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void EndCLASS(string sender_channel_name)
+    public void EndCLASS()
     {
-        Debug.Log("End Receiver " + sender_channel_name);
         Debug.Log("CLASS");
         UIManager.Instance.classChannelNameText.text = "";
         UIManager.Instance.classhannelNameObject.SetActive(false);
@@ -166,6 +165,7 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
         PlayfabManager.Instance.UpdateLeaderBoard(class_name + UtilityMethods.GetWeekOfSemester().ToString() + DateTime.Now.DayOfWeek.ToString()
             , attendance_count);
         photonView.RPC("StopCheckAttend", RpcTarget.AllBuffered, attendance_count);
+        photonView.RPC("EndCLASS", RpcTarget.AllBuffered);
         UIManager.Instance.HideSubUI();
 
         MineManager.Instance.playerController.canDetectInteractive = true;
