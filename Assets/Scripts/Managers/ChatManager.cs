@@ -140,7 +140,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 	public void OnSubscribed(string[] channels, bool[] results)
 	{
 		AddLine(string.Format("{0}에 입장하셨습니다.", string.Join(",", channels)));
-		if(currentChannelName.Contains("Conference"))
+		if(channels[0].Contains("Conference"))
 			ConferenceManager.Instance.UpdateConferenceState();
 	}
 
@@ -178,7 +178,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 	public void OnUnsubscribed(string[] channels)
 	{
 		AddLine(string.Format("{0}에서 퇴장하셨습니다.", string.Join(",", channels)));
-		if (currentChannelName.Contains("Conference"))
+		if (channels[0].Contains("Conference"))
 			ConferenceManager.Instance.UpdateConferenceState();
 	}
 
