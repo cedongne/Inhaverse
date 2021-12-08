@@ -18,17 +18,17 @@ MonoBehaviour:
     AppIdChat: a0ee9644-e091-40f6-8656-93e531929c76
     AppIdVoice: d125a34d-2648-4159-b308-ffa7a384006c
     AppVersion: 
-    UseNameServer: 1
+    UseNameServer: 0
     FixedRegion: 
-    Server: 
-    Port: 0
+    Server: 119.207.201.112
+    Port: 5055
     ProxyServer: 
     Protocol: 0
     EnableProtocolFallback: 0
     AuthMode: 0
     EnableLobbyStatistics: 0
     NetworkLogging: 1
-  DevRegion: 
+  DevRegion: kr
   PunLogging: 0
   EnableSupportLogger: 0
   RunInBackground: 1
@@ -71,4 +71,4 @@ MonoBehaviour:
   - SetName
   DisableAutoOpenWizard: 1
   ShowSettings: 1
-  DevRegionSetOnce: 0
+  DevRegionSetOnce: 1

@@ -62,6 +62,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
     public override void OnJoinedLobby()
     {
         PN.JoinOrCreateRoom(room_name, new RoomOptions { MaxPlayers = 10 }, null);
+        Debug.Log(room_name);
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -101,7 +102,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
             Debug.Log(asyncLoadScene.progress);
         }
         ClassProcessManager.Instance.enabled = true;
-
     }
 
     public void JoinToCampus()

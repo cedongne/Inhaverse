@@ -84,6 +84,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
     {
 		chatClient = new ChatClient(this);
 		chatClient.Connect(ChatSettings.Instance.AppId, "1.0", new AuthenticationValues(userName));
+		this.enabled = true;
 	}
 
 	public void AddLine(string lineString)
