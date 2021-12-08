@@ -272,7 +272,7 @@ public class UIManager : MonoBehaviour
     public void QuitGameBtn()
     {
         Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false;
+//        UnityEditor.EditorApplication.isPlaying = false;
     }
 
 #endregion

@@ -11,6 +11,7 @@ using PlayFab.GroupsModels;
 using PlayFab.DataModels;
 using PlayFab.AuthenticationModels;
 
+using Photon;
 using Photon.Pun;
 using Photon.Realtime;
 using PN = Photon.Pun.PhotonNetwork;
@@ -162,6 +163,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         passwordInput.text = "";
         usernameInput.text = "";
 
+        //        PN.ConnectUsingSettings();
         PN.ConnectUsingSettings();
     }
 
