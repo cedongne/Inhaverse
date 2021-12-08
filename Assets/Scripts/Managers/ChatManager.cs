@@ -177,7 +177,8 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 	public void OnUnsubscribed(string[] channels)
 	{
 		AddLine(string.Format("{0}ø°º≠ ≈¿Â«œºÃΩ¿¥œ¥Ÿ.", string.Join(",", channels)));
-		ConferenceManager.Instance.UpdateConferenceState();
+		if (currentChannelName.Contains("Conference"))
+			ConferenceManager.Instance.UpdateConferenceState();
 	}
 
 	public void OnGetMessages(string channelName, string[] senders, object[] messages)
