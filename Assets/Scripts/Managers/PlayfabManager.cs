@@ -102,6 +102,10 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
 #region PlayFab Login, Register
     public void LoginBtn()
     {
+        if (!emailInput.text.Contains("@inha.edu"))
+        {
+            emailInput.text += "@inha.edu";
+        }
         var request = new LoginWithEmailAddressRequest { Email = emailInput.text, Password = passwordInput.text };
         PlayFabClientAPI.LoginWithEmailAddress(request, (result) => { OnLoginSuccess(result);  }, (error) => OnLoginFailure(error));
     }
