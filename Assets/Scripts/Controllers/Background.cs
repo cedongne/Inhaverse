@@ -43,6 +43,7 @@ public class Background : MonoBehaviour
 
     public Material dayBox;
     public Material nightBox;
+    public Light directionalLight;
 
     void Update()
     {
@@ -59,11 +60,13 @@ public class Background : MonoBehaviour
         {
             RenderSettings.skybox = dayBox;
             RenderSettings.ambientLight = new Color(0.5f, 0.5f, 0.5f);
+            directionalLight.color = new Color32(255, 244, 214, 255);
         }
         else if (DateTime.Now.Hour >= 18 && DateTime.Now.Hour < 6 && RenderSettings.skybox != nightBox)
         {
             RenderSettings.skybox = nightBox;
             RenderSettings.ambientLight = new Color(0.2f, 0.2f, 0.2f);
+            directionalLight.color = new Color32(85, 72, 129, 255);
         }
 
     }
@@ -76,11 +79,13 @@ public class Background : MonoBehaviour
             {
                 RenderSettings.skybox = dayBox;
                 RenderSettings.ambientLight = new Color(0.5f, 0.5f, 0.5f);
+                directionalLight.color = new Color32(255, 244, 214, 255);
             }
             else
             {
                 RenderSettings.skybox = nightBox;
                 RenderSettings.ambientLight = new Color(0.15f, 0.15f, 0.15f);
+                directionalLight.color = new Color32(85, 72, 129, 255);
             }
         }
     }

@@ -39,6 +39,15 @@ public class ScreenShotManager : MonoBehaviour
         UIManager.Instance.hudUI.SetActive(false);
         yield return new WaitForEndOfFrame();
         Texture2D screenTexture = ScreenCapture.CaptureScreenshotAsTexture();
+
+        Color[] colors = screenTexture.GetPixels();
+        for (int i = 0; i < colors.Length; i++)
+        {
+            colors[i].a = 255;
+        }
+        screenTexture.SetPixels(colors);
+        screenTexture.Apply();
+
         Rect area = new Rect(0f, 0f, Screen.width, Screen.height);
         uiImage.sprite = Sprite.Create(screenTexture, area, Vector2.one * .5f);
         pngData = screenTexture.EncodeToPNG();
