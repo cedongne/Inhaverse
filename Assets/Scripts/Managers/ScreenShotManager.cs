@@ -40,7 +40,7 @@ public class ScreenShotManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         Texture2D screenTexture = ScreenCapture.CaptureScreenshotAsTexture();
         Rect area = new Rect(0f, 0f, Screen.width, Screen.height);
-        uiImage.sprite = Sprite.Create(screenTexture, area, Vector2.one * 5f);
+        uiImage.sprite = Sprite.Create(screenTexture, area, Vector2.one * .5f);
         pngData = screenTexture.EncodeToPNG();
 
         UIManager.Instance.OpenWindow(Define.UI.SCREENSHOT);
