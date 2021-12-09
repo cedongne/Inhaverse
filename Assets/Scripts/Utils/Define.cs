@@ -16,7 +16,8 @@ public class Define
         OPTION,
         COMMAND,
         CLASSREADY,
-        CLASSCHAIR
+        CLASSCHAIR,
+        SCREENSHOT
     }
 
     public enum GROUPLISTUSING

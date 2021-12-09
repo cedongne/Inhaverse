@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
     public GameObject optionWindow;
     public GameObject commandWindow;
     public GameObject classChairUI;
+    public GameObject screenShotWindow;
 
     [Space]
     public Image curCamIcon;
@@ -342,6 +343,7 @@ public class UIManager : MonoBehaviour
         classStudentListWindow.SetActive(false);
         optionWindow.SetActive(false);
         commandWindow.SetActive(false);
+        screenShotWindow.SetActive(false);
 
         if (showingWindow.Equals(Define.UI.CLASS))
         {
@@ -375,6 +377,10 @@ public class UIManager : MonoBehaviour
         {
             commandWindow.SetActive(true);
         }
+        else if (showingWindow.Equals(Define.UI.SCREENSHOT))
+        {
+            screenShotWindow.SetActive(true);
+        }
         isOpenWindow = true;
     }
 
@@ -391,6 +397,7 @@ public class UIManager : MonoBehaviour
         classStudentListWindow.SetActive(false);
         optionWindow.SetActive(false);
         commandWindow.SetActive(false);
+        screenShotWindow.SetActive(false);
 
         ClearClassMakingWindow();
         eventFunction = null;

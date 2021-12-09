@@ -96,6 +96,27 @@ public class FileManager : MonoBehaviourPunCallbacks
         openFileDialog.Multiselect = true;
     }
 
+    public void SaveFile()
+    {
+        VistaSaveFileDialog saveFileDialog = new VistaSaveFileDialog()
+        {
+            FileName = "Inhaverse" + DateTime.Now.ToString("yyyyMMdd") + ".png",
+            Filter = "png|",
+            AddExtension = true,
+            OverwritePrompt = true,
+            DefaultExt = ".png"
+        };
+
+        string fileName;
+        if (saveFileDialog.ShowDialog() == DialogResult.OK)
+        {
+            fileName = saveFileDialog.FileName;
+            File.WriteAllBytes(fileName, ScreenShotManager.Instance.pngData);
+        }
+        
+
+    }
+
     public void UpdateImage()
     {
         photonView.RPC("UpdateImageRPC", RpcTarget.All);
