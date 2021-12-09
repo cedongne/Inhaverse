@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 12b75cf75cdd1764294b9e8e5afb5f36, type: 2}
+  m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -23507,6 +23507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dayBox: {fileID: 2100000, guid: 2bd8959f5fbd3644aa33af1a155fc147, type: 2}
   nightBox: {fileID: 2100000, guid: cc421da483ed06c49933077a621bff25, type: 2}
+  directionalLight: {fileID: 705507994}
 --- !u!4 &1755946626
 Transform:
   m_ObjectHideFlags: 0
