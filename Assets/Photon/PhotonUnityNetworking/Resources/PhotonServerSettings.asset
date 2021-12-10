@@ -69,6 +69,7 @@ MonoBehaviour:
   - StartCLASS
   - OnKinematicRPC
   - SetName
+  - SetPlayerNameRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
