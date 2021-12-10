@@ -56,6 +56,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 			Destroy(gameObject);
 		}
 	}
+
 	// Use this for initialization
 	void Start()
 	{
@@ -131,7 +132,6 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 		sbObject = UIManager.Instance.conferenceSendButton;
 		chatBack = UIManager.Instance.conferenceChatBack;
 	}
-
 
 	public void OnConnected()
 	{

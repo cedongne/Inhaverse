@@ -4688,7 +4688,7 @@ MonoBehaviour:
   ifObject: {fileID: 2580658444375160557}
   sbObject: {fileID: 2580658444259038500}
   onChat: 0
-  chatBack: {fileID: 0}
+  chatBack: {fileID: 936580819}
 --- !u!114 &295047773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35699,7 +35699,7 @@ GameObject:
   - component: {fileID: 2580658445415671422}
   - component: {fileID: 2580658445415671423}
   m_Layer: 5
-  m_Name: Scroll View
+  m_Name: Chat ScrollView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
