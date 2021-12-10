@@ -73,7 +73,8 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 
 	void Update()
 	{
-		chatClient.Service();
+		if(chatClient != null)
+			chatClient.Service();
 		if (!UIManager.Instance.isOpenWindow)
 		{
 			Chat();
