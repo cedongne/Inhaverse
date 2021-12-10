@@ -82,10 +82,16 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 
 	public void ChatStart()
     {
+		StartCoroutine(ChatStartCoroutine());
+	}
+
+	IEnumerator ChatStartCoroutine()
+    {
+		yield return new WaitForEndOfFrame();
 		chatClient = new ChatClient(this);
 		chatClient.Connect(ChatSettings.Instance.AppId, "1.0", new AuthenticationValues(userName));
 		this.enabled = true;
-	}
+    }
 
 	public void AddLine(string lineString)
 	{
