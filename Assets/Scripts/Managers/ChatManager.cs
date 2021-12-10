@@ -138,7 +138,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 		AddLine("서버에 연결되었습니다.");
 
 		currentChannelName = PN.CurrentRoom.Name;
-		chatClient.Subscribe(new string[] { currentChannelName }, 10);
+		chatClient.Subscribe(new string[] { currentChannelName }, 0);
 	}
 
 	public void OnDisconnected()
@@ -172,7 +172,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 
 	public void EnterLobbyChat()
 	{
-		chatClient.Subscribe(new string[] { "Campus" }, 10);
+		chatClient.Subscribe(new string[] { "Campus" }, 0);
 		currentChannelName = "Campus";
 	}
 
