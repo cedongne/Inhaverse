@@ -25177,7 +25177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dayBox: {fileID: 2100000, guid: 2bd8959f5fbd3644aa33af1a155fc147, type: 2}
   nightBox: {fileID: 2100000, guid: cc421da483ed06c49933077a621bff25, type: 2}
-  directionalLight: {fileID: 0}
+  directionalLight: {fileID: 705507994}
 --- !u!4 &1755946626
 Transform:
   m_ObjectHideFlags: 0
