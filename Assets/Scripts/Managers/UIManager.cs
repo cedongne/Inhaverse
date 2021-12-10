@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
     public GameObject optionWindow;
     public GameObject commandWindow;
     public GameObject classChairUI;
+    public GameObject screenShotWindow;
 
     [Space]
     public Image curCamIcon;
@@ -42,6 +43,7 @@ public class UIManager : MonoBehaviour
     public Scrollbar hudChatScrollbar;
     public GameObject hudInputField;
     public GameObject hudSendButton;
+    public GameObject hudChatBack;
 
     [Header("===== 회의채팅 UI")]
     [Space]
@@ -50,6 +52,7 @@ public class UIManager : MonoBehaviour
     public Scrollbar conferenceChatScrollbar;
     public GameObject conferenceInputField;
     public GameObject conferenceSendButton;
+    public GameObject conferenceChatBack;
 
     [Header("===== 객체 참조 =====")]
     [Space]
@@ -342,6 +345,7 @@ public class UIManager : MonoBehaviour
         classStudentListWindow.SetActive(false);
         optionWindow.SetActive(false);
         commandWindow.SetActive(false);
+        screenShotWindow.SetActive(false);
 
         if (showingWindow.Equals(Define.UI.CLASS))
         {
@@ -375,6 +379,10 @@ public class UIManager : MonoBehaviour
         {
             commandWindow.SetActive(true);
         }
+        else if (showingWindow.Equals(Define.UI.SCREENSHOT))
+        {
+            screenShotWindow.SetActive(true);
+        }
         isOpenWindow = true;
     }
 
@@ -391,6 +399,7 @@ public class UIManager : MonoBehaviour
         classStudentListWindow.SetActive(false);
         optionWindow.SetActive(false);
         commandWindow.SetActive(false);
+        screenShotWindow.SetActive(false);
 
         ClearClassMakingWindow();
         eventFunction = null;

@@ -142,7 +142,9 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
             players.Clear();
             foreach (var name in client.PublicChannels[ChatManager.Instance.currentChannelName].Subscribers)
             {
+                Debug.Log(name);
                 var obj = GameObject.Find(name);
+                Debug.Log(obj.name);
                 players.Add(obj);
             }
             players.Sort(compare);
