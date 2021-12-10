@@ -263,6 +263,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                 UpdateLeaderBoard("Login", 1);
 
                 UIManager.Instance.UIInitFromPlayfabLogin(playerName, playerSchoolId);
+                ChatManager.Instance.ChatStart();
 
                 ChatManager.Instance.enabled = true;
                 Debug.Log("플레이어 정보 로드 성공, 이름 : " + playerName + ", 학번 : " + playerSchoolId);

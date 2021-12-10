@@ -165,19 +165,6 @@ public class PlayerContoller : MonoBehaviourPun
         OpenOptionWindow();
     }
 
-    public void SetPlayerName(string playerName)
-    {
-//        photonView.RPC("SetPlayerNameRPC", RpcTarget.AllBuffered, playerName);
-    }
-
-    /*
-    [PunRPC]
-    public void SetPlayerNameRPC(string playerName)
-    {
-        name = playerName;
-    }
-    */
-
     void GetInput()
     {
         if (!canGetInput)

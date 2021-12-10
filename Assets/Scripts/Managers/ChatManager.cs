@@ -81,7 +81,10 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 	}
 
 	public void ChatStart()
-    {
+	{
+		userName = PlayfabManager.Instance.playerName;
+		Debug.Log(userName);
+
 		StartCoroutine(ChatStartCoroutine());
 	}
 

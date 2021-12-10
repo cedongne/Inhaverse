@@ -141,7 +141,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
     {
         SpawnPlayer();
         UIManager.Instance.ShowUI(Define.UI.HUD);
-        ChatManager.Instance.ChatStart();
     }
 
     void SpawnPlayer()
