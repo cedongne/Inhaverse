@@ -74,6 +74,7 @@ public class PlayerContoller : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
+        name = photonView.Owner.NickName;
         if (!photonView.IsMine)
         {
             RpcUIManager.Instance.playerList.Add(gameObject.transform);
@@ -85,8 +86,7 @@ public class PlayerContoller : MonoBehaviourPun
 
         if (photonView.IsMine)
         {
-            if (PlayfabManager.Instance.playerName != "")
-                name = PlayfabManager.Instance.playerName;
+//                name = photonView.Owner.NickName;
 
             MineManager.Instance.player = gameObject;
             MineManager.Instance.playerController = GetComponent<PlayerContoller>();
@@ -121,18 +121,11 @@ public class PlayerContoller : MonoBehaviourPun
         DontDestroyOnLoad(GameObject.Find("Canvas"));
     }
 
-    [PunRPC]
-    public void SetName()
-    {
-        name = photonView.Owner.NickName;
-    }
-
     // Update is called once per frame
     void FixedUpdate()
     {
         if (!photonView.IsMine)
         {
-            photonView.RPC("SetName", RpcTarget.AllBuffered);
             return;
         }
         if (!UIManager.Instance.isOpenWindow)

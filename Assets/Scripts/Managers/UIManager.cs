@@ -248,7 +248,7 @@ public class UIManager : MonoBehaviour
 
         playerClassList.Add(newClassInfo);
         newClassInfo.transform.position = classListContent.transform.position + classListInitPosition + classListOffset * playerClassList.IndexOf(newClassInfo);
-        PlayfabManager.Instance.GetLeaderBoardForTotalAttendanceUI(splitedClassInfo[2] + splitedClassInfo[0] + "Attendance", playerName.text, newInfoTransform.GetChild(10).GetComponent<Text>());
+        PlayfabManager.Instance.GetLeaderBoardForTotalAttendanceUI(splitedClassInfo[1] + splitedClassInfo[0] + "Attendance", playerName.text, newInfoTransform.GetChild(10).GetComponent<Text>());
     }
 
     public void OptionBtn()
