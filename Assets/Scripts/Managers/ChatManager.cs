@@ -56,6 +56,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 			Destroy(gameObject);
 		}
 	}
+
 	// Use this for initialization
 	void Start()
 	{
@@ -132,13 +133,12 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 		chatBack = UIManager.Instance.conferenceChatBack;
 	}
 
-
 	public void OnConnected()
 	{
 		AddLine("서버에 연결되었습니다.");
 
 		currentChannelName = PN.CurrentRoom.Name;
-		chatClient.Subscribe(new string[] { currentChannelName }, 10);
+		chatClient.Subscribe(new string[] { currentChannelName }, 0);
 	}
 
 	public void OnDisconnected()
