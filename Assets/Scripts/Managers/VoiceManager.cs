@@ -86,7 +86,7 @@ public class VoiceManager : MonoBehaviour
     {
         onVoice = true;
         voiceRecorder.TransmitEnabled = true;
-        voiceButton.GetComponent<Image>().color = Color.white;
+        voiceButton.GetComponent<Image>().color = new Color32(170, 203, 255, 255);
     }
 
     [System.Obsolete]
@@ -125,7 +125,7 @@ public class VoiceManager : MonoBehaviour
         }
         else
         {
-            UIManager.Instance.curSpeakerIcon.color = Color.white;
+            UIManager.Instance.curSpeakerIcon.color = new Color32(255, 189, 215, 255);
         }
     }
 

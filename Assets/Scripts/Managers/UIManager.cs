@@ -43,6 +43,7 @@ public class UIManager : MonoBehaviour
     public Scrollbar hudChatScrollbar;
     public GameObject hudInputField;
     public GameObject hudSendButton;
+    public GameObject hudChatBack;
 
     [Header("===== 회의채팅 UI")]
     [Space]
@@ -51,6 +52,7 @@ public class UIManager : MonoBehaviour
     public Scrollbar conferenceChatScrollbar;
     public GameObject conferenceInputField;
     public GameObject conferenceSendButton;
+    public GameObject conferenceChatBack;
 
     [Header("===== 객체 참조 =====")]
     [Space]

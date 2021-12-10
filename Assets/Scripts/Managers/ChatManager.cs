@@ -100,6 +100,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 		}
 	}
 
+	public GameObject chatBack;
 	public void SetHUDChatUI()
     {
 		inputField = UIManager.Instance.hudChatInputField;
@@ -107,6 +108,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 		chatScrollBar = UIManager.Instance.hudChatScrollbar;
 		ifObject = UIManager.Instance.hudInputField;
 		sbObject = UIManager.Instance.hudSendButton;
+		chatBack = UIManager.Instance.hudChatBack;
 	}
 
 	public void SetConferenceChatUI()
@@ -116,6 +118,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 		chatScrollBar = UIManager.Instance.conferenceChatScrollbar;
 		ifObject = UIManager.Instance.conferenceInputField;
 		sbObject = UIManager.Instance.conferenceSendButton;
+		chatBack = UIManager.Instance.conferenceChatBack;
 	}
 
 
@@ -210,6 +213,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 				ifObject.SetActive(true);
 				inputField.ActivateInputField();
 				sbObject.SetActive(true);
+				chatBack.SetActive(true);
             }
             else
             {
@@ -221,6 +225,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 				onChat = false;
 				ifObject.SetActive(false);
 				sbObject.SetActive(false);
+				chatBack.SetActive(false);
 			}
 		}
 	}
