@@ -50,12 +50,12 @@ public class StudentListUIManager : MonoBehaviourPunCallbacks
     }
 
     void InitializingText()
-    {
+    {/*
         for (int idx = 1; idx < 60; idx++)
         {
             studentListWindow.transform.Find($"Student{idx}").Find("Text").GetComponent<Text>().text = $"Student{idx}";
             studentListWindow.transform.Find($"Student{idx}").Find("Text").GetComponent<Text>().fontSize = 20;
-        }
+        }*/
     }
 
     public void SetStudentListUI(string deskNum, string studentName)
