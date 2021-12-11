@@ -110,7 +110,6 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         }
         var request = new LoginWithEmailAddressRequest { Email = emailInput.text, Password = passwordInput.text };
         PlayFabClientAPI.LoginWithEmailAddress(request, (result) => { OnLoginSuccess(result);  }, (error) => OnLoginFailure(error));
-        NetworkManager.Instance.resourceName = EventSystem.current.currentSelectedGameObject.name;
     }
 
     public void RegisterBtn()
