@@ -54,7 +54,6 @@ public class CameraController : MonoBehaviour
             Destroy(gameObject);
         playerTransform = defaultObjectTransform;
         cameraArmTransform = GetComponent<Transform>();
-        UIManager.Instance.cameraController = GetComponent<CameraController>();
         
         isTPS = true;
     }

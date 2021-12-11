@@ -108,9 +108,6 @@ public class PlayerContoller : MonoBehaviourPun
                 ChangeCameraMode();
             }
 
-            UIManager.Instance.playerController = GetComponent<PlayerContoller>();
-            ClassProcessManager.Instance.playerContoller = GetComponent<PlayerContoller>();
-
             VoiceManager.Instance.playerUIObject = playerUIObjects;
         }
         moveSpeed = walkMoveSpeed;

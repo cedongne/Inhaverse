@@ -147,9 +147,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
     void SpawnPlayer()
     {
         if (room_name.Equals("Campus"))
-            player = PN.Instantiate("Female", lastPosition, Quaternion.identity);
+            player = PN.Instantiate(resourceName, lastPosition, Quaternion.identity);
         else
-            player = PN.Instantiate("Female", Vector3.zero, Quaternion.identity);
+            player = PN.Instantiate(resourceName, Vector3.zero, Quaternion.identity);
     }
 
     void Update()

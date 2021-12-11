@@ -4,6 +4,7 @@ public class Define
     {
         LOGIN,
         HUD,
+        PORTRAIT,
         MENU,
         CLASS,
         CLASSMAKING,

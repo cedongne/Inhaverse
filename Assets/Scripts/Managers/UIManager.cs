@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     public GameObject loginUI;
     public GameObject hudUI;
     public GameObject conferenceUI;
+    public GameObject selectCharacterUI;
     public GameObject classReadySubUI;
     public GameObject classWindow;
     public GameObject classMakingWindow;
@@ -29,7 +30,7 @@ public class UIManager : MonoBehaviour
     public GameObject voiceOffIconSlash;
     public GameObject speakerOffIconSlash;
     public RectTransform uiIconsTransform;
-
+    
     [Space]
     public Image curCamIcon;
     public Image curSpeakerIcon;
@@ -40,7 +41,7 @@ public class UIManager : MonoBehaviour
     public Image conferenceCamIcon;
     public Image conferenceSpeakerIcon;
     public Image conferenceVoiceIcon;
-
+    
     [Header("===== HUD 채팅 UI")]
     [Space]
     public InputField hudChatInputField;
@@ -58,11 +59,6 @@ public class UIManager : MonoBehaviour
     public GameObject conferenceInputField;
     public GameObject conferenceSendButton;
     public GameObject conferenceChatBack;
-
-    [Header("===== 객체 참조 =====")]
-    [Space]
-    public PlayerContoller playerController;
-    public CameraController cameraController;
 
     [Header("===== 강의 데이터 UI =====")]
     [Space]
@@ -269,8 +265,8 @@ public class UIManager : MonoBehaviour
 
     public void LogoutBtn()
     {
-        playerController.cameraArm.GetComponent<CameraController>().enabled = false;
-        playerController.cameraArm.GetComponent<LobbyCameraRatate>().enabled = true;
+        MineManager.Instance.cameraController.enabled = false;
+        MineManager.Instance.cameraArm.GetComponent<LobbyCameraRatate>().enabled = true;
         NetworkManager.Instance.LeaveGame();
         ShowUI(Define.UI.LOGIN);
     }
@@ -288,13 +284,20 @@ public class UIManager : MonoBehaviour
         CloseWindow();
         loginUI.SetActive(false);
         hudUI.SetActive(false);
+        selectCharacterUI.SetActive(false);
         conferenceUI.SetActive(false);
 
         CloseWindow();
 
         if (showingUi.Equals(Define.UI.LOGIN))
         {
-            loginUI.SetActive(true); 
+            loginUI.SetActive(true);
+            uiIconsTransform.gameObject.SetActive(false);
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else if (showingUi.Equals(Define.UI.PORTRAIT))
+        {
+            selectCharacterUI.SetActive(true);
             uiIconsTransform.gameObject.SetActive(false);
             Cursor.lockState = CursorLockMode.None;
         }
