@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
 
     [Space]
     public GameObject voiceOffIconSlash;
+    public GameObject speakerOffIconSlash;
 
     [Space]
     public Image curCamIcon;
