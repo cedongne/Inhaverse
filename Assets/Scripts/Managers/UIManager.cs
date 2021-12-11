@@ -26,6 +26,9 @@ public class UIManager : MonoBehaviour
     public GameObject screenShotWindow;
 
     [Space]
+    public GameObject voiceOffIconSlash;
+
+    [Space]
     public Image curCamIcon;
     public Image curSpeakerIcon;
     public Image curVoiceIcon;
