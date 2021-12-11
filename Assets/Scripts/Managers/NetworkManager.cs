@@ -35,6 +35,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
     string network_state;
     public string room_name;
     Vector3 lastPosition = Vector3.zero;
+    public string resourceName;
 
     public bool connection = false;
 
@@ -146,9 +147,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
     void SpawnPlayer()
     {
         if (room_name.Equals("Campus"))
-            player = PN.Instantiate("Player", lastPosition, Quaternion.identity);
+            player = PN.Instantiate("Female", lastPosition, Quaternion.identity);
         else
-            player = PN.Instantiate("Player", Vector3.zero, Quaternion.identity);
+            player = PN.Instantiate("Female", Vector3.zero, Quaternion.identity);
     }
 
     void Update()
