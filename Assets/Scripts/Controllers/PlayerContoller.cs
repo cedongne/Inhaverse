@@ -376,6 +376,8 @@ public class PlayerContoller : MonoBehaviourPun
                 UIManager.Instance.CloseWindow();
             else if (UIManager.Instance.conferenceUI.activeSelf)
                 ConferenceManager.Instance.ExitConference();
+            else if (ClassProcessManager.Instance.isSittedChair)
+                ClassProcessManager.Instance.GetUpFromChair();
             else
                 UIManager.Instance.OptionBtn();
         }

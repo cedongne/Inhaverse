@@ -27,6 +27,8 @@ public class UIManager : MonoBehaviour
 
     [Space]
     public GameObject voiceOffIconSlash;
+    public GameObject speakerOffIconSlash;
+    public RectTransform uiIconsTransform;
 
     [Space]
     public Image curCamIcon;
@@ -133,7 +135,7 @@ public class UIManager : MonoBehaviour
     public List<Text> classAttendanceList = new List<Text>();
 
     List<GameObject> playerClassList = new List<GameObject>();
-    Vector3 classListInitPosition = new Vector2(20, -20);
+    Vector3 classListInitPosition = new Vector2(40, -20);
     Vector3 classListOffset = new Vector2(0, -160);
 
     public delegate void EventFunction(int num);
@@ -292,7 +294,8 @@ public class UIManager : MonoBehaviour
 
         if (showingUi.Equals(Define.UI.LOGIN))
         {
-            loginUI.SetActive(true);
+            loginUI.SetActive(true); 
+            uiIconsTransform.gameObject.SetActive(false);
             Cursor.lockState = CursorLockMode.None;
         }
         else if (showingUi.Equals(Define.UI.HUD))
@@ -302,14 +305,15 @@ public class UIManager : MonoBehaviour
             curVoiceIcon = hudVoiceIcon;
 
             hudUI.SetActive(true);
+            uiIconsTransform.gameObject.SetActive(true);
+            uiIconsTransform.anchoredPosition = new Vector2(634, -423);
             Cursor.lockState = CursorLockMode.Locked;
         }
         else if (showingUi.Equals(Define.UI.CONFERENCE))
         {
-            curCamIcon = conferenceCamIcon;
-            curSpeakerIcon = conferenceSpeakerIcon;
-            curVoiceIcon = conferenceVoiceIcon;
             conferenceUI.SetActive(true);
+            uiIconsTransform.gameObject.SetActive(true);
+            uiIconsTransform.anchoredPosition = new Vector2(-619, -402);
         }
     }
 
@@ -591,10 +595,10 @@ public class UIManager : MonoBehaviour
         dontHaveAuthority.SetActive(false);
     }
 
-    IEnumerator FadeOutCoroutine()
+    public IEnumerator FadeOutCoroutine()
     {
         float fadeCount = 1.0f;
-        while(fadeCount > 0)
+        while (fadeCount > 0)
         {
             fadeCount -= 0.01f;
             yield return new WaitForSeconds(0.01f);

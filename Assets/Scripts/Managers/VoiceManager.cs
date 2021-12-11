@@ -65,7 +65,7 @@ public class VoiceManager : MonoBehaviour
 
     public void VoiceOnOff()
     {
-        if (onVoice)
+        if (!onVoice)
         {
             SetVoiceOn();
         }
@@ -77,16 +77,18 @@ public class VoiceManager : MonoBehaviour
 
     public void SetVoiceOn()
     {
-        onVoice = false;
-        voiceRecorder.TransmitEnabled = false;
-        voiceButton.GetComponent<Image>().color = Color.gray;
-        playerUIObject.GetComponentInChildren<UnityEngine.UI.Outline>().effectColor = Color.white;
+        onVoice = true;
+        voiceRecorder.TransmitEnabled = true;
+        UIManager.Instance.voiceOffIconSlash.SetActive(false);
+        voiceButton.GetComponent<Image>().color = new Color32(170, 203, 255, 255);
     }
     public void SetVoiceOff()
     {
-        onVoice = true;
-        voiceRecorder.TransmitEnabled = true;
-        voiceButton.GetComponent<Image>().color = new Color32(170, 203, 255, 255);
+        onVoice = false;
+        voiceRecorder.TransmitEnabled = false;
+        voiceButton.GetComponent<Image>().color = Color.gray;
+        UIManager.Instance.voiceOffIconSlash.SetActive(true);
+        playerUIObject.GetComponentInChildren<UnityEngine.UI.Outline>().effectColor = Color.white;
     }
 
     [System.Obsolete]
@@ -119,12 +121,14 @@ public class VoiceManager : MonoBehaviour
     {
         volume = speakerSlider.value;
         speakerAudioMixer.SetFloat("SpeakerAudioMixer", volume);
-        if (volume == -20)
+        if (volume == -80)
         {
+            UIManager.Instance.speakerOffIconSlash.SetActive(true);
             UIManager.Instance.curSpeakerIcon.color = Color.gray;
         }
         else
         {
+            UIManager.Instance.speakerOffIconSlash.SetActive(false);
             UIManager.Instance.curSpeakerIcon.color = new Color32(255, 189, 215, 255);
         }
     }

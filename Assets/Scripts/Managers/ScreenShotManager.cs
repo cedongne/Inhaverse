@@ -37,6 +37,7 @@ public class ScreenShotManager : MonoBehaviour
     IEnumerator charkack()
     {
         UIManager.Instance.hudUI.SetActive(false);
+        UIManager.Instance.uiIconsTransform.gameObject.SetActive(false);
         yield return new WaitForEndOfFrame();
         Texture2D screenTexture = ScreenCapture.CaptureScreenshotAsTexture();
 
@@ -54,6 +55,7 @@ public class ScreenShotManager : MonoBehaviour
 
         UIManager.Instance.OpenWindow(Define.UI.SCREENSHOT);
         UIManager.Instance.hudUI.SetActive(true);
+        UIManager.Instance.uiIconsTransform.gameObject.SetActive(true);
     }
     public void TakeScreenShot()
     {
