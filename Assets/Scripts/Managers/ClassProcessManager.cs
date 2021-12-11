@@ -41,6 +41,8 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
 
     string classChannelName;
 
+    public bool isSittedChair = false;
+
     private void Awake()
     {
         if(instance == null)
@@ -53,7 +55,6 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
 
     public void StartClassBtn()
     {
-        Debug.Log("test////////////////////");
         classState = Define.CLASSSTATE.START;
         photonView.RPC("ReadyCLASS", RpcTarget.AllBuffered, classState);
         Application.OpenURL("https://owake.me/");
@@ -246,6 +247,7 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
 
     public void GetUpFromChair()
     {
+        ClassProcessManager.Instance.isSittedChair = false;
         UIManager.Instance.HideSubUI();
 
         MineManager.Instance.playerController.OnKinematic(false);
