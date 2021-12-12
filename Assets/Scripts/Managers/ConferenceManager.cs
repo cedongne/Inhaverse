@@ -54,12 +54,14 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
 
     public void StartVideoConferenceBtn()
     {
-        Debug.Log("test......................");
+        Debug.Log(conferenceState + "......................");
         if (!conferenceState.Equals(Define.VIDEOCONFERENCESTATE.START))
             UIManager.Instance.conferenceChannelNameInputObject.SetActive(true);
-        else if(conferenceState.Equals(Define.VIDEOCONFERENCESTATE.END))
+        else if (conferenceState.Equals(Define.VIDEOCONFERENCESTATE.END))
+        {
             conferenceState = Define.VIDEOCONFERENCESTATE.READY;
-        photonView.RPC("ReadyVideoConference", RpcTarget.AllBuffered, channelName, conferenceState);
+            photonView.RPC("ReadyVideoConference", RpcTarget.AllBuffered, channelName, conferenceState);
+        }
         Application.OpenURL("https://owake.me/");
 
     }
@@ -94,6 +96,7 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
         Debug.Log("Start Receiver " + sender_channel_name + " " + conference_channel_name);
         if (sender_channel_name.Equals(channelName))
         {
+            conferenceState = Define.VIDEOCONFERENCESTATE.START;
             Debug.Log("StartVideoConference");
             UIManager.Instance.conferenceChannelNameText.text = conference_channel_name;
             UIManager.Instance.conferenceChannelNameObject.SetActive(true);
