@@ -113,6 +113,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 	}
 
 	public GameObject chatBack;
+
 	public void SetHUDChatUI()
     {
 		inputField = UIManager.Instance.hudChatInputField;
@@ -160,7 +161,8 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 
 	public void EnterConferenceChat(string channelName)
     {
-		chatClient.Subscribe(channelName, 0, 10, conferenceOption);
+
+		chatClient.Subscribe(channelName, 0, 0, conferenceOption);
 		currentChannelName = channelName;
 		ConferenceManager.Instance.channelName = currentChannelName;
 	}

@@ -129,6 +129,7 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
     public void EndVideoConference()
     {
         conferenceChannelName = "";
+        conferenceState = Define.VIDEOCONFERENCESTATE.END;
         UIManager.Instance.conferenceChannelNameText.text = "";
         UIManager.Instance.conferenceChannelNameObject.SetActive(false);
         UIManager.Instance.conferenceChannelNameInputField.text = "";
