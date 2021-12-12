@@ -129,6 +129,7 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
     public void EndVideoConference()
     {
         conferenceChannelName = "";
+        channelName = "";
         conferenceState = Define.VIDEOCONFERENCESTATE.END;
         UIManager.Instance.conferenceChannelNameText.text = "";
         UIManager.Instance.conferenceChannelNameObject.SetActive(false);
@@ -204,6 +205,7 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
 
             if (!conferenceChannelName.Equals(""))
             {
+                Debug.Log("Who entered here");
                 if (conferenceState.Equals(Define.VIDEOCONFERENCESTATE.READY))
                     photonView.RPC("ReadyVideoConference", RpcTarget.AllBuffered, channelName, conferenceState);
                 else if (conferenceState.Equals(Define.VIDEOCONFERENCESTATE.START))
