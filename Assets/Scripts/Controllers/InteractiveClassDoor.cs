@@ -13,6 +13,7 @@ public class InteractiveClassDoor : InteractiveObject
 
     public override void Interaction()
     {
+        Debug.Log(NetworkManager.Instance.room_name + " " + PlayfabManager.Instance.playerJob);
         if (NetworkManager.Instance.room_name.Equals("Campus"))
         {
             if (PlayfabManager.Instance.playerJob == "ÇÐ»ý")

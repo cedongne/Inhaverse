@@ -123,7 +123,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             Debug.Log("������ �����ϼ���.");
             return;
         }
-        if (playerJob.Equals("�л�"))
+        if (playerJob.Equals("학생"))
         {
             emailInput.text = "11111111@inha.edu";
             passwordInput.text = "master1234";
@@ -246,13 +246,13 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             {
                 if (eachData.Key == "Job")
                 {
-                    if (eachData.Value.Value == "�л�")
+                    if (eachData.Value.Value.Equals("학생"))
                     {
-                        playerJob = "�л�";
+                        playerJob = "학생";
                     }
-                    else if (eachData.Value.Value == "����")
+                    else if (eachData.Value.Value == "교수")
                     {
-                        playerJob = "����";
+                        playerJob = "교수";
                     }
                     break;
                 }
@@ -460,11 +460,11 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
     {
         if (studentToggle.isOn)
         {
-            playerJob = "�л�";
+            playerJob = "학생";
         }
         else if (instructorToggle.isOn)
         {
-            playerJob = "����";
+            playerJob = "교수";
         }
     }
 

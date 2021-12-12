@@ -344,12 +344,10 @@ public class PlayerContoller : MonoBehaviourPun
         {
             if (Vector3.Distance(playerTransform.position, RpcUIManager.Instance.playerList[count].transform.position) < 10)
             {
-                Debug.Log("Near" + RpcUIManager.Instance.playerList[count].name);
                 RpcUIManager.Instance.playerUILIst[count].SetActive(true);
             }
             else
             {
-                Debug.Log("Far" + RpcUIManager.Instance.playerList[count].transform.position);
                 RpcUIManager.Instance.playerUILIst[count].SetActive(false);
             }
         }

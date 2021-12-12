@@ -88,6 +88,7 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
         UIManager.Instance.ClassChannelNameInputObject.SetActive(false);
         UIManager.Instance.ClassChannelNameInputField.text = "";
         UIManager.Instance.classhannelNameObject.SetActive(true);
+        UIManager.Instance.startClassButton.interactable = false;
         UIManager.Instance.classChannelNameText.text = classChannelName;
     }
 
@@ -110,6 +111,7 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
     [PunRPC]
     public void EndCLASS()
     {
+        UIManager.Instance.startClassButton.interactable = true;
         Debug.Log("CLASS");
         UIManager.Instance.classChannelNameText.text = "";
         UIManager.Instance.classhannelNameObject.SetActive(false);
@@ -170,7 +172,7 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
         UIManager.Instance.HideSubUI();
 
         MineManager.Instance.playerController.canDetectInteractive = true;
-        GameObject.Find("Camera Arm").GetComponent<CameraController>().playerTransform = playerContoller.transform;
+        MineManager.Instance.cameraController.playerTransform = playerContoller.transform;
     }
 #endregion
 
