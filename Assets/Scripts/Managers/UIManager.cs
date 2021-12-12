@@ -131,7 +131,7 @@ public class UIManager : MonoBehaviour
     public List<Text> classAttendanceList = new List<Text>();
 
     List<GameObject> playerClassList = new List<GameObject>();
-    Vector3 classListInitPosition = new Vector2(40, -20);
+    Vector3 classListInitPosition = new Vector2(35, -20);
     Vector3 classListOffset = new Vector2(0, -160);
 
     public delegate void EventFunction(int num);
