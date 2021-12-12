@@ -57,7 +57,7 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
         Debug.Log(conferenceState + "......................");
         if (!conferenceState.Equals(Define.VIDEOCONFERENCESTATE.START))
             UIManager.Instance.conferenceChannelNameInputObject.SetActive(true);
-        else if (conferenceState.Equals(Define.VIDEOCONFERENCESTATE.END))
+        if (conferenceState.Equals(Define.VIDEOCONFERENCESTATE.END))
         {
             conferenceState = Define.VIDEOCONFERENCESTATE.READY;
             photonView.RPC("ReadyVideoConference", RpcTarget.AllBuffered, channelName, conferenceState);
