@@ -106,6 +106,7 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
         }
     }
 
+    /*
     [PunRPC]
     public void EndVideoConference(string sender_channel_name)
     {
@@ -122,6 +123,19 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
             UIManager.Instance.videoConferenceButton.interactable = true;
             UIManager.Instance.videoConferenceText.text = "화상회의 시작";
         }
+    }
+    */
+
+    public void EndVideoConference()
+    {
+        conferenceChannelName = "";
+        UIManager.Instance.conferenceChannelNameText.text = "";
+        UIManager.Instance.conferenceChannelNameObject.SetActive(false);
+        UIManager.Instance.conferenceChannelNameInputField.text = "";
+        UIManager.Instance.conferenceChannelNameInputObject.SetActive(false);
+
+        UIManager.Instance.videoConferenceButton.interactable = true;
+        UIManager.Instance.videoConferenceText.text = "화상회의 시작";
     }
 
     public void UpdateConferenceState()
@@ -189,12 +203,12 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
 
             if (!conferenceChannelName.Equals(""))
             {
-                if(conferenceState.Equals(Define.VIDEOCONFERENCESTATE.READY))
+                if (conferenceState.Equals(Define.VIDEOCONFERENCESTATE.READY))
                     photonView.RPC("ReadyVideoConference", RpcTarget.AllBuffered, channelName, conferenceState);
                 else if (conferenceState.Equals(Define.VIDEOCONFERENCESTATE.START))
                     photonView.RPC("StartVideoConference", RpcTarget.AllBuffered, channelName, conferenceChannelName);
-                else
-                    photonView.RPC("EndVideoConference", RpcTarget.AllBuffered, channelName);
+ //               else
+ //                   photonView.RPC("EndVideoConference", RpcTarget.AllBuffered, channelName);
             }
         }
     }
@@ -208,7 +222,8 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
         ChatManager.Instance.ExitConference();
         VoiceManager.Instance.EnterLobbyChannel();
 
-        photonView.RPC("EndVideoConference", RpcTarget.AllBuffered, channelName);
+//        photonView.RPC("EndVideoConference", RpcTarget.AllBuffered, channelName);
+        EndVideoConference();
 
         MineManager.Instance.playerController.OnKinematic(false);
         MineManager.Instance.playerController.canMove = true;
