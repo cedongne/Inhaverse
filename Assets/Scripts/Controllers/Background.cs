@@ -62,7 +62,7 @@ public class Background : MonoBehaviour
             RenderSettings.ambientLight = new Color(0.5f, 0.5f, 0.5f);
             directionalLight.color = new Color32(255, 244, 214, 255);
         }
-        else if (DateTime.Now.Hour >= 18 && DateTime.Now.Hour < 6 && RenderSettings.skybox != nightBox)
+        else if ((DateTime.Now.Hour >= 18 || DateTime.Now.Hour < 6) && RenderSettings.skybox != nightBox)
         {
             RenderSettings.skybox = nightBox;
             RenderSettings.ambientLight = new Color(0.2f, 0.2f, 0.2f);
