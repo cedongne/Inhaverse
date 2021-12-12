@@ -1164,7 +1164,7 @@ MonoBehaviour:
   cameraController: {fileID: 0}
   playerRigid: {fileID: -6032826969269279565}
   interactionUI: {fileID: 0}
-  playerUIObjects: {fileID: 8165507261125030204, guid: 4049f8b1a5187b24e8621b1cdf808107, type: 3}
+  playerUIObjects: {fileID: 242586266010771757}
   webCamImage: {fileID: 0}
   playerUIController: {fileID: 6825015168767009852, guid: 4049f8b1a5187b24e8621b1cdf808107, type: 3}
   webCamController: {fileID: 0}
