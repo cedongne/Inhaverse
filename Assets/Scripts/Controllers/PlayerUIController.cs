@@ -29,10 +29,6 @@ public class PlayerUIController : MonoBehaviourPunCallbacks, IPunObservable
         Invoke("SetPlayerName", 1f);
     }
 
-    private void Start()
-    {
-    }
-
     void FixedUpdate()
     {
         playerNameTextTransform.position = Camera.main.WorldToScreenPoint(playerTransform.position + playerNameTextOffset);

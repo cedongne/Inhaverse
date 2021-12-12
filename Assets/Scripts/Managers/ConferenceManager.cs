@@ -221,9 +221,9 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
         players.Clear();
 
         photonView.RPC("ExitConferenceRPC", RpcTarget.AllBuffered, MineManager.Instance.player.name);
-        UIManager.Instance.ShowUI(Define.UI.HUD);
         ChatManager.Instance.ExitConference();
         VoiceManager.Instance.EnterLobbyChannel();
+        UIManager.Instance.ShowUI(Define.UI.HUD);
 
 //        photonView.RPC("EndVideoConference", RpcTarget.AllBuffered, channelName);
         EndVideoConference();
