@@ -1254,19 +1254,19 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: isMove
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: isJump
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: isRun
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: DoJump
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: isDown
   m_SynchronizeLayers:
   - SynchronizeType: 2
@@ -1867,7 +1867,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: e4d8fe0ce61fe854c991bed01e1a77e8, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
