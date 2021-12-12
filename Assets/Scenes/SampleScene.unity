@@ -7022,7 +7022,7 @@ MonoBehaviour:
   cameraArm: {fileID: 3650513701645454894}
   player: {fileID: 0}
   room_name: 
-  resourceName: 
+  characterName: Player
   connection: 0
 --- !u!4 &472855810
 Transform:
@@ -17386,7 +17386,7 @@ GameObject:
   - component: {fileID: 1161337439}
   - component: {fileID: 1161337438}
   m_Layer: 5
-  m_Name: Male
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17546,7 +17546,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1176852728
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20240,7 +20240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AllowSwitchOff: 1
+  m_AllowSwitchOff: 0
 --- !u!1 &1393782422
 GameObject:
   m_ObjectHideFlags: 0
@@ -24518,7 +24518,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1640500424
 MonoBehaviour:
   m_ObjectHideFlags: 0
