@@ -35,7 +35,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
     string network_state;
     public string room_name;
     Vector3 lastPosition = Vector3.zero;
-    public string resourceName;
+    public string characterName = "Player";
 
     public bool connection = false;
 
@@ -129,6 +129,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
 
     public void LeaveGame()
     {
+        lastPosition = Vector3.zero;
         PN.Disconnect();
     }
 
@@ -147,9 +148,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
     void SpawnPlayer()
     {
         if (room_name.Equals("Campus"))
-            player = PN.Instantiate(resourceName, lastPosition, Quaternion.identity);
+            player = PN.Instantiate(characterName, lastPosition, Quaternion.identity);
         else
-            player = PN.Instantiate(resourceName, Vector3.zero, Quaternion.identity);
+            player = PN.Instantiate(characterName, Vector3.zero, Quaternion.identity);
     }
 
     void Update()

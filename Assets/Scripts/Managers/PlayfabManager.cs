@@ -105,13 +105,6 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
     public void LoginBtn()
     {
         UIManager.Instance.ShowUI(Define.UI.PORTRAIT);
-
-        if (!emailInput.text.Contains("@inha.edu"))
-        {
-            emailInput.text += "@inha.edu";
-        }
-        var request = new LoginWithEmailAddressRequest { Email = emailInput.text, Password = passwordInput.text };
-        PlayFabClientAPI.LoginWithEmailAddress(request, (result) => { OnLoginSuccess(result);  }, (error) => OnLoginFailure(error));
     }
 
     public void RegisterBtn()
@@ -145,7 +138,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
 
     public void OnToggleCharacter()
     {
-        NetworkManager.Instance.resourceName = EventSystem.current.currentSelectedGameObject.name;
+        NetworkManager.Instance.characterName = EventSystem.current.currentSelectedGameObject.name;
     }
 
     public void SelectCharacterBtn()
@@ -154,6 +147,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         {
             emailInput.text += "@inha.edu";
         }
+        Debug.Log(emailInput.text + " " + passwordInput.text); 
         var request = new LoginWithEmailAddressRequest { Email = emailInput.text, Password = passwordInput.text };
         PlayFabClientAPI.LoginWithEmailAddress(request, (result) => { OnLoginSuccess(result); }, (error) => OnLoginFailure(error));
     }
