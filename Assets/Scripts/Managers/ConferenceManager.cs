@@ -203,7 +203,7 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
             }
 
 
-            if (!conferenceState.Equals(Define.VIDEOCONFERENCESTATE.END))
+            if (!conferenceState.Equals(Define.VIDEOCONFERENCESTATE.END) && !conferenceChannelName.Equals(""))
             {
                 Debug.Log("Who entered here");
                 if (conferenceState.Equals(Define.VIDEOCONFERENCESTATE.READY))
