@@ -1286,7 +1286,7 @@ MonoBehaviour:
   logLevel: 3
   ignoreGlobalLogLevel: 0
   recorderInUse: {fileID: 0}
-  speakerInUse: {fileID: 5282641313804920007, guid: 4049f8b1a5187b24e8621b1cdf808107, type: 3}
+  speakerInUse: {fileID: 4534887343952207917}
   AutoCreateRecorderIfNotFound: 0
   UsePrimaryRecorder: 1
   SetupDebugSpeaker: 1
