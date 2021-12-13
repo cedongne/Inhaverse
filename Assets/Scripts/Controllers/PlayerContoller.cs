@@ -44,6 +44,7 @@ public class PlayerContoller : MonoBehaviourPun
     bool isRun;
     bool isJump;
     bool isDown;
+    public bool isSitted;
 
     public bool canMove;
     public bool canDetectInteractive;
@@ -160,6 +161,12 @@ public class PlayerContoller : MonoBehaviourPun
 
         VoiceOnOff();
         OpenOptionWindow();
+        SittingChair();
+    }
+
+    void SittingChair()
+    {
+        animator.SetBool("isSitted", isSitted);
     }
 
     void GetInput()

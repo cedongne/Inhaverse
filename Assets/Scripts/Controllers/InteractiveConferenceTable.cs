@@ -28,6 +28,7 @@ public class InteractiveConferenceTable : InteractiveObject
         MineManager.Instance.playerController.canMove = false;
         MineManager.Instance.playerController.canDetectInteractive = false;
         MineManager.Instance.playerController.canGetInput = false;
+        MineManager.Instance.playerController.isSitted = true;
     }
 
     void ChatControl()

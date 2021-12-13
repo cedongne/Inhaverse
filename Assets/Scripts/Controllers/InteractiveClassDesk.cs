@@ -43,6 +43,7 @@ public class InteractiveClassDesk : InteractiveObject
         MineManager.Instance.player.transform.position = chairPos;
         Debug.Log(MineManager.Instance.player.transform.position);
         MineManager.Instance.player.transform.rotation = Quaternion.Euler(0, 90, 0);
+        MineManager.Instance.playerController.isSitted = true;
     }
 
     public string GetDeskNum(string str)

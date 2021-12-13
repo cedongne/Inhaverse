@@ -1172,6 +1172,7 @@ MonoBehaviour:
   runMoveSpeed: 4
   prevYPosition: 0
   jumpPower: 5
+  isSitted: 0
   canMove: 0
   canDetectInteractive: 0
   canGetInput: 0
@@ -1268,6 +1269,9 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 1
     Name: isDown
+  - Type: 4
+    SynchronizeType: 0
+    Name: isSitted
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0

@@ -14206,7 +14206,7 @@ MonoBehaviour:
   playerUrl: []
   webCamImages: []
   conferenceWorldTransform: {fileID: 7439380854423258273, guid: 3345599aafad00f4693baaddb1eb2ebe, type: 3}
-  conferenceWorldOffset: {x: -24.83117, y: 0.1875, z: 31.80975}
+  conferenceWorldOffset: {x: -24.83117, y: 0.4, z: 31.80975}
   table: {fileID: 0}
 --- !u!4 &945244073
 Transform:
