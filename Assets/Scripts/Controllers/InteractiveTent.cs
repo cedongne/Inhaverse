@@ -45,7 +45,7 @@ public class InteractiveTent : InteractiveObject
     [System.Obsolete]
     public void OnTriggerExit(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.tag.Equals("Player") && other.name.Equals(MineManager.Instance.player.name))
         {
             if(!isEntered)
             {
