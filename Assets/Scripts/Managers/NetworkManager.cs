@@ -142,6 +142,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
     void GameStart()
     {
         SpawnPlayer();
+        ChatManager.Instance.currentChannelName = room_name;
+        ChatManager.Instance.ChatStart();
         UIManager.Instance.ShowUI(Define.UI.HUD);
     }
 
@@ -151,6 +153,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
             player = PN.Instantiate(characterName, lastPosition, Quaternion.identity);
         else
             player = PN.Instantiate(characterName, Vector3.zero, Quaternion.identity);
+        ConferenceManager.Instance.photonView.RequestOwnership();
     }
 
     void Update()

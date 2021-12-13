@@ -26,10 +26,6 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
         }
         
     }
-
-    public PlayerContoller playerContoller;
-
-    Dictionary<UserInfo, int> studentAttendanceList = new Dictionary<UserInfo, int>();
     string class_name;
     public Define.CLASSSTATE classState;
 
@@ -80,6 +76,11 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
     }
     public void EnterCLASSChannelNameBtn()
     {
+        if (UIManager.Instance.ClassChannelNameInputField.text.Equals(""))
+        {
+            StopReadyClassBtn();
+            return;
+        }
         classChannelName = UIManager.Instance.ClassChannelNameInputField.text;
         classState = Define.CLASSSTATE.START;
         photonView.RPC("StartCLASS", RpcTarget.AllBuffered, classChannelName);
@@ -173,7 +174,6 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
         UIManager.Instance.HideSubUI();
 
         MineManager.Instance.playerController.canDetectInteractive = true;
-        MineManager.Instance.cameraController.playerTransform = playerContoller.transform;
     }
 #endregion
 
@@ -250,7 +250,7 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
 
     public void GetUpFromChair()
     {
-        ClassProcessManager.Instance.isSittedChair = false;
+        Instance.isSittedChair = false;
         UIManager.Instance.HideSubUI();
 
         MineManager.Instance.playerController.OnKinematic(false);

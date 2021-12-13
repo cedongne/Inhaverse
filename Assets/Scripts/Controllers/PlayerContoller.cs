@@ -148,6 +148,7 @@ public class PlayerContoller : MonoBehaviourPun
             if (!ChatManager.Instance.onChat)
             {
                 GetInput();
+                CheckClickedInputField();
                 TeleportWayPoint();
                 DetectInteractiveObject();
             }
@@ -167,11 +168,6 @@ public class PlayerContoller : MonoBehaviourPun
         Dance();
     }
 
-    void SittingChair()
-    {
-        animator.SetBool("isSitted", isSitted);
-    }
-
     void GetInput()
     {
         if (!canGetInput)
@@ -182,6 +178,19 @@ public class PlayerContoller : MonoBehaviourPun
         isDanceDown = Input.GetKeyDown(KeyCode.F1);
     }
 
+    void CheckClickedInputField()
+    {
+        if (EventSystem.current.currentSelectedGameObject != null &&
+            EventSystem.current.currentSelectedGameObject.GetComponent<InputField>())
+        {
+            Debug.Log("Input");
+            canGetInput = false;
+        }
+        else
+        {
+            canGetInput = true;
+        }
+    }
     public void WalkToRun()
     {
         if (isRunDown)
@@ -211,6 +220,7 @@ public class PlayerContoller : MonoBehaviourPun
             cameraController.ChangeCameraMode();
         }
     }
+
     void Move()
     {
         if (!canMove)
@@ -228,14 +238,6 @@ public class PlayerContoller : MonoBehaviourPun
 
             playerTransform.position += moveDir * Time.deltaTime * moveSpeed;
             playerTransform.forward = moveDir;
-        }
-    }
-
-    void Dance()
-    {
-        if (isDanceDown)
-        {
-            animator.SetTrigger("DoDance");
         }
     }
 
@@ -326,6 +328,19 @@ public class PlayerContoller : MonoBehaviourPun
             {
                 Debug.Log(name);
             }
+        }
+    }
+
+    void SittingChair()
+    {
+        animator.SetBool("isSitted", isSitted);
+    }
+
+    void Dance()
+    {
+        if (isDanceDown)
+        {
+            animator.SetTrigger("DoDance");
         }
     }
 

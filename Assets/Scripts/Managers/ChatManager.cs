@@ -85,7 +85,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 	public void ChatStart()
 	{
 		userName = PlayfabManager.Instance.playerName;
-		Debug.Log(userName);
+		EraseText();
 
 		StartCoroutine(ChatStartCoroutine());
 	}
@@ -186,9 +186,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 
 	public void EraseText()
     {
-		Debug.Log("Erase");
 		outputText.text = "";
-		Debug.Log("Erased");
 	}
 
 	public void OnUnsubscribed(string[] channels)

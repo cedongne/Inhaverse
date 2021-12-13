@@ -68,6 +68,11 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
 
     public void EnterVideoConferenceChannelNameBtn()
     {
+        if (UIManager.Instance.conferenceChannelNameInputField.text.Equals(""))
+        {
+            photonView.RPC("EndVideoConferenceRPC", RpcTarget.AllBuffered);
+            return;
+        }
         conferenceChannelName = UIManager.Instance.conferenceChannelNameInputField.text;
         conferenceState = Define.VIDEOCONFERENCESTATE.START;
         photonView.RPC("StartVideoConference", RpcTarget.AllBuffered, channelName, conferenceChannelName);
@@ -106,25 +111,11 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
         }
     }
 
-    /*
     [PunRPC]
-    public void EndVideoConference(string sender_channel_name)
+    public void EndVideoConferenceRPC()
     {
-        Debug.Log("End Receiver " + sender_channel_name);
-        if (sender_channel_name.Equals(channelName))
-        {
-            Debug.Log("EndVideoConference");
-            conferenceChannelName = "";
-            UIManager.Instance.conferenceChannelNameText.text = "";
-            UIManager.Instance.conferenceChannelNameObject.SetActive(false);
-            UIManager.Instance.conferenceChannelNameInputField.text = "";
-            UIManager.Instance.conferenceChannelNameInputObject.SetActive(false);
-
-            UIManager.Instance.videoConferenceButton.interactable = true;
-            UIManager.Instance.videoConferenceText.text = "화상회의 시작";
-        }
+        EndVideoConference();
     }
-    */
 
     public void EndVideoConference()
     {

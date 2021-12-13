@@ -14234,7 +14234,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 600c9038a7b701c4995835b1dfcdf4fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerContoller: {fileID: 0}
   classState: 0
   professorViewObjectTransform: {fileID: 0}
   all_student_number: 0

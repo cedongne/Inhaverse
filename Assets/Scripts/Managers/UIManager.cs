@@ -178,8 +178,8 @@ public class UIManager : MonoBehaviour
         playerName.text = _playerName;
         playerSchoolId.text = _playerSchoolId;
     }
-#region HUD Icons
 
+#region HUD Icons
     public void SpeakerOnOffBtn()
     {
     }
@@ -268,6 +268,7 @@ public class UIManager : MonoBehaviour
         MineManager.Instance.cameraController.enabled = false;
         MineManager.Instance.cameraArm.GetComponent<LobbyCameraRatate>().enabled = true;
         NetworkManager.Instance.LeaveGame();
+        NetworkManager.Instance.room_name = "Campus";
         ShowUI(Define.UI.LOGIN);
     }
 
