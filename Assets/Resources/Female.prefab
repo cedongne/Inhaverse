@@ -1272,6 +1272,9 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 0
     Name: isSitted
+  - Type: 9
+    SynchronizeType: 0
+    Name: DoDance
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0
