@@ -175,9 +175,8 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         passwordInput.text = "";
         usernameInput.text = "";
 
-        //        PN.ConnectUsingSettings();
         PN.ConnectUsingSettings();
-        UpdateLeaderBoard("CSE1111001Attendance", 24511);
+        UpdateLeaderBoard("CSE1111001Attendance", 4063);
     }
 
     private void OnLoginFailure(PlayFabError error)
@@ -437,7 +436,6 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             {
                 for (int count = 0; count < result.Leaderboard.Count; count++)
                 {
-                    Debug.Log(result.Leaderboard[count].StatValue);
                     if (result.Leaderboard[count].DisplayName.Equals(userName))
                     {
                         string attendance = UtilityMethods.ReverseString(Convert.ToString(result.Leaderboard[count].StatValue, 2).ToString());

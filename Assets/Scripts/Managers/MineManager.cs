@@ -40,6 +40,7 @@ public class MineManager : MonoBehaviour
     public CameraController cameraController;
     public GameObject cameraArm;
 
+
     public GameObject playerUI;
 
 }
