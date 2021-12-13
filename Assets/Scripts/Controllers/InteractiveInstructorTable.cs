@@ -30,9 +30,9 @@ public class InteractiveInstructorTable : InteractiveObject
         }
         else
         {
-            UIManager.Instance.StopCoroutine(UIManager.Instance.FadeOutDontHaveAuthority());
+            UIManager.Instance.StopCoroutine(UIManager.Instance.FadeOutwarningMessageUI(""));
             UIManager.Instance.StopCoroutine(UIManager.Instance.FadeOutCoroutine());
-            UIManager.Instance.StartCoroutine(UIManager.Instance.FadeOutDontHaveAuthority());
+            UIManager.Instance.StartCoroutine(UIManager.Instance.FadeOutwarningMessageUI("접근 권한이 없습니다!"));
             
         }
     }

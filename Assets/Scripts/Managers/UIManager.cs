@@ -42,7 +42,7 @@ public class UIManager : MonoBehaviour
     public Image conferenceSpeakerIcon;
     public Image conferenceVoiceIcon;
     
-    [Header("===== HUD 채팅 UI")]
+    [Header("===== HUD 채팅 UI =====")]
     [Space]
     public InputField hudChatInputField;
     public Text hudChatText;
@@ -51,7 +51,7 @@ public class UIManager : MonoBehaviour
     public GameObject hudSendButton;
     public GameObject hudChatBack;
 
-    [Header("===== 회의채팅 UI")]
+    [Header("===== 회의채팅 UI =====")]
     [Space]
     public InputField conferenceChatInputField;
     public Text conferenceChatText;
@@ -117,11 +117,11 @@ public class UIManager : MonoBehaviour
     [Space]
     public GameObject openFileWindow;
 
-    [Header("=====권한 경고 메세지 UI =====")]
+    [Header("===== 경고 메세지 UI =====")]
     [Space]
-    public GameObject dontHaveAuthority;
-    public Image Authoritybackground;
-    public Text Authoritytext;
+    public GameObject warningMessageUI;
+    public Image warningMessageUIBackground;
+    public Text warningMessageUIText;
 
     [Header("===== 플레이어 인포 UI =====")]
     [Space]
@@ -591,11 +591,12 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public IEnumerator FadeOutDontHaveAuthority()
+    public IEnumerator FadeOutwarningMessageUI(string warningMessage)
     {
-        dontHaveAuthority.SetActive(true);
+        warningMessageUI.SetActive(true);
+        warningMessageUIText.text = warningMessage;
         yield return StartCoroutine(FadeOutCoroutine());
-        dontHaveAuthority.SetActive(false);
+        warningMessageUI.SetActive(false);
     }
 
     public IEnumerator FadeOutCoroutine()
@@ -605,8 +606,8 @@ public class UIManager : MonoBehaviour
         {
             fadeCount -= 0.01f;
             yield return new WaitForSeconds(0.01f);
-            Authoritybackground.color = new Color(Authoritybackground.color.r, Authoritybackground.color.g, Authoritybackground.color.b, fadeCount);
-            Authoritytext.color = new Color(Authoritytext.color.r, Authoritytext.color.g, Authoritytext.color.b, fadeCount);
+            warningMessageUIBackground.color = new Color(warningMessageUIBackground.color.r, warningMessageUIBackground.color.g, warningMessageUIBackground.color.b, fadeCount);
+            warningMessageUIText.color = new Color(warningMessageUIText.color.r, warningMessageUIText.color.g, warningMessageUIText.color.b, fadeCount);
         }
     }
 #endregion

@@ -13657,9 +13657,9 @@ MonoBehaviour:
   studentClasshannelNameObject: {fileID: 1803055948}
   studentClasshannelNameText: {fileID: 134527969}
   openFileWindow: {fileID: 1866391726}
-  dontHaveAuthority: {fileID: 1600421342}
-  Authoritybackground: {fileID: 1235363594}
-  Authoritytext: {fileID: 1570695187}
+  warningMessageUI: {fileID: 1600421342}
+  warningMessageUIBackground: {fileID: 1235363594}
+  warningMessageUIText: {fileID: 1570695187}
   playerName: {fileID: 104412335}
   playerSchoolId: {fileID: 1035060079}
   classListContent: {fileID: 685751563}
@@ -18220,7 +18220,7 @@ GameObject:
   - component: {fileID: 1235363595}
   - component: {fileID: 1235363594}
   m_Layer: 5
-  m_Name: Background
+  m_Name: Warning Message Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18243,7 +18243,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 320, y: 60}
+  m_SizeDelta: {x: 440, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1235363594
 MonoBehaviour:
@@ -23526,7 +23526,7 @@ GameObject:
   - component: {fileID: 1570695188}
   - component: {fileID: 1570695187}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Warning Message Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23581,8 +23581,8 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: "\uC811\uADFC \uAD8C\uD55C\uC774 \uC5C6\uC2B5\uB2C8\uB2E4!"
 --- !u!222 &1570695188
@@ -23901,7 +23901,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1600421343}
   m_Layer: 5
-  m_Name: Don'tHaveAuthority
+  m_Name: Warning Message
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34275,13 +34275,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2580658444136385601}
   m_TextComponent: {fileID: 2580658445210385571}
   m_Placeholder: {fileID: 2580658444023221683}
-  m_ContentType: 7
+  m_ContentType: 9
   m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 3
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:

@@ -111,6 +111,7 @@ public class ClassProcessManager : MonoBehaviourPunCallbacks
     [PunRPC]
     public void EndCLASS()
     {
+        classState = Define.CLASSSTATE.END;
         UIManager.Instance.startClassButton.interactable = true;
         Debug.Log("CLASS");
         UIManager.Instance.classChannelNameText.text = "";

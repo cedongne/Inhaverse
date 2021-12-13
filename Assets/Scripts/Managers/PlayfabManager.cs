@@ -104,7 +104,12 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
     #region PlayFab Login, Register
     public void LoginBtn()
     {
-        UIManager.Instance.ShowUI(Define.UI.PORTRAIT);
+        if (!emailInput.text.Contains("@inha.edu"))
+        {
+            emailInput.text += "@inha.edu";
+        }
+        var request = new LoginWithEmailAddressRequest { Email = emailInput.text, Password = passwordInput.text };
+        PlayFabClientAPI.LoginWithEmailAddress(request, (result) => { OnLoginSuccess(result); }, (error) => OnLoginFailure(error));
     }
 
     public void RegisterBtn()
@@ -143,20 +148,8 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
 
     public void SelectCharacterBtn()
     {
-        if (!emailInput.text.Contains("@inha.edu"))
-        {
-            emailInput.text += "@inha.edu";
-        }
-        Debug.Log(emailInput.text + " " + passwordInput.text); 
-        var request = new LoginWithEmailAddressRequest { Email = emailInput.text, Password = passwordInput.text };
-        PlayFabClientAPI.LoginWithEmailAddress(request, (result) => { OnLoginSuccess(result); }, (error) => OnLoginFailure(error));
-    }
-
-    private void OnLoginSuccess(LoginResult result)
-    {
         GetMyInfo();
-        GetUserJob(); 
-        myPlayfabId = result.PlayFabId;
+        GetUserJob();
 
         PlayFabAuthenticationAPI.GetEntityToken(new GetEntityTokenRequest(),
             (result) =>
@@ -174,12 +167,23 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         usernameInput.text = "";
 
         PN.ConnectUsingSettings();
-        UpdateLeaderBoard("CSE1111001Attendance", 4063);
+//        UpdateLeaderBoard("CSE1111001Attendance", 4063);
+    }
+
+    private void OnLoginSuccess(LoginResult result)
+    {
+        UIManager.Instance.ShowUI(Define.UI.PORTRAIT);
+        myPlayfabId = result.PlayFabId;
     }
 
     private void OnLoginFailure(PlayFabError error)
     {
-        Debug.Log("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½" + error);
+        emailInput.text = "";
+        passwordInput.text = "";
+        usernameInput.text = "";
+        UIManager.Instance.StopCoroutine(UIManager.Instance.FadeOutwarningMessageUI(""));
+        UIManager.Instance.StopCoroutine(UIManager.Instance.FadeOutCoroutine());
+        UIManager.Instance.StartCoroutine(UIManager.Instance.FadeOutwarningMessageUI("¾ÆÀÌµð ¶Ç´Â ÆÐ½º¿öµå°¡ Æ²·È½À´Ï´Ù"));
     }
 
     void OnRegisterSuccess(RegisterPlayFabUserResult result)
