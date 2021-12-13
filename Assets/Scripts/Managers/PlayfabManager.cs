@@ -123,7 +123,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.");
             return;
         }
-        if (playerJob.Equals("?™ìƒ"))
+        if (playerJob.Equals("ÇĞ»ı"))
         {
             emailInput.text = "11111111@inha.edu";
             passwordInput.text = "master1234";
@@ -163,13 +163,11 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             {
                 playerEntity = result.Entity;
                 AcceptGroupInvitationWithUpdateData();
-                Debug.Log("ï¿½ï¿½ï¿½ï¿½Æ¼ ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½" + playerEntity.Id);
             },
             (error) => Debug.Log("ï¿½ï¿½ï¿½ï¿½Æ¼ ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½"));
 
         invitingGroupEvent.AddListener(AcceptGroupInvitationWithUpdateData);
 
-        Debug.Log("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.");
 
         emailInput.text = "";
         passwordInput.text = "";
@@ -245,13 +243,13 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             {
                 if (eachData.Key == "Job")
                 {
-                    if (eachData.Value.Value.Equals("?™ìƒ"))
+                    if (eachData.Value.Value.Equals("ÇĞ»ı"))
                     {
-                        playerJob = "?™ìƒ";
+                        playerJob = "ÇĞ»ı";
                     }
-                    else if (eachData.Value.Value == "êµìˆ˜")
+                    else if (eachData.Value.Value == "±³¼ö")
                     {
-                        playerJob = "êµìˆ˜";
+                        playerJob = "±³¼ö";
                     }
                     break;
                 }
@@ -458,11 +456,11 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
     {
         if (studentToggle.isOn)
         {
-            playerJob = "?™ìƒ";
+            playerJob = "ÇĞ»ı";
         }
         else if (instructorToggle.isOn)
         {
-            playerJob = "êµìˆ˜";
+            playerJob = "±³¼ö";
         }
     }
 
