@@ -32,7 +32,11 @@ public class PlayerUIController : MonoBehaviourPunCallbacks, IPunObservable
     void FixedUpdate()
     {
         playerNameTextTransform.position = Camera.main.WorldToScreenPoint(playerTransform.position + playerNameTextOffset);
-        if(photonView.IsMine)
+        if (playerNameTextTransform.position.z < 0)
+        {
+            playerNameTextTransform.position *= -1;
+        }
+        if (photonView.IsMine)
             CheckVoiceTransmitting();
         CheckMicColor();
     }

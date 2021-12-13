@@ -342,7 +342,7 @@ public class PlayerContoller : MonoBehaviourPun
     {
         for (int count = 0; count < RpcUIManager.Instance.playerList.Count; count++)
         {
-            if (Vector3.Distance(playerTransform.position, RpcUIManager.Instance.playerList[count].transform.position) < 10)
+            if (Vector3.Distance(RpcUIManager.Instance.playerList[count].transform.position, playerTransform.position) < 10)
             {
                 RpcUIManager.Instance.playerUILIst[count].SetActive(true);
             }
