@@ -1178,6 +1178,7 @@ MonoBehaviour:
   canGetInput: 0
   isJumpDown: 0
   isRunDown: 0
+  isDanceDown: 0
   isInfoWindowDown: 0
   isChangeCameraModeDown: 0
   currentTouch: {fileID: 5030059289416126775, guid: 4049f8b1a5187b24e8621b1cdf808107, type: 3}
