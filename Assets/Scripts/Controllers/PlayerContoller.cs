@@ -45,6 +45,7 @@ public class PlayerContoller : MonoBehaviourPun
     bool isJump;
     bool isDown;
     public bool isSitted;
+    bool isDance;
 
     public bool canMove;
     public bool canDetectInteractive;
@@ -162,6 +163,8 @@ public class PlayerContoller : MonoBehaviourPun
         VoiceOnOff();
         OpenOptionWindow();
         SittingChair();
+
+        Dance();
     }
 
     void SittingChair()
@@ -176,6 +179,7 @@ public class PlayerContoller : MonoBehaviourPun
         isRunDown = Input.GetKeyDown(KeyCode.R);
         isJumpDown = Input.GetKeyDown(KeyCode.Space);
         isChangeCameraModeDown = Input.GetKeyDown(KeyCode.Tab);
+        isDance = Input.GetKeyDown(KeyCode.F1);
     }
 
     public void WalkToRun()
@@ -224,6 +228,15 @@ public class PlayerContoller : MonoBehaviourPun
 
             playerTransform.position += moveDir * Time.deltaTime * moveSpeed;
             playerTransform.forward = moveDir;
+        }
+    }
+
+    void Dance()
+    {
+        if (isDance)
+        {
+            animator.Play("Dance");
+            isDance = false;
         }
     }
 
