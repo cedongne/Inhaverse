@@ -232,6 +232,7 @@ public class ConferenceManager : MonoBehaviourPunCallbacks
         MineManager.Instance.playerController.canMove = true;
         MineManager.Instance.playerController.canDetectInteractive = true;
         MineManager.Instance.playerController.canGetInput = true;
+        MineManager.Instance.playerController.isSitted = false;
     }
 
     [PunRPC]

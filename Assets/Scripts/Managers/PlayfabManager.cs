@@ -123,7 +123,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             Debug.Log("������ �����ϼ���.");
             return;
         }
-        if (playerJob.Equals("학생"))
+        if (playerJob.Equals("?�생"))
         {
             emailInput.text = "11111111@inha.edu";
             passwordInput.text = "master1234";
@@ -246,9 +246,9 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             {
                 if (eachData.Key == "Job")
                 {
-                    if (eachData.Value.Value.Equals("학생"))
+                    if (eachData.Value.Value.Equals("?�생"))
                     {
-                        playerJob = "학생";
+                        playerJob = "?�생";
                     }
                     else if (eachData.Value.Value == "교수")
                     {
@@ -319,7 +319,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             }
             if (playerId.Equals(""))
             {
-                Debug.Log("�������� �ʴ� ������Դϴ�.");
+                Debug.Log("�������� �ʴ� ������Դϴ�?");
                 return;
             }
             var request = new GetAccountInfoRequest { PlayFabId = playerId };
@@ -460,7 +460,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
     {
         if (studentToggle.isOn)
         {
-            playerJob = "학생";
+            playerJob = "?�생";
         }
         else if (instructorToggle.isOn)
         {
@@ -528,13 +528,13 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             (result) =>
             {
                 groups = result.Groups.ToList();
-                Debug.Log("�׷� ��� �ҷ����� ����. Count = " + groups.Count);
+                Debug.Log("�׷� ���?�ҷ����� ����. Count = " + groups.Count);
                 if (use.Equals("OpenClassListWindow"))
                     UIManager.Instance.OpenClassListWindowCallBack(groups);
                 else if (use.Equals("ShowClassInfo"))
                     UIManager.Instance.ShowClassInfoBtnCallBack(groups);
             },
-            (error) => { Debug.Log("�׷� ��� �ҷ����� ���� " + error); groups = null; });
+            (error) => { Debug.Log("�׷� ���?�ҷ����� ���� " + error); groups = null; });
     }
 
     public void InviteToGroup(string groupName, string studentIdString)
