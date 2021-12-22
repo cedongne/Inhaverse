@@ -176,7 +176,6 @@ public class PlayerContoller : MonoBehaviourPun
         isJumpDown = Input.GetKeyDown(KeyCode.Space);
         isChangeCameraModeDown = Input.GetKeyDown(KeyCode.Tab);
         isDanceDown = Input.GetKeyDown(KeyCode.F1);
-        isInfoWindowDown = Input.GetKeyDown(KeyCode.I);
 }
 
     void CheckClickedInputField()
@@ -319,7 +318,7 @@ public class PlayerContoller : MonoBehaviourPun
 
     void OpenInfoWindow()
     {
-        if (isInfoWindowDown)
+        if (Input.GetKeyDown(KeyCode.I))
         {
             if (!UIManager.Instance.playerInfoWindow.activeSelf)
                 UIManager.Instance.InfoBtn();
