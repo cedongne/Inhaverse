@@ -653,9 +653,9 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                     SetUserData(classData.className + classData.classNumber,
                         classData.classNumber + "," + classData.classId + "," + classData.classInstructor + "," + 
                         classData.firstDayOfWeek + "," + classData.firstStartTime + "~" + classData.firstEndTime);
-                Debug.Log("ÔøΩ√∞ÔøΩ«• ÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ");
+                Debug.Log("Ω√∞£«• √÷Ω≈»≠ º∫∞¯");
             },
-            (error) => { Debug.Log("ÔøΩ√∞ÔøΩ«• ÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ" + error); });
+            (error) => { Debug.Log("Ω√∞£«• √÷Ω≈»≠ Ω«∆–" + error); });
     }
 
     public GroupWithRoles FindSpecificGroup(List<GroupWithRoles> groups, string groupName)

@@ -86,7 +86,7 @@ public class UtilityMethods
         if (dayCode == 0)
             return "Monday";
         else if (dayCode == 1)
-            return "TuesDay";
+            return "Tuesday";
         else if (dayCode == 2)
             return "Wednesday";
         else if (dayCode == 3)

@@ -534,6 +534,7 @@ public class UIManager : MonoBehaviour
     public void LoadModifyingClass(object classObject)
     {
         ClassData classData = JsonUtility.FromJson<ClassData>(classObject.ToString());
+        Debug.Log(classData.firstDayOfWeek + " " + classData.secondDayOfWeek);
         classNameInput.text = classData.className;
 
         classIdInput.text = classData.classId;
@@ -587,7 +588,6 @@ public class UIManager : MonoBehaviour
                 studentListText.text = studentListText.text.Replace(studentsList[count].schoolId + " " + studentsList[count].name + "\n", "");
                 studentsList.RemoveAt(count);
                 removeStudentsList.Add(studentsList[count]);
-                Debug.Log("REmoveStudent" + count);
             }
         }
     }
