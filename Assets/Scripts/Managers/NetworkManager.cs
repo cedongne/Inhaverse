@@ -135,7 +135,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
 
     public override void OnLeftLobby()
     {
-        PlayfabManager.Instance.UpdateLeaderBoard("Login", 0);
         Debug.Log("플레이어가 퇴장했습니다.");
     }
 

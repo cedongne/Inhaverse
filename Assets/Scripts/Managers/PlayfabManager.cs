@@ -273,14 +273,13 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                 playerName = result.AccountInfo.TitleInfo.DisplayName;
                 playerSchoolId = result.AccountInfo.Username;
 
-                UpdateLeaderBoard("Login", 1);
 
                 UIManager.Instance.UIInitFromPlayfabLogin(playerName, playerSchoolId);
                 ChatManager.Instance.ChatStart();
 
                 ChatManager.Instance.enabled = true;
-                Debug.Log("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½Ì¸ï¿½ : " + playerName + ", ï¿½Ð¹ï¿½ : " + playerSchoolId);
-            }, (error) => Debug.Log("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½"));
+                Debug.Log("Á¤º¸ ºÒ·¯¿À±â ¼º°ø, ÀÌ¸§ : " + playerName + ", ÇÐ¹ø : " + playerSchoolId);
+            }, (error) => Debug.Log("Á¤º¸ ºÒ·¯¿À±â ½ÇÆÐ"));
     }
 
     public void GetPlayerInfoUsingPlayFabId(string playerId)
@@ -686,9 +685,9 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         var request = new SetObjectsRequest { Entity = new PlayFab.DataModels.EntityKey { Id = entityId, Type = entityType }, Objects = setObjectsList };
         PlayFabDataAPI.SetObjects(request, 
             (result) => {
-                Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½");
+                Debug.Log("±×·ì ¾÷µ¥ÀÌÆ® ¼º°ø");
                 UpdateClassTimeTable(entityId, entityType);
-            }, (error) => Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½" + error));
+            }, (error) => Debug.Log("±×·ì ¾÷µ¥ÀÌÆ® ½ÇÆÐ" + error));
     }
 
     public void GetObjectData(string use, string entityId, string entityType, string key)
