@@ -176,8 +176,8 @@ public class PlayerContoller : MonoBehaviourPun
         isJumpDown = Input.GetKeyDown(KeyCode.Space);
         isChangeCameraModeDown = Input.GetKeyDown(KeyCode.Tab);
         isDanceDown = Input.GetKeyDown(KeyCode.F1);
-}
-
+    }
+    
     void CheckClickedInputField()
     {
         if (EventSystem.current.currentSelectedGameObject != null &&
@@ -191,6 +191,8 @@ public class PlayerContoller : MonoBehaviourPun
             canGetInput = true;
         }
     }
+    
+
     public void WalkToRun()
     {
         if (isRunDown)

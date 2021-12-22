@@ -173,6 +173,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
     private void OnLoginSuccess(LoginResult result)
     {
         UIManager.Instance.ShowUI(Define.UI.PORTRAIT);
+        UIManager.Instance.GetComponent<InputTabMove>().enabled = false;
         myPlayfabId = result.PlayFabId;
     }
 
