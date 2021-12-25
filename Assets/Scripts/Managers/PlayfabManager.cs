@@ -125,7 +125,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
 
         if (playerJob == "")
         {
-            Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.");
+            Debug.Log("Á÷¾÷À» ¼±ÅÃÇØÁÖ¼¼¿ä.");
             return;
         }
         if (playerJob.Equals("ÇÐ»ý"))
@@ -157,7 +157,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                 playerEntity = result.Entity;
                 AcceptGroupInvitationWithUpdateData();
             },
-            (error) => Debug.Log("ï¿½ï¿½ï¿½ï¿½Æ¼ ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½"));
+            (error) => { });
 
         invitingGroupEvent.AddListener(AcceptGroupInvitationWithUpdateData);
 
@@ -192,12 +192,12 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         SetUserData("Job", playerJob);
         UpdateLeaderBoard("IDInfo", int.Parse(emailInput.text.Substring(0, 8)));
 
-        Debug.Log("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+        Debug.Log("È¸¿ø°¡ÀÔ ¼º°ø");
     }
 
     void OnRegisterFailure(PlayFabError error)
     {
-        Debug.Log("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½" + error);
+        Debug.Log("È¸¿ø°¡ÀÔ ½ÇÆÐ " + error);
     }
 #endregion
 
@@ -208,7 +208,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             Data = new Dictionary<string, string>() { { key, value } },
             Permission = UserDataPermission.Public
         };
-        PlayFabClientAPI.UpdateUserData(request, (result) => { Debug.Log("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½"); }, (error) => Debug.Log("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½" + error));
+        PlayFabClientAPI.UpdateUserData(request, (result) => { Debug.Log("µ¥ÀÌÅÍ ¾÷µ¥ÀÌÆ® ¼º°ø"); }, (error) => Debug.Log("µ¥ÀÌÅÍ ¾÷µ¥ÀÌÆ® ¼º°ø" + error));
     }
 
     public void GetUserData(string key, string use)
@@ -227,17 +227,6 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                 }
             }, (error) => { Debug.Log(error); });
     }
-
-    public void DeleteUserData(string key)
-    {
-        var request = new UpdateUserDataRequest
-        {
-            KeysToRemove = new List<string>() { key }
-        };
-        PlayFabClientAPI.UpdateUserData(request, (result) => { Debug.Log("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½"); }, (error) => Debug.Log("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½" + error));
-    }
-
-    
 
     void GetUserJob()
     {
@@ -260,9 +249,8 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                 }
             }
 
-            
-            Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½. Job : " + playerJob);
-        }, (error) => Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½" + error));
+            Debug.Log("Á÷¾÷ Á¤º¸ ºÒ·¯¿À±â ¼º°ø. Job : " + playerJob);
+        }, (error) => Debug.Log("Á÷¾÷ Á¤º¸ ºÒ·¯¿À±â ½ÇÆÐ " + error));
     }
 
     public void GetMyInfo()
@@ -281,20 +269,6 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                 ChatManager.Instance.enabled = true;
                 Debug.Log("Á¤º¸ ºÒ·¯¿À±â ¼º°ø, ÀÌ¸§ : " + playerName + ", ÇÐ¹ø : " + playerSchoolId);
             }, (error) => Debug.Log("Á¤º¸ ºÒ·¯¿À±â ½ÇÆÐ"));
-    }
-
-    public void GetPlayerInfoUsingPlayFabId(string playerId)
-    {
-        var request = new GetAccountInfoRequest { PlayFabId = playerId };
-        PlayFabClientAPI.GetAccountInfo(request,
-            (result) =>
-            {
-                if (getPlayerInfoEvent != null)
-                {
-                    getPlayerInfoEvent(result.AccountInfo.Username, result.AccountInfo.TitleInfo.DisplayName);
-                }
-                Debug.Log("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½");
-            }, (error) => Debug.Log("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½"));
     }
 
     public void GetPlayerInfoUsingStudentId(string studentIdString)
@@ -320,7 +294,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             }
             if (playerId.Equals(""))
             {
-                Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿?");
+                Debug.Log("ÇÃ·¹ÀÌ¾î¿¡ ´ëÇÑ Á¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
                 return;
             }
             var request = new GetAccountInfoRequest { PlayFabId = playerId };
@@ -331,8 +305,8 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                     {
                         getPlayerInfoEvent(result.AccountInfo.Username, result.AccountInfo.TitleInfo.DisplayName);
                     }
-                    Debug.Log("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½");
-                }, (error) => Debug.Log("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½"));
+                    Debug.Log("°èÁ¤ Á¤º¸ ºÒ·¯¿À±â ¼º°ø");
+                }, (error) => Debug.Log("°èÁ¤ Á¤º¸ ºÒ·¯¿À±â ½ÇÆÐ"));
         }, (error) => Debug.Log(error.ErrorMessage));
     }
 
@@ -364,7 +338,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
 
         Debug.Log(statisticName + statisticValue);
         var request = new UpdatePlayerStatisticsRequest { Statistics = new List<StatisticUpdate> { new StatisticUpdate { StatisticName = statisticName, Value = statisticValue } } };
-        PlayFabClientAPI.UpdatePlayerStatistics(request, (result) => Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½"), (error) => Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½")); ;
+        PlayFabClientAPI.UpdatePlayerStatistics(request, (result) => Debug.Log("¸®´õº¸µå ¾÷µ¥ÀÌÆ® ¼º°ø"), (error) => Debug.Log("¸®´õº¸µå ¾÷µ¥ÀÌÆ® ½ÇÆÐ")); ;
     }
 
     public void UpdateLeaderBoardStudentOnClass(string groupId, string groupType)
@@ -377,7 +351,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                 Debug.Log(classData.classId + classData.classNumber);
                 UpdateLeaderBoard(classData.classId + classData.classNumber + "Attendance", 0);
             },
-            (error) => { Debug.Log("ï¿½Ã°ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½" + error); });
+            (error) => { Debug.Log("¼ö¾÷ ³» ÇÐ»ý Á¤º¸ ¾÷µ¥ÀÌÆ® ½ÇÆÐ" + error); });
     }
 
     public void GetLeaderBoard(string statisticName, string userName, string callbackMethodName)
@@ -452,7 +426,7 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                     }
                 }
                 textComponent.alignment = TextAnchor.MiddleCenter;
-                textComponent.text = "ï¿½â¼® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.";
+                textComponent.text = "Ãâ¼® Á¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.";
             }, (error) => { Debug.Log(error); });
     }
 
@@ -476,9 +450,9 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         PlayFabGroupsAPI.CreateGroup(request,
             (result) =>
             {
-                Debug.Log("ï¿½×·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, id : " + result.Group.Id + " name : " + result.GroupName);
+                Debug.Log("±×·ì »ý¼º ¼º°ø, id : " + result.Group.Id + " name : " + result.GroupName);
             },
-            (error) => Debug.Log("ï¿½×·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½" + error));
+            (error) => Debug.Log("±×·ì »ý¼º ½ÇÆÐ" + error));
     }
 
     public void CreateGroup(string groupName, string dataKey, object dataValue)
@@ -489,18 +463,18 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
         PlayFabGroupsAPI.CreateGroup(request,
             (result) =>
             {
-                Debug.Log("ï¿½×·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, id : " + result.Group.Id + " name : " + result.GroupName);
+                Debug.Log("±×·ì »ý¼º ¼º°ø, id : " + result.Group.Id + " name : " + result.GroupName);
                 List<string> studentIds = UtilityMethods.ListUpInvitingStudents(dataValue);
                 for(int count = 0; count < studentIds.Count; count++)
                 {
                     InviteToGroup(groupName, studentIds[count]);
-                    Debug.Log(studentIds[count] + "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
+                    Debug.Log(studentIds[count] + "°¡ ¼ö¾÷¿¡ ÀÔ·ÂµÇ¾ú½À´Ï´Ù.");
                 }
                 UpdateObjectDataUsingEntity(result.Group.Id, result.Group.Type, dataKey, dataValue);
             },
             (error) =>
             {
-                Debug.Log("ï¿½×·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½" + error.Error);
+                Debug.Log("±×·ì »ý¼º ½ÇÆÐ" + error.Error);
                 if (error.Error.ToString().Equals("GroupNameNotAvailable"))
                 {
                     var request = new GetGroupRequest { GroupName = groupName };
@@ -508,13 +482,13 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                         (result) =>
                         {
                             UpdateObjectDataUsingEntity(result.Group.Id, result.Group.Type, dataKey, dataValue);
-                            Debug.Log("ï¿½×·ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½");
+                            Debug.Log("±×·ì Á¤º¸ °¡Á®¿À±â ¼º°ø");
                         }, (error) => { });
                     List<string> studentIds = UtilityMethods.ListUpInvitingStudents(dataValue);
                     for (int count = 0; count < studentIds.Count; count++)
                     {
                         InviteToGroup(groupName, studentIds[count]);
-                        Debug.Log(studentIds[count] + "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
+                        Debug.Log(studentIds[count] + "°¡ ¼ö¾÷¿¡ ÀÔ·ÂµÇ¾ú½À´Ï´Ù.");
                     }
                 }
             });
@@ -528,13 +502,13 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
             (result) =>
             {
                 groups = result.Groups.ToList();
-                Debug.Log("ï¿½×·ï¿½ ï¿½ï¿½ï¿?ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. Count = " + groups.Count);
+                Debug.Log("±×·ì Á¤º¸ °¡Á®¿À±â ¼º°ø. Count = " + groups.Count);
                 if (use.Equals("OpenClassListWindow"))
                     UIManager.Instance.OpenClassListWindowCallBack(groups);
                 else if (use.Equals("ShowClassInfo"))
                     UIManager.Instance.ShowClassInfoBtnCallBack(groups);
             },
-            (error) => { Debug.Log("ï¿½×·ï¿½ ï¿½ï¿½ï¿?ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ " + error); groups = null; });
+            (error) => { Debug.Log("±×·ì Á¤º¸ °¡Á®¿À±â ¼º°ø " + error); groups = null; });
     }
 
     public void InviteToGroup(string groupName, string studentIdString)
@@ -576,9 +550,9 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                         Group = result.Invitations[count].Group,
                         Entity = new PlayFab.GroupsModels.EntityKey { Id = playerEntity.Id, Type = playerEntity.Type }
                     };
-                    PlayFabGroupsAPI.AcceptGroupInvitation(request, (result) => { Debug.Log("ï¿½×·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½"); }, (error) => { Debug.Log("ï¿½×·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ " + error); });
+                    PlayFabGroupsAPI.AcceptGroupInvitation(request, (result) => { Debug.Log("±×·ì °¡ÀÔ ¼º°ø"); }, (error) => { Debug.Log("±×·ì °¡ÀÔ ½ÇÆÐ " + error); });
                 }
-            }, (error) => { Debug.Log("ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ " + error); });
+            }, (error) => { Debug.Log("±×·ì ÃÊ´ë Á¤º¸ ºÒ·¯¿À±â ½ÇÆÐ " + error); });
     }
 
     public void AcceptGroupInvitationWithUpdateData()
@@ -599,13 +573,13 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                         {
                             for (int count = 0; count < listResult.Invitations.Count; count++)
                             {
-                                Debug.Log("ï¿½×·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+                                Debug.Log("±×·ì °¡ÀÔ ¼º°ø");
                                 UpdateClassTimeTable(listResult.Invitations[count].Group.Id, listResult.Invitations[count].Group.Type);
                                 UpdateLeaderBoardStudentOnClass(listResult.Invitations[count].Group.Id, listResult.Invitations[count].Group.Type);
                             }
-                        }, (error) => { Debug.Log("ï¿½×·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ " + error); });
+                        }, (error) => { Debug.Log("±×·ì °¡ÀÔ ½ÇÆÐ " + error); });
                 }
-            }, (error) => { Debug.Log("ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ " + error); });
+            }, (error) => { Debug.Log("±×·ì ÃÊ´ë Á¤º¸ ºÒ·¯¿À±â ½ÇÆÐ " + error); });
     }
 
     public void RemoveMemberFromGroup(string groupName, string playerName)
@@ -631,10 +605,10 @@ public class PlayfabManager : MonoBehaviourPunCallbacks
                         PlayFabGroupsAPI.RemoveMembers(removeMemberRequest,
                             (result) =>
                             {
-                                Debug.Log("ï¿½×·ï¿½ ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+                                Debug.Log("±×·ì ³» ¸â¹ö »èÁ¦ ¼º°ø");
                             }, (error) => { Debug.Log(error.Error); });
                     }, (error) => { Debug.Log(error.Error); });
-            }, (error) => { Debug.Log("ï¿½×·ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½" + error.Error); });
+            }, (error) => { Debug.Log("±×·ì ³» ¸â¹ö »èÁ¦ ½ÇÆÐ" + error.Error); });
         
     }
 

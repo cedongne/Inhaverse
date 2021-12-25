@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using PN = Photon.Pun.PhotonNetwork;
 
@@ -32,7 +31,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
     public GameObject player;
     GameObject playerNameTextUI;
 
-    string network_state;
     public string room_name;
     Vector3 lastPosition = Vector3.zero;
     public string characterName = "Player";
@@ -43,7 +41,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
     {
         if (instance == null)
         {
-            instance = gameObject.GetComponent<NetworkManager>();
+            instance = GetComponent<NetworkManager>();
             gameObject.SetActive(true);
             DontDestroyOnLoad(gameObject);
         }
@@ -63,7 +61,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
     public override void OnJoinedLobby()
     {
         PN.JoinOrCreateRoom(room_name, new RoomOptions { MaxPlayers = 10 }, null);
-        Debug.Log(room_name);
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -80,8 +77,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
 
         string[] splitedClassData = UtilityMethods.SplitTimeTableUserData(classData);
 
-        if (UtilityMethods.DetermineAllowClassEnter(splitedClassData)) 
+        if (UtilityMethods.DetermineAllowClassEnter(splitedClassData))
+        {
             room_name = splitedClassData[1] + splitedClassData[0];
+            Debug.Log(" 수업 시간입니다. " + room_name + " 수업에 입장합니다.");
+        }
         else
         {
             room_name = "OpenClass";
@@ -100,7 +100,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
         while (!asyncLoadScene.isDone)
         {
             yield return null;
-            Debug.Log(asyncLoadScene.progress);
+ //           Debug.Log(asyncLoadScene.progress);
         }
         ClassProcessManager.Instance.enabled = true;
     }
@@ -133,11 +133,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
         PN.Disconnect();
     }
 
-    public override void OnLeftLobby()
-    {
-        Debug.Log("플레이어가 퇴장했습니다.");
-    }
-
     void GameStart()
     {
         SpawnPlayer();
@@ -153,15 +148,5 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
         else
             player = PN.Instantiate(characterName, Vector3.zero, Quaternion.identity);
         ConferenceManager.Instance.photonView.RequestOwnership();
-    }
-
-    void Update()
-    {
-        string curnetwork_state = PN.NetworkClientState.ToString();
-        if (network_state != curnetwork_state)
-        {
-            network_state = curnetwork_state;
-//            print(network_state);
-        }
     }
 }

@@ -437,6 +437,5 @@ public class PlayerContoller : MonoBehaviourPun
         {
             cameraController.enabled = false;
         }
-        Debug.Log("Destroy");
     }
 }
