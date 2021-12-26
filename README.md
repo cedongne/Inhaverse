@@ -1,7 +1,11 @@
 
 # Inhaverse
 인하대학교 2021-2 컴퓨터공학과 컴퓨터공학종합설계 프로젝트
+
 INHA Univ. 2021-2 CSE Capstone design : Metaverse project
+
+
+
 
 - # 서론
   -	배경
