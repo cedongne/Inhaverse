@@ -44,7 +44,7 @@ COVID-19 출현 이후 사태가 악화되며 오프라인 수업이 제한되�
 
   - HUD
   
-    <center><img src = "https://images.velog.io/images/cedongne/post/9da3fe3b-5296-4499-a59d-589341d9d691/image.png"></center>
+    <img src = "https://images.velog.io/images/cedongne/post/9da3fe3b-5296-4499-a59d-589341d9d691/image.png" aling = "center">
     
      로그인 후 보이는 Head Up Display이다. 하단에 서버를 통해 채팅 할 수 있는 UI와 기본적인 기능 5가지를 UI로 만들어 제공하였다. 각각의 용도는 다음과 같다. 
      
@@ -73,8 +73,10 @@ COVID-19 출현 이후 사태가 악화되며 오프라인 수업이 제한되�
      기본적으로 마우스 커서는 보이지 않는(Locked) 상태이며, 마우스를 회전하는 것에 따라 플레이어의 시점이 회전한다. 마우스 좌클릭으로 마우스 커서를 보이게 할 수 있고, 이때 시점 회전 기능은 잠시 중단된다. 다른 클릭 이벤트가 없다면 3초 후에 마우스 커서는 자동으로 Locked 상태가 되고, 마우스 우클릭을 통해 원할 때 커서를 Locked 상태로 만들 수 있다.
      
   -  상호작용  
+      
       <center><img src = "https://images.velog.io/images/cedongne/post/4d306e9c-46f8-4bb5-b6d9-3c6c4e0cbd48/image.png"></center>
-     Inhaverse에는 회의 테이블, 강의실 문, 교탁, 책걸상 등 여러 상호작용 가능 오브젝트가 존재하며, 충분히 가까운 거리에서 해당 오브젝트를 바라보거나 마우스 커서를 올려놓으면 상호작용 외곽선과 UI가 표시된다. 이 상태에서 오브젝트를 클릭하면 각 오브젝트에 맞는 상호작용 이벤트가 발생한다. 
+      
+      Inhaverse에는 회의 테이블, 강의실 문, 교탁, 책걸상 등 여러 상호작용 가능 오브젝트가 존재하며, 충분히 가까운 거리에서 해당 오브젝트를 바라보거나 마우스 커서를 올려놓으면 상호작용 외곽선과 UI가 표시된다. 이 상태에서 오브젝트를 클릭하면 각 오브젝트에 맞는 상호작용 이벤트가 발생한다. 
   - 회의  
       <center><img src = "https://images.velog.io/images/cedongne/post/600ef826-eafe-4515-9726-9ef44e58f54f/image.png"></center>
       
