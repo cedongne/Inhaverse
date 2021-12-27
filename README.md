@@ -4,6 +4,12 @@
 
 INHA Univ. CSE 2021-2 Capstone design : Metaverse project
 
+## [Demo video]
+
+[![video](https://images.velog.io/images/cedongne/post/673b8742-786b-4102-aca4-2cc4b894baaf/Inhaverse%20Thumbnail.png)](https://youtu.be/2ufwkd0WzV0)
+
+
+[Fullversion video Link] : https://youtu.be/wI9snuc0Xks
 
 
 
