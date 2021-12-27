@@ -34,14 +34,14 @@ COVID-19 출현 이후 사태가 악화되며 오프라인 수업이 제한되�
    
   - 클라이언트
     - 애니메이션
-  서버에 연결된 플레이어는 애니메이션이 항시 동작한다. 아래는 각 플레이어 오브젝트에 공통으로 할당된 Animator controller component로, 아래 그림과 같은 로직으로 플레이어의 애니메이션을 실행한다.
+  서버에 연결된 플레이어는 애니메이션이 항시 동작한다. 아래는 각 플레이어 오브젝트에 공통으로 할당된 `Animator controller` component로, 아래 그림과 같은 로직으로 플레이어의 애니메이션을 실행한다.
   
       <p align="center"><img src = "https://images.velog.io/images/cedongne/post/6395d754-01b2-4589-aecc-6b6f569989c1/image.png"></p>
       
     - 텍스트 및 음성 채팅
        월드에 접속한 후 Photon Chat, Photon Voice2 패키지를 Photon PUN2와 연동하여 텍스트 및 음성 채팅 기능을 이용할 수 있다.
        
-       서버당 한 룸에는 하나의 채팅 채널이 존재하고 모든 클라이언트는 각자의 챗 클라이언트를 가진다. 텍스트 채팅은 플레이어 자신이 속한 채팅 채널에 있는 플레이어들과, 음성 채팅은 Photon Voice2 에셋에서 제공하는 Voice connection, Recorder, Speaker 컴포넌트를 통해 같은 채널(Interest group) 내의 플레이어들과 주고받는다.
+       서버당 한 룸에는 하나의 채팅 채널이 존재하고 모든 클라이언트는 각자의 챗 클라이언트를 가진다. 텍스트 채팅은 플레이어 자신이 속한 채팅 채널에 있는 플레이어들과, 음성 채팅은 Photon Voice2 에셋에서 제공하는 `Voice connection`, `Recorder`, `Speaker` 컴포넌트를 통해 같은 채널(Interest group) 내의 플레이어들과 주고받는다.
      - DB
       
        <p align="center"><img src = "https://images.velog.io/images/cedongne/post/fdb99fe4-6d60-45ac-abe3-0371e134c5e0/image.png"></p>
@@ -85,13 +85,13 @@ COVID-19 출현 이후 사태가 악화되며 오프라인 수업이 제한되�
      | 옵션/창 닫기 	| `ESC`		| 음성 채팅	| `V` 				| 메시지 채팅	| `ENTER`	|
      | 댄스 				| `F1`			|
       
-     기본적으로 마우스 커서는 보이지 않는(Locked) 상태이며, 마우스를 회전하는 것에 따라 플레이어의 시점이 회전한다. 마우스 좌클릭으로 마우스 커서를 보이게 할 수 있고, 이때 시점 회전 기능은 잠시 중단된다. 다른 클릭 이벤트가 없다면 3초 후에 마우스 커서는 자동으로 Locked 상태가 되고, 마우스 우클릭을 통해 원할 때 커서를 Locked 상태로 만들 수 있다.
+     기본적으로 마우스 커서는 보이지 않는(Locked) 상태이며, 마우스를 회전하는 것에 따라 플레이어의 시점이 회전한다. `마우스 좌클릭`으로 마우스 커서를 보이게 할 수 있고, 이때 시점 회전 기능은 잠시 중단된다. 다른 클릭 이벤트가 없다면 3초 후에 마우스 커서는 자동으로 Locked 상태가 되고, `마우스 우클릭`을 통해 원할 때 커서를 Locked 상태로 만들 수 있다.
      
   -  **상호작용**  
       
       <p align="center"><img src = "https://images.velog.io/images/cedongne/post/4d306e9c-46f8-4bb5-b6d9-3c6c4e0cbd48/image.png"></p>
       
-      Inhaverse에는 회의 테이블, 강의실 문, 교탁, 책걸상 등 여러 상호작용 가능 오브젝트가 존재하며, 충분히 가까운 거리에서 해당 오브젝트를 바라보거나 마우스 커서를 올려놓으면 상호작용 외곽선과 UI가 표시된다. 이 상태에서 오브젝트를 클릭하면 각 오브젝트에 맞는 상호작용 이벤트가 발생한다. 
+      Inhaverse에는 회의 테이블, 강의실 문, 교탁, 책걸상 등 여러 상호작용 가능 오브젝트가 존재하며, 충분히 가까운 거리에서 해당 오브젝트를 바라보거나 마우스 커서를 올려놓으면 상호작용 외곽선과 UI가 표시된다. 이 상태에서 `마우스 좌클릭` 혹은 `E`를 누르면 각 오브젝트에 맞는 상호작용 이벤트가 발생한다. 
   - **회의**  
       <p align="center"><img src = "https://images.velog.io/images/cedongne/post/600ef826-eafe-4515-9726-9ef44e58f54f/image.png"></p>
       
@@ -161,7 +161,7 @@ COVID-19 출현 이후 사태가 악화되며 오프라인 수업이 제한되�
     
       <p align="center"><img src = "https://images.velog.io/images/cedongne/post/6aae385f-b5d3-4c06-94cf-8e1fcc0e19db/image.png"></p>
 
-    HUD의 Capture 버튼을 이용해 HUD를 제거한 현재 인게임 화면을 캡쳐하고, 로컬 저장소에 저장할 수 있다.  
+    HUD의 `Capture` 버튼을 이용해 HUD를 제거한 현재 인게임 화면을 캡쳐하고, 로컬 저장소에 저장할 수 있다.  
 
 
 - # 발전 계획
