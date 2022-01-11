@@ -1,8 +1,16 @@
 
 # Inhaverse
-인하대학교 컴퓨터공학과 2021-2 컴퓨터공학종합설계 프로젝트
-
+인하대학교 컴퓨터공학과 2021-2 컴퓨터공학종합설계 프로젝트  
 INHA Univ. CSE 2021-2 Capstone design : Metaverse project
+
+3인 팀으로 개발되었으며, 팀장을 맡아 전체적인 프로젝트 관리를 겸한 본인의 개발 영역은
+- 입력 처리 및 애니메이션
+- 서버 관련 처리
+- PlayFab 기반 모든 데이터 처리
+- UI/UX 및 기능 구현
+- 채팅, 음성 제외 RPC 처리
+
+등이 있다.
 
 ## [Demo video]
 
@@ -34,7 +42,7 @@ COVID-19 출현 이후 사태가 악화되며 오프라인 수업이 제한되�
    
   - 클라이언트
     - 애니메이션
-  서버에 연결된 플레이어는 애니메이션이 항시 동작한다. 아래는 각 플레이어 오브젝트에 공통으로 할당된 `Animator controller` component로, 아래 그림과 같은 로직으로 플레이어의 애니메이션을 실행한다.
+  서버에 연결된 플레이어는 애니메이션이 항시 동작한다. 아래는 각 플레이어 오브젝트에 공통으로 할당된 `Animator controller` 컴포넌트로, 아래 그림과 같은 로직으로 플레이어의 애니메이션을 실행한다.
   
       <p align="center"><img src = "https://images.velog.io/images/cedongne/post/6395d754-01b2-4589-aecc-6b6f569989c1/image.png"></p>
       
