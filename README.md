@@ -10,7 +10,7 @@ INHA Univ. CSE 2021-2 Capstone design : Metaverse project
 - UI/UX 및 기능 구현
 - 채팅, 음성 제외 RPC 처리
 
-등이 있다.
+등이 있다. 해당 학기 컴퓨터공학종합설계 전체 1위의 성적을 거두었다.
 
 ## [Demo video]
 
