@@ -76,11 +76,10 @@ public class CameraController : MonoBehaviour
         {
             if(Cursor.lockState.Equals(CursorLockMode.Locked))
                 LookAround();
-            DontBeyondWall();
+            CheckCameraCollision();
         }
         MoveCamera();
     }
-
 
     void LookAround()
     {
@@ -120,7 +119,8 @@ public class CameraController : MonoBehaviour
             isTPS = true;
         }
     }
-    void DontBeyondWall()
+
+    void CheckCameraCollision()
     {
         if (isTPS)
         {
