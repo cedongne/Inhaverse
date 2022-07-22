@@ -107,7 +107,9 @@ INHA Univ. CSE 2021-2 Capstone design project : Metaverse project
       
       <p align="center"><img src = "https://images.velog.io/images/cedongne/post/4d306e9c-46f8-4bb5-b6d9-3c6c4e0cbd48/image.png"></p>
       
-      Inhaverse에는 회의 테이블, 강의실 문, 교탁, 책걸상 등 여러 상호작용 가능 오브젝트가 존재하며, 충분히 가까운 거리에서 해당 오브젝트를 바라보거나 마우스 커서를 올려놓으면 상호작용 외곽선과 UI가 표시된다. 이 상태에서 `마우스 좌클릭` 혹은 `E`를 누르면 각 오브젝트에 맞는 상호작용 이벤트가 발생한다. 
+      Inhaverse에는 회의 테이블, 강의실 문, 교탁, 책걸상 등 여러 상호작용 가능 오브젝트가 존재하며,  이 상태에서 `마우스 좌클릭` 혹은 `E`를 누르면 각 오브젝트에 맞는 상호작용 이벤트가 발생한다. 
+      
+      `PlayerController.cs`에 `DetectInteractiveObject()` 메서드를 정의해 현재 마우스 커서 상태(`Locked`/`None`)에 따라 레이캐스팅 지점을 변경하고, 충분히 가까운 거리에서 해당 오브젝트를 바라보거나 마우스 커서를 올려놓으면 레이와 충돌한 `Interactive Object` 태그 오브젝트는 상호작용 외곽선, UI를 표시 후 이벤트 발생이 가능하도록 설정하였다.
   - **회의**  
       <p align="center"><img src = "https://images.velog.io/images/cedongne/post/600ef826-eafe-4515-9726-9ef44e58f54f/image.png"></p>
       
