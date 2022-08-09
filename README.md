@@ -37,22 +37,29 @@ INHA Univ. CSE 2021-2 Capstone design project : Metaverse project
 
    해당 장에선 이후에 보여질 전체적인 Inhaverse 시스템 아키텍처가 어떻게 구성되어 있는지 흐름도와 같은 시각적 도구를 활용하여 표현하고, 각 아키텍처의 상세 모듈에 대해 다룬다.
  
-  -  시스템 아키텍처
+  - ### 시스템 아키텍처
   
      <p align="center"><img src = "https://images.velog.io/images/cedongne/post/0a269f17-be7d-4022-84a7-4ab5ff6d4c6d/image.png"></p>
      해당 시스템의 구성요소는 서버, 클라이언트, DB로 이루어져 있으며, 각 구성요소는 역할에 따라 특정한 모듈을 사용한다.
    
-  - 클라이언트
-    - 애니메이션
-  서버에 연결된 플레이어는 애니메이션이 항시 동작한다. 아래는 각 플레이어 오브젝트에 공통으로 할당된 `Animator controller` 컴포넌트로, 아래 그림과 같은 로직으로 플레이어의 애니메이션을 실행한다.
+  - **클라이언트**
+    - **애니메이션**
+    
+      서버에 연결된 플레이어는 애니메이션이 항시 동작한다. 아래는 각 플레이어 오브젝트에 공통으로 할당된 `Animator controller` 컴포넌트로, 아래 그림과 같은 로직으로 플레이어의 애니메이션을 재생한다.
   
-      <p align="center"><img src = "https://images.velog.io/images/cedongne/post/6395d754-01b2-4589-aecc-6b6f569989c1/image.png"></p>
+      <p align="center"><img src = "https://user-images.githubusercontent.com/57585303/183716015-809fb1de-5635-4bd6-b651-2a074219ff80.png"></p>
       
-    - 텍스트 및 음성 채팅
+      이때 Jump 애니메이션은 블렌드 트리로 설정하여 캐릭터의 Velocity Y 값에 따라 뛰어 오르는 동작과 체공 동작을 섞어 주었다. 또한, 점프 입력이 있을 때는 당연히 애니메이션이 재생돼야 하지만, 점프 입력 없이 높은 곳에서 떨어질 때도 체공 애니메이션이 재생될 수 있도록 해당 블렌드 트리로 진입하는 트랜지션을 따로 설정해주었다.
+      
+      또한, Jump 애니메이션과 Dance 애니메이션 재생이 종료되자마자 이동 애니메이션을 재생해야 할 때 자연스럽게 전환되는 것처럼 보이도록 Exit 노드에 연결하지 않고 Idle, 이동 애니메이션에 직접 트랜지션을 연결해주었다.
+      
+      
+    - **텍스트 및 음성 채팅**
+    
        월드에 접속한 후 Photon Chat, Photon Voice2 패키지를 Photon PUN2와 연동하여 텍스트 및 음성 채팅 기능을 이용할 수 있다.
        
        서버당 한 룸에는 하나의 채팅 채널이 존재하고 모든 클라이언트는 각자의 챗 클라이언트를 가진다. 텍스트 채팅은 플레이어 자신이 속한 채팅 채널에 있는 플레이어들과, 음성 채팅은 Photon Voice2 에셋에서 제공하는 `Voice connection`, `Recorder`, `Speaker` 컴포넌트를 통해 같은 채널(Interest group) 내의 플레이어들과 주고받는다.
-     - DB
+   - **DB**
       
        <p align="center"><img src = "https://images.velog.io/images/cedongne/post/fdb99fe4-6d60-45ac-abe3-0371e134c5e0/image.png"></p>
        
