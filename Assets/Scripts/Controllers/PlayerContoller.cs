@@ -135,6 +135,7 @@ public class PlayerContoller : MonoBehaviourPun
             }
         }
         JumpDown();
+        animator.SetFloat("yVelocity", playerRigid.velocity.y);
     }
 
     private void Update()
@@ -166,6 +167,7 @@ public class PlayerContoller : MonoBehaviourPun
         SittingChair();
 
         Dance();
+
     }
 
     void GetInput()
