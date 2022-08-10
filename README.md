@@ -33,7 +33,7 @@ INHA Univ. CSE 2021-2 Capstone design project : Metaverse project
  
    <p align="center"><img src = "https://images.velog.io/images/cedongne/post/5b4289a2-55fe-4999-be03-bc75e03fe748/image.png"></p>
    
-  Inhaverse는 Unity Engine으로 클라이언트 개발을 하였으며, Photon 솔루션에서 제공하는 다양한 서비스 중 On-premise 방식의 Photon server를 선택하여 시스템 서버를 구축하였다. 데이터베이스는 게임 시스템에 적합한 PlayFab, 화상 통신을 위한 웹 서버는 배포된 Owake 시스템을 활용하였다.
+  Inhaverse는 Unity Engine으로 클라이언트 개발을 하였으며, Photon 솔루션에서 제공하는 다양한 서비스 중 Photon cloud를 선택하여 시스템 서버를 구축하였다. 데이터베이스는 게임 시스템에 적합한 PlayFab, 화상 통신을 위한 웹 서버는 배포된 Owake 시스템을 활용하였다.
 
    해당 장에선 이후에 보여질 전체적인 Inhaverse 시스템 아키텍처가 어떻게 구성되어 있는지 흐름도와 같은 시각적 도구를 활용하여 표현하고, 각 아키텍처의 상세 모듈에 대해 다룬다.
  
