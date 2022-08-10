@@ -3,12 +3,14 @@
 인하대학교 컴퓨터공학과 2021-2 컴퓨터공학종합설계 프로젝트  
 INHA Univ. CSE 2021-2 Capstone design project : Metaverse project
 
-3인 팀으로 개발하였으며, 팀장을 맡아 전체적인 프로젝트 관리를 겸한 본인의 개발 영역은
-- 입력 처리 및 애니메이션
-- 서버 관련 처리
-- PlayFab 기반 모든 데이터 처리
-- UI/UX 및 기능 구현
+3인 팀으로 개발하였으며, 팀장을 맡아 전체적인 프로젝트 관리를 겸한 본인의 주요 개발 영역은
+- 입력 처리 및 애니메이션 [[PlayerController.cs](https://github.com/cedongne/Inhaverse/blob/main/Assets/Scripts/Controllers/PlayerController.cs) / [CameraController.cs](https://github.com/cedongne/Inhaverse/blob/main/Assets/Scripts/Controllers/CameraController.cs)]
+- 서버 관련 처리 [[NetworkManager.cs](https://github.com/cedongne/Inhaverse/blob/main/Assets/Scripts/Managers/NetworkManager.cs)]
+- PlayFab 기반 모든 데이터 처리 [[PlayfabManager.cs](https://github.com/cedongne/Inhaverse/blob/main/Assets/Scripts/Managers/PlayfabManager.cs) / [Objects.cs](https://github.com/cedongne/Inhaverse/blob/main/Assets/Scripts/Utils/Objects.cs)]
+- UI/UX 및 기능 구현 [[UIManager.cs](https://github.com/cedongne/Inhaverse/blob/main/Assets/Scripts/Managers/UIManager.cs) / [PlayerUIController.cs](https://github.com/cedongne/Inhaverse/blob/main/Assets/Scripts/Controllers/PlayerUIController.cs)]
 - 채팅, 음성 제외 RPC 처리
+- 수업 시스템 구현(출석 시스템 포함) [[ClassProcessManager.cs](https://github.com/cedongne/Inhaverse/blob/main/Assets/Scripts/Managers/ClassProcessManager.cs)]
+- 스크립트 구조화
 
 등이 있다. 해당 학기 컴퓨터공학종합설계 전체 1위의 성적을 거두었다.
 
