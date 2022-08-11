@@ -4,7 +4,7 @@
 INHA Univ. CSE 2021-2 Capstone design project : Metaverse project
 
 3인 팀으로 개발하였으며, 팀장을 맡아 전체적인 프로젝트 관리를 겸한 본인의 주요 개발 영역은
-- 입력 처리 및 애니메이션 [[PlayerController.cs](https://github.com/cedongne/Inhaverse/blob/main/Assets/Scripts/Controllers/PlayerController.cs) / [CameraController.cs](https://github.com/cedongne/Inhaverse/blob/main/Assets/Scripts/Controllers/CameraController.cs)]
+- 입력 처리 및 애니메이션 [[PlayerController.cs](https://github.com/cedongne/Inhaverse/blob/main/Assets/Scripts/Controllers/PlayerContoller.cs) / [CameraController.cs](https://github.com/cedongne/Inhaverse/blob/main/Assets/Scripts/Controllers/CameraController.cs)]
 - 서버 관련 처리 [[NetworkManager.cs](https://github.com/cedongne/Inhaverse/blob/main/Assets/Scripts/Managers/NetworkManager.cs)]
 - PlayFab 기반 모든 데이터 처리 [[PlayfabManager.cs](https://github.com/cedongne/Inhaverse/blob/main/Assets/Scripts/Managers/PlayfabManager.cs) / [Objects.cs](https://github.com/cedongne/Inhaverse/blob/main/Assets/Scripts/Utils/Objects.cs)]
 - UI/UX 및 기능 구현 [[UIManager.cs](https://github.com/cedongne/Inhaverse/blob/main/Assets/Scripts/Managers/UIManager.cs) / [PlayerUIController.cs](https://github.com/cedongne/Inhaverse/blob/main/Assets/Scripts/Controllers/PlayerUIController.cs)]
