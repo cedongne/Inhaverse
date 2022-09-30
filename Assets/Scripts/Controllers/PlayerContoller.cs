@@ -88,8 +88,6 @@ public class PlayerContoller : MonoBehaviourPun
 
         if (photonView.IsMine)
         {
-//                name = photonView.Owner.NickName;
-
             MineManager.Instance.player = gameObject;
             MineManager.Instance.playerController = GetComponent<PlayerContoller>();
             MineManager.Instance.playerUI = playerUIObjects;
@@ -167,7 +165,6 @@ public class PlayerContoller : MonoBehaviourPun
         SittingChair();
 
         Dance();
-
     }
 
     void GetInput()

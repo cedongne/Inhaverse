@@ -100,7 +100,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
         while (!asyncLoadScene.isDone)
         {
             yield return null;
- //           Debug.Log(asyncLoadScene.progress);
         }
         ClassProcessManager.Instance.enabled = true;
     }
@@ -121,32 +120,32 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IConnectionCallbacks
         Debug.Log("Create");
     }
 
-    public override void OnJoinedRoom()
-    {
-        Debug.Log(PN.CurrentRoom);
-        GameStart();
-    }
+public override void OnJoinedRoom()
+{
+    Debug.Log(PN.CurrentRoom);
+    GameStart();
+}
 
-    public void LeaveGame()
-    {
-        lastPosition = Vector3.zero;
-        PN.Disconnect();
-    }
+public void LeaveGame()
+{
+    lastPosition = Vector3.zero;
+    PN.Disconnect();
+}
 
-    void GameStart()
-    {
-        SpawnPlayer();
-        ChatManager.Instance.currentChannelName = room_name;
-        ChatManager.Instance.ChatStart();
-        UIManager.Instance.ShowUI(Define.UI.HUD);
-    }
+void GameStart()
+{
+    SpawnPlayer();
+    ChatManager.Instance.currentChannelName = room_name;
+    ChatManager.Instance.ChatStart();
+    UIManager.Instance.ShowUI(Define.UI.HUD);
+}
 
-    void SpawnPlayer()
-    {
-        if (room_name.Equals("Campus"))
-            player = PN.Instantiate(characterName, lastPosition, Quaternion.identity);
-        else
-            player = PN.Instantiate(characterName, Vector3.zero, Quaternion.identity);
-        ConferenceManager.Instance.photonView.RequestOwnership();
-    }
+void SpawnPlayer()
+{
+    if (room_name.Equals("Campus"))
+        player = PN.Instantiate(characterName, lastPosition, Quaternion.identity);
+    else
+        player = PN.Instantiate(characterName, Vector3.zero, Quaternion.identity);
+    ConferenceManager.Instance.photonView.RequestOwnership();
+}
 }
